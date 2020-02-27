@@ -101,6 +101,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a new instance of a person.
+     *
+     * @return a new instance of Person
+     */
+
     public Person build() {
 
         return new Person(name, phone, email, address, remark, tags);
