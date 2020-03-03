@@ -322,7 +322,7 @@ _{More to be added}_
 (For all use cases below, the *System* is the `NOVA` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete a contact
+=== Use case 2: Delete a contact
 
 *MSS*
 
@@ -334,10 +334,30 @@ Use case ends.
 *Extensions*
 
 [none]
-* 2a. NOVA cannot find the contact in the contact list
+* 1a. NOVA cannot find the contact in the contact list
 +
 [none]
-** 2a1. NOVA informs student that the contact to delete does not exist
+** 1a1. NOVA informs student that the contact to delete does not exist
++
+Use case ends.
+
+[discrete]
+=== Use case 3: Delete contact's picture
+
+*MSS*
+
+1.  Student enters deletepic command with the contact’s name
+2.  NOVA deletes the contact's picture
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The contact does not have any picture uploaded
++
+[none]
+** 1a1. NOVA informs student that there is no picture to delete
 +
 Use case ends.
 
@@ -347,8 +367,8 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  The application should respond to every command within one second.
 .  Technical requirements: The application should work on both 32-bit and 64-bit environments.
 
 _{More to be added}_
@@ -358,9 +378,6 @@ _{More to be added}_
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
-
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
 
 [appendix]
 == Product Survey
