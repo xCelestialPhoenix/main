@@ -312,6 +312,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add category specific description |filter out a contact’s remark according to type of contact
 
+|`* *` |student |add contact information on CS2103T tutors |contact them for consultations
+
+|`* *` |student |add contact information on CS2103T professors |can contact them
+
 |=======================================================================
 
 _{More to be added}_
