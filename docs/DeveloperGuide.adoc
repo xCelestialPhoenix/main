@@ -295,17 +295,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
-|`* * *` |user |add a new person |
+|`* * *` |student |keep track of my progress in terms of understanding for concepts and skills in CS2103T |make sure I don't lag too far behind
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |student |add notes to concepts and skills taught |value add to my learning process
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |student |add project tasks |keep track of those project tasks
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
-
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |student |mark tasks as done |track how many tasks I have finished
 |=======================================================================
 
 _{More to be added}_
@@ -313,33 +311,60 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `NOVA` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Add notes to a project task in project section of progress tracker
+
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User enter command to add notes to the project task.
+2.  Progress tracker adds notes to the project task.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 2a. No such project task exist.
+*   2a1. NOVA shows an error message.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+=== Use case: User edits a note.
+
+*MSS*
+
+1.  User enter command to edit note.
+2.  Progress tracker replace old note with new note.
 +
+Use case ends.
+
+*Extensions*
+
 [none]
-** 3a1. AddressBook shows an error message.
+* 2a. No prior note was added.
+*   2a1. NOVA adds edit as new note.
 +
-Use case resumes at step 2.
+Use case ends.
+
+=== Use case: User deletes a note.
+
+*MSS*
+
+1.  User enter command to delete note.
+2.  Progress tracker deletes note.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Note to be deleted does not exist.
+*   2a1. NOVA shows error message.
++
+Use case ends.
 
 _{More to be added}_
 
