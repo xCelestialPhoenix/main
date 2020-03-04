@@ -13,9 +13,10 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main
 
-By: `CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
+:repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main/releases
+
+By: `Team CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Introduction
 
@@ -33,13 +34,152 @@ image::Ui.png[width="790"]
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 .  Some example commands you can try:
 
-* *`contact list`* : lists all contacts
+* *`list all`* : lists all contacts
+* **`contact add`**`n\John Doe p\98765432 c\classmate` : adds a contact named `John Doe` to the Address Book and categorise as classmate
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
+Features are group together in modes of operation. There is a set of common commands and also within every mode, there is a set of commands for you to use and get things done.
+
+=== Common
+NOVA offers a set of common functionalities across all modes.
+
+==== Exit : `exit`
+When exiting NOVA with the `exit` command, the contacts, schedules and notes will be saved.
+
+=== Address Book
+
+The address book feature allows you to keep in contact with your teammates and classmates.
+
+image::addressbook.png[width="790"]
+
+==== Add contact: add
+
+You can add your classmate or teammate as contact.
+
+Format: `contact add n\[name] p\[phone number] c\[classmate/teammate]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
+* The name you add will be automatically formatted (jane doe will become Jane Doe).
+
+==== Edit contact: edit
+
+You can edit the contacts that you have added. If the contact you tried to edit does not exist, NOVA will let you know.
+
+Format: `contact edit n\[name] p\[phone number] c\[classmate/teammate]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
+
+==== Delete contact : delete
+
+You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
+
+Format: `contact delete n\[name]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
+
+==== Delete all contacts: delete all
+
+You can delete all the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
+
+Format: `contact delete all`
+
+==== List all contacts: list
+
+NOVA will list the contact's name, phone number and category of all contacts.
+
+Format: `contact list`
+
+==== List category contact: list [classmate/teammate]
+
+NOVA will list the name and phone number of all the contacts under that category. NOVA will also list the category specific remarks.
+
+Format: `contact list c\[classmate/teammate]`
+
+Note:
+
+* `[classmate/teammate]` is not case-sensitive.
+* There are only classmate and teammate categories.
+
+==== Find contact: find
+
+NOVA will find a specific contact added to the address book.
+
+Format: `contact find [name]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Add picture to contact: addpic
+
+NOVA will find a specific contact added to the address book and add the picture.
+
+Format: `contact addpic n\[name] [path]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Update picture to contact: updatepic
+
+NOVA will find a specific contact added to the address book and edit the picture.
+
+Format: `contact updatepic n\[name] [path]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Delete picture in contact: deletepic
+
+NOVA will find a specific contact added to the address book and edit the picture.
+
+Format: `contact deletepic n\[name]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Add category specific remarks: remark
+
+NOVA will find a specific contact added to the address book and add the remark according to category.
+
+Format: `contact remark c\[classmate/teammate] n\[name] d\[description]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Undo your command: undo
+
+NOVA will find the second latest command that was done by the user and go to that state.
+
+Format: `contact undo`
+
+==== Redo your command: redo
+
+NOVA will redo commands.
+
+Format: `contact redo`
+
+==== Short form [v2.0]
+
+You can use the short form of contact `c` in your command.
+
+== Command Summary
+
+* *Add* `contact add n\[name] p\[phone number] c\[classmate/teammate]` +
+e.g. `contact add n\James Ho p\22224444 c\classmate`
 
 ****
 *Command Format*
@@ -169,7 +309,6 @@ Note:
 * `[number]` must be a positive integer e.g. 1, 2, 3...
 * `[index]` must be a positive integer e.g. 1, 2, 3...
 
-
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
@@ -203,4 +342,3 @@ e.g. `note d\Remember to bring your charger! t\2020-02-20 i\2`
 
 * *Repeat Event*: `repeat [number] t\[YYYY-MM-DD] i\[index]` +
 e.g. `repeat 3 t\2020-03-02 i\2`
-
