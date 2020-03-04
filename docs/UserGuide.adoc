@@ -203,7 +203,42 @@ Example: `delete note OOP 3`
 
 Deletes note number 3 of OOP chapter of the syllabus in the progress tracker.
 
+==== View notes: view note
+You can view notes you have added to projects and syllabus in the progress tracker.
+
+Format: `view note [chapter number/ project]`
+
+Example: `view note OOP`
+
+Shows notes added to the OOP chapter of the syllabus.
+
+==== Set done: done
+You can set tasks in the progress tracker as done.
+
+Format: `done [chapter number/ project]`
+
+Example: `done OOP`
+
+Sets OOP as done in progress tracker.
+
+==== Add project task: add
+You can add tasks under projects in the progress tracker.
+
+Format: `add [project] [task]`
+
+Example: `Add IP Level-7 Duke`
+
+Adds tasks “Level-7 Duke” to IP in progress tracker.
+
+==== Delete project task: delete
+You can remove tasks under projects in the progress tracker.
+
+Format: `delete [project] [task number]`
+
+Example: `delete IP 3`
+
+Deletes task 3 of IP in progress tracker.
 
 == FAQ
 
-== Command Summary
+== Glossary
