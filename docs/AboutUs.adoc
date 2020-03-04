@@ -11,7 +11,7 @@ NOVA is developed by the following members within the https://github.com/AY1920S
 
 === Terence Ng
 image::xcelestialphoenix.png[width="150", align="left"]
-{empty} [https://github.com/xcelestialphoenix[github]] [<<terenceng#, portfolio>>]
+{empty} [https://github.com/xcelestialphoenix[github]] [<<bryanyap972.adoc#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Schedule Builder
@@ -20,8 +20,8 @@ Responsibilities: Schedule Builder
 '''
 
 === Bryan Yap
-image::lejolly.jpg[width="150", align="left"]
-{empty}[http://github.com/bryanyap972[github]] [<<bryanyap#, portfolio>>]
+image::bryanyap972.png[width="150", align="left"]
+{empty}[http://github.com/bryanyap972[github]] [<<bryanyap972#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Progress Tracker
@@ -30,7 +30,7 @@ Responsibilities: Progress Tracker
 
 === Chua Hui Xian
 image::huixianc.png[width="150", align="left"]
-{empty}[http://github.com/huixianc[github]] [<<chuahuixian#, portfolio>>]
+{empty}[http://github.com/huixianc[github]] [<<huixianc#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Event
@@ -39,7 +39,7 @@ Responsibilities: Event
 
 === Tan Wah Ken
 image::mightyrabbit99.png[width="150", align="left"]
-{empty}[http://github.com/mightyrabbit99[github]] [<<tanwahken#, portfolio>>]
+{empty}[http://github.com/mightyrabbit99[github]] [<<mightyrabbit99#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Study List
