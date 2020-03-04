@@ -313,6 +313,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |find events | can check if I have any specific events according to keyword(s)
 
+|`* *` |student |add notes to events | can jot down additional details about the events
+
 |`* *` |student |repeat events | can add multiple similar events at one go
 
 
