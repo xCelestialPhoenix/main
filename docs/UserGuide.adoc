@@ -187,4 +187,6 @@ You can use the short form of contact `c` in your command.
 == Command Summary
 
 * *Add* `contact add n\[name] p\[phone number] c\[classmate/teammate]` +
+
 e.g. `contact add n\James Ho p\22224444 c\classmate`
+
