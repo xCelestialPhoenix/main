@@ -11,7 +11,7 @@ NOVA is developed by the following members within the https://github.com/AY1920S
 
 === Terence Ng
 image::xcelestialphoenix.png[width="150", align="left"]
-{empty} [https://github.com/xcelestialphoenix[github]] [<<bryanyap972.adoc#, portfolio>>]
+{empty} [https://github.com/xcelestialphoenix[github]] [<<xcelestialphoenix.adoc#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Schedule Builder
