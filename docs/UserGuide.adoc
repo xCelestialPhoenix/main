@@ -24,8 +24,8 @@ Next-gen Organizing Virtual Assistant (NOVA) is a one-stop desktop application f
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `nova.jar` link:{repoURL}/releases[here].
+.  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -34,7 +34,6 @@ image::Ui.png[width="790"]
 .  Some example commands you can try:
 
 * *`contact list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -57,7 +56,7 @@ image::ManageEventsUI.png[width="790"]
 _[.small]#Figure 2.2: GUI of NOVA after user typed `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 1`#_
 
 
-==== Add A Meeting: `meeting`
+==== Add a Meeting: `meeting`
 
 You can add a meeting as one of your events.
 
@@ -67,7 +66,7 @@ Example:
 
 * `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 1`
 
-==== Add A Study Session: `study`
+==== Add a Study Session: `study`
 
 You can add a study session as one of your events.
 
@@ -78,7 +77,7 @@ Example:
 * `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 1`
 
 
-==== Add A Consultation Session: `consultation`
+==== Add a Consultation Session: `consultation`
 
 You can add a consultation session as one of your events.
 
@@ -89,7 +88,7 @@ Example:
 * `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 1`
 
 
-==== Add A Lesson: `lesson`
+==== Add a Lesson: `lesson`
 You can add a lesson as one of your events.
 
 Format: `lesson d\[description] v\[venue] t\[day] [HH:MM] [duration]`
@@ -108,7 +107,13 @@ Example:
 
 * `delete t\2020-02-20 i\2`
 
-==== Mark Event As Done: `done`
+Note:
+
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
+
+
+==== Mark Event as Done: `done`
 You can mark an event as done once it has been completed.
 
 Format: `done t\[YYYY-MM-DD] i\[index]`
@@ -116,6 +121,10 @@ Format: `done t\[YYYY-MM-DD] i\[index]`
 Example:
 
 * `done t\2020-02-20 i\2`
+
+Note:
+
+* `[index]` must be a positive integer e.g. 1, 2, 3...
 
 
 ==== Find Event: `find`
@@ -127,8 +136,12 @@ Example:
 
 * `find event cool peeps`
 
+Note:
 
-==== Add Notes To Event: `note`
+* `[keywords]` are case insensitive e.g. `cool peeps` will match `Cool Peeps`
+
+
+==== Add Notes to Event: `note`
 You can add additional notes about an event.
 
 Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
@@ -137,8 +150,12 @@ Example:
 
 * `note d\Remember to bring your charger! t\2020-02-20 i\2`
 
+Note:
 
-==== Repeat Event: `repeat`
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
+
+==== Repeat an Event: `repeat`
 You can add repeated events which occur weekly for a given number of times.
 
 Format: `repeat [number] t\[YYYY-MM-DD] i\[index]`
@@ -147,8 +164,43 @@ Example:
 `repeat 3 t\2020-03-02 i\2` +
 Your first event on 2nd March 2020 will be repeated for the next 3 weeks.
 
+Note:
+
+* `[number]` must be a positive integer e.g. 1, 2, 3...
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NOVA folder.
+
+== Command Summary
+
+* *Add Meeting*: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]` +
+e.g. `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 1`
+
+* *Add Study Session*: `study d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]` +
+e.g. `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 1`
+
+* *Add Consultation*: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]` +
+e.g. `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 1`
+
+* *Add Lesson*: `lesson d\[description] v\[venue] t\[day] [HH:MM] [duration]` +
+e.g. `lesson d\CS2103T tutorial v\COM1-B103 t\Monday 15:00 2`
+
+* *Delete Event*: `delete t\[YYYY-MM-DD] i\[index]` +
+e.g. `delete t\2020-02-20 i\2`
+
+* *Mark Event as Done*: `done t\[YYYY-MM-DD] i\[index]` +
+e.g. `done t\2020-02-20 i\2`
+
+* *Find Event*: `find event [keywords]` +
+e.g. `find event cool peeps`
+
+* *Add Note to Event*: `note d\[description] t\[YYYY-MM-DD] i\[index]` +
+e.g. `note d\Remember to bring your charger! t\2020-02-20 i\2`
+
+* *Repeat Event*: `repeat [number] t\[YYYY-MM-DD] i\[index]` +
+e.g. `repeat 3 t\2020-03-02 i\2`
+
