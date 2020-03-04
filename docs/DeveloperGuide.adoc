@@ -3,6 +3,7 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 4
 :sectnums:
 :imagesDir: images
 :stylesDir: stylesheets
@@ -279,13 +280,13 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
+* is a CS2103T student
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: a one-stop study aid platform for CS2103T students
 
 [appendix]
 == User Stories
@@ -295,17 +296,26 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|`* * *` |student |add classmate or teammate’s name and contact info |contact them easily
 
-|`* * *` |user |add a new person |
+|`* * *` |student |edit classmate or teammate’s name and contact info |Edit them if the information are changed
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |student |delete classmate or teammate’s contact |delete if not necessary anymore
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |student |categorise contacts into teammate or classmate |
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* * *` |student |add profile picture to added contact |know at a glance who is the person in my contact
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* * *` |student |edit profile picture to added contact |edit the picture if changes are necessary
+
+|`* * *` |student |delete profile picture to added contact|
+
+|`* * *` |student |add category specific description |filter out a contact’s remark according to type of contact
+
+|`* *` |student |add contact information on CS2103T tutors |contact them for consultations
+
+|`* *` |student |add contact information on CS2103T professors |can contact them
+
 |=======================================================================
 
 _{More to be added}_
@@ -313,33 +323,47 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `NOVA` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case 2: Delete a contact
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Student enters delete command with the contact’s name
+2.  NOVA deletes the contact
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. NOVA cannot find the contact in the contact list
++
+[none]
+** 1a1. NOVA informs student that the contact to delete does not exist
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+[discrete]
+=== Use case 3: Delete contact's picture
+
+*MSS*
+
+1.  Student enters deletepic command with the contact’s name
+2.  NOVA deletes the contact's picture
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The contact does not have any picture uploaded
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 1a1. NOVA informs student that there is no picture to delete
 +
-Use case resumes at step 2.
+Use case ends.
 
 _{More to be added}_
 
@@ -347,8 +371,9 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  The application should respond to every command within one second.
+.  Technical requirements: The application should work on both 32-bit and 64-bit environments.
 
 _{More to be added}_
 
@@ -357,9 +382,6 @@ _{More to be added}_
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
-
-[[private-contact-detail]] Private contact detail::
-A contact detail that is not meant to be shared with others
 
 [appendix]
 == Product Survey
