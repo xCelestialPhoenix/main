@@ -185,7 +185,7 @@ A tracker to help you track your study and project progress.
 image::GUI_ProgressTracker.png[width="790"]
 Fig 2.4: GUI of NOVA after typing command nav progress tracker.
 
-==== Add Notes: add note
+==== Add Notes: `add note`
 You can view notes you have added to projects and syllabus in the progress tracker.
 
 Format: `add note c\[chapter number\ project] n\[note]`
@@ -196,7 +196,7 @@ Example:
 
 Add note “Object-Oriented Programming (OOP) is a programming paradigm” to OOP chapter of the syllabus.
 
-==== Delete Notes: delete note
+==== Delete Notes: `delete note`
 You can delete notes you have added to projects and syllabus in the progress tracker.
 
 Format: `delete note [chapter number/ project] [note number]`
@@ -207,7 +207,7 @@ Example:
 
 Deletes note number 3 of OOP chapter of the syllabus in the progress tracker.
 
-==== View Notes: view note
+==== View Notes: `view note`
 You can view notes you have added to projects and syllabus in the progress tracker.
 
 Format: `view note [chapter number/ project]`
@@ -218,7 +218,7 @@ Example:
 
 Shows notes added to the OOP chapter of the syllabus.
 
-==== Set Done: done
+==== Set Done: `done`
 You can set tasks in the progress tracker as done.
 
 Format: `done [chapter number/ project]`
@@ -229,7 +229,7 @@ Example:
 
 Sets OOP as done in progress tracker.
 
-==== Add Project Task: add
+==== Add Project Task: `add`
 You can add tasks under projects in the progress tracker.
 
 Format: `add [project] [task]`
@@ -240,7 +240,7 @@ Example:
 
 Adds tasks “Level-7 Duke” to IP in progress tracker.
 
-==== Delete Project Task: delete
+==== Delete Project Task: `delete`
 You can remove tasks under projects in the progress tracker.
 
 Format: `delete [project] [task number]`
