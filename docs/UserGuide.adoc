@@ -59,7 +59,7 @@ image::addressbook.png[width="790"]
 
 Fig 2.1: GUI of NOVA after user typed contact add n\John Doe p\12345678 c\teammate
 
-==== Add Contact: add
+==== Add Contact: `add`
 
 You can add your classmate or teammate as contact.
 
@@ -70,7 +70,7 @@ Note:
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
 * The name you add will be automatically formatted (jane doe will become Jane Doe).
 
-==== Edit Contact: edit
+==== Edit Contact: `edit`
 
 You can edit the contacts that you have added. If the contact you tried to edit does not exist, NOVA will let you know.
 
@@ -80,7 +80,7 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
 
-==== Delete Contact : delete
+==== Delete Contact : `delete`
 
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
@@ -90,19 +90,19 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
 
-==== Delete All Contacts: delete all
+==== Delete All Contacts: `delete all`
 
 You can delete all the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
 
 Format: `contact delete all`
 
-==== List All Contacts: list
+==== List All Contacts: `list`
 
 NOVA will list the contact's name, phone number and category of all contacts.
 
 Format: `contact list`
 
-==== List Category Contact: list [classmate/teammate]
+==== List Category Contact: `list [classmate/teammate]`
 
 NOVA will list the name and phone number of all the contacts under that category. NOVA will also list the category specific remarks.
 
@@ -113,7 +113,7 @@ Note:
 * `[classmate/teammate]` is not case-sensitive.
 * There are only classmate and teammate categories.
 
-==== Find Contact: find
+==== Find Contact: `find`
 
 NOVA will find a specific contact added to the address book.
 
@@ -123,7 +123,7 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
 
-==== Add Picture to Contact: addpic
+==== Add Picture to Contact: `addpic`
 
 NOVA will find a specific contact added to the address book and add the picture.
 
@@ -133,7 +133,7 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
 
-==== Update Picture to Contact: updatepic
+==== Update Picture to Contact: `updatepic`
 
 NOVA will find a specific contact added to the address book and edit the picture.
 
@@ -143,7 +143,7 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
 
-==== Delete Picture in Contact: deletepic
+==== Delete Picture in Contact: `deletepic`
 
 NOVA will find a specific contact added to the address book and edit the picture.
 
@@ -153,7 +153,7 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
 
-==== Add Category Specific Remarks: remark
+==== Add Category Specific Remarks: `remark`
 
 NOVA will find a specific contact added to the address book and add the remark according to category.
 
@@ -163,13 +163,13 @@ Note:
 
 * `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
 
-==== Undo Your Command: undo
+==== Undo Your Command: `undo`
 
 NOVA will find the second latest command that was done by the user and go to that state.
 
 Format: `contact undo`
 
-==== Redo Your Command: redo
+==== Redo Your Command: `redo`
 
 NOVA will redo commands.
 
@@ -446,5 +446,4 @@ Deletes task 3 of IP in progress tracker.
 =======
 
 == Glossary
-
 
