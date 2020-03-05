@@ -1,0 +1,34 @@
+= Loh Sze Ying - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: NOVA
+
+== Overview
+
+NOVA is a desktop application to help CS2103T with event planning and managing schedules.
+
+== Summary of contributions
+
+* *Major enhancement*:
+
+* *Minor enhancement*:
+
+* *Code contributed*:
+
+* *Other contributions*:
+
+** Project management:
+
+** Enhancements to existing features:
+
+** Documentation:
+
+** Community:
+
+** Tools:
+
+== Contributions to the User Guide
+
+== Contributions to the Developer Guide
