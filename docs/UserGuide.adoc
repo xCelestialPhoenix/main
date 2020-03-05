@@ -310,7 +310,9 @@ You can view notes you have added to projects and syllabus in the progress track
 
 Format: `add note c\[chapter number\ project] n\[note]`
 
-Example: `add note c\OOP n\Object-Oriented Programming (OOP) is a programming paradigm`
+Example:
+
+* `add note c\OOP n\Object-Oriented Programming (OOP) is a programming paradigm`
 
 Add note “Object-Oriented Programming (OOP) is a programming paradigm” to OOP chapter of the syllabus.
 
@@ -319,7 +321,9 @@ You can delete notes you have added to projects and syllabus in the progress tra
 
 Format: `delete note [chapter number/ project] [note number]`
 
-Example: `delete note OOP 3`
+Example:
+
+* `delete note OOP 3`
 
 Deletes note number 3 of OOP chapter of the syllabus in the progress tracker.
 
@@ -328,7 +332,9 @@ You can view notes you have added to projects and syllabus in the progress track
 
 Format: `view note [chapter number/ project]`
 
-Example: `view note OOP`
+Example:
+
+* `view note OOP`
 
 Shows notes added to the OOP chapter of the syllabus.
 
@@ -337,7 +343,9 @@ You can set tasks in the progress tracker as done.
 
 Format: `done [chapter number/ project]`
 
-Example: `done OOP`
+Example:
+
+* `done OOP`
 
 Sets OOP as done in progress tracker.
 
@@ -346,7 +354,9 @@ You can add tasks under projects in the progress tracker.
 
 Format: `add [project] [task]`
 
-Example: `Add IP Level-7 Duke`
+Example:
+
+* `Add IP Level-7 Duke`
 
 Adds tasks “Level-7 Duke” to IP in progress tracker.
 
@@ -355,7 +365,9 @@ You can remove tasks under projects in the progress tracker.
 
 Format: `delete [project] [task number]`
 
-Example: `delete IP 3`
+Example:
+
+* `delete IP 3`
 
 Deletes task 3 of IP in progress tracker.
 
