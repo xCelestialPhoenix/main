@@ -347,6 +347,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
+|`* * *` |Student | View my schedule for a day| Know the flow of events on that day
+
+|`* * *` |Student | View my schedule for a week | Know what will happen for that week
+
+|`* * *` |Student | View my timetable | Can check when my classes are
+
+|`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
+
+|`* *`   |Student | View my schedule for a month | Know what is upcoming for the month
+
+|`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
+
 |=======================================================================
 
 _{More to be added}_
@@ -414,7 +426,7 @@ Use case ends.
 +
 Use case ends.
 
-
+[discrete]
 === Use case 4: Add notes to a project task in project section of progress tracker
 
 *MSS*
@@ -432,6 +444,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 5: User edits a note.
 
 *MSS*
@@ -449,6 +462,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 6: User deletes a note.
 
 *MSS*
@@ -463,6 +477,23 @@ Use case ends.
 [none]
 * 1a. Note to be deleted does not exist.
 *   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 7: View the timetable
+
+*MSS*
+
+1. User requests for the timetable
+2. NOVA shows the timetable
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The timetable is empty.
 +
 Use case ends.
 
