@@ -13,6 +13,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
+
 :repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main/releases
 
 By: `Team CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
@@ -28,11 +29,10 @@ Fig 1: GUI of NOVA
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `nova.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list all`* : lists all contacts
@@ -179,6 +179,126 @@ Format: `contact redo`
 
 You can use the short form of contact `c` in your command.
 
+=== Manage Plans
+Commands that will help you in managing your events.
+
+
+image::ManageEventsUI.png[width="790"]
+_[.small]#Figure 2.2: GUI of NOVA after user typed `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 1`#_
+
+
+==== Add a Meeting: `meeting`
+
+You can add a meeting as one of your events.
+
+Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]`
+
+Example:
+
+* `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 1`
+
+==== Add a Study Session: `study`
+
+You can add a study session as one of your events.
+
+Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]`
+
+Example:
+
+* `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 1`
+
+
+==== Add a Consultation Session: `consultation`
+
+You can add a consultation session as one of your events.
+
+Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [HH:MM] [duration]`
+
+Example:
+
+* `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 1`
+
+
+==== Add a Lesson: `lesson`
+You can add a lesson as one of your events.
+
+Format: `lesson d\[description] v\[venue] t\[day] [HH:MM] [duration]`
+
+Example:
+
+* `lesson d\CS2103T tutorial v\COM1-B103 t\Monday 15:00 2`
+
+
+==== Delete Event: `delete`
+You can delete an event that you no longer want.
+
+Format: `delete t\[YYYY-MM-DD] i\[index]`
+
+Example:
+
+* `delete t\2020-02-20 i\2`
+
+Note:
+
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
+
+==== Mark Event as Done: `done`
+You can mark an event as done once it has been completed.
+
+Format: `done t\[YYYY-MM-DD] i\[index]`
+
+Example:
+
+* `done t\2020-02-20 i\2`
+
+Note:
+
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
+
+==== Find Event: `find`
+You can find the events that contain the keywords.
+
+Format: `find event [keywords]`
+
+Example:
+
+* `find event cool peeps`
+
+Note:
+
+* `[keywords]` are case insensitive e.g. `cool peeps` will match `Cool Peeps`
+
+
+==== Add Notes to Event: `note`
+You can add additional notes about an event.
+
+Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
+
+Example:
+
+* `note d\Remember to bring your charger! t\2020-02-20 i\2`
+
+Note:
+
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
+
+==== Repeat an Event: `repeat`
+You can add repeated events which occur weekly for a given number of times.
+
+Format: `repeat [number] t\[YYYY-MM-DD] i\[index]`
+
+Example:
+`repeat 3 t\2020-03-02 i\2` +
+Your first event on 2nd March 2020 will be repeated for the next 3 weeks.
+
+Note:
+
+* `[number]` must be a positive integer e.g. 1, 2, 3...
+* `[index]` must be a positive integer e.g. 1, 2, 3...
+
 === Progress Tracker
 A tracker to help you track your study and project progress.
 
@@ -241,4 +361,10 @@ Deletes task 3 of IP in progress tracker.
 
 == FAQ
 
+*Q*: How do I transfer my data to another Computer? +
+*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NOVA folder.
+=======
+
 == Glossary
+
+
