@@ -26,4 +26,3 @@ endif::[]
 * AddressBook-Level3 project created by SE-EDU initiative at https://se-education.org
 
 == Licence : link:LICENSE[MIT]
-
