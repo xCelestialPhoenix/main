@@ -3,6 +3,7 @@
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 4
 :sectnums:
 :imagesDir: images
 :stylesDir: stylesheets
@@ -287,7 +288,6 @@ Refer to the guide <<DevOps#, here>>.
 
 *Value proposition*: a one-stop study aid platform for CS2103T students
 
-
 [appendix]
 == User Stories
 
@@ -296,6 +296,26 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
 |Priority |As a ... |I can ... |So that I ...
+
+|`* * *` |student |add classmate or teammate’s name and contact info |contact them easily
+
+|`* * *` |student |edit classmate or teammate’s name and contact info |Edit them if the information are changed
+
+|`* * *` |student |delete classmate or teammate’s contact |delete if not necessary anymore
+
+|`* * *` |student |categorise contacts into teammate or classmate |
+
+|`* * *` |student |add profile picture to added contact |know at a glance who is the person in my contact
+
+|`* * *` |student |edit profile picture to added contact |edit the picture if changes are necessary
+
+|`* * *` |student |delete profile picture to added contact|
+
+|`* * *` |student |add category specific description |filter out a contact’s remark according to type of contact
+
+|`* *` |student |add contact information on CS2103T tutors |contact them for consultations
+
+|`* *` |student |add contact information on CS2103T professors |can contact them
 
 |`* * *` |student |create meeting events | can keep track of my schedule
 
@@ -317,8 +337,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |student |repeat events | can add multiple similar events at one go
 
+|`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
-|=======================================================================
+|`* * *` |student |mark tasks as done |track how many tasks I have finished
+
+|`* * *` |student |keep track of my progress in terms of understanding for concepts and skills in CS2103T |make sure I don't lag too far behind
+
+|`* * *` |student |add notes to concepts and skills taught |value add to my learning process
+
+|`* * *` |student |add project tasks |keep track of those project tasks
 
 _{More to be added}_
 
@@ -328,7 +355,47 @@ _{More to be added}_
 (For all use cases below, the *System* is the `NOVA` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case 1: Delete an event
+=== Use case 1: Delete a contact
+
+*MSS*
+
+1.  Student enters delete command with the contact’s name
+2.  NOVA deletes the contact
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. NOVA cannot find the contact in the contact list
++
+[none]
+** 1a1. NOVA informs student that the contact to delete does not exist
++
+Use case ends.
+
+[discrete]
+=== Use case 2: Delete contact's picture
+
+*MSS*
+
+1.  Student enters deletepic command with the contact’s name
+2.  NOVA deletes the contact's picture
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The contact does not have any picture uploaded
++
+[none]
+** 1a1. NOVA informs student that there is no picture to delete
++
+Use case ends.
+
+[discrete]
+=== Use case 3: Delete an event
 
 *MSS*
 
@@ -341,12 +408,61 @@ Use case ends.
 
 [none]
 * 1a. NOVA cannot find the event given
-+
-[none]
 ** 1a1. NOVA informs student that the event does not exist
 +
 Use case ends.
 
+
+=== Use case 4: Add notes to a project task in project section of progress tracker
+
+*MSS*
+
+1.  User enter command to add notes to the project task.
+2.  Progress tracker adds notes to the project task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such project task exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+=== Use case 5: User edits a note.
+
+*MSS*
+
+1.  User enter command to edit note.
+2.  Progress tracker replace old note with new note.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No prior note was added.
+*   1a1. NOVA adds edit as new note.
++
+Use case ends.
+
+=== Use case 6: User deletes a note.
+
+*MSS*
+
+1.  User enter command to delete note.
+2.  Progress tracker deletes note.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Note to be deleted does not exist.
+*   1a1. NOVA shows error message.
++
+Use case ends.
 
 _{More to be added}_
 
@@ -355,6 +471,8 @@ _{More to be added}_
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  The application should respond to every command within one second.
+.  Technical requirements: The application should work on both 32-bit and 64-bit environments.
 
 _{More to be added}_
 
@@ -363,7 +481,6 @@ _{More to be added}_
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, OS-X
-
 
 [appendix]
 == Product Survey
@@ -427,3 +544,4 @@ _{ more test cases ... }_
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
 
 _{ more test cases ... }_
+

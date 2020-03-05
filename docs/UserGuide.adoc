@@ -1,8 +1,9 @@
-= AddressBook Level 3 - User Guide
+= NOVA - User Guide
 :site-section: UserGuide
 :toc:
 :toc-title:
 :toc-placement: preamble
+:toclevels: 4
 :sectnums:
 :imagesDir: images
 :stylesDir: stylesheets
@@ -12,166 +13,235 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/huixianc/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+:repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main/releases
+
+By: `Team CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Next-gen Organizing Virtual Assistant (NOVA) is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings. NOVA is designed for users who prefer to use the Command Line Interface (CLI).
+
+image::GUI_v2.0.png[width="790"]
+Fig 1: GUI of NOVA
 
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `nova.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
-+
-image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
+* *`list all`* : lists all contacts
+* **`contact add`**`n\John Doe p\98765432 c\classmate` : adds a contact named `John Doe` to the Address Book and categorise as classmate
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
+Features are group together in modes of operation. There is a set of common commands and also within every mode, there is a set of commands for you to use and get things done.
 
-====
-*Command Format*
+=== Common
+NOVA offers a set of common functionalities across all modes.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-====
+==== Exit : `exit`
+When exiting NOVA with the `exit` command, the contacts, schedules and notes will be saved.
 
-=== Viewing help : `help`
+=== Address Book
 
-Format: `help`
+The address book feature allows you to keep in contact with your teammates and classmates.
 
-=== Adding a person: `add`
+image::addressbook.png[width="790"]
 
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Fig 2.1: GUI of NOVA after user typed contact add n\John Doe p\12345678 c\teammate
 
-[TIP]
-A person can have any number of tags (including 0)
+==== Add Contact: add
 
-Examples:
+You can add your classmate or teammate as contact.
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Format: `contact add n\[name] p\[phone number] c\[classmate/teammate]`
 
-=== Listing all persons : `list`
+Note:
 
-Shows a list of all persons in the address book. +
-Format: `list`
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
+* The name you add will be automatically formatted (jane doe will become Jane Doe).
 
-=== Editing a person : `edit`
+==== Edit Contact: edit
 
-Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+You can edit the contacts that you have added. If the contact you tried to edit does not exist, NOVA will let you know.
 
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
-****
+Format: `contact edit n\[name] p\[phone number] c\[classmate/teammate]`
 
-Examples:
+Note:
 
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
 
-=== Locating persons by name: `find`
+==== Delete Contact : delete
 
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
+Format: `contact delete n\[name]`
 
-Examples:
+Note:
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe).
 
-// tag::delete[]
-=== Deleting a person : `delete`
+==== Delete All Contacts: delete all
 
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
+You can delete all the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
 
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+Format: `contact delete all`
 
-Examples:
+==== List All Contacts: list
 
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
+NOVA will list the contact's name, phone number and category of all contacts.
 
-// end::delete[]
-=== Clearing all entries : `clear`
+Format: `contact list`
 
-Clears all entries from the address book. +
-Format: `clear`
+==== List Category Contact: list [classmate/teammate]
 
-=== Exiting the program : `exit`
+NOVA will list the name and phone number of all the contacts under that category. NOVA will also list the category specific remarks.
 
-Exits the program. +
-Format: `exit`
+Format: `contact list c\[classmate/teammate]`
 
-=== Saving the data
+Note:
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
+* `[classmate/teammate]` is not case-sensitive.
+* There are only classmate and teammate categories.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+==== Find Contact: find
 
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+NOVA will find a specific contact added to the address book.
+
+Format: `contact find [name]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Add Picture to Contact: addpic
+
+NOVA will find a specific contact added to the address book and add the picture.
+
+Format: `contact addpic n\[name] [path]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Update Picture to Contact: updatepic
+
+NOVA will find a specific contact added to the address book and edit the picture.
+
+Format: `contact updatepic n\[name] [path]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Delete Picture in Contact: deletepic
+
+NOVA will find a specific contact added to the address book and edit the picture.
+
+Format: `contact deletepic n\[name]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Add Category Specific Remarks: remark
+
+NOVA will find a specific contact added to the address book and add the remark according to category.
+
+Format: `contact remark c\[classmate/teammate] n\[name] d\[description]`
+
+Note:
+
+* `[name]` is not case-sensitive (Jane doe is the same as jane Doe)
+
+==== Undo Your Command: undo
+
+NOVA will find the second latest command that was done by the user and go to that state.
+
+Format: `contact undo`
+
+==== Redo Your Command: redo
+
+NOVA will redo commands.
+
+Format: `contact redo`
+
+==== Short Form [v2.0]
+
+You can use the short form of contact `c` in your command.
+
+=== Progress Tracker
+A tracker to help you track your study and project progress.
+
+image::GUI_ProgressTracker.png[width="790"]
+Fig 2.4: GUI of NOVA after typing command nav progress tracker.
+
+==== Add Notes: add note
+You can view notes you have added to projects and syllabus in the progress tracker.
+
+Format: `add note c\[chapter number\ project] n\[note]`
+
+Example: `add note c\OOP n\Object-Oriented Programming (OOP) is a programming paradigm`
+
+Add note “Object-Oriented Programming (OOP) is a programming paradigm” to OOP chapter of the syllabus.
+
+==== Delete Notes: delete note
+You can delete notes you have added to projects and syllabus in the progress tracker.
+
+Format: `delete note [chapter number/ project] [note number]`
+
+Example: `delete note OOP 3`
+
+Deletes note number 3 of OOP chapter of the syllabus in the progress tracker.
+
+==== View Notes: view note
+You can view notes you have added to projects and syllabus in the progress tracker.
+
+Format: `view note [chapter number/ project]`
+
+Example: `view note OOP`
+
+Shows notes added to the OOP chapter of the syllabus.
+
+==== Set Done: done
+You can set tasks in the progress tracker as done.
+
+Format: `done [chapter number/ project]`
+
+Example: `done OOP`
+
+Sets OOP as done in progress tracker.
+
+==== Add Project Task: add
+You can add tasks under projects in the progress tracker.
+
+Format: `add [project] [task]`
+
+Example: `Add IP Level-7 Duke`
+
+Adds tasks “Level-7 Duke” to IP in progress tracker.
+
+==== Delete Project Task: delete
+You can remove tasks under projects in the progress tracker.
+
+Format: `delete [project] [task number]`
+
+Example: `delete IP 3`
+
+Deletes task 3 of IP in progress tracker.
 
 == FAQ
 
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+== Glossary
 
-== Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Clear* : `clear`
-* *Delete* : `delete INDEX` +
-e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *List* : `list`
-* *Help* : `help`
