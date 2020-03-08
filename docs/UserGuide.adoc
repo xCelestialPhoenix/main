@@ -447,7 +447,7 @@ _[.small]#Fig 3.5: GUI of NOVA after typing command `nav progress tracker`#_
 ==== Add Notes: `add note`
 You can view notes you have added to projects and syllabus in the progress tracker.
 
-Format: `add note c\[chapter number\ project] n\[note]`
+Format: `add note c\[chapter name / project] n\[note]`
 
 Example: +
 `add note c\OOP n\Object-Oriented Programming (OOP) is a programming paradigm`
@@ -455,9 +455,9 @@ Example: +
 Add note “Object-Oriented Programming (OOP) is a programming paradigm” to OOP chapter of the syllabus.
 
 ==== Delete Notes: `delete note`
-You can delete notes you have added to projects and syllabus in the progress tracker.
+You can delete the notes that you have added to projects and syllabus in the progress tracker.
 
-Format: `delete note [chapter number/ project] [note number]`
+Format: `delete note [chapter name / project] [note number]`
 
 Example: +
 `delete note OOP 3`
@@ -465,24 +465,24 @@ Example: +
 Deletes note number 3 of OOP chapter of the syllabus in the progress tracker.
 
 ==== View Notes: `view note`
-You can view notes you have added to projects and syllabus in the progress tracker.
+You can view the notes that you have added to projects and syllabus in the progress tracker.
 
-Format: `view note [chapter number/ project]`
+Format: `view note [chapter name / project]`
 
 Example: +
 `view note OOP`
 
 Shows notes added to the OOP chapter of the syllabus.
 
-==== Set Done: `done`
-You can set tasks in the progress tracker as done.
+==== Complete Tasks: `done`
+You can mark tasks in the progress tracker as done.
 
-Format: `done [chapter number/ project]`
+Format: `done [chapter name / project]`
 
 Example: +
 `done OOP`
 
-Sets OOP as done in progress tracker.
+Sets the OOP chapter as done in progress tracker.
 
 ==== Add Project Task: `add`
 You can add tasks under projects in the progress tracker.
