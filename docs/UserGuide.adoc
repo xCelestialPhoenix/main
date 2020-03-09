@@ -430,7 +430,7 @@ Make study plan for a period of time and keep track of the progress daily
 
 It is a smart scheduler that generates\modifies events (put on calendar) based on the plan
 
-==== Create new plan
+==== Create new plan: `plan`
 Create a new study plan within a period (user are expected to start the plan at the start date, and complete the plan by the end date)
 
 Format: `plan p\[plan name] d\[start date (YYYY-MM-DD)] [end date (YYYY-MM-DD)]`
@@ -441,7 +441,7 @@ Example:
 
 Create a new plan “prepare CS2103”. The plan starts from 20 Jan 2020, expected to complete by 20 Jun 2020
 
-==== Accomplish plan
+==== Accomplish plan: `accomplish`
 Delete a plan and all its related task and subsequently all event that are associated with it
 
 Format: `accomplish p\[plan name]`
@@ -452,7 +452,7 @@ Example:
 
 Remove the plan “prepare cs2103 exam”
 
-==== Complete Task
+==== Complete Task: `done`
 Mark a specific task as completed
 
 Format: `done [plan name] [task name]`
@@ -463,7 +463,7 @@ Example:
 
 Mark the task “read cs2103 textbook” as done
 
-==== Delete Task
+==== Delete Task: `delete`
 Delete a specific task in the plan
 
 Format: `delete [plan name] [task name]`
