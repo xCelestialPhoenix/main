@@ -425,6 +425,55 @@ Example: +
 `reminder d\project meeting t\2020-03-02` +
 Set a reminder for the project meeting on 2 Mar 2020.
 
+=== Study Planner
+Make study plan for a period of time and keep track of the progress daily
+
+It is a smart scheduler that generates\modifies events (put on calendar) based on the plan
+
+==== Create new plan: `plan`
+Create a new study plan within a period (user are expected to start the plan at the start date, and complete the plan by the end date)
+
+Format: `plan p\[plan name] d\[start date (YYYY-MM-DD)] [end date (YYYY-MM-DD)]`
+
+Example:
+
+* `plan p\prepare CS2103 exam d\ 2020-01-20 2020-06-20`
+
+Create a new plan “prepare CS2103”. The plan starts from 20 Jan 2020, expected to complete by 20 Jun 2020
+
+==== Accomplish plan: `accomplish`
+Delete a plan and all its related task and subsequently all event that are associated with it
+
+Format: `accomplish p\[plan name]`
+
+Example:
+
+* `accomplish p\prepare CS2103 exam`
+
+Remove the plan “prepare cs2103 exam”
+
+==== Complete Task: `done`
+Mark a specific task as completed
+
+Format: `done [plan name] [task name]`
+
+Example:
+
+* `done \p prepare cs2103 exam t\ read cs2103 textbook`
+
+Mark the task “read cs2103 textbook” as done
+
+==== Delete Task: `delete`
+Delete a specific task in the plan
+
+Format: `delete [plan name] [task name]`
+
+Example:
+
+* `delete p\ prepare cs2103 exam t\ read cs2103 textbook`
+
+Delete the task “read cs2103 textbook” in plan “prepare cs2103 exam”
+
 === Progress Tracker
 A tracker to help you track your study and project progress.
 
