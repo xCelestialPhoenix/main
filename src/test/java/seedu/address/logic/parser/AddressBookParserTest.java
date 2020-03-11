@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AbAddCommand;
-import seedu.address.logic.commands.AbDeleteCommand;
 import seedu.address.logic.commands.AbClearCommand;
+import seedu.address.logic.commands.AbDeleteCommand;
 import seedu.address.logic.commands.AbEditCommand;
 import seedu.address.logic.commands.AbFindCommand;
 import seedu.address.logic.commands.AbListCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -98,7 +98,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND,
-                () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("unknownCommand"));
     }
 }

@@ -47,8 +47,8 @@ public class AbAddCommandTest {
         AbAddCommand abAddCommand = new AbAddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AbAddCommand.MESSAGE_DUPLICATE_PERSON,
-                () -> abAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, AbAddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+            abAddCommand.execute(modelStub));
     }
 
     @Test
