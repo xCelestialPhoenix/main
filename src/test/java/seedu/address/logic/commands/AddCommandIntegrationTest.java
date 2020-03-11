@@ -14,9 +14,9 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AbAddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AbAddCommandIntegrationTest {
+public class AddCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AbAddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
-        assertCommandSuccess(new AbAddCommand(validPerson), model,
-                String.format(AbAddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validPerson), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new AbAddCommand(personInList), model, AbAddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
