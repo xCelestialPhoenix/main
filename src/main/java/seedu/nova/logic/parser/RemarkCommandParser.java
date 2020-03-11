@@ -8,7 +8,7 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.logic.commands.RemarkCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.person.Remark;
+import seedu.nova.model.common.person.Remark;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object

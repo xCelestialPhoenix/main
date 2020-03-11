@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

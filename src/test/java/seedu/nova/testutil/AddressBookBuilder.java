@@ -1,7 +1,7 @@
 package seedu.nova.testutil;
 
-import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.NovaAddressBook;
+import seedu.nova.model.common.person.Person;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -10,13 +10,13 @@ import seedu.nova.model.person.Person;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private NovaAddressBook addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new NovaAddressBook();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(NovaAddressBook addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public NovaAddressBook build() {
         return addressBook;
     }
 }

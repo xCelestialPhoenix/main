@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.model.person.Address;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Phone;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.person.Address;
+import seedu.nova.model.common.person.Email;
+import seedu.nova.model.common.person.Name;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Phone;
+import seedu.nova.model.common.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.commons.util.StringUtil;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.person.Address;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Phone;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.person.Address;
+import seedu.nova.model.common.person.Email;
+import seedu.nova.model.common.person.Name;
+import seedu.nova.model.common.person.Phone;
+import seedu.nova.model.common.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

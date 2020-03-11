@@ -17,7 +17,7 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.EditCommand;
 import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

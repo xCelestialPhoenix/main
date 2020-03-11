@@ -15,10 +15,10 @@ import java.util.List;
 
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.common.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -104,7 +104,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        NovaAddressBook expectedAddressBook = new NovaAddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));

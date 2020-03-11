@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.common.person.Person;
 
 /**
  * The API of the Model component.

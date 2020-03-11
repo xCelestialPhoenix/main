@@ -36,11 +36,11 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.EditCommand;
 import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.model.person.Address;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Phone;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.person.Address;
+import seedu.nova.model.common.person.Email;
+import seedu.nova.model.common.person.Name;
+import seedu.nova.model.common.person.Phone;
+import seedu.nova.model.common.tag.Tag;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {

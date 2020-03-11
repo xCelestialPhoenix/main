@@ -15,13 +15,13 @@ import seedu.nova.commons.util.ConfigUtil;
 import seedu.nova.commons.util.StringUtil;
 import seedu.nova.logic.Logic;
 import seedu.nova.logic.LogicManager;
-import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.util.SampleDataUtil;
+import seedu.nova.model.common.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
 import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
@@ -84,10 +84,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new NovaAddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new NovaAddressBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -120,7 +120,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +148,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");

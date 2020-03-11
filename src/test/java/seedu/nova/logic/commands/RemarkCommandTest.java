@@ -6,12 +6,12 @@ import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Remark;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Remark;
 import seedu.nova.testutil.PersonBuilder;
 
 class RemarkCommandTest {
@@ -28,7 +28,7 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

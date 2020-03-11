@@ -9,8 +9,8 @@ import seedu.nova.commons.core.Messages;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Remark;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.

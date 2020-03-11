@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

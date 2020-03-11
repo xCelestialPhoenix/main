@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
-import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.NovaAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.common.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,7 +21,7 @@ import seedu.nova.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final NovaAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -33,13 +34,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new NovaAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new NovaAddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -145,8 +146,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
 }

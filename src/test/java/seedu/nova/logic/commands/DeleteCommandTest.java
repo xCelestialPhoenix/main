@@ -16,7 +16,7 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.common.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

@@ -19,13 +19,13 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.commons.util.CollectionUtil;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.Address;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Phone;
-import seedu.nova.model.person.Remark;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.person.Address;
+import seedu.nova.model.common.person.Email;
+import seedu.nova.model.common.person.Name;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Phone;
+import seedu.nova.model.common.person.Remark;
+import seedu.nova.model.common.tag.Tag;
 
 
 /**

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
-import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.NovaAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.common.person.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -45,8 +45,8 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public NovaAddressBook toModelType() throws IllegalValueException {
+        NovaAddressBook addressBook = new NovaAddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {

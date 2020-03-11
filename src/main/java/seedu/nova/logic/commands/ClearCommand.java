@@ -2,7 +2,7 @@ package seedu.nova.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setAddressBook(new NovaAddressBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

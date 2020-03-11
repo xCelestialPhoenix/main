@@ -8,7 +8,7 @@ import seedu.nova.commons.core.Messages;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.common.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

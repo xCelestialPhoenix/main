@@ -10,8 +10,8 @@ import java.util.Set;
 
 import seedu.nova.logic.commands.AddCommand;
 import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.tag.Tag;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.tag.Tag;
 
 /**
  * A utility class for Person.

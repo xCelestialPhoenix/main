@@ -15,8 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.addressbook.NovaAddressBook;
+import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
 import seedu.nova.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -27,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new NovaAddressBook(), new NovaAddressBook(modelManager.getAddressBook()));
     }
 
     @Test
@@ -96,8 +96,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        NovaAddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        NovaAddressBook differentAddressBook = new NovaAddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
