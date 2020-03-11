@@ -8,8 +8,8 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.nova.logic.commands.AddCommand;
-import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.tag.Tag;
 
@@ -22,7 +22,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return AbAddCommand.COMMAND_WORD + " " + getPersonDetails(person);
     }
 
     /**

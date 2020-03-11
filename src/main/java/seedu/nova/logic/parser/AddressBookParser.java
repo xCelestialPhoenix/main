@@ -6,16 +6,8 @@ import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.nova.logic.commands.AddCommand;
-import seedu.nova.logic.commands.ClearCommand;
-import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.DeleteCommand;
-import seedu.nova.logic.commands.EditCommand;
-import seedu.nova.logic.commands.ExitCommand;
-import seedu.nova.logic.commands.FindCommand;
-import seedu.nova.logic.commands.HelpCommand;
-import seedu.nova.logic.commands.ListCommand;
-import seedu.nova.logic.commands.RemarkCommand;
+import seedu.nova.logic.commands.*;
+import seedu.nova.logic.commands.AbEditCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,23 +37,23 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AbAddCommand.COMMAND_WORD:
+            return new AbAddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case AbEditCommand.COMMAND_WORD:
+            return new AbEditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case AbDeleteCommand.COMMAND_WORD:
+            return new AbDeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case AbClearCommand.COMMAND_WORD:
+            return new AbClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case AbFindCommand.COMMAND_WORD:
+            return new AbFindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case AbListCommand.COMMAND_WORD:
+            return new AbListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -69,8 +61,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+        case AbRemarkCommand.COMMAND_WORD:
+            return new AbRemarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

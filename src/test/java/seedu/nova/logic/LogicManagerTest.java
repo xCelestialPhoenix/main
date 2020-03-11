@@ -17,9 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.nova.logic.commands.AddCommand;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbListCommand;
 import seedu.nova.logic.commands.CommandResult;
-import seedu.nova.logic.commands.ListCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.model.Model;
@@ -64,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = AbListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, AbListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AbAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
