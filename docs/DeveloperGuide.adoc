@@ -358,8 +358,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
 
-|`*`   |Student | View my schedule for a month | Know what is upcoming for the month
-
 |=======================================================================
 
 _{More to be added}_
