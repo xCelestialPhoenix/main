@@ -22,7 +22,8 @@ public class AbDeleteCommandParser implements Parser<AbDeleteCommand> {
             return new AbDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AbDeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            seedu.address.logic.commands.AbDeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 
