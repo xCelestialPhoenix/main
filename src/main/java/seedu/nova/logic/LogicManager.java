@@ -13,7 +13,7 @@ import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.AddressBookParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.model.Model;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
 import seedu.nova.storage.Storage;
 
@@ -68,7 +68,7 @@ public class LogicManager implements Logic {
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getNovaFilePath();
     }
 
     @Override

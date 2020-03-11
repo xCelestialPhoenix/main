@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.person.exceptions.DuplicatePersonException;
 import seedu.nova.testutil.PersonBuilder;

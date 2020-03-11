@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.addressbook;
 
 import javafx.collections.ObservableList;
 import seedu.nova.model.person.Person;

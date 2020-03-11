@@ -18,7 +18,7 @@ import seedu.nova.logic.LogicManager;
 import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.util.SampleDataUtil;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getNovaFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);

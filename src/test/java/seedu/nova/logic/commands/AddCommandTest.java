@@ -18,7 +18,7 @@ import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.person.Person;
 import seedu.nova.testutil.PersonBuilder;
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getNovaFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setNovaFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

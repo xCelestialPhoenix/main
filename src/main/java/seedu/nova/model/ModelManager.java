@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
 
 /**
@@ -67,14 +68,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getNovaFilePath() {
+        return userPrefs.getNovaFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setNovaFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setNovaFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================

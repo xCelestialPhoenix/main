@@ -5,12 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -37,12 +39,12 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNovaFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNovaFilePath(Path addressBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
