@@ -37,7 +37,7 @@ _[.small]#Fig 1: GUI of NOVA#_
 
 * *`nav ab`*: navigates to address book mode
 ** *`list `* : lists all contacts
-** *`add`*`n\John Doe p\98765432 c\classmate` : adds a contact named `John Doe` to the Address Book and
+** *`add`*`n\John Doe p\98765432 e\john@gmail.com c\classmate` : adds a contact named `John Doe` to the Address Book and
 categorise as classmate
 * *`exit`* : exits the app
 
@@ -181,7 +181,6 @@ Format: `addpic INDEX pa\[path]`
 ====
 * Adds profile picture of the person at the specified INDEX. The index refers to the index number shown in
 the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
 * Absolute file path is used for `[path]`.
 ====
 
