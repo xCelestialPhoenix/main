@@ -17,7 +17,8 @@ public class AbFindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, seedu.address.logic.commands.AbFindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                seedu.address.logic.commands.AbFindCommand.MESSAGE_USAGE));
     }
 
     @Test

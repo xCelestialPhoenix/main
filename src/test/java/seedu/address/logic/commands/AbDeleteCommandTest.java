@@ -31,7 +31,8 @@ public class AbDeleteCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(
+                seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -54,7 +55,8 @@ public class AbDeleteCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(
+                seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);

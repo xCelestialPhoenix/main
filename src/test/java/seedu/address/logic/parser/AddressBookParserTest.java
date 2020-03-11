@@ -13,8 +13,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.AbAddCommand;
+import seedu.address.logic.commands.AbDeleteCommand;
+import seedu.address.logic.commands.AbClearCommand;
+import seedu.address.logic.commands.AbEditCommand;
+import seedu.address.logic.commands.AbFindCommand;
+import seedu.address.logic.commands.AbListCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -43,7 +49,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         AbDeleteCommand command = (AbDeleteCommand) parser.parseCommand(
-                seedu.address.logic.commands.AbDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+                seedu.address.logic.commands.AbDeleteCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new AbDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -66,7 +73,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         AbFindCommand command = (AbFindCommand) parser.parseCommand(
-                seedu.address.logic.commands.AbFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                seedu.address.logic.commands.AbFindCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new AbFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -90,6 +98,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND,
+                () -> parser.parseCommand("unknownCommand"));
     }
 }

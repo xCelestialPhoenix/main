@@ -24,7 +24,8 @@ class AbRemarkCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withRemark(REMARK_STUB).build();
 
-        AbRemarkCommand abRemarkCommand = new AbRemarkCommand(INDEX_FIRST_PERSON, new Remark(editedPerson.getRemark().value));
+        AbRemarkCommand abRemarkCommand = new AbRemarkCommand(INDEX_FIRST_PERSON,
+                new Remark(editedPerson.getRemark().value));
 
         String expectedMessage = String.format(AbRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
