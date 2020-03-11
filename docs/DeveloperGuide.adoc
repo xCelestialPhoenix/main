@@ -16,7 +16,7 @@ endif::[]
 
 :repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main
 
-By: `CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
+By: `CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -578,3 +578,4 @@ _{ more test cases ... }_
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
 
 _{ more test cases ... }_
+
