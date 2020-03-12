@@ -114,7 +114,7 @@ The index **must be a positive integer** 1, 2, 3, …
 * You can only edit either `classmate` or `teammate` as category
 ====
 
-Example:
+Examples:
 
 * `edit 1 p\88888888` +
 Edits the phone number of contact at index 1 to 88888888.
@@ -160,7 +160,7 @@ Format: `list c\[classmate/teammate]`
 * There are only `classmate` and `teammate` categories.
 ====
 
-Example:
+Examples:
 
 * `list c\classmate` +
 Lists all your contacts in the `classmate` category.
@@ -179,7 +179,7 @@ Format: `find n\[name]`
 * You can find partial name
 ====
 
-Example:
+Examples:
 
 * `find n\john DOE` +
 Finds a saved contact named John Doe.
