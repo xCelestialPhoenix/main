@@ -86,14 +86,16 @@ Format: `add n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 [NOTE]
 ====
 * `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
 * The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* You can only add either `classmate` or `teammate` as category
 ====
 
 Example: +
-`add n\John Doe p\12345678 c\classmate`
+`add n\John Doe p\12345678 e\johndoe@gmail.com c\classmate`
 
-Adds a new contact with name John Doe, phone number 12345678 into the classmate category.
+Adds a new contact with name John Doe, phone number 12345678 and email address johndoe@gmail.com into the
+classmate category.
 
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
@@ -107,13 +109,18 @@ The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+* The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
 * `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* You can only edit either `classmate` or `teammate` as category
 ====
 
-Example: +
-`edit n\John Doe p\88888888 c\classmate`
+Example:
 
-Edits the phone number of John Doe to 88888888.
+* `edit 1 p\88888888` +
+Edits the phone number of contact at index 1 to 88888888.
+
+* `edit 3 e\kly838@hotmail.com` +
+Edits the email address of contact at index 3 to kly838@hotmail.com.
 
 ==== Delete Contact : `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
@@ -167,10 +174,18 @@ You can find a contact added to the address book easily with a name.
 Format: `find n\[name]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+* You can find partial name
+====
 
-Example: +
-`find n\john DOE`
+Example:
+
+* `find n\john DOE` +
+Finds a saved contact named John Doe.
+
+* `find n\john` +
+Finds a saved contact named John.
 
 ==== Add Picture to Contact: `addpic`
 You can add a profile picture to a contact in your address book.
@@ -179,7 +194,7 @@ Format: `addpic INDEX pa\[path]`
 
 [NOTE]
 ====
-* Adds profile picture of the person at the specified INDEX. The index refers to the index number shown in
+* Adds profile picture of the person at the specified `INDEX`. The index refers to the index number shown in
 the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * Absolute file path is used for `[path]`.
 ====
@@ -196,7 +211,7 @@ Format: `deletepic INDEX`
 
 [NOTE]
 ====
-* Deletes the picture at the specified INDEX.
+* Deletes the picture at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 ====
@@ -209,10 +224,14 @@ Deletes the profile picture contact at index 1.
 ==== Add Category Specific Remarks: `remark`
 You can add remarks, that are category specific, to a contact.
 
-Format: `remark INDEX r\[description]`
+Format: `remark INDEX r\[remark]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* Adds category specific remark at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+====
 
 Example: +
 `remark 2 r\He's a nice teammate`
