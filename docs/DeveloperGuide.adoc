@@ -356,8 +356,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
-|`* *`   |Student | View my schedule for a month | Know what is upcoming for the month
-
 |`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
 
 |=======================================================================
