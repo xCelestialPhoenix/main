@@ -2,8 +2,8 @@ package seedu.nova.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
+import seedu.nova.model.addressbook.NovaAddressBook;
 
 /**
  * Clears the address book.

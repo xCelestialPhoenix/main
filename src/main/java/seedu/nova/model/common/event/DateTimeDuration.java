@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+/**
+ * Fucking Javadoc
+ * date and time and duration in one piece, for convenience!
+ */
 public class DateTimeDuration implements Comparable<DateTimeDuration> {
     private static final DateTimeFormatter[] defaultDateF = new DateTimeFormatter[]{
             DateTimeFormatter.ofPattern("yyyy-mm-dd")
@@ -28,6 +32,11 @@ public class DateTimeDuration implements Comparable<DateTimeDuration> {
         this.duration = duration;
     }
 
+    /**
+     * create a DateTimeDuration object which represents the whole day of the date provided
+     * @param date
+     * @return DateTimeDuration object which represents the whole day of the date provided
+     */
     public static DateTimeDuration parseFromDate(String date) {
         Optional<LocalDate> opDate = parseDate(date);
         assert !opDate.isEmpty() : "cannot parse date";
@@ -39,6 +48,12 @@ public class DateTimeDuration implements Comparable<DateTimeDuration> {
         return ans;
     }
 
+    /**
+     * create a DateTimeDuration object which represents the particular date and start time, with end time = start
+     * time + duration
+     * @param date
+     * @return DateTimeDuration object which represents the date and time and duration provided
+     */
     public static DateTimeDuration parseFromDateTime(String date, String startTime, long durationInMin) {
         Optional<LocalDate> opDate = parseDate(date);
         Optional<LocalTime> opTime = parseTime(startTime);
@@ -52,21 +67,35 @@ public class DateTimeDuration implements Comparable<DateTimeDuration> {
         return ans;
     }
 
+    /**
+     * javadoc
+     * @param date
+     * @return
+     */
     private static Optional<LocalDate> parseDate(String date) {
         for (DateTimeFormatter f : DateTimeDuration.defaultDateF) {
             try {
                 return Optional.of(LocalDate.parse(date, f));
             } catch (DateTimeParseException dtpe) {
+                // fucking checkstyle don't allow empty catch block
+                continue;
             }
         }
         return Optional.empty();
     }
 
+    /**
+     * javadoc
+     * @param time
+     * @return
+     */
     private static Optional<LocalTime> parseTime(String time) {
         for (DateTimeFormatter f : DateTimeDuration.defaultTimeF) {
             try {
                 return Optional.of(LocalTime.parse(time, f));
             } catch (DateTimeParseException dtpe) {
+                // fucking checkstyle don't allow empty catch block
+                continue;
             }
         }
         return Optional.empty();
@@ -80,9 +109,16 @@ public class DateTimeDuration implements Comparable<DateTimeDuration> {
         return this.endDateTime;
     }
 
+    /**
+     * Check if the other DateTimeDuration is overlapped with this.
+     * @param anotherDateTime
+     * @return true? false?
+     */
     public boolean isOverlapping(DateTimeDuration anotherDateTime) {
-        return (anotherDateTime.startDateTime.compareTo(this.startDateTime) >= 0 && anotherDateTime.startDateTime.compareTo(this.endDateTime) < 0)
-                || (anotherDateTime.endDateTime.compareTo(this.startDateTime) >= 0 && anotherDateTime.endDateTime.compareTo(this.endDateTime) < 0);
+        return (anotherDateTime.startDateTime.compareTo(this.startDateTime) >= 0
+                && anotherDateTime.startDateTime.compareTo(this.endDateTime) < 0)
+                || (anotherDateTime.endDateTime.compareTo(this.startDateTime) >= 0
+                && anotherDateTime.endDateTime.compareTo(this.endDateTime) < 0);
     }
 
     @Override
