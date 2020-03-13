@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.AddressBook;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
