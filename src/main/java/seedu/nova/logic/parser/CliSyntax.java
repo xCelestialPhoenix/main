@@ -1,4 +1,4 @@
-package seedu.nova.logic.parser;
+package seedu.address.logic.parser;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands

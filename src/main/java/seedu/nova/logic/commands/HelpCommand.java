@@ -1,6 +1,6 @@
-package seedu.nova.logic.commands;
+package seedu.address.logic.commands;
 
-import seedu.nova.model.Model;
+import seedu.address.model.Model;
 
 /**
  * Format full help instructions for every command for display.

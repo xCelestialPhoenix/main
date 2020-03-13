@@ -1,42 +1,42 @@
-package seedu.nova.logic.parser;
+package seedu.address.logic.parser;
 
-import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.nova.logic.commands.AddCommand;
-import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.common.person.Address;
-import seedu.nova.model.common.person.Email;
-import seedu.nova.model.common.person.Name;
-import seedu.nova.model.common.person.Person;
-import seedu.nova.model.common.person.Phone;
-import seedu.nova.model.common.person.Remark;
-import seedu.nova.model.common.tag.Tag;
+import seedu.address.logic.commands.AbAddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AbAddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AbAddCommandParser implements Parser<AbAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AbAddCommand
+     * and returns an AbAddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AbAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Person person = new Person(name, phone, email, address, tagList, remark);
 
-        return new AddCommand(person);
+        return new AbAddCommand(person);
     }
 
     /**

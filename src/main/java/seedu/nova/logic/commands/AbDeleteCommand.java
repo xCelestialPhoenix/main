@@ -1,19 +1,19 @@
-package seedu.nova.logic.commands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.nova.commons.core.Messages;
-import seedu.nova.commons.core.index.Index;
-import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.Model;
-import seedu.nova.model.common.person.Person;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class AbDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -26,7 +26,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public AbDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof AbDeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((AbDeleteCommand) other).targetIndex)); // state check
     }
 }

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+<<<<<<< HEAD:src/test/java/seedu/nova/logic/LogicManagerTest.java
 import seedu.nova.logic.commands.AddCommand;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.ListCommand;
@@ -31,6 +32,22 @@ import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
 import seedu.nova.storage.StorageManager;
 import seedu.nova.testutil.PersonBuilder;
+=======
+import seedu.address.logic.commands.AbAddCommand;
+import seedu.address.logic.commands.AbListCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.StorageManager;
+import seedu.address.testutil.PersonBuilder;
+>>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/logic/LogicManagerTest.java
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -64,8 +81,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = AbListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, AbListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -79,7 +96,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AbAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

@@ -1,21 +1,21 @@
-package seedu.nova.logic.commands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.Model;
-import seedu.nova.model.common.person.Person;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AbAddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -40,9 +40,9 @@ public class AddCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AbAddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AbAddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -62,7 +62,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AbAddCommand // instanceof handles nulls
+                && toAdd.equals(((AbAddCommand) other).toAdd));
     }
 }

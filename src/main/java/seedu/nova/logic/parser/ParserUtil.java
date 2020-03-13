@@ -1,4 +1,4 @@
-package seedu.nova.logic.parser;
+package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,14 +6,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.nova.commons.core.index.Index;
-import seedu.nova.commons.util.StringUtil;
-import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.common.person.Address;
-import seedu.nova.model.common.person.Email;
-import seedu.nova.model.common.person.Name;
-import seedu.nova.model.common.person.Phone;
-import seedu.nova.model.common.tag.Tag;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

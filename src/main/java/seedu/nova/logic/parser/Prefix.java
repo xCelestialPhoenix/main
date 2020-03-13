@@ -1,4 +1,4 @@
-package seedu.nova.logic.parser;
+package seedu.address.logic.parser;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.

@@ -1,4 +1,4 @@
-package seedu.nova.logic.commands;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
