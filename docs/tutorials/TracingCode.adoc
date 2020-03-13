@@ -145,8 +145,8 @@ image:Variables.png[]
 [source, java]
 ----
 ...
-case EditCommand.COMMAND_WORD:
-    return new EditCommandParser().parse(arguments);
+caseAbEditCommand.COMMAND_WORD:
+    return new AbEditCommandParser().parse(arguments);
 ...
 ----
 . Let's see what `EditCommandParser#parse()` does by stepping into it.
