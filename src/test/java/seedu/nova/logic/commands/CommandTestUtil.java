@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.Model;
+import seedu.nova.model.addressbook.NovaAddressBook;
 import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
 import seedu.nova.model.common.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
