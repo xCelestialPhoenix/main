@@ -13,13 +13,13 @@ import seedu.nova.model.common.person.Person;
 import seedu.nova.model.common.person.Phone;
 import seedu.nova.model.common.tag.Tag;
 =======
-import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.model.common.person.Address;
+import seedu.nova.model.common.person.Email;
+import seedu.nova.model.common.person.Name;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Phone;
+import seedu.nova.model.common.tag.Tag;
 >>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 
 /**

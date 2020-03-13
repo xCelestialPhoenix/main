@@ -1,16 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.nova.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.nova.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.nova.model.Model;
+import seedu.nova.model.ModelManager;
+import seedu.nova.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AbListCommand.

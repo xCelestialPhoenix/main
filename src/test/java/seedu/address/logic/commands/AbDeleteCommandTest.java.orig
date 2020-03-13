@@ -1,22 +1,22 @@
-package seedu.address.logic.commands;
+package seedu.nova.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.nova.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.nova.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.nova.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.nova.commons.core.Messages;
+import seedu.nova.commons.core.index.Index;
+import seedu.nova.model.Model;
+import seedu.nova.model.ModelManager;
+import seedu.nova.model.UserPrefs;
+import seedu.nova.model.common.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -32,7 +32,7 @@ public class AbDeleteCommandTest {
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(
-                seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+                seedu.nova.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -56,7 +56,7 @@ public class AbDeleteCommandTest {
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(
-                seedu.address.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+                seedu.nova.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);

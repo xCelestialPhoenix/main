@@ -1,10 +1,10 @@
-package seedu.address.logic.parser;
+package seedu.nova.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AbDeleteCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.nova.commons.core.index.Index;
+import seedu.nova.logic.commands.AbDeleteCommand;
+import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new AbDeleteCommand object
@@ -23,7 +23,7 @@ public class AbDeleteCommandParser implements Parser<AbDeleteCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.address.logic.commands.AbDeleteCommand.MESSAGE_USAGE), pe);
+                            seedu.nova.logic.commands.AbDeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -1,17 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.nova.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.nova.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.nova.model.Model;
+import seedu.nova.model.ModelManager;
+import seedu.nova.model.UserPrefs;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AbAddCommand}.

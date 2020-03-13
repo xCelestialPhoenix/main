@@ -1,20 +1,20 @@
-package seedu.address.logic.parser;
+package seedu.nova.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AbAddCommand;
-import seedu.address.logic.commands.AbClearCommand;
-import seedu.address.logic.commands.AbEditCommand;
-import seedu.address.logic.commands.AbListCommand;
-import seedu.address.logic.commands.AbRemarkCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbClearCommand;
+import seedu.nova.logic.commands.AbEditCommand;
+import seedu.nova.logic.commands.AbListCommand;
+import seedu.nova.logic.commands.AbRemarkCommand;
+import seedu.nova.logic.commands.Command;
+import seedu.nova.logic.commands.ExitCommand;
+import seedu.nova.logic.commands.HelpCommand;
+import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
@@ -49,13 +49,13 @@ public class AddressBookParser {
         case AbEditCommand.COMMAND_WORD:
             return new AbEditCommandParser().parse(arguments);
 
-        case seedu.address.logic.commands.AbDeleteCommand.COMMAND_WORD:
+        case seedu.nova.logic.commands.AbDeleteCommand.COMMAND_WORD:
             return new AbDeleteCommandParser().parse(arguments);
 
         case AbClearCommand.COMMAND_WORD:
             return new AbClearCommand();
 
-        case seedu.address.logic.commands.AbFindCommand.COMMAND_WORD:
+        case seedu.nova.logic.commands.AbFindCommand.COMMAND_WORD:
             return new AbFindCommandParser().parse(arguments);
 
         case AbListCommand.COMMAND_WORD:

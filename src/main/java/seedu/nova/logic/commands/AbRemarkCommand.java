@@ -1,16 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.nova.logic.commands;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.nova.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
+import seedu.nova.commons.core.Messages;
+import seedu.nova.commons.core.index.Index;
+import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.Model;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.person.Remark;
 
 /**
  * Changes the remark of an existing person in the address book.

@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 =======
-import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.testutil.EditPersonDescriptorBuilder;
 >>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/logic/commands/EditPersonDescriptorTest.java
 
 public class EditPersonDescriptorTest {

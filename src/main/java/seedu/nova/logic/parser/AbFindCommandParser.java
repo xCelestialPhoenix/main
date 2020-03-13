@@ -1,12 +1,12 @@
-package seedu.address.logic.parser;
+package seedu.nova.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.AbFindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.logic.commands.AbFindCommand;
+import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new AbFindCommand object
@@ -23,7 +23,7 @@ public class AbFindCommandParser implements Parser<AbFindCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.address.logic.commands.AbFindCommand.MESSAGE_USAGE));
+                            seedu.nova.logic.commands.AbFindCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

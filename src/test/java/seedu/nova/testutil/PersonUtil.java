@@ -14,10 +14,10 @@ import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.nova.model.common.person.Person;
 import seedu.nova.model.common.tag.Tag;
 =======
-import seedu.address.logic.commands.AbAddCommand;
-import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.model.common.tag.Tag;
 >>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/testutil/PersonUtil.java
 
 /**

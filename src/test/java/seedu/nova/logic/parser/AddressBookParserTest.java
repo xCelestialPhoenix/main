@@ -30,21 +30,21 @@ import seedu.nova.testutil.EditPersonDescriptorBuilder;
 import seedu.nova.testutil.PersonBuilder;
 import seedu.nova.testutil.PersonUtil;
 =======
-import seedu.address.logic.commands.AbAddCommand;
-import seedu.address.logic.commands.AbClearCommand;
-import seedu.address.logic.commands.AbDeleteCommand;
-import seedu.address.logic.commands.AbEditCommand;
-import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.AbFindCommand;
-import seedu.address.logic.commands.AbListCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbClearCommand;
+import seedu.nova.logic.commands.AbDeleteCommand;
+import seedu.nova.logic.commands.AbEditCommand;
+import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.logic.commands.AbFindCommand;
+import seedu.nova.logic.commands.AbListCommand;
+import seedu.nova.logic.commands.ExitCommand;
+import seedu.nova.logic.commands.HelpCommand;
+import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.common.person.Person;
+import seedu.nova.testutil.EditPersonDescriptorBuilder;
+import seedu.nova.testutil.PersonBuilder;
+import seedu.nova.testutil.PersonUtil;
 >>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
 
 public class AddressBookParserTest {
@@ -67,7 +67,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         AbDeleteCommand command = (AbDeleteCommand) parser.parseCommand(
-                seedu.address.logic.commands.AbDeleteCommand.COMMAND_WORD + " "
+                seedu.nova.logic.commands.AbDeleteCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new AbDeleteCommand(INDEX_FIRST_PERSON), command);
     }
@@ -91,7 +91,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         AbFindCommand command = (AbFindCommand) parser.parseCommand(
-                seedu.address.logic.commands.AbFindCommand.COMMAND_WORD + " "
+                seedu.nova.logic.commands.AbFindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new AbFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
