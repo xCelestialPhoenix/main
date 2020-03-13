@@ -8,17 +8,10 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-<<<<<<< HEAD:src/test/java/seedu/nova/testutil/PersonUtil.java
-import seedu.nova.logic.commands.AddCommand;
-import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.model.common.person.Person;
-import seedu.nova.model.common.tag.Tag;
-=======
 import seedu.nova.logic.commands.AbAddCommand;
 import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.common.person.Person;
 import seedu.nova.model.common.tag.Tag;
->>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/testutil/PersonUtil.java
 
 /**
  * A utility class for Person.

@@ -4,15 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-<<<<<<< HEAD:src/test/java/seedu/nova/testutil/EditPersonDescriptorBuilder.java
-import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.model.common.person.Address;
-import seedu.nova.model.common.person.Email;
-import seedu.nova.model.common.person.Name;
-import seedu.nova.model.common.person.Person;
-import seedu.nova.model.common.person.Phone;
-import seedu.nova.model.common.tag.Tag;
-=======
+
 import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.common.person.Address;
 import seedu.nova.model.common.person.Email;
@@ -20,7 +12,6 @@ import seedu.nova.model.common.person.Name;
 import seedu.nova.model.common.person.Person;
 import seedu.nova.model.common.person.Phone;
 import seedu.nova.model.common.tag.Tag;
->>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

@@ -13,23 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/nova/logic/parser/AddressBookParserTest.java
-import seedu.nova.logic.commands.AddCommand;
-import seedu.nova.logic.commands.ClearCommand;
-import seedu.nova.logic.commands.DeleteCommand;
-import seedu.nova.logic.commands.EditCommand;
-import seedu.nova.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.nova.logic.commands.ExitCommand;
-import seedu.nova.logic.commands.FindCommand;
-import seedu.nova.logic.commands.HelpCommand;
-import seedu.nova.logic.commands.ListCommand;
-import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.common.person.NameContainsKeywordsPredicate;
-import seedu.nova.model.common.person.Person;
-import seedu.nova.testutil.EditPersonDescriptorBuilder;
-import seedu.nova.testutil.PersonBuilder;
-import seedu.nova.testutil.PersonUtil;
-=======
 import seedu.nova.logic.commands.AbAddCommand;
 import seedu.nova.logic.commands.AbClearCommand;
 import seedu.nova.logic.commands.AbDeleteCommand;
@@ -45,7 +28,6 @@ import seedu.nova.model.common.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 import seedu.nova.testutil.PersonBuilder;
 import seedu.nova.testutil.PersonUtil;
->>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
 
 public class AddressBookParserTest {
 

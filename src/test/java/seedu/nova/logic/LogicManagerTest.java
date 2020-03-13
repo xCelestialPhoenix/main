@@ -17,10 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-<<<<<<< HEAD:src/test/java/seedu/nova/logic/LogicManagerTest.java
-import seedu.nova.logic.commands.AddCommand;
+import seedu.nova.logic.commands.AbAddCommand;
+import seedu.nova.logic.commands.AbListCommand;
 import seedu.nova.logic.commands.CommandResult;
-import seedu.nova.logic.commands.ListCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.model.Model;
@@ -32,22 +31,6 @@ import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
 import seedu.nova.storage.StorageManager;
 import seedu.nova.testutil.PersonBuilder;
-=======
-import seedu.nova.logic.commands.AbAddCommand;
-import seedu.nova.logic.commands.AbListCommand;
-import seedu.nova.logic.commands.CommandResult;
-import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.Model;
-import seedu.nova.model.ModelManager;
-import seedu.nova.model.ReadOnlyAddressBook;
-import seedu.nova.model.UserPrefs;
-import seedu.nova.model.common.person.Person;
-import seedu.nova.storage.JsonAddressBookStorage;
-import seedu.nova.storage.JsonUserPrefsStorage;
-import seedu.nova.storage.StorageManager;
-import seedu.nova.testutil.PersonBuilder;
->>>>>>> c6c0bb78e07ef00942b0263e80b55d6c724c2c2b:src/test/java/seedu/address/logic/LogicManagerTest.java
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

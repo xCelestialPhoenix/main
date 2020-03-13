@@ -29,7 +29,7 @@ class AbRemarkCommandTest {
 
         String expectedMessage = String.format(AbRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(abRemarkCommand, model, expectedMessage, expectedModel);
