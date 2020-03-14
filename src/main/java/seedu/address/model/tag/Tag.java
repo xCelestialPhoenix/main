@@ -29,8 +29,8 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        if (test.matches(VALIDATION_REGEX) &&
-                (test.toLowerCase().equals("classmate") || test.toLowerCase().equals("teammate"))) {
+        if (test.matches(VALIDATION_REGEX)
+                && (test.toLowerCase().equals("classmate") || test.toLowerCase().equals("teammate"))) {
             return true;
         } else {
             return false;

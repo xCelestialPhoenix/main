@@ -31,8 +31,8 @@ public class Name {
         String[] splitBySpace = name.split("\\s+");
         String newName = "";
         for (int i = 0; i < splitBySpace.length; i++) {
-            newName = newName + Character.toUpperCase(splitBySpace[i].charAt(0)) +
-                    splitBySpace[i].substring(1).toLowerCase() + " ";
+            newName = newName + Character.toUpperCase(splitBySpace[i].charAt(0))
+                    + splitBySpace[i].substring(1).toLowerCase() + " ";
         }
         fullName = newName;
     }
