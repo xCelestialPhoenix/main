@@ -32,7 +32,7 @@ public class AbAddCommandParser implements Parser<AbAddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbAddCommand.MESSAGE_USAGE));
         }
@@ -41,6 +41,12 @@ public class AbAddCommandParser implements Parser<AbAddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        if (ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).size() == 1) {
+            tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        } else if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
+            throw new ParseException("Please only provide 1 category");
+        }
+
         Remark remark = new Remark("");
 
         Person person = new Person(name, phone, email, tagList, remark);

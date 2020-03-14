@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either classmate or teammate";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -29,7 +29,13 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX) &&
+                (test.toLowerCase().equals("classmate") || test.toLowerCase().equals("teammate"))) {
+            return true;
+        } else {
+            return false;
+        }
+        //return test.matches(VALIDATION_REGEX);
     }
 
     @Override

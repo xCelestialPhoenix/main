@@ -51,7 +51,13 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        //parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        if (argMultimap.getAllValues(PREFIX_TAG).size() == 1) {
+            editPersonDescriptor.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        } else if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
+            throw new ParseException("Please only provide 1 category");
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(AbEditCommand.MESSAGE_NOT_EDITED);
@@ -65,7 +71,7 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    /*private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -73,6 +79,14 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    } */
+
+    private Set<Tag> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        //Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags;
+        return ParserUtil.parseTags(tagSet);
     }
 
 }
