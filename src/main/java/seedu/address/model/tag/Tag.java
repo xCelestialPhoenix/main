@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be either classmate or teammate";
+    public static final String MESSAGE_CONSTRAINTS = "Category should be either classmate or teammate only";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -22,7 +22,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = tagName.toLowerCase();
     }
 
     /**
