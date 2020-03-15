@@ -112,7 +112,7 @@ Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/t
 * Existing values will be updated to the input values
 * `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
 The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
 * You can only edit either `classmate` or `teammate` as category
 ====
 
@@ -157,7 +157,7 @@ Format: `list c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
 * There are only `classmate` and `teammate` categories
 ====
 
