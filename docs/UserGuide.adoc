@@ -85,8 +85,8 @@ Format: `add n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe"). +
+The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
 * `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
 * You can only add either `classmate` or `teammate` as category
 ====
@@ -110,8 +110,8 @@ Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/t
 * At least one of the optional fields must be provided
 * Optional fields are `n\[name]`, `p\[phone number]`, `e\[email address]` or `c\[classmate/teammate]`
 * Existing values will be updated to the input values
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
+The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
 * `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
 * You can only edit either `classmate` or `teammate` as category
 ====
@@ -119,10 +119,10 @@ Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/t
 Example:
 
 * `edit 1 p\88888888` +
-Edits the phone number of first person in your address book to 88888888.
+Edits the phone number of the first person in your address book to 88888888.
 
 * `edit 3 e\\kly838@hotmail.com` +
-Edits the email address of third person in your address book to kly838@hotmail.com.
+Edits the email address of the third person in your address book to kly838@hotmail.com.
 
 ==== Delete Contact : `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
@@ -131,7 +131,6 @@ Format: `delete [index]`
 
 [NOTE]
 ====
-* Deletes the person at the specified `[index]`
 * The index refers to the index number shown in the displayed person list
 * The index **must be a positive integer** 1, 2, 3, …​
 ====
