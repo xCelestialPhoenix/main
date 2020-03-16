@@ -17,7 +17,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses user input for address book feature.
  */
 public class AddressBookParser {
 
