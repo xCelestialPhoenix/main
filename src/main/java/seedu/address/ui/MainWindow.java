@@ -28,6 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
+    private HelpBox helpBox;
 
     //private HelpWindow helpWindow;
 
@@ -47,6 +48,7 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.helpBox = new HelpBox();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -61,7 +63,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-
     /**
      * Fills up all the placeholders of this window.
      */
@@ -69,10 +70,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        HelpBox helpBox = new HelpBox();
         helpHolder.getChildren().add(helpBox.getRoot());
 
-        helpBox.setHelp("HelpHelpHelpHelpH" + "\n" + "elpHelpHelpHelp" + "\n" + "\n" + "\n");
+        helpBox.setHelp(logic.getMode().name());
     }
 
     /**
@@ -123,10 +123,17 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isChangeMode()) {
+                helpBox.setHelp(logic.getMode().name());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+
+            ResultDisplay r = new ResultDisplay();
+            r.setFeedbackToUser(e.getMessage());
+            resultDisplayPlaceholder.getChildren().add(r.getRoot());
             throw e;
         }
     }
