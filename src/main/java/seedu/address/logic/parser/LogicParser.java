@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.NavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -54,6 +55,8 @@ public class LogicParser {
 
         if (commandWord.equals(NavCommand.COMMAND_WORD)) {
             return navCommandParser.parse(arguments);
+        } else if (commandWord.equals(ExitCommand.COMMAND_WORD)) {
+            return new ExitCommand();
         } else {
             ModeEnum mode = model.getMode().getModeEnum();
 
