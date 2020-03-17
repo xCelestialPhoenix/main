@@ -9,7 +9,6 @@ import java.time.format.FormatStyle;
  * Represents the meeting type of Event.
  */
 public class Meeting extends Event {
-    private LocalDate date;
 
     public Meeting(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
         super(desc, venue, startTime, endTime);

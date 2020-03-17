@@ -9,7 +9,6 @@ import java.time.format.FormatStyle;
  * Represents the consultation type of Event.
  */
 public class Consultation extends Event {
-    private LocalDate date;
 
     public Consultation(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
         super(desc, venue, startTime, endTime);

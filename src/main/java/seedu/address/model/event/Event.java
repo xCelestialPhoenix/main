@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
@@ -10,6 +11,7 @@ public class Event {
     protected String venue;
     protected LocalTime startTime;
     protected LocalTime endTime;
+    protected LocalDate date;
     protected String note = "";
     protected boolean isDone = false;
 
@@ -22,6 +24,14 @@ public class Event {
 
     public boolean getIsDone() {
         return isDone;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public void markDone() {

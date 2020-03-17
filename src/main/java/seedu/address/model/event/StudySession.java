@@ -9,7 +9,6 @@ import java.time.format.FormatStyle;
  * Represents the study session type of Event.
  */
 public class StudySession extends Event {
-    private LocalDate date;
 
     public StudySession(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
         super(desc, venue, startTime, endTime);
