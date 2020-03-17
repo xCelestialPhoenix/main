@@ -28,7 +28,7 @@ public class AbFindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        String listOfPeople = "";
+        String listOfPeople = "Found the following: " + "\n";
         for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
             listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i) + "\n";
         }

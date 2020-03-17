@@ -8,7 +8,7 @@ import seedu.address.model.person.CategoryContainsKeywordsPredicate;
 /**
  * Lists all persons in the address book to the user.
  */
-public class AbListTeammateCommand extends Command {
+public class AbListTeammateCommand extends AbListCategoryCommand {
 
     private final CategoryContainsKeywordsPredicate predicate;
 
@@ -21,7 +21,8 @@ public class AbListTeammateCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        String listOfPeople = "";
+        String listOfPeople = model.getFilteredPersonList().size() > 0
+                ? "Listed teammate:\n" : "There is no teammate contact saved.";
         for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
             listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i)
                     + " Remark: " + model.getFilteredPersonList().get(i).getRemark()

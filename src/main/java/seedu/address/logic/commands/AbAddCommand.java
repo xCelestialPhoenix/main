@@ -23,7 +23,7 @@ public class AbAddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
+            + PREFIX_CATEGORY + "CATEGORY\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

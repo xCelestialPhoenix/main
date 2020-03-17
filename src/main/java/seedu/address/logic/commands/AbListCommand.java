@@ -19,7 +19,8 @@ public class AbListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        String listOfPeople = "";
+        String listOfPeople = model.getAddressBook().getPersonList().size() > 0
+                ? "Listed all contacts:\n" : "There is no contact saved.";
         for (int i = 0; i < model.getAddressBook().getPersonList().size(); i++) {
             listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBook().getPersonList().get(i) + "\n";
         }
