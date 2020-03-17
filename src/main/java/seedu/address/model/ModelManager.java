@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.ModeEnum;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Mode mode;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,10 +37,12 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.mode = new Mode(ModeEnum.ADDRESSBOOK);
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+        this.mode = new Mode(ModeEnum.ADDRESSBOOK);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -76,8 +80,13 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Mode ==================================================================================
+    @Override
+    public Mode getMode() {
+        return mode;
+    }
 
+    //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
