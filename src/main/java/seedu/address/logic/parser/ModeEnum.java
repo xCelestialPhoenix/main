@@ -6,6 +6,6 @@ package seedu.address.logic.parser;
 public enum ModeEnum {
     ADDRESSBOOK,
     EVENT,
-    SCHEDULER,
+    SCHEDULE,
     PROGRESSTRACKER
 }

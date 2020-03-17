@@ -66,7 +66,7 @@ public class LogicParser {
             case EVENT:
                 return eventParser.parseCommand(userInput);
 
-            case SCHEDULER:
+            case SCHEDULE:
                 return scheduleParser.parseCommand(userInput);
 
             case PROGRESSTRACKER:
