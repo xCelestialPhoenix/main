@@ -239,7 +239,7 @@ Format: `remark [index] r\[remark]`
 Example: +
 `remark 2 r\He's a nice teammate`
 
-Adds the remark "He's a nice teammate" to contact at index 2.
+Adds the remark "He's a nice teammate" to the second contact in your address book.
 
 ==== Undo Command: `undo`
 You can undo a command that you have entered.
