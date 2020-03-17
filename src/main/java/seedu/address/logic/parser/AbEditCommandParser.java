@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Set;
@@ -14,7 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AbEditCommand;
 import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.category.Category;
 
 /**
  * Parses input arguments and creates a new AbEditCommand object
@@ -29,7 +29,7 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
     public AbEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY);
 
         Index index;
 
@@ -49,11 +49,11 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        //parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        //parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setCategories);
 
-        if (argMultimap.getAllValues(PREFIX_TAG).size() == 1) {
-            editPersonDescriptor.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
-        } else if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
+        if (argMultimap.getAllValues(PREFIX_CATEGORY).size() == 1) {
+            editPersonDescriptor.setCategories(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY)));
+        } else if (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 1) {
             throw new ParseException("Please only provide 1 category");
         }
 
@@ -65,11 +65,11 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * Parses {@code Collection<String> tags} into a {@code Set<Category>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * {@code Set<Category>} containing zero tags.
      */
-    /*private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    /*private Optional<Set<Category>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
@@ -80,11 +80,11 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
     } */
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * Parses {@code Collection<String> tags} into a {@code Set<Category>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * {@code Set<Category>} containing zero tags.
      */
-    private Set<Tag> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Set<Category> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         //Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;

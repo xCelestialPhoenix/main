@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
 
     @FXML
-    private FlowPane tags;
+    private FlowPane categories;
 
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -50,9 +50,11 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        //To retain the old UI's label for category (aka tag),
+        //DarkTheme.css's tags into categories.
+        person.getCategory().stream()
+                .sorted(Comparator.comparing(category -> category.categoryName))
+                .forEach(category -> categories.getChildren().add(new Label(category.categoryName)));
         remark.setText(person.getRemark().value);
     }
 

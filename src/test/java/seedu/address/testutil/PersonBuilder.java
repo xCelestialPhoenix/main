@@ -3,12 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 
@@ -25,14 +25,14 @@ public class PersonBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Set<Tag> tags;
+    private Set<Category> categories;
     private Remark remark;
 
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        tags = new HashSet<>();
+        categories = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
     }
 
@@ -43,7 +43,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        tags = new HashSet<>(personToCopy.getTags());
+        categories = new HashSet<>(personToCopy.getCategory());
         remark = personToCopy.getRemark();
     }
 
@@ -56,10 +56,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code categories} into a {@code Set<Category>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.categories = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -89,7 +89,7 @@ public class PersonBuilder {
 
 
     public Person build() {
-        return new Person(name, phone, email, tags, remark);
+        return new Person(name, phone, email, categories, remark);
     }
 
 }

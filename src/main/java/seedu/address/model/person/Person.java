@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.category.Category;
 
 /**
  * Represents a Person in the address book.
@@ -23,17 +23,17 @@ public class Person {
 
     // Data fields
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Category> category = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, phone, email, tags);
+    public Person(Name name, Phone phone, Email email, Set<Category> category, Remark remark) {
+        requireAllNonNull(name, phone, email, category);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.tags.addAll(tags);
+        this.category.addAll(category);
         this.remark = remark;
     }
 
@@ -57,8 +57,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Category> getCategory() {
+        return Collections.unmodifiableSet(category);
     }
 
     /**
@@ -93,13 +93,13 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getCategory().equals(getCategory());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, category);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Category: ");
-        getTags().forEach(builder::append);
+        getCategory().forEach(builder::append);
         //builder.append(" Remarks: ")
         //        .append(getRemark());
         return builder.toString();

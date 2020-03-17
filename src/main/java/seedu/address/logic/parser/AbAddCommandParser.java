@@ -1,22 +1,22 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AbAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AbAddCommand object
@@ -30,9 +30,9 @@ public class AbAddCommandParser implements Parser<AbAddCommand> {
      */
     public AbAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbAddCommand.MESSAGE_USAGE));
         }
@@ -40,16 +40,16 @@ public class AbAddCommandParser implements Parser<AbAddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        if (ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).size() == 1) {
-            tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        } else if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
+        Set<Category> categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
+        if (ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY)).size() == 1) {
+            categoryList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY));
+        } else if (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 1) {
             throw new ParseException("Please only provide 1 category");
         }
 
         Remark remark = new Remark("");
 
-        Person person = new Person(name, phone, email, tagList, remark);
+        Person person = new Person(name, phone, email, categoryList, remark);
 
         return new AbAddCommand(person);
     }

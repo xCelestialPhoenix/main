@@ -16,7 +16,7 @@ public class CategoryContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keywords -> person.getTags().iterator().next().toString().contains(keywords));
+                .anyMatch(keywords -> person.getCategory().iterator().next().toString().contains(keywords));
     }
 
     @Override
