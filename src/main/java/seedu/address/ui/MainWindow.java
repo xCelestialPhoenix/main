@@ -72,7 +72,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpHolder.getChildren().add(helpBox.getRoot());
 
-        helpBox.setHelp(logic.getMode().name());
+        helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
     }
 
     /**
@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isChangeMode()) {
-                helpBox.setHelp(logic.getMode().name());
+                helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
             }
 
             return commandResult;

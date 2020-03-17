@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 /**
  * Enumeration for modes
  */
-public enum Mode {
+public enum ModeEnum {
     ADDRESSBOOK,
     EVENT,
     SCHEDULER,
