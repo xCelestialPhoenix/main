@@ -110,10 +110,10 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append(" Remarks: ")
-                .append(getRemark())
-                .append(" Tags: ");
+                .append(" Category: ");
         getTags().forEach(builder::append);
+        //builder.append(" Remarks: ")
+        //        .append(getRemark());
         return builder.toString();
     }
 

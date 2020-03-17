@@ -3,18 +3,22 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AbAddCommand;
 import seedu.address.logic.commands.AbClearCommand;
 import seedu.address.logic.commands.AbEditCommand;
+import seedu.address.logic.commands.AbListClassmateCommand;
 import seedu.address.logic.commands.AbListCommand;
+import seedu.address.logic.commands.AbListTeammateCommand;
 import seedu.address.logic.commands.AbRemarkCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CategoryContainsKeywordsPredicate;
 
 /**
  * Parses user input.
@@ -59,7 +63,17 @@ public class AddressBookParser {
             return new AbFindCommandParser().parse(arguments);
 
         case AbListCommand.COMMAND_WORD:
-            return new AbListCommand();
+            String[] classmateList = {"classmate"};
+            String[] teammateList = {"teammate"};
+            if (arguments.equals("")) {
+                return new AbListCommand();
+            } else if (arguments.toLowerCase().trim().equals("classmate")) {
+                return new AbListClassmateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(classmateList)));
+            } else if (arguments.toLowerCase().trim().equals("teammate")) {
+                return new AbListTeammateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(teammateList)));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            }
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

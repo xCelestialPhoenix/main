@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -31,12 +30,10 @@ public class AbFindCommand extends Command {
         model.updateFilteredPersonList(predicate);
         String listOfPeople = "";
         for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i+1) + ". " + model.getFilteredPersonList().get(i) + "\n";
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i) + "\n";
         }
 
         return new CommandResult(listOfPeople);
-        //return new CommandResult(
-        //        String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

@@ -21,7 +21,7 @@ public class AbListCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         String listOfPeople = "";
         for (int i = 0; i < model.getAddressBook().getPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i+1) + ". " + model.getAddressBook().getPersonList().get(i) + "\n";
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBook().getPersonList().get(i) + "\n";
         }
 
         return new CommandResult(listOfPeople);
