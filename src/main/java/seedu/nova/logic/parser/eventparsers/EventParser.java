@@ -1,9 +1,7 @@
 package seedu.nova.logic.parser.eventparsers;
 
-import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.nova.logic.commands.Command;
@@ -27,7 +25,8 @@ public class EventParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param commandWord command
+     * @param arguments arguments
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */

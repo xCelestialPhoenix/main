@@ -133,6 +133,9 @@ public class ParserUtil {
         return LocalTime.parse(time.trim());
     }
 
+    /**
+     * Parses {@code String day} into a {@code DayOfWeek}.
+     */
     public static DayOfWeek parseDay(String day) {
         day = day.toUpperCase();
         DayOfWeek d = DayOfWeek.valueOf(day);
