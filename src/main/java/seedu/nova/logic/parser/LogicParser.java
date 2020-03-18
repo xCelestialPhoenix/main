@@ -73,7 +73,7 @@ public class LogicParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments").trim();
+        final String arguments = matcher.group("arguments");
 
         if (commandWord.equals(NavCommand.COMMAND_WORD)) {
             return navCommandParser.parse(arguments);
@@ -85,7 +85,7 @@ public class LogicParser {
 
             case ADDRESSBOOK:
                 //return addressBookParser.parseCommand(userInput);
-                return addressBookParser.parseCommand(commandWord, " " + arguments);
+                return addressBookParser.parseCommand(commandWord, arguments);
 
             case EVENT:
                 return eventParser.parseCommand(userInput);
