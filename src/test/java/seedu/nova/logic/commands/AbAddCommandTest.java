@@ -22,6 +22,8 @@ import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.testutil.PersonBuilder;
 
@@ -155,6 +157,15 @@ public class AbAddCommandTest {
         public Mode getMode() {
             return null;
         }
+
+        @Override
+        public void addEvent(Event e) {
+        }
+
+        @Override
+        public void addLesson(Lesson l) {
+        }
+
     }
 
     /**
