@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AbAddCommand;
 import seedu.address.logic.commands.AbClearCommand;
 import seedu.address.logic.commands.AbEditCommand;
+import seedu.address.logic.commands.AbHelpCommand;
 import seedu.address.logic.commands.AbListCommand;
 import seedu.address.logic.commands.AbRemarkCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,7 +35,7 @@ public class AddressBookParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -73,11 +73,11 @@ public class AddressBookParser {
             } else if (arguments.toLowerCase().trim().equals("teammate")) {
                 return new AbListTeammateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(teammateList)));
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
             } */
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case AbHelpCommand.COMMAND_WORD:
+            return new AbHelpCommand();
 
         case AbRemarkCommand.COMMAND_WORD:
             return new AbRemarkCommandParser().parse(arguments);

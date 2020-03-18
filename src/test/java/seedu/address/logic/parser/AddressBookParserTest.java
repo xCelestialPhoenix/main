@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AbClearCommand;
 import seedu.address.logic.commands.AbDeleteCommand;
 //import seedu.address.logic.commands.AbFindCommand;
+import seedu.address.logic.commands.AbHelpCommand;
 import seedu.address.logic.commands.AbListCommand;
 //import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -73,8 +73,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(AbHelpCommand.COMMAND_WORD) instanceof AbHelpCommand);
+        assertTrue(parser.parseCommand(AbHelpCommand.COMMAND_WORD + " 3") instanceof AbHelpCommand);
     }
 
     @Test
@@ -84,8 +84,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AbHelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
