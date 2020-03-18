@@ -88,7 +88,7 @@ public class LogicParser {
                 return addressBookParser.parseCommand(userInput);
 
             case EVENT:
-                return eventParser.parseCommand(userInput);
+                return eventParser.parseCommand(commandWord, arguments);
 
             case SCHEDULER:
                 return scheduleParser.parseCommand(userInput);
