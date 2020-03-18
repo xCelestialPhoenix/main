@@ -39,10 +39,8 @@ public class Day {
         int index = 0;
 
         if (events.size() == 0) {
-            System.err.println("Linked List is empty");
             events.add(event);
         } else {
-            System.err.println("Linked List is not empty");
             boolean hasSlot = false;
             while (iterator.hasNext()) {
                 //Check to see if startTime is taken
