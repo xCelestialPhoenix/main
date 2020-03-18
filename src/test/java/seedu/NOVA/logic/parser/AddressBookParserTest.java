@@ -13,15 +13,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbAddCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbClearCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbDeleteCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbEditCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbEditCommand.EditPersonDescriptor;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbFindCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbHelpCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbListCommand;
-import seedu.NOVA.logic.commands.Common.ExitCommand;
+import seedu.NOVA.logic.commands.abcommands.AbAddCommand;
+import seedu.NOVA.logic.commands.abcommands.AbClearCommand;
+import seedu.NOVA.logic.commands.abcommands.AbDeleteCommand;
+import seedu.NOVA.logic.commands.abcommands.AbEditCommand;
+import seedu.NOVA.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
+import seedu.NOVA.logic.commands.abcommands.AbFindCommand;
+import seedu.NOVA.logic.commands.abcommands.AbHelpCommand;
+import seedu.NOVA.logic.commands.abcommands.AbListCommand;
+import seedu.NOVA.logic.commands.commoncommands.ExitCommand;
+import seedu.NOVA.logic.parser.abparsers.AddressBookParser;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
 import seedu.NOVA.model.person.NameContainsKeywordsPredicate;
 import seedu.NOVA.model.person.Person;

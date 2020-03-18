@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbFindCommand;
+import seedu.NOVA.logic.commands.abcommands.AbFindCommand;
+import seedu.NOVA.logic.parser.abparsers.AbFindCommandParser;
 import seedu.NOVA.model.person.NameContainsKeywordsPredicate;
 
 public class AbFindCommandParserTest {

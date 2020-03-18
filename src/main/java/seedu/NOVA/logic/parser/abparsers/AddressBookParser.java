@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.parser;
+package seedu.NOVA.logic.parser.abparsers;
 
 import static seedu.NOVA.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.NOVA.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -6,16 +6,16 @@ import static seedu.NOVA.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbAddCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbClearCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbDeleteCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbEditCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbFindCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbHelpCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbListCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbRemarkCommand;
 import seedu.NOVA.logic.commands.Command;
-import seedu.NOVA.logic.commands.Common.ExitCommand;
+import seedu.NOVA.logic.commands.abcommands.AbAddCommand;
+import seedu.NOVA.logic.commands.abcommands.AbClearCommand;
+import seedu.NOVA.logic.commands.abcommands.AbDeleteCommand;
+import seedu.NOVA.logic.commands.abcommands.AbEditCommand;
+import seedu.NOVA.logic.commands.abcommands.AbFindCommand;
+import seedu.NOVA.logic.commands.abcommands.AbHelpCommand;
+import seedu.NOVA.logic.commands.abcommands.AbListCommand;
+import seedu.NOVA.logic.commands.abcommands.AbRemarkCommand;
+import seedu.NOVA.logic.commands.commoncommands.ExitCommand;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
 
 

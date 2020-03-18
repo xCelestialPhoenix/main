@@ -7,7 +7,7 @@ import static seedu.NOVA.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbAddCommand;
+import seedu.NOVA.logic.commands.abcommands.AbAddCommand;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;
 import seedu.NOVA.model.UserPrefs;

@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.parser;
+package seedu.NOVA.logic.parser.ptparsers;
 
 import seedu.NOVA.logic.commands.Command;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
