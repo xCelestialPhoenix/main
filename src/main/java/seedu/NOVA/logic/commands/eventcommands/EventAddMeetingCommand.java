@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.commands;
+package seedu.NOVA.logic.commands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,12 +6,14 @@ import static seedu.NOVA.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.NOVA.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.NOVA.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import seedu.NOVA.logic.commands.Command;
+import seedu.NOVA.logic.commands.CommandResult;
 import seedu.NOVA.logic.commands.exceptions.CommandException;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.event.Event;
 
 /**
- * adds an Event into the Schedule.
+ * adds a Meeting into the Schedule.
  */
 public class EventAddMeetingCommand extends Command {
 
