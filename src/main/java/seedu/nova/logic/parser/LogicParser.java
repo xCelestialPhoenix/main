@@ -74,10 +74,10 @@ public class LogicParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments").trim();
+        final String arguments = matcher.group("arguments");
 
         if (commandWord.equals(NavCommand.COMMAND_WORD)) {
-            return navCommandParser.parse(arguments);
+            return navCommandParser.parse(arguments.trim());
         } else if (commandWord.equals(ExitCommand.COMMAND_WORD)) {
             return new ExitCommand();
         } else {

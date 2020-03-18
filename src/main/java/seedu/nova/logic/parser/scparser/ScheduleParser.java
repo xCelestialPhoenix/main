@@ -20,17 +20,6 @@ public class ScheduleParser {
 
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
 
-        /*
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-
-        if (!matcher.matches()) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        */
-
         switch (commandWord) {
         case ScViewDayCommand.COMMAND_WORD:
             return new ScViewDayCommandParser().parse(arguments);
