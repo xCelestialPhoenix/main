@@ -1,11 +1,11 @@
 package seedu.NOVA.logic.commands;
 
-import static seedu.NOVA.logic.commands.AddressBookCommands.AbHelpCommand.SHOWING_HELP_MESSAGE;
 import static seedu.NOVA.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.NOVA.logic.commands.abcommands.AbHelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbHelpCommand;
+import seedu.NOVA.logic.commands.abcommands.AbHelpCommand;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;
 

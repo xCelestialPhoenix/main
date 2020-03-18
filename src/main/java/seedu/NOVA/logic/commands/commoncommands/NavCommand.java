@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.commands.Common;
+package seedu.NOVA.logic.commands.commoncommands;
 
 import static java.util.Objects.requireNonNull;
 

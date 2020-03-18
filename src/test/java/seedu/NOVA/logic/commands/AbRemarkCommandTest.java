@@ -6,7 +6,7 @@ import static seedu.NOVA.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbRemarkCommand;
+import seedu.NOVA.logic.commands.abcommands.AbRemarkCommand;
 import seedu.NOVA.model.AddressBook;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;

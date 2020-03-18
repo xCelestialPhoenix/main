@@ -15,7 +15,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbFindCommand;
+import seedu.NOVA.logic.commands.abcommands.AbFindCommand;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;
 import seedu.NOVA.model.UserPrefs;

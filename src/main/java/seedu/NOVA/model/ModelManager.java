@@ -42,7 +42,6 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
-        this.mode = new Mode(ModeEnum.ADDRESSBOOK);
     }
 
     //=========== UserPrefs ==================================================================================

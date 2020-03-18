@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.commands.AddressBookCommands;
+package seedu.NOVA.logic.commands.abcommands;
 
 import static seedu.NOVA.commons.util.CollectionUtil.requireAllNonNull;
 

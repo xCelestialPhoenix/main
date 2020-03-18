@@ -1,4 +1,4 @@
-package seedu.NOVA.logic.commands.Common;
+package seedu.NOVA.logic.commands.commoncommands;
 
 import seedu.NOVA.logic.commands.Command;
 import seedu.NOVA.logic.commands.CommandResult;
