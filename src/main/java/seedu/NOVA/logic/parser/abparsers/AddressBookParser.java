@@ -6,6 +6,7 @@ import static seedu.NOVA.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.NOVA.logic.commands.Command;
 import seedu.NOVA.logic.commands.abcommands.AbAddCommand;
 import seedu.NOVA.logic.commands.abcommands.AbClearCommand;
 import seedu.NOVA.logic.commands.abcommands.AbDeleteCommand;
@@ -14,7 +15,6 @@ import seedu.NOVA.logic.commands.abcommands.AbFindCommand;
 import seedu.NOVA.logic.commands.abcommands.AbHelpCommand;
 import seedu.NOVA.logic.commands.abcommands.AbListCommand;
 import seedu.NOVA.logic.commands.abcommands.AbRemarkCommand;
-import seedu.NOVA.logic.commands.Command;
 import seedu.NOVA.logic.commands.commoncommands.ExitCommand;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
 

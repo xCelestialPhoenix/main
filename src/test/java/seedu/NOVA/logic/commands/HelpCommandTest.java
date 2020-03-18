@@ -1,7 +1,7 @@
 package seedu.NOVA.logic.commands;
 
-import static seedu.NOVA.logic.commands.abcommands.AbHelpCommand.SHOWING_HELP_MESSAGE;
 import static seedu.NOVA.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.NOVA.logic.commands.abcommands.AbHelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
