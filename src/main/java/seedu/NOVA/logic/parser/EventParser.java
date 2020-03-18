@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.NOVA.logic.commands.Command;
 import seedu.NOVA.logic.commands.eventcommands.EventAddConsultationCommand;
+import seedu.NOVA.logic.commands.eventcommands.EventAddLessonCommand;
 import seedu.NOVA.logic.commands.eventcommands.EventAddMeetingCommand;
 import seedu.NOVA.logic.commands.eventcommands.EventAddStudyCommand;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
@@ -49,6 +50,9 @@ public class EventParser {
 
         case EventAddStudyCommand.COMMAND_WORD:
             return new EventAddStudyCommandParser().parse(arguments);
+
+        case EventAddLessonCommand.COMMAND_WORD:
+            return new EventAddLessonCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

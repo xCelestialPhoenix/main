@@ -2,6 +2,7 @@ package seedu.NOVA.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
@@ -130,5 +131,12 @@ public class ParserUtil {
 
     public static LocalTime parseTime(String time) {
         return LocalTime.parse(time.trim());
+    }
+
+    public static DayOfWeek parseDay(String day) {
+        day = day.toUpperCase();
+        DayOfWeek d = DayOfWeek.valueOf(day);
+
+        return d;
     }
 }
