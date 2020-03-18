@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -24,8 +26,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code AbFindCommand}.
  */
 public class AbFindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+            1, 13), LocalDate.of(2020, 5, 3)));
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     public void equals() {

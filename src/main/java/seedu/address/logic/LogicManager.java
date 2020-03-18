@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ScheduleParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -27,11 +28,13 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final ScheduleParser scheduleParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        scheduleParser = new ScheduleParser();
     }
 
     @Override
@@ -42,6 +45,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         //Parse user input from String to a Command
         Command command = addressBookParser.parseCommand(commandText);
+        //Command command = scheduleParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 

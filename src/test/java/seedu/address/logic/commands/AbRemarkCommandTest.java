@@ -4,11 +4,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
@@ -17,7 +20,8 @@ import seedu.address.testutil.PersonBuilder;
 class AbRemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+            1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     void execute_addRemarkUnfilteredList_success() {
@@ -29,7 +33,8 @@ class AbRemarkCommandTest {
 
         String expectedMessage = String.format(AbRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(abRemarkCommand, model, expectedMessage, expectedModel);

@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -22,6 +24,7 @@ import seedu.address.logic.commands.AbEditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Schedule;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -33,7 +36,8 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class AbEditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+            1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +47,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -64,7 +69,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -77,7 +83,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +100,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);

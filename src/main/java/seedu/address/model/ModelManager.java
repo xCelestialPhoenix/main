@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,11 +23,12 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Schedule schedule;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Schedule schedule) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -35,10 +37,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.schedule = schedule;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
     }
 
     //=========== UserPrefs ==================================================================================
@@ -146,6 +149,21 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== Scheduler Methods =============================================================
+
+    @Override
+    public String viewSchedule(LocalDate date) {
+
+        return schedule.view(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(LocalDate date) {
+
+        return schedule.checkDateValidity(date);
     }
 
 }
