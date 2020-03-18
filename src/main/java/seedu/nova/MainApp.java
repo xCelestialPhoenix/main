@@ -22,6 +22,7 @@ import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
@@ -32,7 +33,7 @@ import seedu.nova.storage.StorageManager;
 import seedu.nova.storage.UserPrefsStorage;
 import seedu.nova.ui.Ui;
 import seedu.nova.ui.UiManager;
-import seedu.nova.model.Schedule;
+
 
 /**
  * Runs the application.

@@ -31,30 +31,61 @@ public class Event {
         this.endTime = endTime;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Gets start time.
+     *
+     * @return the start time
+     */
     public LocalTime getStartTime() {
         return startTime;
     }
 
+    /**
+     * Gets end time.
+     *
+     * @return the end time
+     */
     public LocalTime getEndTime() {
         return endTime;
     }
 
+    /**
+     * Gets description.
+     *
+     * @return the description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets venue.
+     *
+     * @return the venue
+     */
     public String getVenue() {
         return venue;
     }
 
+    @Override
     public String toString() {
 
         return "["

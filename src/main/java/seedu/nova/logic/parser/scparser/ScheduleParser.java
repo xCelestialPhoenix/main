@@ -1,13 +1,8 @@
 package seedu.nova.logic.parser.scparser;
 
-import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.sccommands.ScViewDayCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
@@ -16,8 +11,14 @@ import seedu.nova.logic.parser.exceptions.ParseException;
  */
 public class ScheduleParser {
 
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
+    /**
+     * Parses command.
+     *
+     * @param commandWord the command word
+     * @param arguments   the arguments
+     * @return the command
+     * @throws ParseException the parse exception
+     */
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
 
         switch (commandWord) {
