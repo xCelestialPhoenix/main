@@ -20,7 +20,7 @@ public class Consultation extends Event {
         return "Description: " + desc + "\n"
                 + "Venue: " + venue + "\n"
                 + "Date/Time: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + " " + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                + ", " + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
                 + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
     }
 
