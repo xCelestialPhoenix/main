@@ -17,8 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbAddCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbListCommand;
+import seedu.NOVA.logic.commands.abcommands.AbAddCommand;
+import seedu.NOVA.logic.commands.abcommands.AbListCommand;
 import seedu.NOVA.logic.commands.CommandResult;
 import seedu.NOVA.logic.commands.exceptions.CommandException;
 import seedu.NOVA.logic.parser.exceptions.ParseException;

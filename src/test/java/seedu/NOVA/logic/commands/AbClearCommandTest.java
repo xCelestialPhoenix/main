@@ -5,7 +5,7 @@ import static seedu.NOVA.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.NOVA.logic.commands.AddressBookCommands.AbClearCommand;
+import seedu.NOVA.logic.commands.abcommands.AbClearCommand;
 import seedu.NOVA.model.AddressBook;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;

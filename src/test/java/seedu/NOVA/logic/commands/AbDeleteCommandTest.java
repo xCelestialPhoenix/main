@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.NOVA.commons.core.Messages;
 import seedu.NOVA.commons.core.index.Index;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbDeleteCommand;
+import seedu.NOVA.logic.commands.abcommands.AbDeleteCommand;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;
 import seedu.NOVA.model.UserPrefs;

@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.NOVA.commons.core.Messages;
 import seedu.NOVA.commons.core.index.Index;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbClearCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbEditCommand;
-import seedu.NOVA.logic.commands.AddressBookCommands.AbEditCommand.EditPersonDescriptor;
+import seedu.NOVA.logic.commands.abcommands.AbClearCommand;
+import seedu.NOVA.logic.commands.abcommands.AbEditCommand;
+import seedu.NOVA.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.NOVA.model.AddressBook;
 import seedu.NOVA.model.Model;
 import seedu.NOVA.model.ModelManager;

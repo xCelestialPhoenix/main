@@ -3,7 +3,7 @@ package seedu.NOVA.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.NOVA.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import seedu.NOVA.logic.commands.Common.NavCommand;
+import seedu.NOVA.logic.commands.commoncommands.NavCommand;
 import seedu.NOVA.logic.parser.exceptions.ParseException;
 
 /**
