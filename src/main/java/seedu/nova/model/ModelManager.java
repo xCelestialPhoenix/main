@@ -183,7 +183,9 @@ public class ModelManager implements Model {
     public boolean isWithinSem(LocalDate date) {
 
         return schedule.checkDateValidity(date);
-
+        
+    }
+    
     //=========== Event and Schedule =============================================================
     @Override
     public void addEvent(Event e) {
