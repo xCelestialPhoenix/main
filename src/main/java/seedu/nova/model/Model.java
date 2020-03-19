@@ -1,6 +1,7 @@
 package seedu.nova.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -88,11 +89,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    String viewSchedule(LocalDate date);
+
+    boolean isWithinSem(LocalDate date);
+
     Mode getMode();
+
+    ProgressTracker getProgressTracker();
 
     void addEvent(Event e);
 
     public void addLesson(Lesson l);
-
-    ProgressTracker getProgressTracker();
 }

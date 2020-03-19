@@ -5,6 +5,8 @@ package seedu.nova.logic.commands;
 //import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 
 /**
@@ -24,8 +27,10 @@ public class AbListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13),
+                LocalDate.of(2020, 5, 3)));
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1,
+                13), LocalDate.of(2020, 5, 3)));
     }
 
     /*@Test

@@ -23,12 +23,18 @@ import seedu.nova.model.progresstracker.Project;
  */
 public class ParserUtil {
 
+    /**
+     * The constant MESSAGE_INVALID_INDEX.
+     */
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
+     * @param oneBasedIndex the one based index
+     * @return the index
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -43,6 +49,8 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param name the name
+     * @return the name
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
@@ -58,6 +66,8 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param phone the phone
+     * @return the phone
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -73,6 +83,8 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param email the email
+     * @return the email
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -88,6 +100,8 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Category}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param tag the tag
+     * @return the tag
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Category parseTag(String tag) throws ParseException {
@@ -101,6 +115,10 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Category>}.
+     *
+     * @param tags the tags
+     * @return the set
+     * @throws ParseException the parse exception
      */
     public static Set<Category> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -109,10 +127,6 @@ public class ParserUtil {
             categorySet.add(parseTag(tagName));
         }
         return categorySet;
-    }
-
-    public static LocalDate parseDate(String date) {
-        return LocalDate.parse(date.trim());
     }
 
     public static LocalTime parseTime(String time) {
@@ -159,5 +173,17 @@ public class ParserUtil {
         }
 
         return trimmedProject;
+    }
+
+    /**
+     * Parse date local date.
+     *
+     * @param date the date
+     * @return the local date
+     */
+    public static LocalDate parseDate(String date) {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        return LocalDate.parse(trimmedDate);
     }
 }
