@@ -95,6 +95,8 @@ public interface Model {
 
     Mode getMode();
 
+    ProgressTracker getProgressTracker();
+
     void addEvent(Event e);
 
     public void addLesson(Lesson l);
