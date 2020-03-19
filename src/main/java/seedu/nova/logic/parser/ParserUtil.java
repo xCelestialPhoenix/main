@@ -2,6 +2,9 @@ package seedu.nova.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -122,6 +125,24 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static LocalDate parseDate(String date) {
+        return LocalDate.parse(date.trim());
+    }
+
+    public static LocalTime parseTime(String time) {
+        return LocalTime.parse(time.trim());
+    }
+
+    /**
+     * Parses {@code String day} into a {@code DayOfWeek}.
+     */
+    public static DayOfWeek parseDay(String day) {
+        day = day.toUpperCase();
+        DayOfWeek d = DayOfWeek.valueOf(day);
+
+        return d;
     }
 
     /**
