@@ -189,12 +189,12 @@ public class ModelManager implements Model {
     //=========== Event and Schedule =============================================================
     @Override
     public void addEvent(Event e) {
-        // schedule.addEvent(e);
+        schedule.addEvent(e);
     }
 
     @Override
     public void addLesson(Lesson l) {
-        // schedule.addLesson(l);le
+        schedule.addLesson(l);
     }
 
 }
