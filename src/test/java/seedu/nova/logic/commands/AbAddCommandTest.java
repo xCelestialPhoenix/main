@@ -23,6 +23,7 @@ import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -153,6 +154,11 @@ public class AbAddCommandTest {
 
         @Override
         public Mode getMode() {
+            return null;
+        }
+
+        @Override
+        public ProgressTracker getProgressTracker() {
             return null;
         }
     }

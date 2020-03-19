@@ -13,6 +13,7 @@ import seedu.nova.model.person.Address;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
+import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.tag.Tag;
 
 /**
@@ -21,6 +22,7 @@ import seedu.nova.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -66,10 +68,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nova} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code nova} is invalid.
+     * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -120,5 +122,37 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parsers week number into an int
+     * @param week string containing number to specify the week
+     * @return int of the week input
+     * @throws ParseException if is non-zero throw exception
+     */
+    public static int parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWeek)) {
+            throw new ParseException(MESSAGE_INVALID_WEEK);
+        }
+        return Integer.parseInt(trimmedWeek);
+    }
+
+    /**
+     * Checks if project name is correct
+     * @param project project name
+     * @return project name
+     * @throws ParseException if project name is wrong
+     */
+    public static String parseProject(String project) throws ParseException {
+        requireNonNull(project);
+        String trimmedProject = project.trim();
+
+        if (!Project.isValidProject(trimmedProject)) {
+            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedProject;
     }
 }

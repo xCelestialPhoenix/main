@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
  * The API of the Model component.
@@ -86,4 +87,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     Mode getMode();
+
+    ProgressTracker getProgressTracker();
 }
