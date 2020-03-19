@@ -184,6 +184,8 @@ public class ModelManager implements Model {
 
         return schedule.checkDateValidity(date);
 
+    }
+
     //=========== Event and Schedule =============================================================
     @Override
     public void addEvent(Event e) {
