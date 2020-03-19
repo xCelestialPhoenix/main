@@ -3,6 +3,7 @@ package seedu.nova.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpBox helpBox;
 
     //private HelpWindow helpWindow;
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -52,6 +55,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        scrollPane.vvalueProperty().bind(resultDisplayPlaceholder.heightProperty());
 
         //setAccelerators();
 

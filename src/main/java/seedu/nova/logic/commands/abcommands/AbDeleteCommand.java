@@ -14,7 +14,7 @@ import seedu.nova.model.person.Person;
 
 
 /**
- * Deletes a person identified using it's displayed index from the nova book.
+ * Deletes a person identified using it's displayed index from the address book.
  */
 public class AbDeleteCommand extends Command {
 

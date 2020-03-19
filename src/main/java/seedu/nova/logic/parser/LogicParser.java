@@ -10,6 +10,7 @@ import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
+import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
@@ -85,16 +86,17 @@ public class LogicParser {
             switch (mode) {
 
             case ADDRESSBOOK:
-                return addressBookParser.parseCommand(userInput);
+                //return addressBookParser.parseCommand(userInput);
+                return addressBookParser.parseCommand(commandWord, arguments);
 
             case EVENT:
-                return eventParser.parseCommand(userInput);
+                return eventParser.parseCommand(commandWord, arguments);
 
             case SCHEDULE:
                 return scheduleParser.parseCommand(commandWord, arguments);
 
             case PROGRESSTRACKER:
-                return progresstrackerParser.parseCommand(userInput);
+                return progresstrackerParser.parseCommand(commandWord, arguments);
 
             default:
                 throw new ParseException("No such mode");
