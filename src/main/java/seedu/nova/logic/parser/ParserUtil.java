@@ -17,7 +17,6 @@ import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -70,6 +69,7 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
