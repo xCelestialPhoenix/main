@@ -28,7 +28,13 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        String[] splitBySpace = name.split("\\s+");
+        String newName = "";
+        for (int i = 0; i < splitBySpace.length; i++) {
+            newName = newName + Character.toUpperCase(splitBySpace[i].charAt(0))
+                    + splitBySpace[i].substring(1).toLowerCase() + " ";
+        }
+        fullName = newName;
     }
 
     /**

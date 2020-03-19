@@ -1,9 +1,10 @@
 package seedu.nova.logic.parser.abparsers;
 
-import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+//import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Matcher;
+//import java.util.regex.Matcher;
+
 import java.util.regex.Pattern;
 
 import seedu.nova.logic.commands.Command;
@@ -15,9 +16,7 @@ import seedu.nova.logic.commands.abcommands.AbFindCommand;
 import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.abcommands.AbListCommand;
 import seedu.nova.logic.commands.abcommands.AbRemarkCommand;
-import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
-
 
 /**
  * Parses user input for address book feature.
@@ -32,18 +31,20 @@ public class AddressBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param commandWord command under address book feature
+     * @param arguments arguments under address book feature
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+    //public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String commandWord, String arguments) throws ParseException {
+        /*final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments");*/
         switch (commandWord) {
 
         case AbAddCommand.COMMAND_WORD:
@@ -62,10 +63,23 @@ public class AddressBookParser {
             return new AbFindCommandParser().parse(arguments);
 
         case AbListCommand.COMMAND_WORD:
-            return new AbListCommand();
+            String[] classmateList = {"classmate"};
+            String[] teammateList = {"teammate"};
+            if (arguments.trim().equals("")) {
+                return new AbListCommand();
+            } else {
+                return new AbListCategoryCommandParser().parse(arguments);
+            }
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            /*if (arguments.trim().equals("")) {
+                return new AbListCommand();
+            } else if (arguments.toLowerCase().trim().equals("classmate")) {
+                return new AbListClassmateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(classmateList)));
+            } else if (arguments.toLowerCase().trim().equals("teammate")) {
+                return new AbListTeammateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(teammateList)));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
+            } */
 
         case AbHelpCommand.COMMAND_WORD:
             return new AbHelpCommand();

@@ -1,14 +1,15 @@
 package seedu.nova.logic.commands;
 
-import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.nova.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
+//import static seedu.nova.logic.commands.CommandTestUtil.showPersonAtIndex;
+//import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
-import seedu.nova.logic.commands.abcommands.AbListCommand;
+//import seedu.nova.logic.commands.abcommands.AbListCommand;
+
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.UserPrefs;
@@ -27,14 +28,14 @@ public class AbListCommandTest {
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
-    @Test
+    /*@Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new AbListCommand(), model, AbListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new AbListCommand(), model, AbListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+    }*/
 }

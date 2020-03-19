@@ -85,7 +85,8 @@ public class LogicParser {
             switch (mode) {
 
             case ADDRESSBOOK:
-                return addressBookParser.parseCommand(userInput);
+                //return addressBookParser.parseCommand(userInput);
+                return addressBookParser.parseCommand(commandWord, arguments);
 
             case EVENT:
                 return eventParser.parseCommand(commandWord, arguments);
