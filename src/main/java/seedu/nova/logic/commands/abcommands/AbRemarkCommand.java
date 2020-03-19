@@ -15,7 +15,7 @@ import seedu.nova.model.person.Remark;
 
 
 /**
- * Changes the remark of an existing person in the nova book.
+ * Changes the remark of an existing person in the address book.
  */
 public class AbRemarkCommand extends Command {
 

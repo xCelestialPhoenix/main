@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.nova.model.category.Category;
 
 /**
- * Represents a Person in the nova book.
+ * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {

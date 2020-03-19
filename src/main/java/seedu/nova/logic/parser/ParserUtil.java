@@ -2,6 +2,9 @@ package seedu.nova.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,8 @@ import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
+import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -20,6 +25,7 @@ import seedu.nova.model.person.Phone;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -64,7 +70,6 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -104,5 +109,55 @@ public class ParserUtil {
             categorySet.add(parseTag(tagName));
         }
         return categorySet;
+    }
+
+    public static LocalDate parseDate(String date) {
+        return LocalDate.parse(date.trim());
+    }
+
+    public static LocalTime parseTime(String time) {
+        return LocalTime.parse(time.trim());
+    }
+
+    /**
+     * Parses {@code String day} into a {@code DayOfWeek}.
+     */
+    public static DayOfWeek parseDay(String day) {
+        day = day.toUpperCase();
+        DayOfWeek d = DayOfWeek.valueOf(day);
+
+        return d;
+    }
+
+    /**
+     * Parsers week number into an int
+     * @param week string containing number to specify the week
+     * @return int of the week input
+     * @throws ParseException if is non-zero throw exception
+     */
+    public static int parseWeek(String week) throws ParseException {
+        requireNonNull(week);
+        String trimmedWeek = week.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWeek)) {
+            throw new ParseException(MESSAGE_INVALID_WEEK);
+        }
+        return Integer.parseInt(trimmedWeek);
+    }
+
+    /**
+     * Checks if project name is correct
+     * @param project project name
+     * @return project name
+     * @throws ParseException if project name is wrong
+     */
+    public static String parseProject(String project) throws ParseException {
+        requireNonNull(project);
+        String trimmedProject = project.trim();
+
+        if (!Project.isValidProject(trimmedProject)) {
+            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedProject;
     }
 }
