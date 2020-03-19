@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,36 +12,44 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
-import seedu.nova.model.addressbook.NovaAddressBook;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
-import seedu.nova.model.common.person.Person;
+import seedu.nova.logic.parser.ModeEnum;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
+import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final NovaAddressBook addressBook;
+    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Schedule schedule;
+    private final ProgressTracker progressTracker;
+    private Mode mode;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Schedule schedule) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new NovaAddressBook(addressBook);
+        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.progressTracker = new ProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.schedule = schedule;
+        this.mode = new Mode(ModeEnum.ADDRESSBOOK);
     }
 
     public ModelManager() {
-        this(new NovaAddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
     }
 
     //=========== UserPrefs ==================================================================================
@@ -78,8 +87,19 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Mode ==================================================================================
+    @Override
+    public Mode getMode() {
+        return mode;
+    }
 
+    //=========== ProgressTracker ==================================================================================
+    @Override
+    public ProgressTracker getProgressTracker() {
+        return progressTracker;
+    }
+
+    //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
@@ -146,8 +166,35 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== Scheduler Methods =============================================================
+
+    @Override
+    public String viewSchedule(LocalDate date) {
+
+        return schedule.view(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(LocalDate date) {
+
+        return schedule.checkDateValidity(date);
+
+    }
+
+    //=========== Event and Schedule =============================================================
+    @Override
+    public void addEvent(Event e) {
+        // schedule.addEvent(e);
+    }
+
+    @Override
+    public void addLesson(Lesson l) {
+        // schedule.addLesson(l);le
     }
 
 }

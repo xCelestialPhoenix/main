@@ -14,16 +14,21 @@ import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.nova.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.Messages;
 import seedu.nova.commons.core.index.Index;
-import seedu.nova.logic.commands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.logic.commands.abcommands.AbClearCommand;
+import seedu.nova.logic.commands.abcommands.AbEditCommand;
+import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
+import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.addressbook.NovaAddressBook;
-import seedu.nova.model.common.person.Person;
+import seedu.nova.model.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 import seedu.nova.testutil.PersonBuilder;
 
@@ -33,7 +38,8 @@ import seedu.nova.testutil.PersonBuilder;
  */
 public class AbEditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+            1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +49,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -64,7 +71,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -77,7 +85,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +102,8 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new NovaAddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -112,7 +122,7 @@ public class AbEditCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit person in filtered list into a duplicate in nova book
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
@@ -131,13 +141,13 @@ public class AbEditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of nova book
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of nova book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         AbEditCommand abEditCommand = new AbEditCommand(outOfBoundIndex,

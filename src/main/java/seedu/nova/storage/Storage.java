@@ -5,9 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.nova.commons.exceptions.DataConversionException;
+import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 
 /**
  * API of the Storage component

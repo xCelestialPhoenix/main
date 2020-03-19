@@ -9,14 +9,18 @@ import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.nova.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.Messages;
 import seedu.nova.commons.core.index.Index;
+import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.common.person.Person;
+import seedu.nova.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -24,7 +28,8 @@ import seedu.nova.model.common.person.Person;
  */
 public class AbDeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+            1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,9 +37,10 @@ public class AbDeleteCommandTest {
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(
-                seedu.nova.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+                AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(abDeleteCommand, model, expectedMessage, expectedModel);
@@ -56,9 +62,10 @@ public class AbDeleteCommandTest {
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(
-                seedu.nova.logic.commands.AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+                AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -70,7 +77,7 @@ public class AbDeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of nova book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(outOfBoundIndex);

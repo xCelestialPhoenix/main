@@ -2,11 +2,13 @@ package seedu.nova;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import seedu.nova.commons.core.Config;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.commons.core.Version;
@@ -15,13 +17,14 @@ import seedu.nova.commons.util.ConfigUtil;
 import seedu.nova.commons.util.StringUtil;
 import seedu.nova.logic.Logic;
 import seedu.nova.logic.LogicManager;
+import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
+import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.addressbook.NovaAddressBook;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
-import seedu.nova.model.common.util.SampleDataUtil;
+import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
 import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
@@ -30,6 +33,7 @@ import seedu.nova.storage.StorageManager;
 import seedu.nova.storage.UserPrefsStorage;
 import seedu.nova.ui.Ui;
 import seedu.nova.ui.UiManager;
+
 
 /**
  * Runs the application.
@@ -69,9 +73,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s nova book and {@code userPrefs}. <br>
+     * The data from the sample nova book will be used instead if {@code storage}'s nova book is not found,
+     * or an empty nova book will be used instead if errors occur when reading {@code storage}'s nova book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -84,13 +88,14 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new NovaAddressBook();
+            initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new NovaAddressBook();
+            initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5,
+                3)));
     }
 
     private void initLogging(Config config) {
@@ -120,7 +125,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                + "Using default config properties");
+                    + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +153,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                + "Using default user prefs");
+                    + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");

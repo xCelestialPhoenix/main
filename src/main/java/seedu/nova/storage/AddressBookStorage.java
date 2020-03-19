@@ -5,11 +5,12 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.nova.commons.exceptions.DataConversionException;
-import seedu.nova.model.addressbook.NovaAddressBook;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.AddressBook;
+import seedu.nova.model.ReadOnlyAddressBook;
+
 
 /**
- * Represents a storage for {@link NovaAddressBook}.
+ * Represents a storage for {@link AddressBook}.
  */
 public interface AddressBookStorage {
 

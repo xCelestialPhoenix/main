@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -15,12 +16,17 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.AddressBook;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
+import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
-import seedu.nova.model.addressbook.NovaAddressBook;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
-import seedu.nova.model.common.person.Person;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
+import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -148,6 +154,33 @@ public class AbAddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String viewSchedule(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isWithinSem(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Mode getMode() {
+            return null;
+        }
+
+        @Override
+        public void addEvent(Event e) {
+        }
+
+        @Override
+        public void addLesson(Lesson l) {
+        }
+
+        public ProgressTracker getProgressTracker() {
+            return null;
+        }
     }
 
     /**
@@ -188,7 +221,7 @@ public class AbAddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new NovaAddressBook();
+            return new AddressBook();
         }
     }
 

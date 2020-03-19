@@ -7,7 +7,8 @@ import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.nova.logic.commands.AbDeleteCommand;
+import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
+import seedu.nova.logic.parser.abparsers.AbDeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

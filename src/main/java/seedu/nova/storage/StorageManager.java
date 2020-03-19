@@ -7,9 +7,9 @@ import java.util.logging.Logger;
 
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.commons.exceptions.DataConversionException;
+import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 
 /**
  * Manages storage of AddressBook data in local storage.
