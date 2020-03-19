@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Day.
@@ -28,12 +29,11 @@ public class Day {
     }
 
     /**
-     * Add event.
+     * Adds event.
      *
      * @param event the event
-     * @throws CommandException the command exception
      */
-    public void addEvent(Event event) throws CommandException {
+    public void addEvent(Event event) {
 
         ListIterator<Event> iterator = events.listIterator();
         int index = 0;
@@ -41,27 +41,30 @@ public class Day {
         if (events.size() == 0) {
             events.add(event);
         } else {
-            boolean hasSlot = false;
+            //boolean hasSlot = false;
             while (iterator.hasNext()) {
                 //Check to see if startTime is taken
                 Event item = iterator.next();
                 index++;
                 if (event.getStartTime().compareTo(item.getStartTime()) >= 0) {
 
+                    /*
                     if (iterator.hasNext() && (iterator.next().getStartTime().compareTo(event.getEndTime()) > 0)) {
                         //Slot cannot fit
-                        throw new CommandException(MESSAGE_SLOT_CONFLICT);
                     }
-                    hasSlot = true;
+                    */
+                    //hasSlot = true;
                     events.add(index, event);
                     System.err.println(events.get(index) + " has been added to " + date);
                     break;
                 }
             }
 
+            /*
             if (!hasSlot) {
-                throw new CommandException(MESSAGE_SLOT_CONFLICT);
+                //No slot available
             }
+            */
         }
 
     }
@@ -70,11 +73,12 @@ public class Day {
      * Add lesson.
      *
      * @param lesson the lesson
-     * @throws CommandException the command exception
      */
-    public void addLesson(Lesson lesson) throws CommandException {
+    public void addLesson(Lesson lesson) {
 
-        addEvent(new Lesson(lesson, date));
+        Lesson tmp = new Lesson(lesson);
+        tmp.setDate(date);
+        addEvent(tmp);
     }
 
     /**
