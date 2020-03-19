@@ -13,9 +13,10 @@ import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
- * Represents the in-memory model of the nova book data.
+ * Represents the in-memory model of the data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ProgressTracker progressTracker;
     private Mode mode;
 
     /**
@@ -32,10 +34,11 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with nova book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.progressTracker = new ProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.mode = new Mode(ModeEnum.ADDRESSBOOK);
     }
@@ -83,6 +86,12 @@ public class ModelManager implements Model {
     @Override
     public Mode getMode() {
         return mode;
+    }
+
+    //=========== ProgressTracker ==================================================================================
+    @Override
+    public ProgressTracker getProgressTracker() {
+        return progressTracker;
     }
 
     //=========== AddressBook ================================================================================
