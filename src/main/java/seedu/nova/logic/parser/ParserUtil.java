@@ -2,7 +2,6 @@ package seedu.nova.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
