@@ -17,7 +17,6 @@ import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
