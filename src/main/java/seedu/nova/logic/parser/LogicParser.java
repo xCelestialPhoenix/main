@@ -10,6 +10,7 @@ import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
+import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.model.Model;
@@ -87,7 +88,7 @@ public class LogicParser {
                 return addressBookParser.parseCommand(userInput);
 
             case EVENT:
-                return eventParser.parseCommand(userInput);
+                return eventParser.parseCommand(commandWord, arguments);
 
             case SCHEDULER:
                 return scheduleParser.parseCommand(userInput);
