@@ -130,10 +130,6 @@ public class ParserUtil {
         return categorySet;
     }
 
-    public static LocalDate parseDate(String date) {
-        return LocalDate.parse(date.trim());
-    }
-
     public static LocalTime parseTime(String time) {
         return LocalTime.parse(time.trim());
     }
