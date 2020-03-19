@@ -25,6 +25,7 @@ import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -166,6 +167,9 @@ public class AbAddCommandTest {
         public void addLesson(Lesson l) {
         }
 
+        public ProgressTracker getProgressTracker() {
+            return null;
+        }
     }
 
     /**

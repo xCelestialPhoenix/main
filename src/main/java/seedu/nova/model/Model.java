@@ -8,6 +8,7 @@ import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
  * The API of the Model component.
@@ -92,4 +93,6 @@ public interface Model {
     void addEvent(Event e);
 
     public void addLesson(Lesson l);
+
+    ProgressTracker getProgressTracker();
 }

@@ -20,7 +20,7 @@ import seedu.nova.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses user input for nova book feature.
+ * Parses user input for address book feature.
  */
 public class AddressBookParser {
 
