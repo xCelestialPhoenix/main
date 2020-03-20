@@ -12,8 +12,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
-import seedu.nova.model.UserPrefs;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.userpref.UserPrefs;
 
 public class StorageManagerTest {
 

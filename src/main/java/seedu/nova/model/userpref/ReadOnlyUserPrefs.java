@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.userpref;
 
 import java.nio.file.Path;
 

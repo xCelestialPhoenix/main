@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.addressbook.person.Person;
 
 /**

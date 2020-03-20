@@ -13,7 +13,7 @@ import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.scheduler.timeunit.Schedule;
-import seedu.nova.model.UserPrefs;
+import seedu.nova.model.userpref.UserPrefs;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.addressbook.person.Remark;
 import seedu.nova.testutil.PersonBuilder;

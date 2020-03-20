@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.category.Category;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;

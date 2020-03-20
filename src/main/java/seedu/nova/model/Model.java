@@ -6,10 +6,13 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.category.Mode;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.userpref.ReadOnlyUserPrefs;
 
 /**
  * The API of the Model component.

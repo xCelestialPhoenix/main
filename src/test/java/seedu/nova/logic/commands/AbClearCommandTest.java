@@ -12,7 +12,7 @@ import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.scheduler.timeunit.Schedule;
-import seedu.nova.model.UserPrefs;
+import seedu.nova.model.userpref.UserPrefs;
 
 public class AbClearCommandTest {
 

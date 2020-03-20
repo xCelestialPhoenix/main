@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.nova.commons.exceptions.DataConversionException;
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 
 
 /**

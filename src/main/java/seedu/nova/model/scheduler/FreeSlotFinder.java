@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.scheduler;
 
 /**
  * The type Free slot finder.

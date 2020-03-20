@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.userpref;
 
 import static java.util.Objects.requireNonNull;
 

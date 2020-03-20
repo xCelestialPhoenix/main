@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nova.commons.exceptions.DataConversionException;
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
