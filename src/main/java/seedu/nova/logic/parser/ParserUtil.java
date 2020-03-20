@@ -2,7 +2,6 @@ package seedu.nova.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,10 +12,10 @@ import java.util.Set;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.commons.util.StringUtil;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.Category;
-import seedu.nova.model.addressbook.person.Email;
-import seedu.nova.model.addressbook.person.Name;
-import seedu.nova.model.addressbook.person.Phone;
+import seedu.nova.model.category.Category;
+import seedu.nova.model.person.Email;
+import seedu.nova.model.person.Name;
+import seedu.nova.model.person.Phone;
 import seedu.nova.model.progresstracker.Project;
 
 /**
