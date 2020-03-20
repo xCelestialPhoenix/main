@@ -39,7 +39,7 @@ public class AbDeleteCommandTest {
         String expectedMessage = String.format(
                 AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        ModelManager expectedModel = new ModelManager(model.getAddressBookManager(), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.deletePerson(personToDelete);
 
@@ -64,7 +64,7 @@ public class AbDeleteCommandTest {
         String expectedMessage = String.format(
                 AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        Model expectedModel = new ModelManager(model.getAddressBookManager(), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
@@ -78,7 +78,7 @@ public class AbDeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of nova book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBookManager().getPersonList().size());
 
         AbDeleteCommand abDeleteCommand = new AbDeleteCommand(outOfBoundIndex);
 

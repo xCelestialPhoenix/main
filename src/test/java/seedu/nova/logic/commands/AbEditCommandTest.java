@@ -49,7 +49,7 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -71,7 +71,7 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -85,7 +85,7 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
@@ -102,7 +102,7 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -123,7 +123,7 @@ public class AbEditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in nova book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personInList = model.getAddressBookManager().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
@@ -148,7 +148,7 @@ public class AbEditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of nova book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBookManager().getPersonList().size());
 
         AbEditCommand abEditCommand = new AbEditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

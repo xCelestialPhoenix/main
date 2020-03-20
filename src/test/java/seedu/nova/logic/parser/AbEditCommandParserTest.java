@@ -32,7 +32,7 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.logic.parser.abparsers.AbEditCommandParser;
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;
 import seedu.nova.model.addressbook.person.Phone;

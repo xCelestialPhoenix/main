@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;
 import seedu.nova.model.addressbook.person.Person;

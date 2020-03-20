@@ -3,6 +3,7 @@ package seedu.nova.model.category;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.nova.model.Category;
 
 public class CategoryTest {
 

@@ -1,4 +1,4 @@
-package seedu.nova.model.category;
+package seedu.nova.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.AppUtil.checkArgument;

@@ -21,12 +21,12 @@ public class AbListTeammateCommand extends AbListCategoryCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        String listOfPeople = model.getFilteredPersonList().size() > 0
+        model.getAddressBookManager().updateFilteredPersonList(predicate);
+        String listOfPeople = model.getAddressBookManager().getFilteredPersonList().size() > 0
                 ? "Listed teammate:\n" : "There is no teammate contact saved.";
-        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i)
-                    + " Remark: " + model.getFilteredPersonList().get(i).getRemark()
+        for (int i = 0; i < model.getAddressBookManager().getFilteredPersonList().size(); i++) {
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBookManager().getFilteredPersonList().get(i)
+                    + " Remark: " + model.getAddressBookManager().getFilteredPersonList().get(i).getRemark()
                     + "\n";
         }
 

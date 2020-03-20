@@ -29,10 +29,10 @@ public class AbFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.getAddressBookManager().updateFilteredPersonList(predicate);
         String listOfPeople = "Found the following: " + "\n";
-        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i) + "\n";
+        for (int i = 0; i < model.getAddressBookManager().getFilteredPersonList().size(); i++) {
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBookManager().getFilteredPersonList().get(i) + "\n";
         }
 
         return new CommandResult(listOfPeople);

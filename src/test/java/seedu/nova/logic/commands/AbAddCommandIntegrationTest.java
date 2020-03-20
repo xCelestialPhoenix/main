@@ -36,7 +36,7 @@ public class AbAddCommandIntegrationTest {
 
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        Model expectedModel = new ModelManager(model.getAddressBookManager(), new UserPrefs(),
                 new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.addPerson(validPerson);
 
@@ -47,7 +47,7 @@ public class AbAddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
 
-        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Person personInList = model.getAddressBookManager().getPersonList().get(0);
         assertCommandFailure(new AbAddCommand(personInList), model, AbAddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

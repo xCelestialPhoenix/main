@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 
 /**
  * Represents a Person in the address book.

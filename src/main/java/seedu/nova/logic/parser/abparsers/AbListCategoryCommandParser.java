@@ -14,7 +14,7 @@ import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 import seedu.nova.model.addressbook.person.CategoryContainsKeywordsPredicate;
 
 /**

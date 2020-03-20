@@ -1,4 +1,4 @@
-package seedu.nova.model.category;
+package seedu.nova.model;
 
 import seedu.nova.logic.parser.ModeEnum;
 

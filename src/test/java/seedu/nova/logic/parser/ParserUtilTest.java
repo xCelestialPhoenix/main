@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;
 import seedu.nova.model.addressbook.person.Phone;

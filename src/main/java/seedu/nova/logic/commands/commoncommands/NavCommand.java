@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.parser.ModeEnum;
-import seedu.nova.model.category.Mode;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 
 /**

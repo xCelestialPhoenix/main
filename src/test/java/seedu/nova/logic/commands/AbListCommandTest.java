@@ -29,7 +29,7 @@ public class AbListCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13),
                 LocalDate.of(2020, 5, 3)));
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1,
+        expectedModel = new ModelManager(model.getAddressBookManager(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1,
                 13), LocalDate.of(2020, 5, 3)));
     }
 

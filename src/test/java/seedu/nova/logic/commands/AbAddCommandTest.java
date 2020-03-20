@@ -19,12 +19,11 @@ import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.addressbook.AddressBook;
-import seedu.nova.model.category.Mode;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.addressbook.ReadOnlyAddressBook;
 import seedu.nova.model.userpref.ReadOnlyUserPrefs;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
@@ -126,7 +125,7 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook getAddressBookManager() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -220,7 +219,7 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyAddressBook getAddressBookManager() {
             return new AddressBook();
         }
     }

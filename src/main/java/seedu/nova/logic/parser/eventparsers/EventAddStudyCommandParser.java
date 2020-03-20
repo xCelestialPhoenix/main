@@ -14,8 +14,9 @@ import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.StudySession;
+import seedu.nova.model.event.EventDetails;
 
 /**
  * Parses input arguments and creates a new EventAddStudyCommand object
@@ -52,8 +53,9 @@ public class EventAddStudyCommandParser implements Parser<EventAddStudyCommand> 
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
 
-        Event study = new StudySession(desc, venue, startTime, endTime, date);
-        return new EventAddStudyCommand(study);
+        EventDetails details = new EventDetails(desc, venue);
+        DateTimeDuration dtd = new DateTimeDuration(date, startTime, endTime);
+        return new EventAddStudyCommand(new Event(details, dtd));
     }
 
     /**

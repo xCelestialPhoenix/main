@@ -21,10 +21,10 @@ import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.schedule.Scheduler;
 import seedu.nova.model.userpref.ReadOnlyUserPrefs;
-import seedu.nova.model.scheduler.timeunit.Schedule;
 import seedu.nova.model.userpref.UserPrefs;
-import seedu.nova.model.util.SampleDataUtil;
+import seedu.nova.model.common.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
 import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
@@ -94,8 +94,8 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs, new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5,
-                3)));
+        return new ModelManager(initialData, userPrefs,
+                new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
     }
 
     private void initLogging(Config config) {

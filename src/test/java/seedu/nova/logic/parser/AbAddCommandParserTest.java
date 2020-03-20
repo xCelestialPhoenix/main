@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.parser.abparsers.AbAddCommandParser;
 //import seedu.nova.model.addressbook.person.Address;
-import seedu.nova.model.category.Category;
+import seedu.nova.model.Category;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;
 import seedu.nova.model.addressbook.person.Person;
