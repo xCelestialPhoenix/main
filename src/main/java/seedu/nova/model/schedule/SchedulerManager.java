@@ -20,13 +20,13 @@ public class SchedulerManager implements SchedulerModel {
     }
 
     @Override
-    public void setScheduler(ReadOnlyScheduler scheduler) {
-        this.scheduler.resetData(scheduler);
+    public ReadOnlyScheduler getScheduler() {
+        return this.scheduler;
     }
 
     @Override
-    public ReadOnlyScheduler getScheduler() {
-        return this.scheduler;
+    public void setScheduler(ReadOnlyScheduler scheduler) {
+        this.scheduler.resetData(scheduler);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SchedulerManager implements SchedulerModel {
 
     @Override
     public Week getWeek(LocalDate sameWeekAs) {
-        return this.scheduler.sem.getWeek(sameWeekAs).getCopy();
+        return getWeek(sameWeekAs, null);
     }
 
     @Override
@@ -50,6 +50,16 @@ public class SchedulerManager implements SchedulerModel {
     }
 
     @Override
+    public boolean addPlan(Plan plan) {
+        return this.scheduler.getUserDefinedPlanList().add(plan);
+    }
+
+    @Override
+    public boolean deletePlan(Plan plan) {
+        return this.scheduler.getUserDefinedPlanList().remove(plan);
+    }
+
+    @Override
     public Day getDay(LocalDate date, List<Plan> planInAscendingOrder) {
         Week wk = getWeek(date, planInAscendingOrder);
         return wk.getDay(date.getDayOfWeek());
@@ -58,8 +68,9 @@ public class SchedulerManager implements SchedulerModel {
     @Override
     public Week getWeek(LocalDate sameWeekAs, List<Plan> planList) {
         Week wk = this.scheduler.sem.getWeek(sameWeekAs).getCopy();
-        if(wk != null) {
-            for(Plan plan : planList) {
+        this.scheduler.defaultPlan.scheduleEvents(wk);
+        if (wk != null && planList != null) {
+            for (Plan plan : planList) {
                 plan.scheduleEvents(wk);
             }
         }
@@ -78,7 +89,8 @@ public class SchedulerManager implements SchedulerModel {
 
     @Override
     public boolean isWithinSem(LocalDate date) {
-        return this.scheduler.sem.getDuration().getStartDate().compareTo(date) <= 0 && this.scheduler.sem.getDuration().getEndDate().compareTo(date) >= 0;
+        return this.scheduler.sem.getDuration().getStartDate().compareTo(date) <= 0 &&
+                this.scheduler.sem.getDuration().getEndDate().compareTo(date) >= 0;
     }
 
     @Override

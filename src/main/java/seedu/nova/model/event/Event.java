@@ -2,6 +2,7 @@ package seedu.nova.model.event;
 
 import seedu.nova.model.common.Copyable;
 import seedu.nova.model.common.time.duration.DateTimeDuration;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -61,7 +62,7 @@ public class Event implements Comparable<Event>, Copyable<Event> {
 
     @Override
     public boolean equals(Object o) {
-        if(o instanceof Event) {
+        if (o instanceof Event) {
             return this.details.equals(((Event) o).details) && this.dateTime.equals(((Event) o).dateTime);
         } else {
             return super.equals(o);

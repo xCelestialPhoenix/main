@@ -45,13 +45,13 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
         SortedMap<Integer, WeekDayDuration> tailMap = this.freeSlotMap.tailMap(ed.getStartValue());
         Map.Entry<Integer, WeekDayDuration> endSlot = this.freeSlotMap.higherEntry(ed.getEndValue());
 
-        if(ed.isConnected(lastSlot)) {
+        if (ed.isConnected(lastSlot)) {
             deleteDuration(lastSlot);
             ed = new WeekDayDuration(lastSlot.getStartDay(), lastSlot.getStartTime(), ed.getEndDay(),
                     ed.getEndTime());
         }
-        for(Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
-            if(e.equals(endSlot)) {
+        for (Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
+            if (e.equals(endSlot)) {
                 break;
             } else {
                 deleteDuration(e.getValue());
@@ -68,13 +68,13 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
         SortedMap<Integer, WeekDayDuration> tailMap = this.freeSlotMap.tailMap(ed.getStartValue());
         Map.Entry<Integer, WeekDayDuration> endSlot = this.freeSlotMap.higherEntry(ed.getEndValue());
 
-        if(ed.isOverlapping(lastSlot)) {
+        if (ed.isOverlapping(lastSlot)) {
             deleteDuration(lastSlot);
             List<TimedDuration> comp = lastSlot.relativeComplementOf(ed);
             comp.forEach(this::addDuration);
         }
-        for(Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
-            if(e.equals(endSlot)) {
+        for (Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
+            if (e.equals(endSlot)) {
                 break;
             } else {
                 deleteDuration(lastSlot);

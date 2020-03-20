@@ -38,7 +38,7 @@ public class ScViewDayCommand extends Command {
 
     private String getResponseStringFromDay(Day day) {
         List<Event> eList = day.getEventList();
-        if(eList.isEmpty()) {
+        if (eList.isEmpty()) {
             return "";
         } else {
             String s = "Events on " + day.getDuration().getStartDate() + ":\n";

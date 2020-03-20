@@ -46,7 +46,7 @@ public class Day implements TimeUnit {
 
     public boolean addEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
-        if(this.freeSlotList.isSupersetOf(ed)) {
+        if (this.freeSlotList.isSupersetOf(ed)) {
             this.freeSlotList.excludeDuration(ed);
             return this.eventList.add(event);
         } else {

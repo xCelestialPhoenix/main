@@ -25,7 +25,8 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
     }
 
     private DateTimeSlotList(TreeSet<DateTimeDuration> freeSlotSet,
-                             TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap) {
+                             TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap)
+    {
         this.freeSlotSet = freeSlotSet;
         this.freeSlotMap = freeSlotMap;
     }

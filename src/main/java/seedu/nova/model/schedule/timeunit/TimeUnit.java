@@ -10,9 +10,14 @@ import java.util.List;
 
 public interface TimeUnit extends Copyable<TimeUnit> {
     boolean addEvent(Event event);
+
     boolean deleteEvent(Event event);
+
     List<Event> getEventList();
+
     List<DateTimeDuration> getFreeSlotList(Duration greaterThan);
+
     DateTimeDuration getDuration();
+
     DateTimeSlotList getFreeSlotList();
 }

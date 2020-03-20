@@ -9,13 +9,17 @@ import java.util.List;
 
 public interface Plan extends JsonParsable, Copyable<Plan> {
     String getName();
+
     List<Task> getTaskList();
+
     boolean addTask(Task task);
+
     boolean deleteTask(Task task);
 
     List<Event> getOrphanEventList();
 
     boolean addOrphanEvent(Event event);
+
     boolean removeOrphanEvent(Event event);
 
     // records every events created in a map

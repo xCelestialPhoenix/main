@@ -29,18 +29,21 @@ public class Scheduler implements ReadOnlyScheduler {
         resetData(toBeCopied);
     }
 
-    public void resetData(ReadOnlyScheduler newData) {
-        requireNonNull(newData);
-        this.defaultPlan = newData.getDefaultPlan().getCopy();
-        this.planList = newData.getUserDefinedPlanList().stream().map(Copyable::getCopy).collect(Collectors.toList());
-    }
-
     public Scheduler(LocalDate startDate, LocalDate endDate) {
         this.sem = new Semester(0, startDate, endDate);
         this.defaultPlan = new AbsolutePlan("<default>");
         this.planList = new ArrayList<>();
     }
 
+    public void resetData(ReadOnlyScheduler newData) {
+        requireNonNull(newData);
+        this.defaultPlan = newData.getDefaultPlan().getCopy();
+        this.planList = newData.getUserDefinedPlanList().stream().map(Copyable::getCopy).collect(Collectors.toList());
+    }
+
+    private void refresh() {
+        this.sem.getWeekList().forEach(x -> this.defaultPlan.scheduleEvents(x));
+    }
 
     @Override
     public DateTimeDuration getDateTimeDuration() {
@@ -71,17 +74,26 @@ public class Scheduler implements ReadOnlyScheduler {
 
     @Override
     public boolean addEvent(Event event) {
-        return this.defaultPlan.addOrphanEvent(event);
+        if(this.sem.getFreeSlotList().isSupersetOf(event.getDateTimeDuration())) {
+            this.sem.addEvent(event);
+            this.defaultPlan.addOrphanEvent(event);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean deleteEvent(Event event) {
-        return this.defaultPlan.removeOrphanEvent(event);
+        this.sem.deleteEvent(event);
+        this.defaultPlan.removeOrphanEvent(event);
+        return true;
     }
 
     @Override
     public boolean addAbsoluteTask(AbsoluteTask absTask) {
         return this.defaultPlan.addTask(absTask);
+
     }
 
     @Override

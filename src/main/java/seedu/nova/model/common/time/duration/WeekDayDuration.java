@@ -12,10 +12,6 @@ public class WeekDayDuration implements TimedDuration {
     LocalTime endTime;
     Duration duration;
 
-    public boolean isZero() {
-        return this.duration.isZero();
-    }
-
     public WeekDayDuration() {
         this.startDow = DayOfWeek.MONDAY;
         this.startTime = LocalTime.of(0, 0, 0);
@@ -53,6 +49,14 @@ public class WeekDayDuration implements TimedDuration {
         this.duration = duration;
     }
 
+    public static WeekDayDuration parseDuration(Duration duration) {
+        return new WeekDayDuration(null, null, null, null, duration);
+    }
+
+    public boolean isZero() {
+        return this.duration.isZero();
+    }
+
     public int getStartValue() {
         return 86400 * startDow.getValue() + (int) (startTime.toNanoOfDay() / 1000000000);
     }
@@ -68,10 +72,6 @@ public class WeekDayDuration implements TimedDuration {
             endDate = endDate.plusDays(7);
         }
         return new DateTimeDuration(startDate, endDate);
-    }
-
-    public static WeekDayDuration parseDuration(Duration duration) {
-        return new WeekDayDuration(null, null, null, null, duration);
     }
 
     @Override

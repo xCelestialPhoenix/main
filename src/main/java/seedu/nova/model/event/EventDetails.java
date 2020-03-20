@@ -31,20 +31,20 @@ public class EventDetails implements Copyable<EventDetails> {
         return this.desc;
     }
 
-    public String getVenue() {
-        return this.venue;
-    }
-
-    public String getNote() {
-        return this.note;
-    }
-
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    public String getVenue() {
+        return this.venue;
+    }
+
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public String getNote() {
+        return this.note;
     }
 
     public void setNote(String note) {
@@ -52,7 +52,7 @@ public class EventDetails implements Copyable<EventDetails> {
     }
 
     private String genField(String attr, String val) {
-        if(val == null) {
+        if (val == null) {
             return "";
         } else {
             return String.format("%s: %s\n", attr, val);
@@ -69,7 +69,7 @@ public class EventDetails implements Copyable<EventDetails> {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof EventDetails) {
+        if (obj instanceof EventDetails) {
             EventDetails e = (EventDetails) obj;
             return this.name.equals(e.name);
         } else {

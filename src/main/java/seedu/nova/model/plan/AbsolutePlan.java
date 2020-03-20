@@ -40,8 +40,12 @@ public class AbsolutePlan implements Plan {
 
     public boolean addTask(Task task) {
         AbsoluteTask at = (AbsoluteTask) task;
-        this.freeSlotList.excludeDuration(at.getWeekDayDuration());
-        return this.taskList.add(at);
+        if(this.freeSlotList.isSupersetOf(at.getWeekDayDuration())) {
+            this.freeSlotList.excludeDuration(at.getWeekDayDuration());
+            return this.taskList.add(at);
+        } else {
+            return false;
+        }
     }
 
     @Override

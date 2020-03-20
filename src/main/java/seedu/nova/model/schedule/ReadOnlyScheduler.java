@@ -19,14 +19,20 @@ public interface ReadOnlyScheduler extends JsonParsable {
 
     // plans
     List<Plan> getUserDefinedPlanList();
+
     boolean createAndAddPlan(String name);
+
     boolean removePlan(Plan plan);
+
     Plan getDefaultPlan();
 
     // methods for default plan
     boolean addEvent(Event event);
+
     boolean deleteEvent(Event event);
+
     boolean addAbsoluteTask(AbsoluteTask absoluteTask);
+
     boolean deleteTask(Task task);
 
     // edit schedule

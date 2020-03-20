@@ -14,10 +14,6 @@ public class DateTimeDuration implements TimedDuration {
     private LocalDateTime endDateTime;
     private Duration duration;
 
-    public boolean isZero() {
-        return this.duration.isZero();
-    }
-
     public DateTimeDuration(LocalDateTime start, LocalDateTime stop) {
         this.startDateTime = start;
         this.endDateTime = stop;
@@ -86,6 +82,10 @@ public class DateTimeDuration implements TimedDuration {
         );
     }
 
+    public boolean isZero() {
+        return this.duration.isZero();
+    }
+
     //-----getters
 
     public LocalDateTime getStartDateTime() {
@@ -141,7 +141,7 @@ public class DateTimeDuration implements TimedDuration {
         List<LocalDate> lst = new ArrayList<>();
         LocalDate d = this.startDateTime.toLocalDate();
         LocalDate dd = this.endDateTime.toLocalDate();
-        while(d.compareTo(dd) <= 0) {
+        while (d.compareTo(dd) <= 0) {
             lst.add(d);
             d = d.plusDays(7);
         }

@@ -13,21 +13,31 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SchedulerModel {
-    void setScheduler(ReadOnlyScheduler scheduler);
     ReadOnlyScheduler getScheduler();
 
+    void setScheduler(ReadOnlyScheduler scheduler);
+
     DateTimeSlotList getFreeSlot(Week week);
+
     void replaceWeek(Week week);
 
     boolean isWithinSem(LocalDate date);
 
     Day getDay(LocalDate date);
+
     Week getWeek(LocalDate sameWeekAs);
+
     void addEvent(Event e);
+
     void addAbsoluteTask(AbsoluteTask absTask);
 
+    boolean addPlan(Plan plan);
+
+    boolean deletePlan(Plan plan);
+
+    List<Plan> getPlanList();
 
     Day getDay(LocalDate date, List<Plan> planInAscendingOrder);
+
     Week getWeek(LocalDate sameWeekAs, List<Plan> planInAscendingOrder);
-    List<Plan> getPlanList();
 }

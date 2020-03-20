@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Semester implements TimeUnit {
     int id;
@@ -26,24 +27,24 @@ public class Semester implements TimeUnit {
         initialise();
     }
 
+    private Semester(int id, TreeMap<LocalDate, Week> weekMap, List<Event> eventList, DateTimeSlotList freeSlotList) {
+        this.id = id;
+        this.weekMap = weekMap;
+        this.eventList = eventList;
+        this.freeSlotList = freeSlotList;
+    }
+
     private void initialise() {
         LocalDate d = this.scheduleDuration.getStartDateTime().toLocalDate();
         LocalDate dd = this.scheduleDuration.getEndDateTime().toLocalDate();
         this.weekMap = new TreeMap<>();
-        while(d.compareTo(dd) < 0) {
+        while (d.compareTo(dd) < 0) {
             this.weekMap.put(d, new Week(d));
             d = d.plusDays(7);
         }
 
         this.eventList = new ArrayList<>();
         this.freeSlotList = new DateTimeSlotList(this.scheduleDuration);
-    }
-
-    private Semester(int id, TreeMap<LocalDate, Week> weekMap, List<Event> eventList, DateTimeSlotList freeSlotList) {
-        this.id = id;
-        this.weekMap = weekMap;
-        this.eventList = eventList;
-        this.freeSlotList = freeSlotList;
     }
 
     public int getId() {
@@ -73,11 +74,15 @@ public class Semester implements TimeUnit {
 
     public Day getDay(LocalDate date) {
         Week wk = getWeek(date);
-        if(wk == null) {
+        if (wk == null) {
             return null;
         } else {
             return wk.getDay(date.getDayOfWeek());
         }
+    }
+
+    public List<Week> getWeekList() {
+        return new ArrayList<>(this.weekMap.values());
     }
 
     public void replaceWeek(Week week) {
@@ -91,7 +96,7 @@ public class Semester implements TimeUnit {
             LocalDate endDate = this.weekMap.ceilingEntry(ed.getEndDateTime().toLocalDate()).getKey();
             for (Map.Entry<LocalDate, Week> e : startWeekMap.entrySet()) {
                 e.getValue().addEvent(event);
-                if(e.getKey().compareTo(endDate) > 0) {
+                if (e.getKey().compareTo(endDate) > 0) {
                     break;
                 }
             }
@@ -106,7 +111,7 @@ public class Semester implements TimeUnit {
     public boolean deleteEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
 
-        for(Map.Entry<LocalDate, Week> e : this.weekMap.entrySet()) {
+        for (Map.Entry<LocalDate, Week> e : this.weekMap.entrySet()) {
             e.getValue().deleteEvent(event);
         }
 

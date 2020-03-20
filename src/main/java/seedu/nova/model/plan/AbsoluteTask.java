@@ -32,7 +32,7 @@ public class AbsoluteTask extends Task {
     @Override
     public Optional<Event> generateEvent(Week week) {
         Event event = new Event(this.details, this.wdd.toDateTimeDuration(week.getDuration().getStartDate()));
-        if(isCompletedOnWeek(week.getDuration().getStartDate()) || week.addEvent(event)) {
+        if (isCompletedOnWeek(week.getDuration().getStartDate()) || week.addEvent(event)) {
             return Optional.empty();
         } else {
             return Optional.of(event);

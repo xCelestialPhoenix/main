@@ -35,7 +35,7 @@ public class WeakTask extends Task {
     @Override
     public Optional<Event> generateEvent(Week week) {
         List<DateTimeDuration> possible = getPossibleSlot(week.getFreeSlotList());
-        if(possible.isEmpty()) {
+        if (possible.isEmpty()) {
             return Optional.of(new Event(this.details, (DateTimeDuration) DateTimeDuration.ZERO));
         } else {
             Event event = new Event(this.details, getExactDuration(possible.get(0), this.duration));
