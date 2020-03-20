@@ -1,19 +1,16 @@
 package seedu.nova.logic.commands.studtplancommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.event.Event;
 import seedu.nova.model.plan.AbsolutePlan;
-import seedu.nova.model.plan.Plan;
-import seedu.nova.model.schedule.timeunit.Day;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Command for adding plan
+ */
 public class SpAddPlanCommand extends Command {
     /**
      * The constant COMMAND_WORD.

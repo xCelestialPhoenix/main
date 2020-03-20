@@ -3,9 +3,11 @@ package seedu.nova.model.addressbook;
 import javafx.collections.ObservableList;
 import seedu.nova.model.addressbook.person.Person;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 
+/**
+ * AddressBookModel
+ */
 public interface AddressBookModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;

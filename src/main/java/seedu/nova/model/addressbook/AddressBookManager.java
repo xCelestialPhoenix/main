@@ -1,14 +1,17 @@
 package seedu.nova.model.addressbook;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.nova.model.addressbook.person.Person;
 
-import java.util.function.Predicate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
+/**
+ * Manages address book
+ */
 public class AddressBookManager implements AddressBookModel {
     private final AddressBook addressBook;
     private final FilteredList<Person> filteredPersons;
@@ -19,13 +22,13 @@ public class AddressBookManager implements AddressBookModel {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override

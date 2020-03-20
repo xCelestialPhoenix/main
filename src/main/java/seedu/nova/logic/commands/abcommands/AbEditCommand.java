@@ -18,8 +18,8 @@ import seedu.nova.commons.util.CollectionUtil;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.Model;
 import seedu.nova.model.Category;
+import seedu.nova.model.Model;
 import seedu.nova.model.addressbook.person.Email;
 import seedu.nova.model.addressbook.person.Name;
 import seedu.nova.model.addressbook.person.Person;
@@ -55,7 +55,7 @@ public class AbEditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public AbEditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -64,6 +64,22 @@ public class AbEditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Set<Category> updatedCategories = editPersonDescriptor.getCategories().orElse(personToEdit.getCategory());
+        Remark updatedRemark = personToEdit.getRemark();
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedCategories, updatedRemark);
     }
 
     @Override
@@ -85,22 +101,6 @@ public class AbEditCommand extends Command {
         model.getAddressBookManager().setPerson(personToEdit, editedPerson);
         model.getAddressBookManager().updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Set<Category> updatedCategories = editPersonDescriptor.getCategories().orElse(personToEdit.getCategory());
-        Remark updatedRemark = personToEdit.getRemark();
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedCategories, updatedRemark);
     }
 
     @Override
@@ -131,7 +131,8 @@ public class AbEditCommand extends Command {
         private Email email;
         private Set<Category> categories;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -151,36 +152,28 @@ public class AbEditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, categories);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
 
-        /**
-         * Sets {@code categories} to this object's {@code categories}.
-         * A defensive copy of {@code categories} is used internally.
-         */
-        public void setCategories(Set<Category> categories) {
-            this.categories = (categories != null) ? new HashSet<>(categories) : null;
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         /**
@@ -190,6 +183,14 @@ public class AbEditCommand extends Command {
          */
         public Optional<Set<Category>> getCategories() {
             return (categories != null) ? Optional.of(Collections.unmodifiableSet(categories)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code categories} to this object's {@code categories}.
+         * A defensive copy of {@code categories} is used internally.
+         */
+        public void setCategories(Set<Category> categories) {
+            this.categories = (categories != null) ? new HashSet<>(categories) : null;
         }
 
         @Override

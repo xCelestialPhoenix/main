@@ -7,46 +7,49 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class TimeUtil {
-    private static final DateTimeFormatter[] defaultDateF = new DateTimeFormatter[]{
+/**
+ * Useful functions for LocalTime
+ */
+public interface TimeUtil {
+    DateTimeFormatter[] defaultDateF = new DateTimeFormatter[]{
             DateTimeFormatter.ofPattern("yyyy-mm-dd")
     };
-    private static final DateTimeFormatter[] defaultTimeF = new DateTimeFormatter[]{
+    DateTimeFormatter[] defaultTimeF = new DateTimeFormatter[]{
             DateTimeFormatter.ofPattern("hh:mm a")
     };
-    public static LocalTime beginDayTime = LocalTime.of(0, 0, 0);
-    public static LocalTime endDayTime = LocalTime.of(23, 59, 59);
+    LocalTime beginDayTime = LocalTime.of(0, 0, 0);
+    LocalTime endDayTime = LocalTime.of(23, 59, 59);
 
-    public static LocalDate parseDate(String date) throws DateTimeParseException {
+    static LocalDate parseDate(String date) throws DateTimeParseException {
         for (DateTimeFormatter f : defaultDateF) {
             try {
                 return LocalDate.parse(date, f);
-            } catch (DateTimeParseException dtpe) {
+            } catch (DateTimeParseException ignored) {
             }
         }
         throw new DateTimeParseException("date format wrong", date, 0);
     }
 
-    public static LocalTime parseTime(String time) throws DateTimeParseException {
+    static LocalTime parseTime(String time) throws DateTimeParseException {
         for (DateTimeFormatter f : defaultTimeF) {
             try {
                 return LocalTime.parse(time, f);
-            } catch (DateTimeParseException dtpe) {
+            } catch (DateTimeParseException ignored) {
             }
         }
         throw new DateTimeParseException("time format wrong", time, 0);
     }
 
-    public static LocalDate dateOfSameWeek(DayOfWeek dow, LocalDate sameWeekWith) {
+    static LocalDate dateOfSameWeek(DayOfWeek dow, LocalDate sameWeekWith) {
         int offset = dow.getValue() - sameWeekWith.getDayOfWeek().getValue();
         return sameWeekWith.plusDays(offset);
     }
 
-    public static LocalDate getMondayOfWeek(LocalDate weekOf) {
+    static LocalDate getMondayOfWeek(LocalDate weekOf) {
         return weekOf.minusDays(weekOf.getDayOfWeek().getValue() - 1);
     }
 
-    public static LocalDateTime toDateTime(DayOfWeek dow, LocalDate sameWeekWith, LocalTime time) {
+    static LocalDateTime toDateTime(DayOfWeek dow, LocalDate sameWeekWith, LocalTime time) {
         return LocalDateTime.of(dateOfSameWeek(dow, sameWeekWith), time);
     }
 }

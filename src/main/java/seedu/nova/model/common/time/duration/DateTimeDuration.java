@@ -6,6 +6,9 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Combining LocalDateTime and Duration
+ */
 public class DateTimeDuration implements TimedDuration {
 
     public static final TimedDuration ZERO = new DateTimeDuration(Duration.ZERO);
@@ -52,14 +55,20 @@ public class DateTimeDuration implements TimedDuration {
         this.duration = duration;
     }
 
-    public static DateTimeDuration parseDayFromDate(String date) throws DurationParseException {
-        return parseDayFromDate(TimeUtil.parseDate(date));
-    }
-
+    /**
+     * DateTimeDuration representation of a duration
+     * @param duration
+     * @return DateTimeDuration
+     */
     public static DateTimeDuration parseDuration(Duration duration) {
         return new DateTimeDuration(duration);
     }
 
+    /**
+     * Parse DateTimeDuration of a day
+     * @param lDate date of the day
+     * @return DateTimeDuration representation of the day
+     */
     public static DateTimeDuration parseDayFromDate(LocalDate lDate) {
         return new DateTimeDuration(
                 LocalDateTime.of(LocalDate.of(lDate.getYear(), lDate.getMonth(), lDate.getDayOfMonth()),
@@ -68,6 +77,11 @@ public class DateTimeDuration implements TimedDuration {
         );
     }
 
+    /**
+     * Parse DateTimeDuration
+     * @param monDate a day from the week
+     * @return DateTimeDuration of the week
+     */
     public static DateTimeDuration parseWeekFromDate(LocalDate monDate) {
         return new DateTimeDuration(
                 LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate), TimeUtil.beginDayTime),
@@ -75,6 +89,12 @@ public class DateTimeDuration implements TimedDuration {
         );
     }
 
+    /**
+     * Parse DateTimeDuration
+     * @param startDateTime startDateTime
+     * @param duration duration
+     * @return DateTimeDuration
+     */
     public static DateTimeDuration parseFromDateTime(LocalDateTime startDateTime, Duration duration) {
         return new DateTimeDuration(
                 startDateTime,

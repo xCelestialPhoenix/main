@@ -32,7 +32,8 @@ public class AbFindCommand extends Command {
         model.getAddressBookManager().updateFilteredPersonList(predicate);
         String listOfPeople = "Found the following: " + "\n";
         for (int i = 0; i < model.getAddressBookManager().getFilteredPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBookManager().getFilteredPersonList().get(i) + "\n";
+            listOfPeople =
+                    listOfPeople + (i + 1) + ". " + model.getAddressBookManager().getFilteredPersonList().get(i) + "\n";
         }
 
         return new CommandResult(listOfPeople);

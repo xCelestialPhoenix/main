@@ -14,9 +14,7 @@ import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.duration.WeekDayDuration;
-import seedu.nova.model.event.Event;
 import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.plan.AbsoluteTask;
 
