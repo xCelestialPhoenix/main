@@ -28,7 +28,7 @@ import seedu.nova.model.addressbook.person.Person;
  */
 public class AbDeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler(LocalDate.of(2020,
             1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
@@ -66,7 +66,7 @@ public class AbDeleteCommandTest {
         String expectedMessage = String.format(
                 AbDeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBookManager(), new UserPrefs(),
+        Model expectedModel = new ModelManager(model.getAddressBookManager().getAddressBook(), new UserPrefs(),
                 new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
         expectedModel.getAddressBookManager().deletePerson(personToDelete);
         showNoPerson(expectedModel);

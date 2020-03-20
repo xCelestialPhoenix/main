@@ -144,7 +144,6 @@ public class AbAddCommandTest {
             this.person = person;
         }
 
-        @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
@@ -157,13 +156,11 @@ public class AbAddCommandTest {
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
-        @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
-        @Override
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
@@ -171,7 +168,7 @@ public class AbAddCommandTest {
 
         @Override
         public AddressBookModel getAddressBookManager() {
-            return new AddressBookManager();
+            return new AddressBookManager(new AddressBook());
         }
     }
 

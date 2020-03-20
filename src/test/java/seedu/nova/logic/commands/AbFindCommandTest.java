@@ -27,7 +27,7 @@ import seedu.nova.model.addressbook.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code AbFindCommand}.
  */
 public class AbFindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler(LocalDate.of(2020,
             1, 13), LocalDate.of(2020, 5, 3)));
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
