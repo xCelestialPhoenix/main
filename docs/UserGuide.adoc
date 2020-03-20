@@ -36,8 +36,8 @@ _[.small]#Fig 1: GUI of NOVA#_
 .  Some example commands you can try:
 
 * *`nav ab`*: navigates to address book mode
-** *`list all`* : lists all contacts
-** *`contact add`*`n\John Doe p\98765432 c\classmate` : adds a contact named `John Doe` to the Address Book and
+** *`list`* : lists all contacts
+** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named `John Doe` to the Address Book and
 categorise as classmate
 * *`exit`* : exits the app
 
@@ -81,53 +81,69 @@ _[.small]#Fig 3.2: GUI of NOVA after user typed contact `add n\John Doe p\123456
 ==== Add Contact: `add`
 You can add your classmate or teammate as contact.
 
-Format: `add n\[name] p\[phone number] c\[classmate/teammate]`
+Format: `add n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe"). +
+The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
 * `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
-* The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* You can only add either `classmate` or `teammate` as category
 ====
 
 Example: +
-`add n\John Doe p\12345678 c\classmate`
+`add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
 
-Adds a new contact with name John Doe, phone number 12345678 into the classmate category.
+Adds a new contact with name Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
+classmate category.
 
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
 
-Format: `edit n\[name] p\[phone number] c\[classmate/teammate]`
+Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* Edits the person at the specified `[index]`
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided
+* Optional fields are `n\[name]`, `p\[phone number]`, `e\[email address]` or `c\[classmate/teammate]`
+* Existing values will be updated to the input values
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
+The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
+* You can only edit either `classmate` or `teammate` as category
 ====
 
-Example: +
-`edit n\John Doe p\88888888 c\classmate`
+Example:
 
-Edits the phone number of John Doe to 88888888.
+* `edit 1 p\88888888` +
+Edits the phone number of the first person in your address book to 88888888.
+
+* `edit 3 e\\kly838@hotmail.com` +
+Edits the email address of the third person in your address book to kly838@hotmail.com.
 
 ==== Delete Contact : `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
-Format: `delete n\[name]`
+Format: `delete [index]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …​
+====
 
 Example: +
-`delete n\John Doe`
+`delete 1`
 
-Deletes John Doe from your address book.
+Deletes the first person in your address book.
 
-==== Delete all Contacts: `delete all`
-You can delete all the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
+==== Clear all Contacts: `clear`
+You can clear the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
 
-Format: `delete all`
+Format: `clear`
 
 ==== List all Contacts: `list`
 You can list the contact's name, phone number and category of all contacts.
@@ -141,8 +157,8 @@ Format: `list c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
-* There are only `classmate` and `teammate` categories.
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
+* There are only `classmate` and `teammate` categories
 ====
 
 Example:
@@ -159,67 +175,71 @@ You can find a contact added to the address book easily with a name.
 Format: `find n\[name]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+* You can find partial name
+====
 
-Example: +
-`find n\john DOE`
+Example:
+
+* `find n\Jane doe` +
+Finds a saved contact named Jane Doe.
+
+* `find n\Jane` +
+Finds all saved contacts named Jane.
 
 ==== Add Picture to Contact: `addpic`
 You can add a profile picture to a contact in your address book.
 
-Format: `addpic n\[name] pa\[path]`
+Format: `addpic [index] pa\[path]`
 
 [NOTE]
 ====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* Absolute file path is used for `[path]`.
+* Adds profile picture of the person at the specified `[index]`
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …​
+* Absolute file path is used for `[path]`
+* If a profile picture had already been added, any newly added profile picture will be replaced
 ====
 
 Example: +
-`addpic n\john doe pa\C:\Users\aloha\Desktop\aloha.png`
+`addpic 2 pa\C:\Users\aloha\Desktop\aloha.png`
 
-Sets the profile picture of John Doe to aloha.png.
-
-==== Update Picture to Contact: `updatepic`
-You can update the profile picture of a contact in your address book.
-
-Format: `updatepic n\[name] pa\[path]`
-
-[NOTE]
-====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* Absolute file path is used for `[path]`.
-====
-
-Example: +
-`updatepic n\john doe pa\C:\Users\aloha\Desktop\updatedAloha.png`
-
-Change the picture of John Doe to updateAloha.png.
+Sets the profile picture of the second contact in your address book to aloha.png.
 
 ==== Delete Picture in Contact: `deletepic`
 You can delete the profile picture of a contact in your address book.
 
-Format: `deletepic n\[name]`
+Format: `deletepic [index]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* Deletes the picture at the specified `[index]`
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …​
+====
 
 Example: +
-`deletepic n\john doe`
-Deletes the profile picture of John Doe
+`deletepic 2`
+
+Deletes the profile picture of the second contact in your address book.
 
 ==== Add Category Specific Remarks: `remark`
 You can add remarks, that are category specific, to a contact.
 
-Format: `remark c\[classmate/teammate] n\[name] d\[description]`
+Format: `remark [index] r\[remark]`
 
 [NOTE]
-`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+====
+* Adds category specific remark at the specified `[index]`
+* The index refers to the index number shown in the displayed person list
+* The index **must be a positive integer** 1, 2, 3, …​
+====
 
 Example: +
-`remark c\teammate n\john DOE d\He's cuteeee!`
+`remark 2 r\He's a nice teammate`
 
-Adds the remark "He's cuteeee!" to John Doe.
+Adds the remark "He's a nice teammate" to the second contact in your address book.
 
 ==== Undo Command: `undo`
 You can undo a command that you have entered.
