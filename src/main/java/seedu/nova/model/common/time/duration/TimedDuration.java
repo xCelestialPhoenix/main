@@ -1,13 +1,15 @@
 package seedu.nova.model.common.time.duration;
 
-import seedu.nova.model.common.Copyable;
-
 import java.time.DayOfWeek;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import seedu.nova.model.common.Copyable;
+
+/**
+ * Combination of duration with some time data structure
+ */
 public interface TimedDuration extends Comparable<TimedDuration>, Copyable<TimedDuration> {
     boolean isZero();
 

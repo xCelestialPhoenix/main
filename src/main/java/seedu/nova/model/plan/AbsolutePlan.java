@@ -1,18 +1,22 @@
 package seedu.nova.model.plan;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.nova.model.common.time.duration.WeekDayDuration;
 import seedu.nova.model.common.time.slotlist.WeekDaySlotList;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.schedule.timeunit.Week;
 
-import java.util.*;
-
+/**
+ * Plan with definite tasks
+ */
 public class AbsolutePlan implements Plan {
-    String name;
-    List<Task> taskList;
-    WeekDaySlotList freeSlotList;
+    private String name;
+    private List<Task> taskList;
+    private WeekDaySlotList freeSlotList;
 
-    List<Event> orphanEventList;
+    private List<Event> orphanEventList;
 
     public AbsolutePlan(String name) {
         this.name = name;
@@ -38,9 +42,14 @@ public class AbsolutePlan implements Plan {
         return this.taskList;
     }
 
+    /**
+     * add task to plan
+     * @param task task
+     * @return added?
+     */
     public boolean addTask(Task task) {
         AbsoluteTask at = (AbsoluteTask) task;
-        if(this.freeSlotList.isSupersetOf(at.getWeekDayDuration())) {
+        if (this.freeSlotList.isSupersetOf(at.getWeekDayDuration())) {
             this.freeSlotList.excludeDuration(at.getWeekDayDuration());
             return this.taskList.add(at);
         } else {
@@ -77,12 +86,14 @@ public class AbsolutePlan implements Plan {
     @Override
     public List<Event> scheduleEvents(Week week) {
         List<Event> failedEvent = new ArrayList<>();
-        this.orphanEventList.stream().parallel().filter(
-                x -> x.getDateTimeDuration().isSubsetOf(week.getDuration())).forEach(x -> {
-            if (!week.addEvent(x)) {
-                failedEvent.add(x);
-            }
-        });
+        this.orphanEventList.stream()
+                .parallel()
+                .filter(x -> x.getDateTimeDuration().isSubsetOf(week.getDuration()))
+                .forEach(x -> {
+                    if (!week.addEvent(x)) {
+                        failedEvent.add(x);
+                    }
+                });
         this.taskList.forEach(x -> {
             x.generateEvent(week).ifPresent(failedEvent::add);
         });

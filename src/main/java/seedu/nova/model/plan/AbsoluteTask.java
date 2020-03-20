@@ -1,5 +1,9 @@
 package seedu.nova.model.plan;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.duration.WeekDayDuration;
 import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
@@ -7,12 +11,11 @@ import seedu.nova.model.event.Event;
 import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.schedule.timeunit.Week;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
+/**
+ * Task which generates definite events
+ */
 public class AbsoluteTask extends Task {
-    WeekDayDuration wdd;
+    private WeekDayDuration wdd;
 
     public AbsoluteTask(EventDetails details, WeekDayDuration wdd) {
         super(details, wdd.getDuration());

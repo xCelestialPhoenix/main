@@ -1,10 +1,15 @@
 package seedu.nova.model.schedule;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.nova.model.common.Copyable;
 import seedu.nova.model.common.time.duration.DateTimeDuration;
-import seedu.nova.model.common.time.duration.WeekDayDuration;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.plan.AbsolutePlan;
 import seedu.nova.model.plan.AbsoluteTask;
 import seedu.nova.model.plan.Plan;
@@ -12,18 +17,14 @@ import seedu.nova.model.plan.Task;
 import seedu.nova.model.schedule.timeunit.Semester;
 import seedu.nova.model.schedule.timeunit.Week;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Scheduler contains Plans
+ */
 public class Scheduler implements ReadOnlyScheduler {
-    Plan defaultPlan;
-    List<Plan> planList;
+    private Plan defaultPlan;
+    private List<Plan> planList;
 
-    Semester sem;
+    private Semester sem;
 
     public Scheduler(ReadOnlyScheduler toBeCopied) {
         resetData(toBeCopied);
@@ -35,6 +36,10 @@ public class Scheduler implements ReadOnlyScheduler {
         this.planList = new ArrayList<>();
     }
 
+    /**
+     * reset all data
+     * @param newData
+     */
     public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
         this.defaultPlan = newData.getDefaultPlan().getCopy();
@@ -73,8 +78,13 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     @Override
+    public Semester getSem() {
+        return this.sem;
+    }
+
+    @Override
     public boolean addEvent(Event event) {
-        if(this.sem.getFreeSlotList().isSupersetOf(event.getDateTimeDuration())) {
+        if (this.sem.getFreeSlotList().isSupersetOf(event.getDateTimeDuration())) {
             this.sem.addEvent(event);
             this.defaultPlan.addOrphanEvent(event);
             return true;

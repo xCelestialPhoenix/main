@@ -1,16 +1,23 @@
 package seedu.nova.model.common.time.duration;
 
-import seedu.nova.model.common.time.TimeUtil;
-
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
+import seedu.nova.model.common.time.TimeUtil;
+
+/**
+ * Combination of Day of week, time and duration
+ */
 public class WeekDayDuration implements TimedDuration {
-    DayOfWeek startDow;
-    LocalTime startTime;
-    DayOfWeek endDow;
-    LocalTime endTime;
-    Duration duration;
+    private DayOfWeek startDow;
+    private LocalTime startTime;
+    private DayOfWeek endDow;
+    private LocalTime endTime;
+    private Duration duration;
 
     public WeekDayDuration() {
         this.startDow = DayOfWeek.MONDAY;
@@ -40,8 +47,7 @@ public class WeekDayDuration implements TimedDuration {
     }
 
     private WeekDayDuration(DayOfWeek startDow, LocalTime startTime, DayOfWeek endDow, LocalTime endTime,
-                            Duration duration)
-    {
+                            Duration duration) {
         this.startDow = startDow;
         this.startTime = startTime;
         this.endDow = endDow;
@@ -65,6 +71,12 @@ public class WeekDayDuration implements TimedDuration {
         return 86400 * endDow.getValue() + (int) (endTime.toNanoOfDay() / 1000000000);
     }
 
+    /**
+     * get Week of the date, in DateTimeDuration
+     *
+     * @param sameWeek date
+     * @return DateTimeDuration
+     */
     public DateTimeDuration toDateTimeDuration(LocalDate sameWeek) {
         LocalDateTime startDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(this.startDow, sameWeek), this.startTime);
         LocalDateTime endDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(this.endDow, sameWeek), this.endTime);
@@ -104,8 +116,8 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isConnected(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now()).isConnected(
-                    ((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return toDateTimeDuration(LocalDate.now())
+                    .isConnected(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
         }
     }
 
@@ -114,8 +126,8 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isOverlapping(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now()).isOverlapping(
-                    ((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return toDateTimeDuration(LocalDate.now())
+                    .isOverlapping(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
         }
     }
 
@@ -124,8 +136,8 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isSubsetOf(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now()).isSubsetOf(
-                    ((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return toDateTimeDuration(LocalDate.now())
+                    .isSubsetOf(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
         }
     }
 
@@ -134,8 +146,8 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.relativeComplementOf(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now()).relativeComplementOf(
-                    ((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return toDateTimeDuration(LocalDate.now())
+                    .relativeComplementOf(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
         }
     }
 
@@ -144,8 +156,8 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.intersectWith(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now()).intersectWith(
-                    ((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return toDateTimeDuration(LocalDate.now())
+                    .intersectWith(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
         }
     }
 

@@ -1,17 +1,24 @@
 package seedu.nova.model.common.time.slotlist;
 
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 import seedu.nova.model.common.Copyable;
-import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.duration.TimedDuration;
 import seedu.nova.model.common.time.duration.WeekDayDuration;
 
-import java.time.Duration;
-import java.util.*;
-import java.util.stream.Collectors;
-
+/**
+ * container for WeekDayDuration
+ */
 public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<WeekDaySlotList> {
-    TreeSet<WeekDayDuration> freeSlotSet;
-    TreeMap<Integer, WeekDayDuration> freeSlotMap;
+    private TreeSet<WeekDayDuration> freeSlotSet;
+    private TreeMap<Integer, WeekDayDuration> freeSlotMap;
 
     public WeekDaySlotList() {
         this(new TreeSet<>(), new TreeMap<>());
@@ -89,9 +96,16 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
         return this.freeSlotSet.stream().parallel().anyMatch(x -> x.isSubsetOf(td));
     }
 
+    /**
+     * Intersection with
+     * @param lst timed duration
+     * @return list of intersection durations
+     */
     public List<WeekDayDuration> intersectWith(TimedDuration lst) {
-        return this.freeSlotSet.stream().parallel().map(x -> (WeekDayDuration) x.intersectWith(lst)).filter(
-                x -> !x.isZero()).collect(Collectors.toList());
+        return this.freeSlotSet.stream()
+                .parallel()
+                .map(x -> (WeekDayDuration) x.intersectWith(lst))
+                .filter(x -> !x.isZero()).collect(Collectors.toList());
     }
 
     private void addDuration(TimedDuration dd) {

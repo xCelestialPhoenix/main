@@ -1,19 +1,23 @@
 package seedu.nova.model.schedule.timeunit;
 
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
 import seedu.nova.model.event.Event;
 
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.util.*;
-
+/**
+ * Day
+ */
 public class Day implements TimeUnit {
-    DayOfWeek type;
-    DateTimeDuration dayDuration;
-    DateTimeSlotList freeSlotList;
-    List<Event> eventList;
+    private DayOfWeek type;
+    private DateTimeDuration dayDuration;
+    private DateTimeSlotList freeSlotList;
+    private List<Event> eventList;
 
     Day(LocalDate lDate) {
         this.dayDuration = DateTimeDuration.parseDayFromDate(lDate);
@@ -44,6 +48,11 @@ public class Day implements TimeUnit {
         return this.freeSlotList;
     }
 
+    /**
+     * add event
+     * @param event event
+     * @return added?
+     */
     public boolean addEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
         if (this.freeSlotList.isSupersetOf(ed)) {
@@ -54,6 +63,11 @@ public class Day implements TimeUnit {
         }
     }
 
+    /**
+     * delete event
+     * @param event
+     * @return
+     */
     public boolean deleteEvent(Event event) {
         this.freeSlotList.includeDuration(event.getDateTimeDuration());
         return this.eventList.remove(event);

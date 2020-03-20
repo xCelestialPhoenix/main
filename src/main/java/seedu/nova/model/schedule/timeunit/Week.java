@@ -1,20 +1,23 @@
 package seedu.nova.model.schedule.timeunit;
 
-import seedu.nova.model.common.time.duration.DateTimeDuration;
-import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
-import seedu.nova.model.event.Event;
-
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.nova.model.common.time.duration.DateTimeDuration;
+import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
+import seedu.nova.model.event.Event;
+
+/**
+ * week that contains event
+ */
 public class Week implements TimeUnit {
-    DateTimeDuration weekDuration;
-    List<Day> sevenDays;
-    List<Event> eventList;
-    DateTimeSlotList freeSlotList;
+    private DateTimeDuration weekDuration;
+    private List<Day> sevenDays;
+    private List<Event> eventList;
+    private DateTimeSlotList freeSlotList;
 
     public Week(LocalDate date) {
         this.weekDuration = DateTimeDuration.parseWeekFromDate(date);
@@ -27,6 +30,9 @@ public class Week implements TimeUnit {
         this.freeSlotList = freeSlotList;
     }
 
+    /**
+     * initialises
+     */
     private void init() {
         LocalDate d = this.weekDuration.getStartDateTime().toLocalDate();
         this.sevenDays = new ArrayList<>(7);
@@ -50,6 +56,15 @@ public class Week implements TimeUnit {
         return this.freeSlotList;
     }
 
+    public DateTimeDuration getWeekDuration() {
+        return this.weekDuration;
+    }
+
+    /**
+     * add event
+     * @param event
+     * @return
+     */
     public boolean addEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
         if (this.freeSlotList.isSupersetOf(ed)) {
@@ -66,6 +81,11 @@ public class Week implements TimeUnit {
         }
     }
 
+    /**
+     * delete event
+     * @param event
+     * @return
+     */
     public boolean deleteEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
 

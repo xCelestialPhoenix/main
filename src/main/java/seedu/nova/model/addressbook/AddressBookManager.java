@@ -1,13 +1,14 @@
 package seedu.nova.model.addressbook;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.nova.model.addressbook.person.Person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.nova.model.addressbook.person.Person;
 
 /**
  * Manages address book

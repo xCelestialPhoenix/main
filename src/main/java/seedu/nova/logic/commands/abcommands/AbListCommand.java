@@ -24,8 +24,8 @@ public class AbListCommand extends Command {
         String listOfPeople = model.getAddressBookManager().getAddressBook().getPersonList().size() > 0
                 ? "Listed all contacts:\n" : "There is no contact saved.";
         for (int i = 0; i < model.getAddressBookManager().getAddressBook().getPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i + 1) + ". " +
-                    model.getAddressBookManager().getAddressBook().getPersonList().get(i) + "\n";
+            listOfPeople = listOfPeople + (i + 1) + ". "
+                    + model.getAddressBookManager().getAddressBook().getPersonList().get(i) + "\n";
         }
 
         return new CommandResult(listOfPeople);

@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.abcommands.AbFindCommand;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.scheduler.timeunit.Schedule;
+import seedu.nova.model.schedule.Scheduler;
 import seedu.nova.model.userpref.UserPrefs;
 import seedu.nova.model.addressbook.person.NameContainsKeywordsPredicate;
 
@@ -30,7 +30,7 @@ public class AbFindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
             1, 13), LocalDate.of(2020, 5, 3)));
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+            new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
     public void equals() {

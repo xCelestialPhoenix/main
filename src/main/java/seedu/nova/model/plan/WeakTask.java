@@ -1,5 +1,10 @@
 package seedu.nova.model.plan;
 
+import java.time.Duration;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
 import seedu.nova.model.common.time.slotlist.WeekDaySlotList;
@@ -7,14 +12,11 @@ import seedu.nova.model.event.Event;
 import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.schedule.timeunit.Week;
 
-import java.time.Duration;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
-//read blabla twice 2 hr..
+/**
+ * Task with loose restriction on timeslot allowed, event can be rescheduled
+ */
 public class WeakTask extends Task {
-    WeekDaySlotList wdsl;
+    private WeekDaySlotList wdsl;
 
     public WeakTask(EventDetails details, Duration duration, WeekDaySlotList wdsl) {
         super(details, duration);

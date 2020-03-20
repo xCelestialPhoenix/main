@@ -26,7 +26,7 @@ import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.scheduler.timeunit.Schedule;
+import seedu.nova.model.schedule.Scheduler;
 import seedu.nova.model.userpref.UserPrefs;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
@@ -38,7 +38,7 @@ import seedu.nova.testutil.PersonBuilder;
  */
 public class AbEditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler(LocalDate.of(2020,
             1, 13), LocalDate.of(2020, 5, 3)));
 
     @Test
@@ -49,17 +49,19 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager().getAddressBook()),
+                new UserPrefs(),
+                new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+        expectedModel.getAddressBookManager().setPerson(model.getAddressBookManager().getFilteredPersonList().get(0),
+                editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(model.getAddressBookManager().getFilteredPersonList().size());
+        Person lastPerson = model.getAddressBookManager().getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -71,9 +73,10 @@ public class AbEditCommandTest {
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
-        expectedModel.setPerson(lastPerson, editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager().getAddressBook()),
+                new UserPrefs(),
+                new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+        expectedModel.getAddressBookManager().setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
@@ -81,12 +84,14 @@ public class AbEditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson =
+                model.getAddressBookManager().getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager().getAddressBook()),
+                new UserPrefs(),
+                new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
@@ -95,23 +100,27 @@ public class AbEditCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personInFilteredList = model.getAddressBookManager().getFilteredPersonList().get(
+                INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager()), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBookManager().getAddressBook()),
+                new UserPrefs(),
+                new Scheduler(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+        expectedModel.getAddressBookManager().setPerson(model.getAddressBookManager().getFilteredPersonList().get(0),
+                editedPerson);
 
         assertCommandSuccess(abEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPerson = model.getAddressBookManager().getFilteredPersonList().get(
+                INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_SECOND_PERSON, descriptor);
 
@@ -123,7 +132,8 @@ public class AbEditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in nova book
-        Person personInList = model.getAddressBookManager().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personInList = model.getAddressBookManager().getAddressBook().getPersonList().get(
+                INDEX_SECOND_PERSON.getZeroBased());
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
@@ -132,7 +142,7 @@ public class AbEditCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBookManager().getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         AbEditCommand abEditCommand = new AbEditCommand(outOfBoundIndex, descriptor);
 
@@ -148,7 +158,8 @@ public class AbEditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of nova book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBookManager().getPersonList().size());
+        assertTrue(
+                outOfBoundIndex.getZeroBased() < model.getAddressBookManager().getAddressBook().getPersonList().size());
 
         AbEditCommand abEditCommand = new AbEditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());

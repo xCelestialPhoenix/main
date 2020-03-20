@@ -2,11 +2,14 @@ package seedu.nova.model.event;
 
 import seedu.nova.model.common.Copyable;
 
+/**
+ * Event details
+ */
 public class EventDetails implements Copyable<EventDetails> {
-    final String name;
-    String desc;
-    String venue;
-    String note;
+    private final String name;
+    private String desc;
+    private String venue;
+    private String note;
 
     public EventDetails(String name) {
         this(name, null, null, null);
@@ -51,6 +54,12 @@ public class EventDetails implements Copyable<EventDetails> {
         this.note = note;
     }
 
+    /**
+     *
+     * @param attr
+     * @param val
+     * @return
+     */
     private String genField(String attr, String val) {
         if (val == null) {
             return "";
@@ -61,10 +70,10 @@ public class EventDetails implements Copyable<EventDetails> {
 
     @Override
     public String toString() {
-        return genField("Name", this.name) +
-                genField("Description", this.desc) +
-                genField("Venue", this.venue) +
-                genField("Note", this.note);
+        return genField("Name", this.name)
+                + genField("Description", this.desc)
+                + genField("Venue", this.venue)
+                + genField("Note", this.note);
     }
 
     @Override

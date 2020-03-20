@@ -19,13 +19,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.abcommands.AbAddCommand;
-//import seedu.nova.logic.commands.abcommands.AbListCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.addressbook.ReadOnlyAddressBook;
-import seedu.nova.model.scheduler.timeunit.Schedule;
 import seedu.nova.model.userpref.UserPrefs;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.storage.JsonAddressBookStorage;
@@ -83,7 +81,7 @@ public class LogicManagerTest {
         String addCommand = AbAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.getAddressBookManager().addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         //assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

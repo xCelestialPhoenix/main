@@ -1,9 +1,9 @@
 package seedu.nova.model.addressbook;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.nova.model.addressbook.person.Person;
-
-import java.util.function.Predicate;
 
 /**
  * AddressBookModel

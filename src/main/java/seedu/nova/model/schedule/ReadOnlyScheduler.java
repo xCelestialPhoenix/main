@@ -1,19 +1,19 @@
 package seedu.nova.model.schedule;
 
+import java.util.List;
+
 import seedu.nova.model.common.time.duration.DateTimeDuration;
-import seedu.nova.model.common.time.duration.WeekDayDuration;
-import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.plan.AbsoluteTask;
 import seedu.nova.model.plan.Plan;
 import seedu.nova.model.plan.Task;
+import seedu.nova.model.schedule.timeunit.Semester;
 import seedu.nova.model.schedule.timeunit.Week;
 import seedu.nova.storage.JsonParsable;
 
-import java.time.LocalDate;
-import java.util.List;
-
+/**
+ * Read only scheduler
+ */
 public interface ReadOnlyScheduler extends JsonParsable {
     DateTimeDuration getDateTimeDuration();
 
@@ -25,6 +25,8 @@ public interface ReadOnlyScheduler extends JsonParsable {
     boolean removePlan(Plan plan);
 
     Plan getDefaultPlan();
+
+    Semester getSem();
 
     // methods for default plan
     boolean addEvent(Event event);

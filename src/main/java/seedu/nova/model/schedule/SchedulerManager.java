@@ -1,17 +1,18 @@
 package seedu.nova.model.schedule;
 
-import seedu.nova.model.common.time.duration.WeekDayDuration;
+import java.time.LocalDate;
+import java.util.List;
+
 import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.EventDetails;
 import seedu.nova.model.plan.AbsoluteTask;
 import seedu.nova.model.plan.Plan;
 import seedu.nova.model.schedule.timeunit.Day;
 import seedu.nova.model.schedule.timeunit.Week;
 
-import java.time.LocalDate;
-import java.util.List;
-
+/**
+ * Manager for scheduler, following the convention
+ */
 public class SchedulerManager implements SchedulerModel {
     private final Scheduler scheduler;
 
@@ -35,11 +36,6 @@ public class SchedulerManager implements SchedulerModel {
     }
 
     @Override
-    public Week getWeek(LocalDate sameWeekAs) {
-        return getWeek(sameWeekAs, null);
-    }
-
-    @Override
     public void addEvent(Event e) {
         this.scheduler.addEvent(e);
     }
@@ -60,15 +56,25 @@ public class SchedulerManager implements SchedulerModel {
     }
 
     @Override
+    public Day getDay(LocalDate date) {
+        return this.scheduler.getSem().getDay(date).getCopy();
+    }
+
+    @Override
     public Day getDay(LocalDate date, List<Plan> planInAscendingOrder) {
         Week wk = getWeek(date, planInAscendingOrder);
         return wk.getDay(date.getDayOfWeek());
     }
 
     @Override
+    public Week getWeek(LocalDate sameWeekAs) {
+        return getWeek(sameWeekAs, null);
+    }
+
+    @Override
     public Week getWeek(LocalDate sameWeekAs, List<Plan> planList) {
-        Week wk = this.scheduler.sem.getWeek(sameWeekAs).getCopy();
-        this.scheduler.defaultPlan.scheduleEvents(wk);
+        Week wk = this.scheduler.getSem().getWeek(sameWeekAs).getCopy();
+        this.scheduler.getDefaultPlan().scheduleEvents(wk);
         if (wk != null && planList != null) {
             for (Plan plan : planList) {
                 plan.scheduleEvents(wk);
@@ -89,12 +95,7 @@ public class SchedulerManager implements SchedulerModel {
 
     @Override
     public boolean isWithinSem(LocalDate date) {
-        return this.scheduler.sem.getDuration().getStartDate().compareTo(date) <= 0 &&
-                this.scheduler.sem.getDuration().getEndDate().compareTo(date) >= 0;
-    }
-
-    @Override
-    public Day getDay(LocalDate date) {
-        return this.scheduler.sem.getDay(date).getCopy();
+        return this.scheduler.getSem().getDuration().getStartDate().compareTo(date) <= 0
+                && this.scheduler.getSem().getDuration().getEndDate().compareTo(date) >= 0;
     }
 }

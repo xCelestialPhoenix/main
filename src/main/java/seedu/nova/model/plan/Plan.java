@@ -1,12 +1,15 @@
 package seedu.nova.model.plan;
 
+import java.util.List;
+
 import seedu.nova.model.common.Copyable;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.schedule.timeunit.Week;
 import seedu.nova.storage.JsonParsable;
 
-import java.util.List;
-
+/**
+ * task container
+ */
 public interface Plan extends JsonParsable, Copyable<Plan> {
     String getName();
 

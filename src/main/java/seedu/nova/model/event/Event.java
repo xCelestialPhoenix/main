@@ -1,10 +1,10 @@
 package seedu.nova.model.event;
 
-import seedu.nova.model.common.Copyable;
-import seedu.nova.model.common.time.duration.DateTimeDuration;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
+
+import seedu.nova.model.common.Copyable;
+import seedu.nova.model.common.time.duration.DateTimeDuration;
 
 /**
  * Represents an Event that can be managed.

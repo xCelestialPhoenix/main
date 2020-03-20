@@ -7,23 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
-import seedu.nova.model.addressbook.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.AddressBookManager;
+import seedu.nova.model.addressbook.AddressBookModel;
+import seedu.nova.model.schedule.SchedulerModel;
 import seedu.nova.model.userpref.ReadOnlyUserPrefs;
-import seedu.nova.model.event.Event;
 import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
@@ -115,53 +113,13 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public AddressBookModel getAddressBookManager() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBookManager() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public String viewSchedule(LocalDate date) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isWithinSem(LocalDate date) {
-            throw new AssertionError("This method should not be called.");
+        public SchedulerModel getSchedulerManager() {
+            return null;
         }
 
         @Override
@@ -169,13 +127,6 @@ public class AbAddCommandTest {
             return null;
         }
 
-        @Override
-        public void addEvent(Event e) {
-        }
-
-        @Override
-        public void addLesson(Lesson l) {
-        }
 
         public ProgressTracker getProgressTracker() {
             return null;
@@ -219,8 +170,8 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBookManager() {
-            return new AddressBook();
+        public AddressBookModel getAddressBookManager() {
+            return new AddressBookManager();
         }
     }
 

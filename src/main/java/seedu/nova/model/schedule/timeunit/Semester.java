@@ -1,22 +1,28 @@
 package seedu.nova.model.schedule.timeunit;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 import seedu.nova.model.common.time.TimeUtil;
 import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.slotlist.DateTimeSlotList;
 import seedu.nova.model.event.Event;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
-
+/**
+ * A bunch of weeks
+ */
 public class Semester implements TimeUnit {
-    int id;
-    DateTimeDuration scheduleDuration;
-    TreeMap<LocalDate, Week> weekMap;
-    List<Event> eventList;
-    DateTimeSlotList freeSlotList;
+    private int id;
+    private DateTimeDuration scheduleDuration;
+    private TreeMap<LocalDate, Week> weekMap;
+    private List<Event> eventList;
+    private DateTimeSlotList freeSlotList;
 
     public Semester(int id, LocalDate startDate, LocalDate endDate) {
         this.id = id;
@@ -34,6 +40,9 @@ public class Semester implements TimeUnit {
         this.freeSlotList = freeSlotList;
     }
 
+    /**
+     * initialises
+     */
     private void initialise() {
         LocalDate d = this.scheduleDuration.getStartDateTime().toLocalDate();
         LocalDate dd = this.scheduleDuration.getEndDateTime().toLocalDate();
@@ -85,10 +94,19 @@ public class Semester implements TimeUnit {
         return new ArrayList<>(this.weekMap.values());
     }
 
+    /**
+     * Add week into semester, replacing the previous one
+     * @param week week
+     */
     public void replaceWeek(Week week) {
-        this.weekMap.put(week.weekDuration.getStartDate(), week);
+        this.weekMap.put(week.getWeekDuration().getStartDate(), week);
     }
 
+    /**
+     *
+     * @param event
+     * @return
+     */
     public boolean addEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
         if (this.freeSlotList.isSupersetOf(ed)) {
@@ -108,6 +126,11 @@ public class Semester implements TimeUnit {
         }
     }
 
+    /**
+     * delete event
+     * @param event event
+     * @return
+     */
     public boolean deleteEvent(Event event) {
         DateTimeDuration ed = event.getDateTimeDuration();
 

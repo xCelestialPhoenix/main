@@ -1,12 +1,14 @@
 package seedu.nova.model.common.time.slotlist;
 
-import seedu.nova.model.common.Copyable;
-import seedu.nova.model.common.time.duration.DateTimeDuration;
-import seedu.nova.model.common.time.duration.TimedDuration;
-
 import java.time.Duration;
 import java.util.List;
 
+import seedu.nova.model.common.time.duration.TimedDuration;
+
+/**
+ * Container for timed duration
+ * @param <T> timed duration
+ */
 public interface SlotList<T extends TimedDuration> {
     List<T> getSlotList();
 

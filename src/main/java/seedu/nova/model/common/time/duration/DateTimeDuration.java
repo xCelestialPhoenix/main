@@ -1,10 +1,14 @@
 package seedu.nova.model.common.time.duration;
 
-import seedu.nova.model.common.time.TimeUtil;
-
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.nova.model.common.time.TimeUtil;
 
 /**
  * Combining LocalDateTime and Duration
@@ -57,6 +61,7 @@ public class DateTimeDuration implements TimedDuration {
 
     /**
      * DateTimeDuration representation of a duration
+     *
      * @param duration
      * @return DateTimeDuration
      */
@@ -66,33 +71,36 @@ public class DateTimeDuration implements TimedDuration {
 
     /**
      * Parse DateTimeDuration of a day
+     *
      * @param lDate date of the day
      * @return DateTimeDuration representation of the day
      */
     public static DateTimeDuration parseDayFromDate(LocalDate lDate) {
         return new DateTimeDuration(
                 LocalDateTime.of(LocalDate.of(lDate.getYear(), lDate.getMonth(), lDate.getDayOfMonth()),
-                        TimeUtil.beginDayTime),
-                LocalDateTime.of(lDate, TimeUtil.endDayTime)
+                        TimeUtil.BEGIN_DAY_TIME),
+                LocalDateTime.of(lDate, TimeUtil.END_DAY_TIME)
         );
     }
 
     /**
      * Parse DateTimeDuration
+     *
      * @param monDate a day from the week
      * @return DateTimeDuration of the week
      */
     public static DateTimeDuration parseWeekFromDate(LocalDate monDate) {
         return new DateTimeDuration(
-                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate), TimeUtil.beginDayTime),
-                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate).plusDays(6), TimeUtil.endDayTime)
+                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate), TimeUtil.BEGIN_DAY_TIME),
+                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate).plusDays(6), TimeUtil.END_DAY_TIME)
         );
     }
 
     /**
      * Parse DateTimeDuration
+     *
      * @param startDateTime startDateTime
-     * @param duration duration
+     * @param duration      duration
      * @return DateTimeDuration
      */
     public static DateTimeDuration parseFromDateTime(LocalDateTime startDateTime, Duration duration) {
@@ -168,6 +176,12 @@ public class DateTimeDuration implements TimedDuration {
         return lst;
     }
 
+    /**
+     * Shift to days days after
+     *
+     * @param days num of days
+     * @return DateTimeDuration
+     */
     public DateTimeDuration plusDays(long days) {
         DateTimeDuration d = cast(getCopy());
         d.startDateTime = d.startDateTime.plusDays(days);
@@ -175,11 +189,12 @@ public class DateTimeDuration implements TimedDuration {
         return d;
     }
 
-    public void makeSameWeekWith(DateTimeDuration d) {
-        int offset = getStartDate().getDayOfWeek().getValue() - d.getStartDate().getDayOfWeek().getValue();
-        setStartDate(d.getStartDate().plusDays(offset));
-    }
-
+    /**
+     * cast to dateTimeDuration
+     *
+     * @param another timedDuration
+     * @return dateTimeDuration
+     */
     private DateTimeDuration cast(TimedDuration another) {
         if (another instanceof DateTimeDuration) {
             return (DateTimeDuration) another;
@@ -188,28 +203,48 @@ public class DateTimeDuration implements TimedDuration {
         }
     }
 
+    /**
+     * Check if another is overlapped with this duration
+     *
+     * @param another another timedDuration
+     * @return isOverlapped?
+     */
     public boolean isOverlapping(TimedDuration another) {
         DateTimeDuration d = cast(another);
-        return this.startDateTime.compareTo(d.endDateTime) < 0 &&
-                this.endDateTime.compareTo(d.startDateTime) > 0;
+        return this.startDateTime.compareTo(d.endDateTime) < 0
+                && this.endDateTime.compareTo(d.startDateTime) > 0;
     }
 
+    /**
+     * Check if another is subset of this
+     *
+     * @param another another timedDuration
+     * @return is subset?
+     */
     public boolean isSubsetOf(TimedDuration another) {
         DateTimeDuration d = cast(another);
-        return this.startDateTime.compareTo(d.startDateTime) >= 0 &&
-                this.endDateTime.compareTo(d.endDateTime) <= 0;
+        return this.startDateTime.compareTo(d.startDateTime) >= 0
+                && this.endDateTime.compareTo(d.endDateTime) <= 0;
     }
 
-    public boolean isImmidiatelyAfter(DateTimeDuration another) {
-        return this.startDateTime.equals(another.endDateTime);
-    }
-
+    /**
+     * Check if another is connected with this
+     *
+     * @param another TimedDuration
+     * @return is connected?
+     */
     public boolean isConnected(TimedDuration another) {
         DateTimeDuration d = cast(another);
-        return this.startDateTime.compareTo(d.endDateTime) <= 0 &&
-                this.endDateTime.compareTo(d.startDateTime) >= 0;
+        return this.startDateTime.compareTo(d.endDateTime) <= 0
+                && this.endDateTime.compareTo(d.startDateTime) >= 0;
     }
 
+    /**
+     * get relative complement of another
+     *
+     * @param another timed duration
+     * @return relative compliment
+     */
     public List<TimedDuration> relativeComplementOf(TimedDuration another) {
         DateTimeDuration d = cast(another);
         List<TimedDuration> lst = new ArrayList<>();
@@ -228,6 +263,11 @@ public class DateTimeDuration implements TimedDuration {
         return lst;
     }
 
+    /**
+     * intersection with
+     * @param another another
+     * @return timed duration
+     */
     public TimedDuration intersectWith(TimedDuration another) {
         DateTimeDuration d = cast(another);
         LocalDateTime start;
@@ -257,8 +297,8 @@ public class DateTimeDuration implements TimedDuration {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof DateTimeDuration) {
-            return this.duration.equals(((DateTimeDuration) obj).duration) &&
-                    this.startDateTime.equals(((DateTimeDuration) obj).startDateTime);
+            return this.duration.equals(((DateTimeDuration) obj).duration)
+                    && this.startDateTime.equals(((DateTimeDuration) obj).startDateTime);
         } else {
             return super.equals(obj);
         }

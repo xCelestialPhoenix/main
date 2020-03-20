@@ -1,18 +1,24 @@
 package seedu.nova.model.common.time.slotlist;
 
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 import seedu.nova.model.common.Copyable;
 import seedu.nova.model.common.time.duration.DateTimeDuration;
 import seedu.nova.model.common.time.duration.TimedDuration;
 
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
-
+/**
+ * Container for DateTimeDuration
+ */
 public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<DateTimeSlotList> {
-    TreeSet<DateTimeDuration> freeSlotSet;
-    TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap;
+    private TreeSet<DateTimeDuration> freeSlotSet;
+    private TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap;
 
     public DateTimeSlotList(DateTimeDuration init) {
         this(new TreeSet<>(), new TreeMap<>());
@@ -25,8 +31,7 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
     }
 
     private DateTimeSlotList(TreeSet<DateTimeDuration> freeSlotSet,
-                             TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap)
-    {
+                             TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap) {
         this.freeSlotSet = freeSlotSet;
         this.freeSlotMap = freeSlotMap;
     }
@@ -55,6 +60,10 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
                 Collectors.toList());
     }
 
+    /**
+     * delete the duration ed from the list of durations.
+     * @param ed timed duration to delete
+     */
     public void excludeDuration(DateTimeDuration ed) {
         DateTimeDuration lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime()).getValue();
         if (lastFreeSlot.isOverlapping(ed)) {
@@ -64,17 +73,33 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
         }
     }
 
+    /**
+     * exclude all the durations in another
+     * @param another date time slot list
+     * @return compliment of another
+     */
     public DateTimeSlotList relativeComplimentOf(DateTimeSlotList another) {
         DateTimeSlotList ans = getCopy();
         another.freeSlotSet.forEach(ans::excludeDuration);
         return ans;
     }
 
+    /**
+     * intersection with another timed duration
+     * @param lst another timed duration
+     * @return list of intersection duration
+     */
     public List<DateTimeDuration> intersectWith(TimedDuration lst) {
-        return this.freeSlotSet.stream().parallel().map(x -> (DateTimeDuration) x.intersectWith(lst)).filter(
-                x -> !x.isZero()).collect(Collectors.toList());
+        return this.freeSlotSet.stream()
+                .parallel()
+                .map(x -> (DateTimeDuration) x.intersectWith(lst))
+                .filter(x -> !x.isZero()).collect(Collectors.toList());
     }
 
+    /**
+     * add ed back to list
+     * @param ed datetimeduration
+     */
     public void includeDuration(DateTimeDuration ed) {
         DateTimeDuration lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime()).getValue();
         DateTimeDuration nextFreeSlot = this.freeSlotMap.ceilingEntry(ed.getEndDateTime()).getValue();
