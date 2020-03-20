@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.Schedule;
+import seedu.nova.model.scheduler.timeunit.Schedule;
 import seedu.nova.model.UserPrefs;
 
 /**

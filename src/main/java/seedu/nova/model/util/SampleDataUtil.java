@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.nova.model.AddressBook;
+import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.category.Category;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Phone;
-import seedu.nova.model.person.Remark;
+import seedu.nova.model.addressbook.person.Email;
+import seedu.nova.model.addressbook.person.Name;
+import seedu.nova.model.addressbook.person.Person;
+import seedu.nova.model.addressbook.person.Phone;
+import seedu.nova.model.addressbook.person.Remark;
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */

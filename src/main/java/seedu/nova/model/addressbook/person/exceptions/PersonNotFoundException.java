@@ -1,4 +1,4 @@
-package seedu.nova.model.person.exceptions;
+package seedu.nova.model.addressbook.person.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified person.

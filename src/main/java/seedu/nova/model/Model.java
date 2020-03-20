@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**

@@ -15,10 +15,10 @@ import java.util.List;
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.AddressBook;
+import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 
 /**

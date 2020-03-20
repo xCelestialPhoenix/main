@@ -1,10 +1,12 @@
-package seedu.nova.model;
+package seedu.nova.model.scheduler.timeunit;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Day.
@@ -74,7 +76,7 @@ public class Day {
      */
     public void addLesson(Lesson lesson) throws CommandException {
 
-        addEvent(new Lesson(lesson, date));
+        addEvent(lesson);
     }
 
     /**

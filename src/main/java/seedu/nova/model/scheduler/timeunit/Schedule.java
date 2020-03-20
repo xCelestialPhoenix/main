@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.scheduler.timeunit;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Schedule.

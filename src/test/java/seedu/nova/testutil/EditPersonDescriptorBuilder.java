@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.category.Category;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Phone;
+import seedu.nova.model.addressbook.person.Email;
+import seedu.nova.model.addressbook.person.Name;
+import seedu.nova.model.addressbook.person.Person;
+import seedu.nova.model.addressbook.person.Phone;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

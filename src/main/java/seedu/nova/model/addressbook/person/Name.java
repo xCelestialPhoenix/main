@@ -1,4 +1,4 @@
-package seedu.nova.model.person;
+package seedu.nova.model.addressbook.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.AppUtil.checkArgument;

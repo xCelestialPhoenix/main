@@ -13,10 +13,12 @@ import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.parser.ModeEnum;
+import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
-import seedu.nova.model.person.Person;
+import seedu.nova.model.addressbook.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.scheduler.timeunit.Schedule;
 
 /**
  * Represents the in-memory model of the data.

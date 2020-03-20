@@ -34,6 +34,14 @@ public class Event {
         this.date = date;
     }
 
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return this.endTime;
+    }
+
     public void markDone() {
         isDone = true;
     }

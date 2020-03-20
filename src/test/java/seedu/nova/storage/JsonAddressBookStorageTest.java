@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nova.commons.exceptions.DataConversionException;
-import seedu.nova.model.AddressBook;
+import seedu.nova.model.addressbook.AddressBook;
 import seedu.nova.model.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {

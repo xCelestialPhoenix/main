@@ -16,7 +16,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.addressbook.AddressBook;
+import seedu.nova.model.addressbook.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.scheduler.timeunit.Schedule;
 import seedu.nova.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

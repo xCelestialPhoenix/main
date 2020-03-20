@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.addressbook.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

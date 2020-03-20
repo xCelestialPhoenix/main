@@ -1,12 +1,13 @@
-package seedu.nova.model;
+package seedu.nova.model.addressbook;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.UniquePersonList;
+import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.addressbook.person.Person;
+import seedu.nova.model.addressbook.person.UniquePersonList;
 
 /**
  * Wraps all data at the address-book level

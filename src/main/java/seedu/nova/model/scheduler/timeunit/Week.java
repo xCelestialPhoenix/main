@@ -1,8 +1,10 @@
-package seedu.nova.model;
+package seedu.nova.model.scheduler.timeunit;
 
 import java.time.LocalDate;
 
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Week.

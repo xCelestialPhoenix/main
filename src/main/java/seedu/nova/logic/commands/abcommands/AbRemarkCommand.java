@@ -10,8 +10,8 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.Person;
-import seedu.nova.model.person.Remark;
+import seedu.nova.model.addressbook.person.Person;
+import seedu.nova.model.addressbook.person.Remark;
 
 
 /**

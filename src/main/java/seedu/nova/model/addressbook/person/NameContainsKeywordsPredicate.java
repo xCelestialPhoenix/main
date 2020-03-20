@@ -1,4 +1,4 @@
-package seedu.nova.model.person;
+package seedu.nova.model.addressbook.person;
 
 import java.util.List;
 import java.util.function.Predicate;

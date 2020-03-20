@@ -1,4 +1,4 @@
-package seedu.nova.model.person;
+package seedu.nova.model.addressbook.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.nova.model.person.exceptions.DuplicatePersonException;
-import seedu.nova.model.person.exceptions.PersonNotFoundException;
+import seedu.nova.model.addressbook.person.exceptions.DuplicatePersonException;
+import seedu.nova.model.addressbook.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.

@@ -1,4 +1,4 @@
-package seedu.nova.model.person;
+package seedu.nova.model.addressbook.person;
 
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 

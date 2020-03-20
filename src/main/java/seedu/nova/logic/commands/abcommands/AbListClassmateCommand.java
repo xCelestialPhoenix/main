@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.model.Model;
-import seedu.nova.model.person.CategoryContainsKeywordsPredicate;
+import seedu.nova.model.addressbook.person.CategoryContainsKeywordsPredicate;
 
 /**
  * Lists all persons in the address book to the user.

@@ -33,9 +33,9 @@ import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.logic.parser.abparsers.AbEditCommandParser;
 import seedu.nova.model.category.Category;
-import seedu.nova.model.person.Email;
-import seedu.nova.model.person.Name;
-import seedu.nova.model.person.Phone;
+import seedu.nova.model.addressbook.person.Email;
+import seedu.nova.model.addressbook.person.Name;
+import seedu.nova.model.addressbook.person.Phone;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 
 public class AbEditCommandParserTest {
