@@ -462,8 +462,8 @@ Format: +
 `routine p\[task name] f\[frequency] d\[event duration in minutes]`
 
 .Restriction:
-    * [frequency] = weekly / daily
-    * [event duration in minutes] must be between 0 and 1440.
+* [frequency] = weekly / daily
+* [event duration in minutes] must be between 0 and 1440.
 
 Example: +
 `routine p\read cs2103 textbook f\weekly d\30`
@@ -477,10 +477,10 @@ Format: +
 `flexible p\[task name] t\[total minutes] mind\[maximum event duration in minutes] maxd\[maximum event duration in minutes]`
 
 .Restriction:
-    * [total minutes] must be greater than [minimum event duration in minutes].
-    * [minimum event duration in minutes] must be between 0 and 1440.
-    * [maximum event duration in minutes] must be between 0 and 1440.
-    * [maximum event duration in minutes] must be greater or equal to [minimum event duration in minutes].
+* [total minutes] must be greater than [minimum event duration in minutes].
+* [minimum event duration in minutes] must be between 0 and 1440.
+* [maximum event duration in minutes] must be between 0 and 1440.
+* [maximum event duration in minutes] must be greater or equal to [minimum event duration in minutes].
 
 Example: +
 `flexible p\study vocabulary f\daily mind\10 maxd\60`
@@ -502,16 +502,16 @@ Deletes the task “study vocabulary” and all its related future events.
 You can view the statistics of every tasks currently in study plan +
 
 * For routine task,
-    ** For weekly routine task, statistics comprise of:
-        *** number of weeks done and not done since its creation
-        *** all the events related to the task.
-    ** For daily routine task, statistics comprise of:
-        *** number of days done and not done since its creation
-        *** all the events related to the task.
+** For weekly routine task, statistics comprise of:
+*** number of weeks done and not done since its creation
+*** all the events related to the task.
+** For daily routine task, statistics comprise of:
+*** number of days done and not done since its creation
+*** all the events related to the task.
 
 * For flexible tasks, statistics comprises of:
-    ** percentage done = total duration of every event created / total minutes
-    ** all the events related to the task.
+** percentage done = total duration of every event created / total minutes
+** all the events related to the task.
 
 Format: +
 `stats`
@@ -543,6 +543,7 @@ Example 2: +
 ** There is no such free slot available.
 ** There is already a same event in the same day.
 ** If the total time of all the events related to the task combined exceeds the total time specified by the task.
+
 
 === Progress Tracker
 A tracker to help you track your study and project progress. Access this mode by entering
