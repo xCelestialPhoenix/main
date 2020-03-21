@@ -1,8 +1,11 @@
 package seedu.nova.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.util.time.duration.DateTimeDuration;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Week.
@@ -17,6 +20,10 @@ public class Week {
      * The Start date.
      */
     final LocalDate startDate;
+    /**
+     * DateTimeDuration
+     */
+    final DateTimeSlotList dtsl;
 
     /**
      * Instantiates a new Week.
@@ -27,6 +34,7 @@ public class Week {
 
         days = new Day[7];
         startDate = date;
+        dtsl = DateTimeSlotList.ofWeek(date);
     }
 
     /**
@@ -45,6 +53,7 @@ public class Week {
         }
 
         days[day].addEvent(event);
+        dtsl.excludeDuration(event.getDtd());
     }
 
     /**
@@ -62,6 +71,7 @@ public class Week {
         }
 
         days[day].addLesson(lesson);
+        dtsl.excludeDuration(lesson.getDtd());
     }
 
     /**
@@ -81,4 +91,11 @@ public class Week {
         return days[day].view();
     }
 
+    /**
+     * Get free slots in the form of DateTimeDuration
+     * @return list of free slots
+     */
+    public List<DateTimeDuration> getFreeSlots() {
+        return dtsl.getSlotList();
+    }
 }

@@ -3,6 +3,8 @@ package seedu.nova.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import seedu.nova.model.util.time.duration.DateTimeDuration;
+
 /**
  * The type Event stub.
  */
@@ -13,6 +15,7 @@ public class Event {
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate date;
+    private DateTimeDuration dtd;
 
     /**
      * Instantiates a new Event stub.
@@ -29,6 +32,7 @@ public class Event {
         this.venue = venue;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.dtd = new DateTimeDuration(date, startTime, endTime);
     }
 
     /**
@@ -83,6 +87,15 @@ public class Event {
      */
     public String getVenue() {
         return venue;
+    }
+
+    /**
+     * Gets DateTimeDuration.
+     *
+     * @return the DateTimeDuration
+     */
+    public DateTimeDuration getDtd() {
+        return dtd;
     }
 
     @Override

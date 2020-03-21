@@ -2,6 +2,7 @@ package seedu.nova.model.util.time.slotlist;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,14 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
                              TreeMap<LocalDateTime, DateTimeDuration> freeSlotMap) {
         this.freeSlotSet = freeSlotSet;
         this.freeSlotMap = freeSlotMap;
+    }
+
+    public static DateTimeSlotList ofDay(LocalDate date) {
+        return new DateTimeSlotList(DateTimeDuration.parseDayFromDate(date));
+    }
+
+    public static DateTimeSlotList ofWeek(LocalDate sameWeekAs) {
+        return new DateTimeSlotList(DateTimeDuration.parseWeekFromDate(sameWeekAs));
     }
 
     @Override

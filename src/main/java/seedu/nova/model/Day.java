@@ -2,9 +2,12 @@ package seedu.nova.model;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.util.time.duration.DateTimeDuration;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Day.
@@ -15,6 +18,7 @@ public class Day {
 
     private LinkedList<Event> events;
     private LocalDate date;
+    private DateTimeSlotList dtsl;
 
     /**
      * Instantiates a new Day.
@@ -25,6 +29,7 @@ public class Day {
 
         events = new LinkedList<>();
         this.date = date;
+        this.dtsl = DateTimeSlotList.ofDay(date);
     }
 
     /**
@@ -40,6 +45,7 @@ public class Day {
 
         if (events.size() == 0) {
             events.add(event);
+            dtsl.excludeDuration(event.getDtd());
         } else {
             boolean hasSlot = false;
             while (iterator.hasNext()) {
@@ -73,8 +79,9 @@ public class Day {
      * @throws CommandException the command exception
      */
     public void addLesson(Lesson lesson) throws CommandException {
-
-        addEvent(new Lesson(lesson, date));
+        Lesson l = new Lesson(lesson, date);
+        addEvent(l);
+        dtsl.excludeDuration(l.getDtd());
     }
 
     /**
@@ -91,6 +98,14 @@ public class Day {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    /**
+     * Get free slots in the form of DateTimeDuration
+     * @return List of DateTimeDuration
+     */
+    public List<DateTimeDuration> getFreeSlots() {
+        return dtsl.getSlotList();
     }
 
 }

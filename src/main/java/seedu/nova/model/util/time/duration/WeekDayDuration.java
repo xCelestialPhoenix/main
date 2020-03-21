@@ -52,6 +52,10 @@ public class WeekDayDuration implements TimedDuration {
         return new WeekDayDuration(null, null, duration);
     }
 
+    public static WeekDayDuration parseDay(DayOfWeek dow) {
+        return new WeekDayDuration(dow, TimeUtil.BEGIN_DAY_TIME, TimeUtil.END_DAY_TIME);
+    }
+
     public boolean isZero() {
         return this.duration.isZero();
     }

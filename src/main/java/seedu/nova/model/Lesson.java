@@ -4,12 +4,15 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import seedu.nova.model.util.time.duration.WeekDayDuration;
+
 /**
  * The type Lesson.
  */
 public class Lesson extends Event {
 
     private DayOfWeek day;
+    private WeekDayDuration wdd;
 
     /**
      * Instantiates a new Lesson.
@@ -24,6 +27,7 @@ public class Lesson extends Event {
                   DayOfWeek day) {
         super(description, venue, startTime, endTime, null);
         this.day = day;
+        this.wdd = new WeekDayDuration(day, startTime, endTime);
     }
 
     /**
@@ -44,6 +48,13 @@ public class Lesson extends Event {
      */
     public DayOfWeek getDay() {
         return day;
+    }
+
+    /**
+     * get WeekDayDuration
+     */
+    public WeekDayDuration getWdd() {
+        return wdd;
     }
 
 }
