@@ -504,7 +504,79 @@ Use case ends.
 +
 Use case ends.
 
-_{More to be added}_
+[discrete]
+=== Use case 8: User add a task into study plan.
+
+*MSS*
+
+1.  User enter command to create a task with name specified by user.
+2.  Study Planner of NOVA adds the task into study plan.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. There is already a task with the same name.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 9: User add a task into study plan
+
+*MSS*
+
+1.  User enter command to delete a task with name specified by user.
+2.  Study Planner of NOVA deletes the task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task with the name specified exists in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 10: User view statistics of every tasks in study plan
+
+*MSS*
+
+1.  User enter command to view statistics of every tasks in study plan.
+2.  Study Planner of NOVA calculates all the statistics of every tasks.
+3.  NOVA shows all the statistics of every task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 11: User schedules a task into a particular day.
+
+*MSS*
+
+1.  User enter command to schedules a task into a particular day.
+2.  Study Planner of NOVA generates an event based on the current schedule and the task requirements.
+3.  NOVA adds the generated event into schedule.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Unable to generate event.
+*   1a1. NOVA shows error message.
++
+Use case ends.
 
 [appendix]
 == Non Functional Requirements
