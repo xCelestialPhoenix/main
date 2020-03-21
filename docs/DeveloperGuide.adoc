@@ -354,17 +354,17 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |Student | View my timetable | Can check when my classes are
 
+|`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
+
+|`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
+
 |`* * *` |Student | Add tasks to study plan | Can add study tasks to my study plan
 
 |`* * *` |Student | Delete tasks on study plan | Can delete study tasks if I don't need it anymore
 
 |`* * *` |Student | Auto-generate event from a task | If I feel like I want to do a study task today, I can generate an event on today's schedule, or any day.
 
-| * * *  |Student | View statistics of my task progress | Can see how much I've done for each tasks on my study plan.
-
-|`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
-
-|`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
+|`* *`   |Student | View statistics of my task progress | Can see how much I've done for each tasks on my study plan.
 
 |=======================================================================
 
@@ -577,6 +577,8 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+
+_{More to be added}_
 
 [appendix]
 == Non Functional Requirements
