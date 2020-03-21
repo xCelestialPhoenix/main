@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.nova.model.util.time.TimeUtil;
 
@@ -13,50 +14,42 @@ import seedu.nova.model.util.time.TimeUtil;
  * Combination of Day of week, time and duration
  */
 public class WeekDayDuration implements TimedDuration {
-    private DayOfWeek startDow;
-    private LocalTime startTime;
-    private DayOfWeek endDow;
-    private LocalTime endTime;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private Duration duration;
 
     public WeekDayDuration() {
-        this.startDow = DayOfWeek.MONDAY;
-        this.startTime = LocalTime.of(0, 0, 0);
-        this.endDow = DayOfWeek.SUNDAY;
-        this.endTime = LocalTime.of(23, 59, 59);
-        this.duration = Duration.between(TimeUtil.toDateTime(this.startDow, LocalDate.now(), this.startTime),
-                TimeUtil.toDateTime(this.endDow, LocalDate.now(), this.endTime));
+        this.start = TimeUtil.toDateTime(DayOfWeek.MONDAY, TimeUtil.EX_DATE, TimeUtil.BEGIN_DAY_TIME);
+        this.end = TimeUtil.toDateTime(DayOfWeek.SUNDAY, TimeUtil.EX_DATE, TimeUtil.END_DAY_TIME);
+        this.duration = Duration.between(this.start, this.end);
     }
 
     public WeekDayDuration(DayOfWeek startDow, LocalTime startTime, LocalTime endTime) {
-        this.startDow = startDow;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        if (startTime.compareTo(endTime) < 0) {
-            this.duration = Duration.between(startTime, endTime);
-        } else {
-            this.duration = Duration.ofDays(1).minus(Duration.between(startTime, endTime));
+        this.start = TimeUtil.toDateTime(startDow, TimeUtil.EX_DATE, startTime);
+        this.end = TimeUtil.toDateTime(startDow, TimeUtil.EX_DATE, endTime);
+        if (this.start.compareTo(this.end) > 0) {
+            this.end = this.end.plusDays(1);
         }
+        this.duration = Duration.between(this.start, this.end);
     }
 
     public WeekDayDuration(DayOfWeek startDow, LocalTime startTime, DayOfWeek endDow, LocalTime endTime) {
-        this.startDow = startDow;
-        this.startTime = startTime;
-        this.endDow = endDow;
-        this.endTime = endTime;
+        this.start = TimeUtil.toDateTime(startDow, TimeUtil.EX_DATE, startTime);
+        this.end = TimeUtil.toDateTime(endDow, TimeUtil.EX_DATE, endTime);
+        if (this.start.compareTo(this.end) > 0) {
+            this.end = this.end.plusDays(7);
+        }
+        this.duration = Duration.between(this.start, this.end);
     }
 
-    private WeekDayDuration(DayOfWeek startDow, LocalTime startTime, DayOfWeek endDow, LocalTime endTime,
-                            Duration duration) {
-        this.startDow = startDow;
-        this.startTime = startTime;
-        this.endDow = endDow;
-        this.endTime = endTime;
+    private WeekDayDuration(LocalDateTime start, LocalDateTime end, Duration duration) {
+        this.start = start;
+        this.end = end;
         this.duration = duration;
     }
 
     public static WeekDayDuration parseDuration(Duration duration) {
-        return new WeekDayDuration(null, null, null, null, duration);
+        return new WeekDayDuration(null, null, duration);
     }
 
     public boolean isZero() {
@@ -64,11 +57,11 @@ public class WeekDayDuration implements TimedDuration {
     }
 
     public int getStartValue() {
-        return 86400 * startDow.getValue() + (int) (startTime.toNanoOfDay() / 1000000000);
+        return 86400 * getStartDay().getValue() + (int) (getStartTime().toNanoOfDay() / 1000000000);
     }
 
     public int getEndValue() {
-        return 86400 * endDow.getValue() + (int) (endTime.toNanoOfDay() / 1000000000);
+        return 86400 * getEndDay().getValue() + (int) (getEndTime().toNanoOfDay() / 1000000000);
     }
 
     /**
@@ -78,37 +71,41 @@ public class WeekDayDuration implements TimedDuration {
      * @return DateTimeDuration
      */
     public DateTimeDuration toDateTimeDuration(LocalDate sameWeek) {
-        LocalDateTime startDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(this.startDow, sameWeek), this.startTime);
-        LocalDateTime endDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(this.endDow, sameWeek), this.endTime);
+        LocalDateTime startDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(getStartDay(), sameWeek), getStartTime());
+        LocalDateTime endDate = LocalDateTime.of(TimeUtil.dateOfSameWeek(getEndDay(), sameWeek), getEndTime());
         if (getStartValue() > getEndValue()) {
             endDate = endDate.plusDays(7);
         }
         return new DateTimeDuration(startDate, endDate);
     }
 
-    @Override
+
     public DayOfWeek getStartDay() {
-        return this.startDow;
+        return this.start.getDayOfWeek();
     }
 
-    @Override
+
     public LocalTime getStartTime() {
-        return this.startTime;
+        return this.start.toLocalTime();
     }
 
-    @Override
+
     public DayOfWeek getEndDay() {
-        return this.endDow;
+        return this.end.getDayOfWeek();
     }
 
-    @Override
+
     public LocalTime getEndTime() {
-        return this.endTime;
+        return this.end.toLocalTime();
     }
 
-    @Override
+
     public Duration getDuration() {
         return this.duration;
+    }
+
+    private DateTimeDuration getDtd() {
+        return new DateTimeDuration(this.start, this.end);
     }
 
     @Override
@@ -116,8 +113,7 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isConnected(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now())
-                    .isConnected(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return getDtd().isConnected(((WeekDayDuration) another).getDtd());
         }
     }
 
@@ -126,8 +122,7 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isOverlapping(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now())
-                    .isOverlapping(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return getDtd().isOverlapping(((WeekDayDuration) another).getDtd());
         }
     }
 
@@ -136,38 +131,62 @@ public class WeekDayDuration implements TimedDuration {
         if (another instanceof DateTimeDuration) {
             return another.isSubsetOf(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
         } else {
-            return toDateTimeDuration(LocalDate.now())
-                    .isSubsetOf(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return getDtd().isSubsetOf(((WeekDayDuration) another).getDtd());
         }
     }
 
     @Override
     public List<TimedDuration> relativeComplementOf(TimedDuration another) {
-        if (another instanceof DateTimeDuration) {
-            return another.relativeComplementOf(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
+        if (another instanceof WeekDayDuration) {
+            return getDtd().relativeComplementOf(((WeekDayDuration) another).getDtd())
+                    .parallelStream()
+                    .map(x -> ((DateTimeDuration) x).toWeekDayDuration())
+                    .collect(Collectors.toList());
         } else {
-            return toDateTimeDuration(LocalDate.now())
-                    .relativeComplementOf(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return getDtd().relativeComplementOf(another)
+                    .parallelStream()
+                    .map(x -> ((DateTimeDuration) x).toWeekDayDuration())
+                    .collect(Collectors.toList());
         }
     }
 
     @Override
     public TimedDuration intersectWith(TimedDuration another) {
         if (another instanceof DateTimeDuration) {
-            return another.intersectWith(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
+            return (
+                    (DateTimeDuration) another
+                            .intersectWith(toDateTimeDuration(((DateTimeDuration) another)
+                                    .getStartDate()))).toWeekDayDuration();
         } else {
-            return toDateTimeDuration(LocalDate.now())
-                    .intersectWith(((WeekDayDuration) another).toDateTimeDuration(LocalDate.now()));
+            return ((DateTimeDuration) getDtd()
+                    .intersectWith(((WeekDayDuration) another)
+                            .getDtd())).toWeekDayDuration();
         }
     }
 
-    @Override
+
     public int compareTo(TimedDuration another) {
         return getDuration().compareTo(another.getDuration());
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof WeekDayDuration) {
+            return getStartValue() == (((WeekDayDuration) obj).getStartValue())
+                    && getEndValue() == (((WeekDayDuration) obj).getEndValue());
+        } else {
+            return super.equals(obj);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return getStartDay().toString()
+                + "T" + getStartTime() + "\n" + getEndDay().toString() + "T" + getEndTime() + "\n";
+    }
+
+
     public WeekDayDuration getCopy() {
-        return new WeekDayDuration(this.startDow, this.startTime, this.endDow, this.endTime, this.duration);
+        return new WeekDayDuration(this.start, this.end, this.duration);
     }
 }

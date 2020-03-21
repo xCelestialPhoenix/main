@@ -19,6 +19,7 @@ public interface TimeUtil {
     };
     LocalTime BEGIN_DAY_TIME = LocalTime.of(0, 0, 0);
     LocalTime END_DAY_TIME = LocalTime.of(23, 59, 59);
+    LocalDate EX_DATE = LocalDate.of(1970, 1, 1);
 
     /**
      * Parse date string to LocalDate

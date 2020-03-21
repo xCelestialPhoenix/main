@@ -255,7 +255,7 @@ public class DateTimeDuration implements TimedDuration {
             }
             if (d.endDateTime.compareTo(this.endDateTime) < 0) {
                 lst.add(DateTimeDuration.parseFromDateTime(d.endDateTime,
-                        Duration.between(this.endDateTime, d.endDateTime)));
+                        Duration.between(d.endDateTime, this.endDateTime)));
             }
         } else {
             lst.add(this);
@@ -265,6 +265,7 @@ public class DateTimeDuration implements TimedDuration {
 
     /**
      * intersection with
+     *
      * @param another another
      * @return timed duration
      */
@@ -286,6 +287,18 @@ public class DateTimeDuration implements TimedDuration {
             return new DateTimeDuration(start, end);
         } else {
             return ZERO;
+        }
+    }
+
+    /**
+     * convert this to WeekDauDuration. If duration more than a week, return a whole week
+     * @return WeekDayDuration
+     */
+    WeekDayDuration toWeekDayDuration() {
+        if (this.duration.compareTo(new WeekDayDuration().getDuration()) >= 0) {
+            return new WeekDayDuration();
+        } else {
+            return new WeekDayDuration(getStartDay(), getStartTime(), getEndDay(), getEndTime());
         }
     }
 

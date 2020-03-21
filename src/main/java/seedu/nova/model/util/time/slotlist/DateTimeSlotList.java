@@ -5,6 +5,8 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -48,11 +50,11 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
     }
 
     public List<DateTimeDuration> getSlotContaining(TimedDuration d) {
-        return this.freeSlotSet.stream().parallel().filter(x -> x.isSubsetOf(d)).collect(Collectors.toList());
+        return this.freeSlotSet.stream().parallel().filter(d::isSubsetOf).collect(Collectors.toList());
     }
 
     public boolean isSupersetOf(TimedDuration d) {
-        return this.freeSlotSet.stream().parallel().anyMatch(x -> x.isSubsetOf(d));
+        return this.freeSlotSet.stream().parallel().anyMatch(d::isSubsetOf);
     }
 
     public List<DateTimeDuration> getSlotOn(DayOfWeek day) {
@@ -62,19 +64,30 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
 
     /**
      * delete the duration ed from the list of durations.
+     *
      * @param ed timed duration to delete
      */
     public void excludeDuration(DateTimeDuration ed) {
-        DateTimeDuration lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime()).getValue();
-        if (lastFreeSlot.isOverlapping(ed)) {
-            List<TimedDuration> comp = lastFreeSlot.relativeComplementOf(ed);
-            deleteDuration(lastFreeSlot);
+        Map.Entry<LocalDateTime, DateTimeDuration> lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime());
+        SortedMap<LocalDateTime, DateTimeDuration> nextFreeSlotMap = this.freeSlotMap.tailMap(ed.getStartDateTime());
+
+        if (lastFreeSlot != null && ed.isOverlapping(lastFreeSlot.getValue())) {
+            deleteDuration(lastFreeSlot.getValue());
+            List<TimedDuration> comp = lastFreeSlot.getValue().relativeComplementOf(ed);
             comp.forEach(this::addDuration);
+        }
+        for (Map.Entry<LocalDateTime, DateTimeDuration> e : nextFreeSlotMap.entrySet()) {
+            if (e.getValue().isOverlapping(ed)) {
+                deleteDuration(e.getValue());
+                List<TimedDuration> comp = e.getValue().relativeComplementOf(ed);
+                comp.forEach(this::addDuration);
+            }
         }
     }
 
     /**
      * exclude all the durations in another
+     *
      * @param another date time slot list
      * @return compliment of another
      */
@@ -86,6 +99,7 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
 
     /**
      * intersection with another timed duration
+     *
      * @param lst another timed duration
      * @return list of intersection duration
      */
@@ -98,19 +112,22 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
 
     /**
      * add ed back to list
+     *
      * @param ed datetimeduration
      */
     public void includeDuration(DateTimeDuration ed) {
-        DateTimeDuration lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime()).getValue();
-        DateTimeDuration nextFreeSlot = this.freeSlotMap.ceilingEntry(ed.getEndDateTime()).getValue();
+        Map.Entry<LocalDateTime, DateTimeDuration> lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime());
+        SortedMap<LocalDateTime, DateTimeDuration> nextFreeSlotMap = this.freeSlotMap.tailMap(ed.getStartDateTime());
 
-        if (ed.isConnected(lastFreeSlot)) {
-            deleteDuration(lastFreeSlot);
-            ed = new DateTimeDuration(lastFreeSlot.getStartDateTime(), ed.getEndDateTime());
+        if (lastFreeSlot != null && ed.isConnected(lastFreeSlot.getValue())) {
+            deleteDuration(lastFreeSlot.getValue());
+            ed = new DateTimeDuration(lastFreeSlot.getValue().getStartDateTime(), ed.getEndDateTime());
         }
-        if (nextFreeSlot.isConnected(ed)) {
-            deleteDuration(nextFreeSlot);
-            ed = new DateTimeDuration(ed.getStartDateTime(), nextFreeSlot.getEndDateTime());
+        for (Map.Entry<LocalDateTime, DateTimeDuration> e : nextFreeSlotMap.entrySet()) {
+            if (e.getValue().isConnected(ed)) {
+                deleteDuration(e.getValue());
+                ed = new DateTimeDuration(ed.getStartDateTime(), e.getValue().getEndDateTime());
+            }
         }
         addDuration(ed);
     }
