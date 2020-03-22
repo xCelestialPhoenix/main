@@ -362,9 +362,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |Student | Delete tasks on study plan | Can delete study tasks if I don't need it anymore
 
-|`* * *` |Student | Auto-generate event from a task | If I feel like I want to do a study task today, I can generate an event on today's schedule, or any day.
+|`* * *` |Student | Generate event from a task | If I feel like I want to do a study task today, I can generate an
+event on today's schedule so that I can keep up with my study plan.
 
-|`* *`   |Student | View statistics of my task progress | Can see how much I've done for each tasks on my study plan.
+|`* *`   |Student | View statistics of my task progress | Can see how much I've done for each task on my study plan.
 
 |=======================================================================
 
@@ -373,7 +374,7 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `nova` and the *Actor* is the `student`, unless specified otherwise)
+(For all use cases below, the *System* is the `NOVA` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
 === Use case 1: Delete a contact
@@ -546,8 +547,7 @@ Use case ends.
 *MSS*
 
 1.  User enter command to view statistics of every tasks in study plan.
-2.  Study Planner of NOVA calculates all the statistics of every tasks.
-3.  NOVA shows all the statistics of every task.
+2.  NOVA calculates and shows all the statistics of every task.
 +
 Use case ends.
 
@@ -565,8 +565,7 @@ Use case ends.
 *MSS*
 
 1.  User enter command to schedules a task into a particular day.
-2.  Study Planner of NOVA generates an event based on the current schedule and the task requirements.
-3.  NOVA adds the generated event into schedule.
+2.  NOVA generates and adds the event into schedule.
 +
 Use case ends.
 
