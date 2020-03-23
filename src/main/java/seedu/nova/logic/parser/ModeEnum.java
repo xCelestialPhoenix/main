@@ -6,6 +6,6 @@ package seedu.nova.logic.parser;
 public enum ModeEnum {
     ADDRESSBOOK,
     EVENT,
-    SCHEDULER,
+    SCHEDULE,
     PROGRESSTRACKER
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -22,6 +23,8 @@ import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.testutil.PersonBuilder;
@@ -153,11 +156,28 @@ public class AbAddCommandTest {
         }
 
         @Override
+        public String viewSchedule(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isWithinSem(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Mode getMode() {
             return null;
         }
 
         @Override
+        public void addEvent(Event e) {
+        }
+
+        @Override
+        public void addLesson(Lesson l) {
+        }
+
         public ProgressTracker getProgressTracker() {
             return null;
         }

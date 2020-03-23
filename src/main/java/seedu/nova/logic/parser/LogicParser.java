@@ -10,8 +10,10 @@ import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
+import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
+import seedu.nova.logic.parser.scparser.ScheduleParser;
 import seedu.nova.model.Model;
 
 /**
@@ -26,7 +28,7 @@ public class LogicParser {
     private final NavCommandParser navCommandParser;
     private final AddressBookParser addressBookParser;
     private final EventParser eventParser;
-    private final ScheduleParser scheduleParser;
+    private final seedu.nova.logic.parser.scparser.ScheduleParser scheduleParser;
     private final ProgresstrackerParser progresstrackerParser;
     private Model model;
 
@@ -60,7 +62,7 @@ public class LogicParser {
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 // EventHelpCommand.MESSAGE_USAGE));
 
-            case SCHEDULER:
+            case SCHEDULE:
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 // SchedulerHelpCommand.MESSAGE_USAGE));
 
@@ -84,13 +86,14 @@ public class LogicParser {
             switch (mode) {
 
             case ADDRESSBOOK:
-                return addressBookParser.parseCommand(userInput);
+                //return addressBookParser.parseCommand(userInput);
+                return addressBookParser.parseCommand(commandWord, arguments);
 
             case EVENT:
-                return eventParser.parseCommand(userInput);
+                return eventParser.parseCommand(commandWord, arguments);
 
-            case SCHEDULER:
-                return scheduleParser.parseCommand(userInput);
+            case SCHEDULE:
+                return scheduleParser.parseCommand(commandWord, arguments);
 
             case PROGRESSTRACKER:
                 return progresstrackerParser.parseCommand(commandWord, arguments);

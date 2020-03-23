@@ -56,7 +56,7 @@ public class AbRemarkCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), remark);
+                personToEdit.getCategory(), remark);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -69,7 +69,15 @@ public class AbRemarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        //String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = "";
+        if (!remark.value.isEmpty()) {
+            message = MESSAGE_ADD_REMARK_SUCCESS;
+            message = message + "\nRemark: " + remark;
+        } else {
+            message = MESSAGE_DELETE_REMARK_SUCCESS;
+        }
+
         return String.format(message, personToEdit);
     }
 
