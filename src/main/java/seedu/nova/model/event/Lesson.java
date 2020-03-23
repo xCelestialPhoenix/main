@@ -16,6 +16,10 @@ public class Lesson extends Event {
         this.day = day;
     }
 
+    public Lesson(Lesson lesson) {
+        this(lesson.desc, lesson.venue, lesson.startTime, lesson.endTime, lesson.day);
+    }
+
     public DayOfWeek getDay() {
         return day;
     }
