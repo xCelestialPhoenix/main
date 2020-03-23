@@ -455,7 +455,7 @@ Set a reminder for the project meeting on 2 Mar 2020.
 You can use it to create study-events automatically based on the current schedule and study plan.
 You can modify the auto-generated events on the schedule manually if you wish.
 
-==== Create Routine Task: `task`
+==== Create Routine Task: `routine`
 Creates routine tasks in your study plan.
 
 Format: +
@@ -470,7 +470,7 @@ Example: +
 
 Creates a new task “read cs2103 textbook” which will create an event “read cs2103 textbook” that lasts for 30 minutes weekly if possible when being scheduled.
 
-==== Create Flexible Day-Task: `task`
+==== Create Flexible Day-Task: `flexible`
 Creates flexible tasks in your study plan, which will create one event per day when being scheduled.
 
 Format: +
