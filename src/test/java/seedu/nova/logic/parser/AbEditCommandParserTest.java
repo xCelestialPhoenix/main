@@ -1,11 +1,8 @@
 package seedu.nova.logic.parser;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.nova.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.nova.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.nova.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.nova.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.nova.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -15,8 +12,6 @@ import static seedu.nova.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.nova.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.nova.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.nova.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.nova.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.nova.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -24,7 +19,7 @@ import static seedu.nova.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.nova.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.nova.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.nova.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -37,16 +32,15 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.logic.parser.abparsers.AbEditCommandParser;
-import seedu.nova.model.person.Address;
+import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
-import seedu.nova.model.tag.Tag;
 import seedu.nova.testutil.EditPersonDescriptorBuilder;
 
-public class AbAbEditCommandParserTest {
+public class AbEditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_CATEGORY;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbEditCommand.MESSAGE_USAGE);
@@ -85,8 +79,7 @@ public class AbAbEditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid nova
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Category.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -97,12 +90,12 @@ public class AbAbEditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        /*assertParseFailure(parser, "1" + TAG_DESC_HUSBAND, Category.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND, Category.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_HUSBAND, Category.MESSAGE_CONSTRAINTS);*/
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -110,11 +103,11 @@ public class AbAbEditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
+                .withTags(VALID_TAG_HUSBAND).build();
         AbEditCommand expectedCommand = new AbEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -153,12 +146,6 @@ public class AbAbEditCommandParserTest {
         expectedCommand = new AbEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // nova
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new AbEditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -166,20 +153,20 @@ public class AbAbEditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
+    /*@Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         AbEditCommand expectedCommand = new AbEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
-    }
+    }*/
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
@@ -191,22 +178,11 @@ public class AbAbEditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+                .build();
         expectedCommand = new AbEditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
-        AbEditCommand expectedCommand = new AbEditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

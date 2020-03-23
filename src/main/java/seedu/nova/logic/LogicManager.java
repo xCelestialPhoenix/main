@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.commands.Command;
@@ -17,6 +18,7 @@ import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
 import seedu.nova.storage.Storage;
 
+
 /**
  * The main LogicManager of the app.
  */
@@ -26,7 +28,6 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-
     private final LogicParser logicParser;
 
     public LogicManager(Model model, Storage storage) {
@@ -42,7 +43,6 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = logicParser.parseCommand(commandText);
-
         commandResult = command.execute(model);
 
         try {

@@ -1,12 +1,17 @@
 package seedu.nova.logic.parser.abparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
 
 import seedu.nova.logic.commands.abcommands.AbFindCommand;
+import seedu.nova.logic.parser.ArgumentMultimap;
+import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.Parser;
+import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.person.Name;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -21,6 +26,20 @@ public class AbFindCommandParser implements Parser<AbFindCommand> {
      */
     public AbFindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        Name name;
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            seedu.nova.logic.commands.abcommands.AbFindCommand.MESSAGE_USAGE));
+        }
+
+        String[] nameKeywords = name.toString().split("\\s+");
+        return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        /*String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -29,7 +48,7 @@ public class AbFindCommandParser implements Parser<AbFindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));*/
     }
 
 }

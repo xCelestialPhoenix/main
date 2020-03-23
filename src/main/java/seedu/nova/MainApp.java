@@ -2,11 +2,13 @@ package seedu.nova;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
 import seedu.nova.commons.core.Config;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.commons.core.Version;
@@ -20,6 +22,7 @@ import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
@@ -30,6 +33,7 @@ import seedu.nova.storage.StorageManager;
 import seedu.nova.storage.UserPrefsStorage;
 import seedu.nova.ui.Ui;
 import seedu.nova.ui.UiManager;
+
 
 /**
  * Runs the application.
@@ -90,7 +94,8 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5,
+                3)));
     }
 
     private void initLogging(Config config) {

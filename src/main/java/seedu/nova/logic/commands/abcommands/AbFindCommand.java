@@ -2,12 +2,10 @@ package seedu.nova.logic.commands.abcommands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.nova.commons.core.Messages;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.model.Model;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
-
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -19,8 +17,8 @@ public class AbFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: KEYWORD n\\[MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " n\\alice";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -32,8 +30,12 @@ public class AbFindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        String listOfPeople = "Found the following: " + "\n";
+        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i) + "\n";
+        }
+
+        return new CommandResult(listOfPeople);
     }
 
     @Override
