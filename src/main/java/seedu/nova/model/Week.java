@@ -2,7 +2,8 @@ package seedu.nova.model;
 
 import java.time.LocalDate;
 
-import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Week.
@@ -33,9 +34,8 @@ public class Week {
      * Add event.
      *
      * @param event the event
-     * @throws CommandException the command exception
      */
-    public void addEvent(Event event) throws CommandException {
+    public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
@@ -51,9 +51,8 @@ public class Week {
      * Add lesson.
      *
      * @param lesson the lesson
-     * @throws CommandException the command exception
      */
-    public void addLesson(Lesson lesson) throws CommandException {
+    public void addLesson(Lesson lesson) {
 
         int day = lesson.getDay().getValue() - 1;
 
