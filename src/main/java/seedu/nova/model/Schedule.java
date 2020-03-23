@@ -2,11 +2,10 @@ package seedu.nova.model;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * The type Schedule.
@@ -34,22 +33,14 @@ public class Schedule {
         this.endDate = endDate;
 
         weeks = new Week[17];
-
-        try {
-            this.addLesson(new Lesson("CS2103 Tutorial", "COM1-B103", LocalTime.of(10, 0),
-                    LocalTime.of(11, 0), DayOfWeek.FRIDAY));
-        } catch (CommandException e) {
-            //Do nothing
-        }
     }
 
     /**
-     * Add event.
+     * Adds event.
      *
      * @param event the event
-     * @throws CommandException the command exception
      */
-    public void addEvent(Event event) throws CommandException {
+    public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
         int weekNumber = calWeekNumber(date);
@@ -63,12 +54,11 @@ public class Schedule {
     }
 
     /**
-     * Add lesson.
+     * Adds lesson.
      *
      * @param lesson the lesson
-     * @throws CommandException the command exception
      */
-    public void addLesson(Lesson lesson) throws CommandException {
+    public void addLesson(Lesson lesson) {
 
         for (int i = 0; i < 14; i++) {
 
@@ -85,7 +75,7 @@ public class Schedule {
     }
 
     /**
-     * View string.
+     * Views schedule on specified date.
      *
      * @param date the date
      * @return the string

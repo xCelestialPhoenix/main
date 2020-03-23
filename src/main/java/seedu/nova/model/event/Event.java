@@ -30,6 +30,14 @@ public class Event {
         return date;
     }
 
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
     public void setDate(LocalDate date) {
         this.date = date;
     }
