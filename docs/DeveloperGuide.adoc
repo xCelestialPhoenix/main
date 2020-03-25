@@ -100,18 +100,18 @@ image::LogicClassDiagram.png[]
 *API* :
 link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `LogicParser` class to determine which mode the user is in when they input a command.
+.  After which, the relevant parser is called (e.g. `EventParser` or `AddressBookParser`).
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("done t\2020-03-20 i\2")` API call.
 
-.Interactions Inside the Logic Component for the `delete 1` Command
-image::DeleteSequenceDiagram.png[]
+.Interactions Inside the Logic Component for the `done t\2020-03-20 i\2` Command
+image::EventMarkDoneSeqDiagram.png[]
 
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 [[Design-Model]]
 === Model component
@@ -155,7 +155,53 @@ Classes used by multiple components are in the `seedu.nova.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+=== Manage Events
+The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
+Users are able to:
+
+* add events
+* delete events
+* mark events as done
+* add notes to events
+* find events
+* repeat events
+
+==== Implementation - Marking an event as done
+The mark as done feature allows users to mark events they have completed as done.
+This feature is facilitated by `EventParser`, `EventMarkDoneCommandParser` and `EventMarkDoneCommand`.
+The operation is exposed in the `Model` interface as `Model#markDone()`.
+
+Given below is an example usage scenario and how the mark event as done mechanism behaves at each step.
+
+1. The user does `view t\2020-03-20` to view their events on 20th March 2020.
+
+2. The user executes `done t\2020-03-20 i\2` command to mark the second event on 20th March 2020 as done.
+
+3. `EventMarkDoneParser` creates a new `EventMarkDoneCommand`.
+
+4. `LogicManager` executes the `EventMarkDoneCommand`.
+
+5. `Model#markDone()` is called, and the `Schedule` object in `ModelManager` is updated.
+
+The following sequence diagram shows how the mark event as done operation works:
+
+image::EventMarkDoneSeqDiagram.png[]
+
+
+==== Design Considerations
+Aspect: Syntax of Marking an Event as Done
+
+* **Alternative 1 (current choice):** choosing the event by its date and its index in the list of events on that date
+** Pros: relatively short to type, greater ease of implementation
+** Cons: users have to view the list of events on that date before determining which event to mark as done
+
+* **Alternative 2:** choosing the event by description
+** Pros: more recognisable for users
+** Cons: difficulty in implementing as certain events may have the exact same descriptions
+
+
 // tag::undoredo[]
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
