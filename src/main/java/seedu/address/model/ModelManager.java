@@ -1,20 +1,25 @@
-package seedu.address.model;
+package seedu.nova.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.commons.core.LogsCenter;
+import seedu.nova.logic.parser.ModeEnum;
+import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
+import seedu.nova.model.person.Person;
+import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -35,6 +40,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+<<<<<<< HEAD:src/main/java/seedu/address/model/ModelManager.java
+=======
+        this.schedule = schedule;
+        this.mode = new Mode(ModeEnum.HOME);
+>>>>>>> 0f75310d9ab3998f0cc8e07b39ef76fd46ba57ac:src/main/java/seedu/nova/model/ModelManager.java
     }
 
     public ModelManager() {
@@ -148,4 +158,34 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+<<<<<<< HEAD:src/main/java/seedu/address/model/ModelManager.java
+=======
+    //=========== Scheduler Methods =============================================================
+
+    @Override
+    public String viewSchedule(LocalDate date) {
+
+        return schedule.view(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(LocalDate date) {
+
+        return schedule.checkDateValidity(date);
+
+    }
+
+    //=========== Event and Schedule =============================================================
+    @Override
+    public void addEvent(Event e) {
+        schedule.addEvent(e);
+    }
+
+    @Override
+    public void addLesson(Lesson l) {
+        schedule.addLesson(l);
+    }
+
+>>>>>>> 0f75310d9ab3998f0cc8e07b39ef76fd46ba57ac:src/main/java/seedu/nova/model/ModelManager.java
 }
