@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+<<<<<<< HEAD:src/test/java/seedu/address/logic/LogicManagerTest.java
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +10,14 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
+=======
+import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.nova.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.nova.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.nova.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.nova.testutil.Assert.assertThrows;
+import static seedu.nova.testutil.TypicalPersons.AMY;
+>>>>>>> 635f78c2a98fb8cbb22dafb1acf625a1c319eacb:src/test/java/seedu/nova/logic/LogicManagerTest.java
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -56,11 +65,13 @@ public class LogicManagerTest {
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
+    /*
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
+     */
 
     @Test
     public void execute_validCommand_success() throws Exception {

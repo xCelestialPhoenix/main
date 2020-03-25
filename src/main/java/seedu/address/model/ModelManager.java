@@ -35,6 +35,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+<<<<<<< HEAD:src/main/java/seedu/address/model/ModelManager.java
+=======
+        this.schedule = schedule;
+        this.mode = new Mode(ModeEnum.HOME);
+>>>>>>> 635f78c2a98fb8cbb22dafb1acf625a1c319eacb:src/main/java/seedu/nova/model/ModelManager.java
     }
 
     public ModelManager() {
@@ -148,4 +153,34 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+<<<<<<< HEAD:src/main/java/seedu/address/model/ModelManager.java
+=======
+    //=========== Scheduler Methods =============================================================
+
+    @Override
+    public String viewSchedule(LocalDate date) {
+
+        return schedule.view(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(LocalDate date) {
+
+        return schedule.checkDateValidity(date);
+
+    }
+
+    //=========== Event and Schedule =============================================================
+    @Override
+    public void addEvent(Event e) {
+        schedule.addEvent(e);
+    }
+
+    @Override
+    public void addLesson(Lesson l) {
+        schedule.addLesson(l);
+    }
+
+>>>>>>> 635f78c2a98fb8cbb22dafb1acf625a1c319eacb:src/main/java/seedu/nova/model/ModelManager.java
 }
