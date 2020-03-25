@@ -404,6 +404,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
 
+|`* * *` |Student | Add tasks to study plan | Can add study tasks to my study plan
+
+|`* * *` |Student | Delete tasks on study plan | Can delete study tasks if I don't need it anymore
+
+|`* * *` |Student | Generate event from a task | If I feel like I want to do a study task today, I can generate an
+event on today's schedule so that I can keep up with my study plan.
+
+|`* *`   |Student | View statistics of my task progress | Can see how much I've done for each task on my study plan.
+
 |=======================================================================
 
 _{More to be added}_
@@ -539,6 +548,78 @@ Use case ends.
 
 [none]
 * 2a. The timetable is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case 8: User add a task into study plan.
+
+*MSS*
+
+1.  User enter command to create a task with name specified by user.
+2.  Study Planner of NOVA adds the task into study plan.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. There is already a task with the same name.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 9: User add a task into study plan
+
+*MSS*
+
+1.  User enter command to delete a task with name specified by user.
+2.  Study Planner of NOVA deletes the task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task with the name specified exists in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 10: User view statistics of every tasks in study plan
+
+*MSS*
+
+1.  User enter command to view statistics of every tasks in study plan.
+2.  NOVA calculates and shows all the statistics of every task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 11: User schedules a task into a particular day.
+
+*MSS*
+
+1.  User enter command to schedules a task into a particular day.
+2.  NOVA generates and adds the event into schedule.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Unable to generate event.
+*   1a1. NOVA shows error message.
 +
 Use case ends.
 
