@@ -248,6 +248,7 @@ _[.small]#Figure 3.3: GUI of NOVA after user typed +
 
 ==== Add a Meeting: `meeting`
 You can add a meeting as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -258,6 +259,7 @@ Creates an event for a team meeting at COM1 on 20 Feb 2020 to set up CS2103T web
 
 ==== Add a Study Session: `study`
 You can add a study session as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -269,6 +271,7 @@ Creates an event for study session at COM1 on 20 Feb 2020 from 4pm to 5pm.
 
 ==== Add a Consultation Session: `consultation`
 You can add a consultation session as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -279,6 +282,7 @@ Creates an event for consultation at COM1 on 20 Feb 2020 to clarify UML from 3pm
 
 ==== Add a Lesson: `lesson`
 You can add a lesson as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -289,6 +293,7 @@ Creates an event for CS2103T tutorial at COM1-B103 on Monday from 3pm to 5pm.
 
 ==== Delete Event: `delete`
 You can delete an event that you no longer want.
+If the event does not exist, NOVA will inform you.
 
 Format: `delete t\[YYYY-MM-DD] i\[index]`
 
@@ -302,6 +307,7 @@ Deletes the second event on 20 Feb 2020.
 
 ==== Mark Event as Done: `done`
 You can mark an event as done once it has been completed.
+If the event does not exist, NOVA will inform you.
 
 Format: `done t\[YYYY-MM-DD] i\[index]`
 
@@ -328,6 +334,7 @@ Finds the events with description containing "cool peeps".
 
 ==== Add Notes to Event: `note`
 You can add additional notes about an event.
+If the event does not exist, NOVA will inform you.
 
 Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 
@@ -341,6 +348,7 @@ Adds a note with description "Remember to bring your charger!" to the second eve
 
 ==== Repeat an Event: `repeat`
 You can add repeated events which occur weekly for a given number of times.
+If the event does not exist, NOVA will inform you.
 
 Format: `repeat t\[YYYY-MM-DD] i\[index] c\[count]`
 
