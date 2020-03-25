@@ -360,9 +360,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |mark tasks as done |track how many tasks I have finished
 
-|`* * *` |student |keep track of my progress in terms of understanding for concepts and skills in CS2103T |make sure I don't lag too far behind
-
-|`* * *` |student |add notes to concepts and skills taught |value add to my learning process
+|`* * *` |student |add notes to project tasks |keep track of details regarding the tasks
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
