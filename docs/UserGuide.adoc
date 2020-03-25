@@ -36,8 +36,8 @@ _[.small]#Fig 1: GUI of NOVA#_
 .  Some example commands you can try:
 
 * *`nav ab`*: navigates to address book mode
-** *`list`* : lists all contacts
-** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named `John Doe` to the Address Book and
+** *`list `* : lists all contacts
+** *`add`*`n\John Doe p\98765432 e\john@gmail.com c\classmate` : adds a contact named `John Doe` to the Address Book and
 categorise as classmate
 * *`exit`* : exits the app
 
@@ -85,60 +85,52 @@ Format: `add n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe"). +
-The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
 * `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
-* You can only add either `classmate` or `teammate` as category
+* The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
 ====
 
 Example: +
-`add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
+`add n\John Doe p\12345678 c\classmate`
 
-Adds a new contact with name Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
-classmate category.
+Adds a new contact with name John Doe, phone number 12345678 into the classmate category.
 
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
 
-Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
+Format: `edit INDEX n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* Edits the person at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided
-* Optional fields are `n\[name]`, `p\[phone number]`, `e\[email address]` or `c\[classmate/teammate]`
-* Existing values will be updated to the input values
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
-The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
-* You can only edit either `classmate` or `teammate` as category
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. +
+The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
 ====
 
-Example:
+Example: +
+`edit n\John Doe p\88888888 c\classmate`
 
-* `edit 1 p\88888888` +
-Edits the phone number of the first person in your address book to 88888888.
-
-* `edit 3 e\\kly838@hotmail.com` +
-Edits the email address of the third person in your address book to kly838@hotmail.com.
+Edits the phone number of John Doe to 88888888.
 
 ==== Delete Contact : `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
-Format: `delete [index]`
+Format: `delete INDEX`
 
 [NOTE]
 ====
-* The index refers to the index number shown in the displayed person list
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 ====
 
 Example: +
 `delete 1`
 
-Deletes the first person in your address book.
+Deletes contact at index 1 from your address book.
 
 ==== Clear all Contacts: `clear`
 You can clear the contacts that you have added in your address book. If there is no contact, NOVA will let you know.
@@ -157,8 +149,8 @@ Format: `list c\[classmate/teammate]`
 
 [NOTE]
 ====
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
-* There are only `classmate` and `teammate` categories
+* `[classmate/teammate]` is not case-sensitive. (E.g. "ClassMate" is the same as "classmate")
+* There are only `classmate` and `teammate` categories.
 ====
 
 Example:
@@ -175,71 +167,57 @@ You can find a contact added to the address book easily with a name.
 Format: `find n\[name]`
 
 [NOTE]
-====
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* You can find partial name
-====
+`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
 
-Example:
-
-* `find n\Jane doe` +
-Finds a saved contact named Jane Doe.
-
-* `find n\Jane` +
-Finds all saved contacts named Jane.
+Example: +
+`find n\john DOE`
 
 ==== Add Picture to Contact: `addpic`
 You can add a profile picture to a contact in your address book.
 
-Format: `addpic [index] pa\[path]`
+Format: `addpic INDEX pa\[path]`
 
 [NOTE]
 ====
-* Adds profile picture of the person at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
-* Absolute file path is used for `[path]`
-* If a profile picture had already been added, any newly added profile picture will be replaced
+* Adds profile picture of the person at the specified INDEX. The index refers to the index number shown in
+the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Absolute file path is used for `[path]`.
 ====
 
 Example: +
 `addpic 2 pa\C:\Users\aloha\Desktop\aloha.png`
 
-Sets the profile picture of the second contact in your address book to aloha.png.
+Sets the profile picture of contact at index 1 to aloha.png.
 
 ==== Delete Picture in Contact: `deletepic`
 You can delete the profile picture of a contact in your address book.
 
-Format: `deletepic [index]`
+Format: `deletepic INDEX`
 
 [NOTE]
 ====
-* Deletes the picture at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
+* Deletes the picture at the specified INDEX.
+* The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 ====
 
 Example: +
 `deletepic 2`
 
-Deletes the profile picture of the second contact in your address book.
+Deletes the profile picture contact at index 1.
 
 ==== Add Category Specific Remarks: `remark`
 You can add remarks, that are category specific, to a contact.
 
-Format: `remark [index] r\[remark]`
+Format: `remark INDEX r\[description]`
 
 [NOTE]
-====
-* Adds category specific remark at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
-====
+`[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
 
 Example: +
 `remark 2 r\He's a nice teammate`
 
-Adds the remark "He's a nice teammate" to the second contact in your address book.
+Adds the remark "He's a nice teammate" to contact at index 2.
 
 ==== Undo Command: `undo`
 You can undo a command that you have entered.
@@ -455,32 +433,32 @@ Set a reminder for the project meeting on 2 Mar 2020.
 You can use it to create study-events automatically based on the current schedule and study plan.
 You can modify the auto-generated events on the schedule manually if you wish.
 
-==== Create Routine Task: `task`
+==== Create Routine Task: `routine`
 Creates routine tasks in your study plan.
 
 Format: +
 `routine p\[task name] f\[frequency] d\[event duration in minutes]`
 
-.Restriction:
-* [frequency] = weekly / daily
-* [event duration in minutes] must be between 0 and 1440.
+[NOTE]
+[frequency] = weekly / daily +
+[event duration in minutes] must be between 0 and 1440.
 
 Example: +
 `routine p\read cs2103 textbook f\weekly d\30`
 
 Creates a new task “read cs2103 textbook” which will create an event “read cs2103 textbook” that lasts for 30 minutes weekly if possible when being scheduled.
 
-==== Create Flexible Day-Task: `task`
+==== Create Flexible Day-Task: `flexible`
 Creates flexible tasks in your study plan, which will create one event per day when being scheduled.
 
 Format: +
 `flexible p\[task name] t\[total minutes] mind\[maximum event duration in minutes] maxd\[maximum event duration in minutes]`
 
-.Restriction:
-* [total minutes] must be greater than [minimum event duration in minutes].
-* [minimum event duration in minutes] must be between 0 and 1440.
-* [maximum event duration in minutes] must be between 0 and 1440.
-* [maximum event duration in minutes] must be greater or equal to [minimum event duration in minutes].
+[NOTE]
+[total minutes] must be greater than [minimum event duration in minutes]. +
+[minimum event duration in minutes] must be between 0 and 1440. +
+[maximum event duration in minutes] must be between 0 and 1440. +
+[maximum event duration in minutes] must be greater or equal to [minimum event duration in minutes].
 
 Example: +
 `flexible p\study vocabulary f\daily mind\10 maxd\60`
@@ -543,7 +521,6 @@ Example 2: +
 ** There is no such free slot available.
 ** There is already a same event in the same day.
 ** If the total time of all the events related to the task combined exceeds the total time specified by the task.
-
 
 === Progress Tracker
 A tracker to help you track your project progress. Access this mode by entering
