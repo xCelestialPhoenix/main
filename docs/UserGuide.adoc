@@ -324,7 +324,7 @@ Format: `find event k\[keywords]`
 Example: +
 `find event cool peeps`
 
-Finds the events with description containing cool or peeps.
+Finds the events with description containing "cool peeps".
 
 ==== Add Notes to Event: `note`
 You can add additional notes about an event.
@@ -348,7 +348,7 @@ Format: `repeat t\[YYYY-MM-DD] i\[index] c\[count]`
 `[index]` and `[count]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
-`repeat 3 t\2020-03-02 i\2`
+`repeat t\2020-03-02 i\2 c\3`
 
 Your second event on 2nd March 2020 will be repeated for the next 3 weeks.
 
