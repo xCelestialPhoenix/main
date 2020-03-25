@@ -155,8 +155,6 @@ Classes used by multiple components are in the `seedu.nova.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
-
 === Manage Events
 The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
 Users are able to:
@@ -201,6 +199,8 @@ Aspect: Syntax of Marking an Event as Done
 ** Pros: more recognisable for users
 ** Cons: difficulty in implementing as certain events may have the exact same descriptions
 
+
+// tag::undoredo[]
 
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
