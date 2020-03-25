@@ -156,6 +156,30 @@ Classes used by multiple components are in the `seedu.nova.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
+
+=== Manage Events
+The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
+Users are able to:
+
+* add events
+* delete events
+* mark events as done
+* add notes to events
+* find events
+* repeat events
+
+==== Implementation - Marking an event as done
+The mark as done feature allows users to mark events they have completed as done.
+This feature is facilitated by `EventParser`, `EventMarkDoneCommandParser` and `EventMarkDoneCommand`.
+The operation is exposed in the `Model` interface as `Model#markDone()`.
+
+Given below is an example usage scenario and how the mark event as done mechanism behaves at each step.
+
+1.
+
+==== Design Considerations
+
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
