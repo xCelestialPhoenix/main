@@ -81,7 +81,7 @@ image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -125,13 +125,10 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
+* stores a 'Schedule' object that represents the user's schedule.
+* stores a 'ProgressTracker' object that represents the user's progress in their project tasks.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
 
 [[Design-Storage]]
 === Storage component
@@ -307,12 +304,33 @@ image::CommitActivityDiagram.png[]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
+=== View tasks under IP project
+The view tasks feature for the IP project allows the user to view a list of tasks that were added.
 
-_{Explain here how the data encryption feature will be implemented}_
+==== Implementation
+Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
-// end::dataencryption[]
+1. The user keys in 'view p\ip w\2' into the command box.
+2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of IP project.
+3. 'PtListCommandParser' creates a new 'PtListCommand'.
+4. 'LogicManager' executes the 'PtListCommand'.
+5. 'Model#listTasks()' is called and the list of tasks is retrieved.
+
+The following sequence diagram shows how the view tasks operation works:
+
+image::PtSeqDiagram.png[]
+
+==== Design Considerations
+Aspect: Adding choice of week to view tasks
+
+* **Alternative 1 (current choice):** adding in choice of week to view tasks
+** Pros: more freedom to choose what to see as a user
+** Cons: longer command to type
+
+* **Alternative 2:** listing out the whole project tasks rather than letting user choose based on week
+** Pros: shorter command to type and user can see all their tasks at once
+** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
+
 
 === Logging
 
@@ -422,9 +440,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |mark tasks as done |track how many tasks I have finished
 
-|`* * *` |student |keep track of my progress in terms of understanding for concepts and skills in CS2103T |make sure I don't lag too far behind
-
-|`* * *` |student |add notes to concepts and skills taught |value add to my learning process
+|`* * *` |student |add notes to project tasks |keep track of details regarding the tasks
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
