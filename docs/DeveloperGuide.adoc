@@ -191,6 +191,15 @@ image::EventMarkDoneSeqDiagram.png[]
 
 
 ==== Design Considerations
+Aspect: Syntax of Marking an Event as Done
+
+* **Alternative 1 (current choice):** choosing the event by its date and its index in the list of events on that date
+** Pros: relatively short to type, greater ease of implementation
+** Cons: users have to view the list of events on that date before determining which event to mark as done
+
+* **Alternative 2:** choosing the event by description
+** Pros: more recognisable for users
+** Cons: difficulty in implementing as certain events may have the exact same descriptions
 
 
 === [Proposed] Undo/Redo feature
