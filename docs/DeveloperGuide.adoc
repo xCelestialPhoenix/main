@@ -150,6 +150,15 @@ The `Storage` component,
 === Common classes
 
 Classes used by multiple components are in the `seedu.nova.commons` package.
+All of the classes under `Commons` work independently.
+
+Most notably,
+
+* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/LogsCenter.java[`LogsCenter.java`] +
+The `LogsCenter` is used by NOVA to display logs when running NOVA in terminal.
+
+* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/Messages.java[`Messages.java`] +
+The `Messages` is used by Address Book feature and deals with messages to display regarding Address Book.
 
 == Implementation
 
@@ -221,13 +230,13 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 image::UndoRedoState0.png[]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete i\5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-image::UndoRedoState1.png[]
+image::UndoRedoState1edited.png[]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n\David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-image::UndoRedoState2.png[]
+image::UndoRedoState2edited.png[]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
@@ -354,11 +363,21 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add profile picture to added contact |know at a glance who is the person in my contact
 
-|`* * *` |student |edit profile picture to added contact |edit the picture if changes are necessary
+|`* * *` |student |delete profile picture to added contact |
 
-|`* * *` |student |delete profile picture to added contact|
+|`* * *` |student |add category specific remark |filter out a contact’s remark according to type of contact
 
-|`* * *` |student |add category specific description |filter out a contact’s remark according to type of contact
+|`* * *` |student |edit category specific remark |edit the remark if needed
+
+|`* * *` |student | delete category specific remark |category specific remark is not needed anymore
+
+|`* * *` |student |list all my contacts |keep track of my contact list
+
+|`* * *` |student |list my contacts according to category |keep track of my contact list according to different category
+
+|`* * *` |student |undo my command under Address Book feature |
+
+|`* * *` |student |redo my command under Address Book feature |
 
 |`* *` |student |add contact information on CS2103T tutors |contact them for consultations
 
