@@ -175,7 +175,20 @@ The operation is exposed in the `Model` interface as `Model#markDone()`.
 
 Given below is an example usage scenario and how the mark event as done mechanism behaves at each step.
 
-1.
+1. The user does `view t\2020-03-20` to view their events on 20th March 2020.
+
+2. The user executes `done t\2020-03-20 i\2` command to mark the second event on 20th March 2020 as done.
+
+3. `EventMarkDoneParser` creates a new `EventMarkDoneCommand`.
+
+4. `LogicManager` executes the `EventMarkDoneCommand`.
+
+5. `Model#markDone()` is called, and the `Schedule` object in `ModelManager` is updated.
+
+The following sequence diagram shows how the mark event as done operation works:
+
+image::EventMarkDoneSeqDiagram.png[]
+
 
 ==== Design Considerations
 
