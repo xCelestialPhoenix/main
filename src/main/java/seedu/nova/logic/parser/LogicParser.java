@@ -13,6 +13,7 @@ import seedu.nova.logic.parser.abparsers.AddressBookParser;
 import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
+import seedu.nova.logic.parser.scparser.ScheduleParser;
 import seedu.nova.model.Model;
 
 /**
@@ -27,7 +28,7 @@ public class LogicParser {
     private final NavCommandParser navCommandParser;
     private final AddressBookParser addressBookParser;
     private final EventParser eventParser;
-    private final ScheduleParser scheduleParser;
+    private final seedu.nova.logic.parser.scparser.ScheduleParser scheduleParser;
     private final ProgresstrackerParser progresstrackerParser;
     private Model model;
 
@@ -53,6 +54,8 @@ public class LogicParser {
 
         if (!matcher.matches()) {
             switch (mode) {
+            case HOME:
+                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavHelpCommand.MESSAGE_USAGE));
 
             case ADDRESSBOOK:
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
@@ -61,7 +64,7 @@ public class LogicParser {
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 // EventHelpCommand.MESSAGE_USAGE));
 
-            case SCHEDULER:
+            case SCHEDULE:
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 // SchedulerHelpCommand.MESSAGE_USAGE));
 
@@ -83,18 +86,20 @@ public class LogicParser {
         } else {
             //check mode
             switch (mode) {
-
+            case HOME:
+                return navCommandParser.parse(arguments.trim());
             case ADDRESSBOOK:
-                return addressBookParser.parseCommand(userInput);
+                //return addressBookParser.parseCommand(userInput);
+                return addressBookParser.parseCommand(commandWord, arguments);
 
             case EVENT:
                 return eventParser.parseCommand(commandWord, arguments);
 
-            case SCHEDULER:
-                return scheduleParser.parseCommand(userInput);
+            case SCHEDULE:
+                return scheduleParser.parseCommand(commandWord, arguments);
 
             case PROGRESSTRACKER:
-                return progresstrackerParser.parseCommand(userInput);
+                return progresstrackerParser.parseCommand(commandWord, arguments);
 
             default:
                 throw new ParseException("No such mode");

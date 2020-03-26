@@ -14,6 +14,8 @@ public class NavCommandParser implements Parser<NavCommand> {
     public NavCommand parse(String args) throws ParseException {
         requireNonNull(args);
         switch (args) {
+        case "home":
+            return new NavCommand(ModeEnum.HOME);
 
         case "addressbook":
             return new NavCommand(ModeEnum.ADDRESSBOOK);
@@ -21,8 +23,8 @@ public class NavCommandParser implements Parser<NavCommand> {
         case "event":
             return new NavCommand(ModeEnum.EVENT);
 
-        case "scheduler":
-            return new NavCommand(ModeEnum.SCHEDULER);
+        case "schedule":
+            return new NavCommand(ModeEnum.SCHEDULE);
 
         case "progresstracker":
             return new NavCommand(ModeEnum.PROGRESSTRACKER);
