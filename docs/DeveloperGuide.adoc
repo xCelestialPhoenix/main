@@ -147,6 +147,15 @@ The `Storage` component,
 === Common classes
 
 Classes used by multiple components are in the `seedu.nova.commons` package.
+All of the classes under `Commons` work independently.
+
+Most notably,
+
+* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/LogsCenter.java[`LogsCenter.java`] +
+The `LogsCenter` is used by NOVA to display logs when running NOVA in terminal.
+
+* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/Messages.java[`Messages.java`] +
+The `Messages` is used by Address Book feature and deals with messages to display regarding Address Book.
 
 == Implementation
 
@@ -198,9 +207,23 @@ Aspect: Syntax of Marking an Event as Done
 
 
 // tag::undoredo[]
+=== Address Book
+The address book feature handles the contact list of the users. Users are able to:
 
-=== [Proposed] Undo/Redo feature
-==== Proposed Implementation
+* add contacts
+* edit contacts
+* delete contacts
+* find contacts
+* list all contacts
+* list category specific contacts
+* add category specific remark for contacts
+* edit category specific remark for contacts
+* delete category specific remark for contacts
+* undo or redo command
+* add profile picture to contacts
+* delete profile picture to contacts
+
+==== Implementation - Undo or redo command
 
 The undo/redo mechanism is facilitated by `VersionedAddressBook`.
 It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
@@ -220,11 +243,11 @@ image::UndoRedoState0.png[]
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-image::UndoRedoState1.png[]
+image::UndoRedoState1edited.png[]
 
 Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-image::UndoRedoState2.png[]
+image::UndoRedoState2edited.png[]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
