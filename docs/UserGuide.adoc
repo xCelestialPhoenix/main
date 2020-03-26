@@ -261,7 +261,7 @@ the command `nav schedule`.
 image::ManageEventsUI.png[width="790" align="center"]
 [.text-center]
 _[.small]#Figure 3.3: GUI of NOVA after user typed +
-`meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`#_
+`nav schedule`#_
 
 
 ==== Add a Meeting: `meeting`
