@@ -197,4 +197,9 @@ public class ModelManager implements Model {
         schedule.addLesson(l);
     }
 
+    @Override
+    public void deleteEvent(LocalDate date, int index) {
+
+    }
+
 }

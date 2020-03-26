@@ -99,5 +99,7 @@ public interface Model {
 
     void addEvent(Event e);
 
-    public void addLesson(Lesson l);
+    void addLesson(Lesson l);
+
+    void deleteEvent(LocalDate date, int index);
 }

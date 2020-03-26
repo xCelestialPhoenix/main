@@ -15,6 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESC = new Prefix("d\\");
     public static final Prefix PREFIX_VENUE = new Prefix("v\\");
     public static final Prefix PREFIX_TIME = new Prefix("t\\");
+    public static final Prefix PREFIX_INDEX = new Prefix("i\\");
     public static final Prefix PREFIX_KEYWORD = new Prefix("k\\");
     public static final Prefix PREFIX_PROJECT = new Prefix("p\\");
     public static final Prefix PREFIX_WEEK = new Prefix("w\\");
