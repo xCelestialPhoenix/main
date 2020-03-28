@@ -199,7 +199,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(LocalDate date, int index) {
-
+        schedule.deleteEvent(date, index);
     }
 
 }

@@ -64,6 +64,21 @@ public class Week {
     }
 
     /**
+     * Deletes an event
+     * @param date the date of the event
+     * @param index the position of event in list
+     */
+    public void deleteEvent(LocalDate date, int index) {
+        int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+
+        days[day].deleteEvent(index);
+    }
+
+    /**
      * View string.
      *
      * @param date the date

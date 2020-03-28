@@ -82,6 +82,17 @@ public class Day {
     }
 
     /**
+     * Removes an event.
+     * @param index index of event in the LinkedList
+     */
+    public void deleteEvent(int index) {
+        if (index > events.size()) {
+            throw new EventNotFoundException();
+        }
+        events.remove(index - 1);
+    }
+
+    /**
      * View string.
      *
      * @return the string

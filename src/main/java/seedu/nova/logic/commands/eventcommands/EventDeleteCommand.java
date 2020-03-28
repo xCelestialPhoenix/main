@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.model.DateNotFoundException;
+import seedu.nova.model.EventNotFoundException;
 import seedu.nova.model.Model;
 
 /**
@@ -38,12 +40,20 @@ public class EventDeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.deleteEvent(date, index);
+        try {
+            model.deleteEvent(date, index);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        } catch (DateNotFoundException e) {
+            throw new CommandException("Invalid date.");
+
+        } catch (EventNotFoundException e) {
+            throw new CommandException("Invalid index.");
+        }
+
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 }
