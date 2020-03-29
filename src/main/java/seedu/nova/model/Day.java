@@ -55,7 +55,6 @@ public class Day {
                     */
                     //hasSlot = true;
                     events.add(index, event);
-                    System.err.println(events.get(index) + " has been added to " + date);
                     break;
                 }
             }
