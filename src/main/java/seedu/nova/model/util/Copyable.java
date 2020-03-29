@@ -1,7 +1,7 @@
 package seedu.nova.model.util;
 
 /**
- * Objects that can be shallow copied
+ * Objects that can be deep copied
  * @param <T> the object
  */
 public interface Copyable<T> {
