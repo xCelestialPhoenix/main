@@ -8,13 +8,14 @@ import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Day.
  */
-public class Day {
+public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
@@ -34,12 +35,18 @@ public class Day {
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
+    private Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+        this.events = events;
+        this.date = date;
+        this.freeSlots = freeSlots;
+    }
+
     /**
      * Adds event.
      *
      * @param event the event
      */
-    public void addEvent(Event event) {
+    void addEvent(Event event) {
 
         ListIterator<Event> iterator = events.listIterator();
         int index = 0;
@@ -127,4 +134,8 @@ public class Day {
         return freeSlots.getSlotList(greaterThan);
     }
 
+    @Override
+    public Day getCopy() {
+        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
+    }
 }
