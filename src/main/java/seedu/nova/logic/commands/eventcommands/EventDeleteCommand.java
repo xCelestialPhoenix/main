@@ -44,16 +44,16 @@ public class EventDeleteCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.deleteEvent(date, index);
+            String response = model.deleteEvent(date, index);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
-            throw new CommandException("Invalid date.");
+            throw new CommandException("Invalid date - you have no events on that date.");
 
         } catch (EventNotFoundException e) {
             throw new CommandException("Invalid index.");
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 }

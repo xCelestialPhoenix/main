@@ -198,8 +198,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteEvent(LocalDate date, int index) {
-        schedule.deleteEvent(date, index);
+    public String deleteEvent(LocalDate date, int index) {
+        return schedule.deleteEvent(date, index);
     }
 
 }

@@ -101,5 +101,5 @@ public interface Model {
 
     void addLesson(Lesson l);
 
-    void deleteEvent(LocalDate date, int index);
+    String deleteEvent(LocalDate date, int index);
 }

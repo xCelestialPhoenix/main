@@ -79,14 +79,14 @@ public class Schedule {
      * @param date the date of the event
      * @param index the position of event in list
      */
-    public void deleteEvent(LocalDate date, int index) throws DateNotFoundException {
+    public String deleteEvent(LocalDate date, int index) throws DateNotFoundException {
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
             throw new DateNotFoundException();
         }
 
-        weeks[weekNumber].deleteEvent(date, index);
+        return weeks[weekNumber].deleteEvent(date, index);
     }
 
     /**
