@@ -20,11 +20,27 @@ By: `Team CS2103T-F10-3`      Since: `Mar 2020`      Licence: `MIT`
 
 == Introduction
 
-Next-gen Organizing Virtual Assistant (NOVA) is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings. NOVA is designed for users who prefer to use the Command Line Interface (CLI).
+Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA). NOVA is a one-stop desktop
+application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings.
+NOVA is designed for users who prefer to use the Command Line Interface (CLI).
 
 image::GUI_v2.0.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 1: GUI of NOVA#_
+
+== About
+
+This UG is a reference guide to help you use NOVA. This document contains a quick start section to get you up and
+running soon. There is an entire section dedicated to how to use any particular feature in NOVA. If there are any
+terms that you are unsure of, check out the glossary to know the meaning.
+
+== Notations Used
+
+[NOTE]
+This icon indicates details that could help you better understand how to use NOVA.
+
+[WARNING]
+This icon indicates actions that could negatively affect your experience while using NOVA.
 
 == Quick Start
 
