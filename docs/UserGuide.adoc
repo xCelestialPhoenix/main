@@ -254,7 +254,7 @@ After you successfully enter a new command, you will lose all the undone command
 ==== Short Form [v2.0]:
 You can use the short form of your command.
 
-=== Manage Events
+=== Event Manager
 You can track events by adding them into the organizer and manage them easily. Access this mode by entering
 the command `nav schedule`.
 
@@ -271,6 +271,7 @@ If there is already an event in the time slot, NOVA will inform you.
 Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
 Example: +
+If you wish to add a project meeting into your schedule, which is from 2pm to 3pm on February 20, 2020. +
 `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`
 
 Creates an event for a team meeting at COM1 on 20 Feb 2020 to set up CS2103T website from 2pm to 3pm.
@@ -323,32 +324,6 @@ Example: +
 
 Deletes the second event on 20 Feb 2020.
 
-==== Mark Event as Done: `done`
-You can mark an event as done once it has been completed.
-If the event does not exist, NOVA will inform you.
-
-Format: `done t\[YYYY-MM-DD] i\[index]`
-
-[NOTE]
-`[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
-
-Example: +
-`done t\2020-02-20 i\2`
-
-Marks the second event on 20 Feb 2020 as completed.
-
-==== Find Event: `find`
-You can find the events that contain the keywords.
-
-Format: `find event k\[keywords]`
-
-[NOTE]
-`[keywords]` are case insensitive. (E.g. "cool peeps" will match "Cool Peeps")
-
-Example: +
-`find event cool peeps`
-
-Finds the events with description containing "cool peeps".
 
 ==== Add Notes to Event: `note`
 You can add additional notes about an event.
@@ -363,6 +338,19 @@ Example: +
 `note d\Remember to bring your charger! t\2020-02-20 i\2`
 
 Adds a note with description "Remember to bring your charger!" to the second event on 20 Feb 2020.
+
+==== Find Event: `find`
+You can find the events that contain the keywords.
+
+Format: `find event k\[keywords]`
+
+[NOTE]
+`[keywords]` are case insensitive. (E.g. "cool peeps" will match "Cool Peeps")
+
+Example: +
+`find event cool peeps`
+
+Finds the events with description containing "cool peeps".
 
 ==== Repeat an Event: `repeat`
 You can add repeated events which occur weekly for a given number of times.
