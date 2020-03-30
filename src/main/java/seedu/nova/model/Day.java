@@ -1,11 +1,14 @@
 package seedu.nova.model;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
@@ -120,8 +123,8 @@ public class Day {
      *
      * @return List of DateTimeDuration
      */
-    public DateTimeSlotList getFreeSlot() {
-        return freeSlots;
+    public List<DateTimeDuration> getFreeSlot(Duration greaterThan) {
+        return freeSlots.getSlotList(greaterThan);
     }
 
 }

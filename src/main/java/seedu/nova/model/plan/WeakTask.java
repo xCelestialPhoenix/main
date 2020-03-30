@@ -9,7 +9,6 @@ import seedu.nova.model.Day;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.WeakEvent;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
-import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * Task which generates definite events
@@ -34,8 +33,7 @@ public class WeakTask extends Task {
 
     @Override
     public Event generateEventOnDay(Day day) throws ImpossibleTaskException {
-        DateTimeSlotList dtsl = day.getFreeSlot();
-        List<DateTimeDuration> possibleSlot = dtsl.getSlotList(getBaseDuration());
+        List<DateTimeDuration> possibleSlot = day.getFreeSlot(getBaseDuration());
         if (possibleSlot.isEmpty()) {
             throw new ImpossibleTaskException();
         } else {
