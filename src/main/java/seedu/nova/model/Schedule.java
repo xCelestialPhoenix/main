@@ -90,6 +90,23 @@ public class Schedule {
     }
 
     /**
+     * Adds a note to an Event.
+     * @param desc description of the note
+     * @param date the date of the event
+     * @param index the position of event in list
+     * @return
+     */
+    public String addNote(String desc, LocalDate date, int index) {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].addNote(desc, date, index);
+    }
+
+    /**
      * Views schedule on specified date.
      *
      * @param date the date

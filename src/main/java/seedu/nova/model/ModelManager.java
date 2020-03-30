@@ -202,4 +202,9 @@ public class ModelManager implements Model {
         return schedule.deleteEvent(date, index);
     }
 
+    @Override
+    public String addNote(String desc, LocalDate date, int index) {
+        return schedule.addNote(desc, date, index);
+    }
+
 }

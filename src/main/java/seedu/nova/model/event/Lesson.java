@@ -31,6 +31,7 @@ public class Lesson extends Event {
                 + "Venue: " + venue + "\n"
                 + "Day/Time: " + day.toString() + ", "
                 + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
-                + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+                + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + "\n"
+                + "Note: " + note;
     }
 }

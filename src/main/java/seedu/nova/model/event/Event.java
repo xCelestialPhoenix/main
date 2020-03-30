@@ -17,7 +17,7 @@ public class Event {
     protected LocalTime startTime;
     protected LocalTime endTime;
     protected LocalDate date;
-    protected String note = "";
+    protected String note = "NIL";
     protected boolean isDone = false;
     protected TimedDuration dtd;
 

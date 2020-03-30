@@ -96,6 +96,19 @@ public class Day {
     }
 
     /**
+     * Adds a note to an event.
+     * @param index index of event in the LinkedList
+     */
+    public String addNote(String desc, int index) {
+        if (index > events.size()) {
+            throw new EventNotFoundException();
+        }
+        events.get(index - 1).addNote(desc);
+        return events.get(index - 1).toString();
+    }
+
+
+    /**
      * View string.
      *
      * @return the string

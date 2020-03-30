@@ -79,6 +79,23 @@ public class Week {
     }
 
     /**
+     * Adds a note to an Event.
+     * @param desc description of the note
+     * @param date the date of the event
+     * @param index the position of event in list
+     * @return
+     */
+    public String addNote(String desc, LocalDate date, int index) {
+        int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return days[day].addNote(desc, index);
+    }
+
+    /**
      * View string.
      *
      * @param date the date

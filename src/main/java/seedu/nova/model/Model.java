@@ -102,4 +102,6 @@ public interface Model {
     void addLesson(Lesson l);
 
     String deleteEvent(LocalDate date, int index);
+
+    String addNote(String desc, LocalDate date, int index);
 }
