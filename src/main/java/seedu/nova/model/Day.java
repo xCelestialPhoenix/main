@@ -6,6 +6,7 @@ import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Day.
@@ -16,6 +17,7 @@ public class Day {
 
     private LinkedList<Event> events;
     private LocalDate date;
+    private DateTimeSlotList freeSlots;
 
     /**
      * Instantiates a new Day.
@@ -26,6 +28,7 @@ public class Day {
 
         events = new LinkedList<>();
         this.date = date;
+        freeSlots = DateTimeSlotList.ofDay(date);
     }
 
     /**
@@ -54,6 +57,7 @@ public class Day {
                     }
                     */
                     //hasSlot = true;
+                    freeSlots.excludeDuration(event.getDtd());
                     events.add(index, event);
                     System.err.println(events.get(index) + " has been added to " + date);
                     break;
@@ -67,6 +71,20 @@ public class Day {
             */
         }
 
+    }
+
+    /**
+     * Delete event.
+     *
+     * @param event the event
+     */
+    boolean deleteEvent(Event event) {
+        if (events.contains(event)) {
+            freeSlots.includeDuration(event.getDtd());
+            return events.remove(event);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -95,6 +113,15 @@ public class Day {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    /**
+     * Get free slots in the form of DateTimeDuration
+     *
+     * @return List of DateTimeDuration
+     */
+    public DateTimeSlotList getFreeSlot() {
+        return freeSlots;
     }
 
 }
