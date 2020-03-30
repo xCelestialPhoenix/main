@@ -31,8 +31,9 @@ _[.small]#Fig 1: GUI of NOVA#_
 == About
 
 This UG is a reference guide to help you use NOVA. This document contains a quick start section to get you up and
-running soon. There is an entire section dedicated to how to use any particular feature in NOVA. If there are any
-terms that you are unsure of, check out the glossary to know the meaning.
+running soon. There is an entire section dedicated to how to use any particular feature in NOVA. Should you face any
+problems, take a look at the FAQ section. There is a glossary at the end if you need clarification on a term that you
+do not understand.
 
 == Notations Used
 
