@@ -6,18 +6,12 @@ import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 
 /**
- * The type Week.
+ * The week class of schedule.
  */
 public class Week {
 
-    /**
-     * The Days.
-     */
-    final Day[] days;
-    /**
-     * The Start date.
-     */
-    final LocalDate startDate;
+    private final Day[] days;
+    private final LocalDate startDate;
 
     /**
      * Instantiates a new Week.
@@ -31,7 +25,7 @@ public class Week {
     }
 
     /**
-     * Add event.
+     * Adds event.
      *
      * @param event the event
      */
@@ -48,7 +42,7 @@ public class Week {
     }
 
     /**
-     * Add lesson.
+     * Adds lesson.
      *
      * @param lesson the lesson
      */
@@ -64,7 +58,7 @@ public class Week {
     }
 
     /**
-     * View string.
+     * View the schedule of a particular day.
      *
      * @param date the date
      * @return the string
@@ -78,6 +72,20 @@ public class Week {
         }
 
         return days[day].view();
+    }
+
+    /**
+     * View string.
+     *
+     * @return the string
+     */
+    public String view() {
+
+        StringBuilder sb = new StringBuilder();
+        for (Day day : days) {
+            sb.append(day.view());
+        }
+        return sb.toString();
     }
 
 }

@@ -1,13 +1,7 @@
 package seedu.nova.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.nova.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-//import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.nova.testutil.TypicalPersons.CARL;
-//import static seedu.nova.testutil.TypicalPersons.ELLE;
-//import static seedu.nova.testutil.TypicalPersons.FIONA;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -19,9 +13,9 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.abcommands.AbFindCommand;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.schedule.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.schedule.Schedule;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AbFindCommand}.

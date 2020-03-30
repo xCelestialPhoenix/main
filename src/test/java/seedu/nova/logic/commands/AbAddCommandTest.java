@@ -161,7 +161,18 @@ public class AbAddCommandTest {
         }
 
         @Override
+        public String viewSchedule(int weekNumber) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isWithinSem(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isWithinSem(int weekNumber) {
             throw new AssertionError("This method should not be called.");
         }
 

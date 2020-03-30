@@ -91,7 +91,11 @@ public interface Model {
 
     String viewSchedule(LocalDate date);
 
+    String viewSchedule(int weekNumber);
+
     boolean isWithinSem(LocalDate date);
+
+    boolean isWithinSem(int weekNumber);
 
     Mode getMode();
 

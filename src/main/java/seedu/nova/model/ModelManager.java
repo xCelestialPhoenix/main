@@ -181,9 +181,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String viewSchedule(int weekNumber) {
+
+        return schedule.view(weekNumber);
+
+    }
+
+    @Override
     public boolean isWithinSem(LocalDate date) {
 
         return schedule.checkDateValidity(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(int weekNumber) {
+
+        return schedule.checkWeekValidity(weekNumber);
 
     }
 

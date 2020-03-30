@@ -93,6 +93,7 @@ public class Day {
             sb.append(iterator.next());
             sb.append("\n");
         }
+
         return sb.toString();
     }
 

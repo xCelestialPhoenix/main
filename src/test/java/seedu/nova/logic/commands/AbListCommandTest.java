@@ -1,21 +1,15 @@
 package seedu.nova.logic.commands;
 
-//import static seedu.nova.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.nova.logic.commands.CommandTestUtil.showPersonAtIndex;
-//import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-
-//import seedu.nova.logic.commands.abcommands.AbListCommand;
 
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.schedule.Schedule;
 import seedu.nova.model.UserPrefs;
+import seedu.nova.model.schedule.Schedule;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AbListCommand.
