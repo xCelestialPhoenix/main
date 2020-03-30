@@ -1,6 +1,7 @@
 package seedu.nova.logic.commands.abcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -22,8 +23,9 @@ public class AbDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            //+ "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: [" + PREFIX_INDEX + "INDEX] \n"
+            + "Example: " + COMMAND_WORD + " i\\1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 

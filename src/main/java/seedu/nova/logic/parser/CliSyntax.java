@@ -18,4 +18,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_KEYWORD = new Prefix("k\\");
     public static final Prefix PREFIX_PROJECT = new Prefix("p\\");
     public static final Prefix PREFIX_WEEK = new Prefix("w\\");
+    public static final Prefix PREFIX_INDEX = new Prefix("i\\");
 }
