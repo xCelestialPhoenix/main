@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
 

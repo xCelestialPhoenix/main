@@ -17,6 +17,7 @@ import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.Schedule;
 
 /**
  * Represents the in-memory model of the data.

@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
