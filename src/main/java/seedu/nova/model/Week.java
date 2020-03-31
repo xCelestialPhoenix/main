@@ -7,6 +7,7 @@ import java.util.Arrays;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
+import seedu.nova.model.util.time.TimeUtil;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
@@ -29,8 +30,11 @@ public class Week implements Copyable<Week> {
      * @param date the date
      */
     public Week(LocalDate date) {
-
+        date = TimeUtil.getMondayOfWeek(date);
         days = new Day[7];
+        for (int i = 0; i < 7; i++) {
+            days[i] = new Day(date.plusDays(i));
+        }
         startDate = date;
     }
 
@@ -48,11 +52,6 @@ public class Week implements Copyable<Week> {
 
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
-
-        if (days[day] == null) {
-            days[day] = new Day(date);
-        }
-
         days[day].addEvent(event);
     }
 
@@ -64,11 +63,6 @@ public class Week implements Copyable<Week> {
     public void addLesson(Lesson lesson) {
 
         int day = lesson.getDay().getValue() - 1;
-
-        if (days[day] == null) {
-            days[day] = new Day(startDate.plusDays(day));
-        }
-
         days[day].addLesson(lesson);
     }
 
@@ -81,11 +75,6 @@ public class Week implements Copyable<Week> {
     public String view(LocalDate date) {
 
         int day = date.getDayOfWeek().getValue() - 1;
-
-        if (days[day] == null) {
-            days[day] = new Day(startDate.plusDays(day));
-        }
-
         return days[day].view();
     }
 

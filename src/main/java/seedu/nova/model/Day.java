@@ -49,6 +49,7 @@ public class Day implements Copyable<Day> {
         int index = 0;
 
         if (events.size() == 0) {
+            freeSlots.excludeDuration(event.getDtd());
             events.add(event);
         } else {
             //boolean hasSlot = false;
