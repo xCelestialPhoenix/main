@@ -14,6 +14,7 @@ import seedu.nova.model.Model;
 public class NavCommand extends Command {
     public static final String COMMAND_WORD = "nav";
     public static final String MESSAGE_SUCCESS = "Changed mode to ";
+    public static final String MESSAGE_SAME_MODE = "You are already in %1$s mode";
 
     private ModeEnum modeEnum;
 
@@ -27,8 +28,12 @@ public class NavCommand extends Command {
 
         //Set mode in model
         Mode mode = model.getMode();
-        mode.setModeEnum(this.modeEnum);
 
-        return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
+        if(mode.getModeEnum().equals(this.modeEnum)) {
+            return new CommandResult(String.format(MESSAGE_SAME_MODE, modeEnum.name().toLowerCase()), false, false);
+        } else {
+            mode.setModeEnum(this.modeEnum);
+            return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
+        }
     }
 }

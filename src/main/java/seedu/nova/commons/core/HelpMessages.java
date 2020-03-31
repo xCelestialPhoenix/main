@@ -12,7 +12,7 @@ public class HelpMessages {
     public static final String HELP_ADDRESS_BOOK = "";
 
     //============== The help message for the schedule page ==================
-    public static final String HELP_SCHEDULE = "Help: Schedule mode \n"
+    public static final String HELP_SCHEDULE = "Help: Schedule Mode \n"
             + "=================== \n"
             + "View schedule on date: \n"
             + "view t\\[date] \n"
