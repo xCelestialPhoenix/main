@@ -12,11 +12,11 @@ import seedu.nova.model.Model;
 /**
  * Find free slot
  */
-public class ScFindFreeSlotCommand extends Command {
+public class ScViewFreeSlotCommand extends Command {
     /**
      * The constant COMMAND_WORD.
      */
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "freeslot";
     private static final String MESSAGE_DATE_OUT_OF_RANGE = "The date is not within the schedule";
     private static final String MESSAGE_NO_EVENT = "You have no event on that day";
 
@@ -27,7 +27,7 @@ public class ScFindFreeSlotCommand extends Command {
      *
      * @param date the date
      */
-    public ScFindFreeSlotCommand(LocalDate date) {
+    public ScViewFreeSlotCommand(LocalDate date) {
 
         this.date = date;
     }
