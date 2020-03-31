@@ -62,24 +62,6 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Deletes event.
-     *
-     * @param event the event
-     */
-    public void deleteEvent(Event event) {
-
-        LocalDate date = event.getDate();
-        int weekNumber = calWeekNumber(date);
-
-        if (weeks[weekNumber] == null) {
-            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
-        }
-
-        weeks[weekNumber].deleteEvent(event);
-
-    }
-
-    /**
      * Adds lesson.
      *
      * @param lesson the lesson

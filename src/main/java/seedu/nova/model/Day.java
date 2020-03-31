@@ -84,20 +84,6 @@ public class Day implements Copyable<Day> {
     }
 
     /**
-     * Delete event.
-     *
-     * @param event the event
-     */
-    boolean deleteEvent(Event event) {
-        if (events.contains(event)) {
-            freeSlots.includeDuration(event.getDtd());
-            return events.remove(event);
-        } else {
-            return false;
-        }
-    }
-
-    /**
      * Add lesson.
      *
      * @param lesson the lesson
