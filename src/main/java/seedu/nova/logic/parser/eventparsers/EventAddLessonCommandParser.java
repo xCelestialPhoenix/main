@@ -52,6 +52,11 @@ public class EventAddLessonCommandParser implements Parser<EventAddLessonCommand
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
 
+        if (startTime.compareTo(endTime) >= 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EventAddLessonCommand.MESSAGE_USAGE));
+        }
+
         Event lesson = new Lesson(desc, venue, startTime, endTime, day);
         return new EventAddLessonCommand(lesson);
     }

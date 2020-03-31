@@ -52,6 +52,11 @@ public class EventAddStudyCommandParser implements Parser<EventAddStudyCommand> 
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
 
+        if (startTime.compareTo(endTime) >= 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EventAddStudyCommand.MESSAGE_USAGE));
+        }
+
         Event study = new StudySession(desc, venue, startTime, endTime, date);
         return new EventAddStudyCommand(study);
     }

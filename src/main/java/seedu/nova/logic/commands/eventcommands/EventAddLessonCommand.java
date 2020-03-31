@@ -11,7 +11,6 @@ import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.TimeOverlapException;
 import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 
 /**
  * adds a Lesson into the Schedule.

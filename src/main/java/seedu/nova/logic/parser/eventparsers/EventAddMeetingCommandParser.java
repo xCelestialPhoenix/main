@@ -52,6 +52,11 @@ public class EventAddMeetingCommandParser implements Parser<EventAddMeetingComma
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
 
+        if (startTime.compareTo(endTime) >= 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EventAddMeetingCommand.MESSAGE_USAGE));
+        }
+
         Event meeting = new Meeting(desc, venue, startTime, endTime, date);
         return new EventAddMeetingCommand(meeting);
     }
