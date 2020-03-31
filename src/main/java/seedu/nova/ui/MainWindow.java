@@ -165,6 +165,9 @@ public class MainWindow extends UiPart<Stage> {
                 case ADDRESSBOOK:
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
+                case EVENT:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
                 case SCHEDULE:
                     helpBox.setHelp(HELP_SCHEDULE);
                     break;
