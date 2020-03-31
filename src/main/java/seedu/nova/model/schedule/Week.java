@@ -1,5 +1,6 @@
 package seedu.nova.model.schedule;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import seedu.nova.model.event.Event;
@@ -82,8 +83,25 @@ public class Week {
     public String view() {
 
         StringBuilder sb = new StringBuilder();
+        int index = 0;
         for (Day day : days) {
-            sb.append(day.view());
+
+            index++;
+
+            if (day == null) {
+
+                continue;
+            }
+
+            String result = day.view();
+
+            if (!result.equals("")) {
+
+                sb.append(DayOfWeek.of(index));
+                sb.append(": \n");
+                sb.append(result);
+
+            }
         }
         return sb.toString();
     }

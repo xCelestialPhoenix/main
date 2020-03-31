@@ -40,6 +40,8 @@ public class Day {
 
         if (events.size() == 0) {
             events.add(event);
+        } else if (event.getStartTime().compareTo(events.get(0).getStartTime()) < 0) {
+            events.add(0, event);
         } else {
             //boolean hasSlot = false;
             while (iterator.hasNext()) {

@@ -15,6 +15,7 @@ public class Schedule {
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
     private static final int SCHEDULE_RECESS_WEEK = 16;
+    private static final int WEEK_OFFSET = 1;
 
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -60,7 +61,7 @@ public class Schedule {
      */
     public void addLesson(Lesson lesson) {
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 1; i < 14; i++) {
 
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
@@ -210,7 +211,7 @@ public class Schedule {
 
     private int calWeekNumber(LocalDate date) {
 
-        return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK);
+        return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK) + WEEK_OFFSET;
     }
 
 }
