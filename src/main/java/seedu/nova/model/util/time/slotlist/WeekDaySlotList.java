@@ -55,6 +55,7 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
 
     /**
      * cast into week day duration
+     *
      * @param td
      * @return
      */
@@ -71,7 +72,7 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
         WeekDayDuration ed = cast(td);
         WeekDayDuration lastSlot = this.freeSlotMap.floorEntry(ed.getEndValue()).getValue();
         SortedMap<Integer, WeekDayDuration> tailMap = this.freeSlotMap.tailMap(ed.getStartValue());
-        Map.Entry<Integer, WeekDayDuration> endSlot = this.freeSlotMap.higherEntry(ed.getEndValue());
+        tailMap = tailMap.headMap(ed.getEndValue());
 
         if (ed.isConnected(lastSlot)) {
             deleteDuration(lastSlot);
@@ -79,13 +80,9 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
                     ed.getEndTime());
         }
         for (Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
-            if (e.equals(endSlot)) {
-                break;
-            } else {
-                deleteDuration(e.getValue());
-                ed = new WeekDayDuration(ed.getStartDay(), ed.getStartTime(), e.getValue().getEndDay(),
-                        e.getValue().getEndTime());
-            }
+            deleteDuration(e.getValue());
+            ed = new WeekDayDuration(ed.getStartDay(), ed.getStartTime(), e.getValue().getEndDay(),
+                    e.getValue().getEndTime());
         }
         addDuration(ed);
     }
@@ -95,7 +92,7 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
         WeekDayDuration ed = cast(td);
         WeekDayDuration lastSlot = this.freeSlotMap.floorEntry(ed.getEndValue()).getValue();
         SortedMap<Integer, WeekDayDuration> tailMap = this.freeSlotMap.tailMap(ed.getStartValue());
-        Map.Entry<Integer, WeekDayDuration> endSlot = this.freeSlotMap.higherEntry(ed.getEndValue());
+        tailMap = tailMap.headMap(ed.getEndValue());
 
         if (ed.isOverlapping(lastSlot)) {
             deleteDuration(lastSlot);
@@ -103,13 +100,9 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
             comp.forEach(this::addDuration);
         }
         for (Map.Entry<Integer, WeekDayDuration> e : tailMap.entrySet()) {
-            if (e.equals(endSlot)) {
-                break;
-            } else {
-                deleteDuration(lastSlot);
-                List<TimedDuration> comp = lastSlot.relativeComplementOf(ed);
-                comp.forEach(this::addDuration);
-            }
+            deleteDuration(lastSlot);
+            List<TimedDuration> comp = lastSlot.relativeComplementOf(ed);
+            comp.forEach(this::addDuration);
         }
     }
 
@@ -120,6 +113,7 @@ public class WeekDaySlotList implements SlotList<WeekDayDuration>, Copyable<Week
 
     /**
      * Intersection with
+     *
      * @param lst timed duration
      * @return list of intersection durations
      */
