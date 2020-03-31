@@ -89,7 +89,7 @@ public class MainWindow extends UiPart<Stage> {
             //set mode to schedule first
             logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
 
-            CommandResult commandResult = logic.execute("view t\\" + today);
+            CommandResult commandResult = logic.execute("view d\\" + today);
             ResultDisplay r = new ResultDisplay();
             r.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -98,7 +98,7 @@ public class MainWindow extends UiPart<Stage> {
             //set mode back to home
             logic.getModel().getMode().setModeEnum(ModeEnum.HOME);
         } catch (CommandException | ParseException e) {
-            String commandText = "view t\\" + LocalDate.now().toString();
+            String commandText = "view d\\" + LocalDate.now().toString();
             logger.info("Invalid command: " + commandText);
 
             ResultDisplay r = new ResultDisplay();
