@@ -89,7 +89,10 @@ public class Day {
 
         StringBuilder sb = new StringBuilder();
         ListIterator<Event> iterator = events.listIterator();
+        int index = 0;
         while (iterator.hasNext()) {
+            sb.append(++index);
+            sb.append(". ");
             sb.append(iterator.next());
             sb.append("\n");
         }
