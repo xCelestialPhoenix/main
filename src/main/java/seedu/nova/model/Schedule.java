@@ -3,14 +3,16 @@ package seedu.nova.model;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.Copyable;
 
 /**
  * The type Schedule.
  */
-public class Schedule {
+public class Schedule implements Copyable<Schedule> {
 
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
@@ -33,6 +35,12 @@ public class Schedule {
         this.endDate = endDate;
 
         weeks = new Week[17];
+    }
+
+    private Schedule(LocalDate startDate, LocalDate endDate, Week[] weeks) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.weeks = weeks;
     }
 
     /**
@@ -147,6 +155,11 @@ public class Schedule {
     private int calWeekNumber(LocalDate date) {
 
         return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK);
+    }
+
+    @Override
+    public Schedule getCopy() {
+        return new Schedule(startDate, endDate, (Week[]) Arrays.stream(weeks).map(Week::getCopy).toArray());
     }
 
 }

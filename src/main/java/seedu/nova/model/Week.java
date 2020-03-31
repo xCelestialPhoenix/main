@@ -1,14 +1,16 @@
 package seedu.nova.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.Copyable;
 
 /**
  * The type Week.
  */
-public class Week {
+public class Week implements Copyable<Week> {
 
     /**
      * The Days.
@@ -30,12 +32,17 @@ public class Week {
         startDate = date;
     }
 
+    private Week(Day[] days, LocalDate startDate) {
+        this.days = days;
+        this.startDate = startDate;
+    }
+
     /**
      * Add event.
      *
      * @param event the event
      */
-    public void addEvent(Event event) {
+    void addEvent(Event event) {
 
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
@@ -110,6 +117,11 @@ public class Week {
         }
 
         return days[day].view();
+    }
+
+    @Override
+    public Week getCopy() {
+        return new Week((Day[]) Arrays.stream(days).map(Day::getCopy).toArray(), startDate);
     }
 
 }
