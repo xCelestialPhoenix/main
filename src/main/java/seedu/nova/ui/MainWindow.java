@@ -1,5 +1,7 @@
 package seedu.nova.ui;
 
+import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -83,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
         //add schedule for the day in homepage
         try {
-            //get localdate fof today
+            //get localdate of today
             String today = LocalDate.now().toString();
 
             //set mode to schedule first
@@ -153,7 +155,22 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isChangeMode()) {
-                helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+
+                switch (logic.getModel().getMode().getModeEnum()) {
+                case HOME:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                case ADDRESSBOOK:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                case SCHEDULE:
+                    helpBox.setHelp(HELP_SCHEDULE);
+                    break;
+                case PROGRESSTRACKER:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                }
+
             }
 
             return commandResult;
