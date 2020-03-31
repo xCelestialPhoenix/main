@@ -37,14 +37,14 @@ public class ScViewCommandParser implements Parser<ScViewCommand> {
         if ((arePrefixesPresent(argMultimap, PREFIX_DATE) && arePrefixesPresent(argMultimap, PREFIX_INDEX))
                 || (!arePrefixesPresent(argMultimap, PREFIX_DATE) && !arePrefixesPresent(argMultimap, PREFIX_INDEX))) {
 
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
 
             if (!argMultimap.getPreamble().isEmpty()) {
 
-                throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewDayCommand.MESSAGE_USAGE));
             }
 
             LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());

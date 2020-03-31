@@ -1,6 +1,7 @@
 package seedu.nova.logic.commands.sccommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -10,6 +11,10 @@ import seedu.nova.model.Model;
  * The view week command of schedule.
  */
 public class ScViewWeekCommand extends ScViewCommand {
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views your schedule on a particular week. "
+            + "Parameters: "
+            + PREFIX_INDEX + "[week #]";
 
     private static final String MESSAGE_WEEK_OUT_OF_RANGE = "The date is not within the schedule";
     private static final String MESSAGE_WEEK_NO_EVENT = "You have no events on that week";

@@ -1,6 +1,7 @@
 package seedu.nova.logic.commands.sccommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.time.LocalDate;
 
@@ -13,10 +14,9 @@ import seedu.nova.model.Model;
  */
 public class ScViewDayCommand extends ScViewCommand {
 
-    /**
-     * The constant COMMAND_WORD.
-     */
-    public static final String COMMAND_WORD = "view";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views your schedule on a particular day. "
+            + "Parameters: "
+            + PREFIX_DATE + "[YYYY-MM-DD]";
 
     private static final String MESSAGE_DATE_OUT_OF_RANGE = "The date is not within the schedule";
     private static final String MESSAGE_NO_EVENT = "You have no event on that day";

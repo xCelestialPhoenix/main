@@ -17,7 +17,7 @@ public class HelpMessages {
             + "View schedule on date: \n"
             + "view t\\[date] \n"
             + "View schedule on week: \n"
-            + "view week i\\[index]";
+            + "view week i\\[week #]";
 
     //============== The help message for the study planner page ==================
     public static final String HELP_STUDY_PLANNER = "";
