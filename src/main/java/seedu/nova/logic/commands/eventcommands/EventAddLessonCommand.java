@@ -9,6 +9,7 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
+import seedu.nova.model.TimeOverlapException;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 
@@ -41,9 +42,12 @@ public class EventAddLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.addLesson((Lesson) toAdd);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        try {
+            model.addEvent(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (TimeOverlapException e) {
+            throw new CommandException("You already have an event within that time frame.");
+        }
     }
 
 

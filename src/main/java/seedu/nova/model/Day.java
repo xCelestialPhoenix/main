@@ -40,36 +40,45 @@ public class Day {
 
         if (events.size() == 0) {
             events.add(event);
-        } else if (event.getStartTime().compareTo(events.get(0).getStartTime()) < 0) {
-            events.add(0, event);
+        } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
+            events.add(events.size(), event);
 
         } else {
-            //boolean hasSlot = false;
-            while (iterator.hasNext()) {
-                //Check to see if startTime is taken
-                Event item = iterator.next();
-                index++;
-                if (event.getStartTime().compareTo(item.getStartTime()) >= 0) {
+            boolean canAdd = false;
 
-                    /*
-                    if (iterator.hasNext() && (iterator.next().getStartTime().compareTo(event.getEndTime()) > 0)) {
-                        //Slot cannot fit
-                    }
-                    */
-                    //hasSlot = true;
+            while (iterator.hasNext()) {
+                Event item = iterator.next();
+
+                if (checkAddBefore(event, item)) {
                     events.add(index, event);
-                    System.err.println(events.get(index) + " has been added to " + date);
+                    canAdd = true;
                     break;
                 }
+
+                index++;
             }
 
-            /*
-            if (!hasSlot) {
-                //No slot available
+            if (!canAdd) {
+                // throw an exception if the timing overlaps
+                throw new TimeOverlapException();
             }
-            */
+
         }
 
+    }
+
+
+    /**
+     * determines if an event can be added to the list after a current event
+     * @param toAdd
+     * @param after
+     * @return
+     */
+    public boolean checkAddBefore(Event toAdd, Event after) {
+        boolean b1 = toAdd.getStartTime().compareTo(after.getStartTime()) <= 0;
+        boolean b2 = toAdd.getEndTime().compareTo(after.getStartTime()) <= 0;
+
+        return b1 && b2;
     }
 
     /**

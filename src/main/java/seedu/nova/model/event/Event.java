@@ -18,7 +18,6 @@ public class Event {
     protected LocalTime endTime;
     protected LocalDate date;
     protected String note = "NIL";
-    protected boolean isDone = false;
     protected TimedDuration dtd;
 
     public Event(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
@@ -39,9 +38,6 @@ public class Event {
         this.dtd = new WeekDayDuration(dow, startTime, endTime);
     }
 
-    public boolean getIsDone() {
-        return isDone;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -65,10 +61,6 @@ public class Event {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public void markDone() {
-        isDone = true;
     }
 
     public void addNote(String note) {
