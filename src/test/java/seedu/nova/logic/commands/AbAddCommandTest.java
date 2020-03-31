@@ -178,6 +178,16 @@ public class AbAddCommandTest {
         public void addLesson(Lesson l) {
         }
 
+        @Override
+        public String deleteEvent(LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String addNote(String desc, LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ProgressTracker getProgressTracker() {
             return null;
         }
