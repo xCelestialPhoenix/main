@@ -11,6 +11,7 @@ import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.TimeOverlapException;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.event.Lesson;
 
 /**
  * adds a Lesson into the Schedule.
@@ -42,7 +43,7 @@ public class EventAddLessonCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.addEvent(toAdd);
+            model.addLesson((Lesson) toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
             throw new CommandException("You already have an event within that time frame.");
