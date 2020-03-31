@@ -62,8 +62,7 @@ public class AbRemarkCommand extends Command {
                 personToEdit.getCategory(), remark);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-
+        //model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
