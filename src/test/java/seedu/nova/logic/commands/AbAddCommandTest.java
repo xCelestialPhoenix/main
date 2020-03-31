@@ -189,6 +189,11 @@ public class AbAddCommandTest {
         }
 
         @Override
+        public String viewFreeSlot(LocalDate date) {
+            return null;
+        }
+
+        @Override
         public void resetPlan() {
 
         }

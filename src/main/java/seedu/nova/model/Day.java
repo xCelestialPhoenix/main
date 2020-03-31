@@ -2,7 +2,6 @@ package seedu.nova.model;
 
 import java.time.LocalDate;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
 
