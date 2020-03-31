@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Objects;
 
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.duration.TimedDuration;
@@ -95,5 +96,10 @@ public class Event implements Comparable<Event> {
         } else {
             return super.equals(obj);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(desc, date, startTime, endTime);
     }
 }

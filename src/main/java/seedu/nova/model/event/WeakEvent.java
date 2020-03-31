@@ -3,9 +3,11 @@ package seedu.nova.model.event;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Objects;
 
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
+import seedu.nova.model.util.time.TimeUtil;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 
 /**
@@ -48,16 +50,24 @@ public class WeakEvent extends Event {
     public boolean equals(Object o) {
         if (o instanceof WeakEvent) {
             if (origin.getTaskFreq() == TaskFreq.WEEKLY) {
-                return getDayOfWeek().equals(((WeakEvent) o).getDayOfWeek())
+                return TimeUtil.getMondayOfWeek(date).equals(TimeUtil.getMondayOfWeek(((WeakEvent) o).getDate()))
                         && getStartTime().equals(((WeakEvent) o).getStartTime())
-                        && getEndTime().equals(((WeakEvent) o).getEndTime());
+                        && getEndTime().equals(((WeakEvent) o).getEndTime())
+                        && desc.equals(((WeakEvent) o).desc);
             } else {
-                return getDate().equals(((WeakEvent) o).getDate())
-                        && getStartTime().equals(((WeakEvent) o).getStartTime())
-                        && getEndTime().equals(((WeakEvent) o).getEndTime());
+                return super.equals(o);
             }
         } else {
             return super.equals(o);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        if (origin.getTaskFreq() == TaskFreq.WEEKLY) {
+            return Objects.hash(desc, TimeUtil.getMondayOfWeek(date), startTime, endTime);
+        } else {
+            return Objects.hash(desc, date, startTime, endTime);
         }
     }
 }
