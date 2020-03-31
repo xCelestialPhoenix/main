@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import seedu.nova.model.Day;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.util.time.TimeUtil;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 
 /**
@@ -73,11 +73,11 @@ public abstract class Task {
      * Generate an event based on the day's schedule and specification of this task.
      * event is not added into day.
      *
-     * @param day day
+     * @param dtsl ftsl
      * @return generated event
      * @throws ImpossibleTaskException
      */
-    public abstract Event generateEventOnDay(Day day) throws ImpossibleTaskException;
+    public abstract Event generateEventOnDay(LocalDate date, DateTimeSlotList dtsl) throws ImpossibleTaskException;
 
     /**
      * Add event that is related to the task.

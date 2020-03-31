@@ -1,14 +1,15 @@
 package seedu.nova.model.plan;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.nova.model.Day;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.WeakEvent;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * Task which generates definite events
@@ -24,14 +25,16 @@ public class StrongTask extends Task {
     }
 
     @Override
-    public Event generateEventOnDay(Day day) throws ImpossibleTaskException {
-        List<DateTimeDuration> possibleSlot = day.getFreeSlot(getBaseDuration());
+    public Event generateEventOnDay(LocalDate date, DateTimeSlotList dtsl) throws ImpossibleTaskException {
+        List<DateTimeDuration> possibleSlot = dtsl.getSlotList(getBaseDuration());
         if (possibleSlot.isEmpty()) {
             throw new ImpossibleTaskException();
+        } else if (hasEventOn(date)) {
+            return getEventOn(date);
         } else {
             DateTimeDuration dtd = getBestTimeframe(possibleSlot);
             Event newEvent = new WeakEvent(getName(), dtd, this);
-            this.dayEventMap.put(dtd.getStartDate(), newEvent);
+            addEvent(newEvent);
             return newEvent;
         }
     }

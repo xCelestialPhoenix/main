@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -102,9 +103,9 @@ public class ModelManagerTest {
 
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1, 13),
-                LocalDate.of(2020, 5, 3)));
+                LocalDate.of(2020, 5, 3)), new StudyPlan());
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1,
-                13), LocalDate.of(2020, 5, 3)));
+                13), LocalDate.of(2020, 5, 3)), new StudyPlan());
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,13 +119,13 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs,
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)))));
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan())));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1,
-                13), LocalDate.of(2020, 5, 3)))));
+                13), LocalDate.of(2020, 5, 3)), new StudyPlan())));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -133,6 +134,6 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs,
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)))));
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan())));
     }
 }

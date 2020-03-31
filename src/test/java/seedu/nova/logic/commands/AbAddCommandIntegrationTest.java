@@ -15,6 +15,7 @@ import seedu.nova.model.ModelManager;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.testutil.PersonBuilder;
 
 /**
@@ -28,7 +29,7 @@ public class AbAddCommandIntegrationTest {
     public void setUp() {
 
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13),
-                LocalDate.of(2020, 5, 3)));
+                LocalDate.of(2020, 5, 3)), new StudyPlan());
     }
 
     @Test
@@ -37,7 +38,7 @@ public class AbAddCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AbAddCommand(validPerson), model,

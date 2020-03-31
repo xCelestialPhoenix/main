@@ -22,15 +22,16 @@ import seedu.nova.model.ModelManager;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.plan.StudyPlan;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AbFindCommand}.
  */
 public class AbFindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
-            1, 13), LocalDate.of(2020, 5, 3)));
+            1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+            new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
 
     @Test
     public void equals() {

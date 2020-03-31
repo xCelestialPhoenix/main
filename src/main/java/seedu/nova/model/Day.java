@@ -1,15 +1,12 @@
 package seedu.nova.model;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
-import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
@@ -116,8 +113,8 @@ public class Day implements Copyable<Day> {
      *
      * @return List of DateTimeDuration
      */
-    public List<DateTimeDuration> getFreeSlot(Duration greaterThan) {
-        return freeSlots.getSlotList(greaterThan);
+    public DateTimeSlotList getFreeSlotList() {
+        return freeSlots;
     }
 
     @Override

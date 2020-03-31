@@ -24,6 +24,7 @@ import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
+import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.AddressBookStorage;
 import seedu.nova.storage.JsonAddressBookStorage;
@@ -95,7 +96,7 @@ public class MainApp extends Application {
         }
 
         return new ModelManager(initialData, userPrefs, new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5,
-                3)));
+                3)), new StudyPlan());
     }
 
     private void initLogging(Config config) {

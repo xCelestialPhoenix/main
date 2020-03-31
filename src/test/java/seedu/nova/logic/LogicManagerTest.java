@@ -27,6 +27,7 @@ import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.storage.JsonAddressBookStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
 import seedu.nova.storage.StorageManager;
@@ -131,7 +132,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

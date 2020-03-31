@@ -8,6 +8,7 @@ import java.util.Arrays;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Schedule.
@@ -123,6 +124,16 @@ public class Schedule implements Copyable<Schedule> {
     private int calWeekNumber(LocalDate date) {
 
         return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK);
+    }
+
+    public DateTimeSlotList getFreeSlotOn(LocalDate date) {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
+        }
+
+        return weeks[weekNumber].getFreeSlots(date.getDayOfWeek());
     }
 
     @Override

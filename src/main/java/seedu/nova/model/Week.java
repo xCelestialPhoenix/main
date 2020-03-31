@@ -1,11 +1,13 @@
 package seedu.nova.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Week.
@@ -85,6 +87,10 @@ public class Week implements Copyable<Week> {
         }
 
         return days[day].view();
+    }
+
+    public DateTimeSlotList getFreeSlots(DayOfWeek dow) {
+        return days[dow.getValue() - 1].getFreeSlotList();
     }
 
     @Override
