@@ -270,6 +270,11 @@ If there is already an event in the time slot, NOVA will inform you.
 
 Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
+[NOTE]
+====
+The end time must be later than the start time.
+====
+
 Example: +
 If you wish to add a project meeting into your schedule, which is from 2pm to 3pm on February 20, 2020. +
 `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`
@@ -281,6 +286,11 @@ You can add a study session as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
 Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
+
+[NOTE]
+====
+The end time must be later than the start time.
+====
 
 Example: +
 `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`
@@ -294,6 +304,11 @@ If there is already an event in the time slot, NOVA will inform you.
 
 Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
+[NOTE]
+====
+The end time must be later than the start time.
+====
+
 Example: +
 `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`
 
@@ -304,6 +319,11 @@ You can add a lesson as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
+
+[NOTE]
+====
+The end time must be later than the start time.
+====
 
 Example: +
 `lesson d\CS2103T tutorial v\COM1-B103 t\Monday 15:00 17:00`
@@ -339,7 +359,7 @@ Example: +
 
 Adds a note with description "Remember to bring your charger!" to the second event on 20 Feb 2020.
 
-==== Find Event: `find`
+==== Find Event: `find` [v2.0]
 You can find the events that contain the keywords.
 
 Format: `find event k\[keywords]`
@@ -352,14 +372,17 @@ Example: +
 
 Finds the events with description containing "cool peeps".
 
-==== Repeat an Event: `repeat`
+==== Repeat an Event: `repeat` [v2.0]
 You can add repeated events which occur weekly for a given number of times.
 If the event does not exist, NOVA will inform you.
 
 Format: `repeat t\[YYYY-MM-DD] i\[index] c\[count]`
 
 [NOTE]
-`[index]` and `[count]` must be a positive integer. (E.g. 1, 2, 3, ...)
+====
+* `[index]` and `[count]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* Lessons cannot be repeated
+====
 
 Example: +
 `repeat t\2020-03-02 i\2 c\3`
