@@ -1,7 +1,6 @@
 package seedu.nova.model;
 
 import java.time.LocalDate;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -48,39 +47,13 @@ public class Day implements Copyable<Day> {
         if (events.contains(event)) {
             return;
         }
-
-        Iterator<Event> iterator = events.iterator();
-        int index = 0;
-
-        if (events.size() == 0) {
+        boolean hasSlot = freeSlots.isSupersetOf(event.getDtd());
+        if (hasSlot) {
             freeSlots.excludeDuration(event.getDtd());
             events.add(event);
+            System.err.println(event + " has been added to " + date);
         } else {
-            //boolean hasSlot = false;
-            while (iterator.hasNext()) {
-                //Check to see if startTime is taken
-                Event item = iterator.next();
-                index++;
-                if (event.getStartTime().compareTo(item.getStartTime()) >= 0) {
-
-                    /*
-                    if (iterator.hasNext() && (iterator.next().getStartTime().compareTo(event.getEndTime()) > 0)) {
-                        //Slot cannot fit
-                    }
-                    */
-                    //hasSlot = true;
-                    freeSlots.excludeDuration(event.getDtd());
-                    events.add(event);
-                    System.err.println(event + " has been added to " + date);
-                    break;
-                }
-            }
-
-            /*
-            if (!hasSlot) {
-                //No slot available
-            }
-            */
+            System.err.println("cannot fit " + event + " into " + date);
         }
 
     }
