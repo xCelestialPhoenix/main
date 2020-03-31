@@ -1,6 +1,8 @@
 package seedu.nova.model.event;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
@@ -30,5 +32,14 @@ public class WeakEvent extends Event {
         origin.deleteEvent(this);
         this.date = date;
         origin.addEvent(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Description: " + desc + "\n"
+                + "Venue: " + venue + "\n"
+                + "Time: " + getDayOfWeek() + ", "
+                + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+                + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
     }
 }
