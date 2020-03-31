@@ -156,7 +156,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isChangeMode()) {
 
-                switch (logic.getModel().getMode().getModeEnum()) {
+                ModeEnum mode = logic.getModel().getMode().getModeEnum();
+
+                switch (mode) {
                 case HOME:
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
@@ -169,6 +171,8 @@ public class MainWindow extends UiPart<Stage> {
                 case PROGRESSTRACKER:
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
+                default:
+                    logger.info("Invalid mode: " + mode.name());
                 }
 
             }
