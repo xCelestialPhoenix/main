@@ -3,6 +3,8 @@ package seedu.nova.model;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
@@ -24,6 +26,8 @@ public class Week implements Copyable<Week> {
      */
     final LocalDate startDate;
 
+    final Set<Event> events;
+
     /**
      * Instantiates a new Week.
      *
@@ -36,11 +40,13 @@ public class Week implements Copyable<Week> {
             days[i] = new Day(date.plusDays(i));
         }
         startDate = date;
+        events = new TreeSet<>();
     }
 
-    private Week(Day[] days, LocalDate startDate) {
+    private Week(Day[] days, LocalDate startDate, TreeSet<Event> events) {
         this.days = days;
         this.startDate = startDate;
+        this.events = events;
     }
 
     /**
@@ -49,7 +55,9 @@ public class Week implements Copyable<Week> {
      * @param event the event
      */
     void addEvent(Event event) {
-
+        if (events.contains(event)) {
+            return;
+        }
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
         days[day].addEvent(event);
@@ -61,7 +69,9 @@ public class Week implements Copyable<Week> {
      * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
-
+        if (events.contains(lesson)) {
+            return;
+        }
         int day = lesson.getDay().getValue() - 1;
         days[day].addLesson(lesson);
     }
@@ -84,7 +94,7 @@ public class Week implements Copyable<Week> {
 
     @Override
     public Week getCopy() {
-        return new Week((Day[]) Arrays.stream(days).map(Day::getCopy).toArray(), startDate);
+        return new Week((Day[]) Arrays.stream(days).map(Day::getCopy).toArray(), startDate, new TreeSet<>(events));
     }
 
 }

@@ -1,8 +1,10 @@
 package seedu.nova.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
@@ -16,7 +18,7 @@ public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private LinkedList<Event> events;
+    private Set<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
 
@@ -27,12 +29,12 @@ public class Day implements Copyable<Day> {
      */
     public Day(LocalDate date) {
 
-        events = new LinkedList<>();
+        events = new TreeSet<>();
         this.date = date;
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    private Day(TreeSet<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -44,8 +46,11 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
+        if (events.contains(event)) {
+            return;
+        }
 
-        ListIterator<Event> iterator = events.listIterator();
+        Iterator<Event> iterator = events.iterator();
         int index = 0;
 
         if (events.size() == 0) {
@@ -66,8 +71,8 @@ public class Day implements Copyable<Day> {
                     */
                     //hasSlot = true;
                     freeSlots.excludeDuration(event.getDtd());
-                    events.add(index, event);
-                    System.err.println(events.get(index) + " has been added to " + date);
+                    events.add(event);
+                    System.err.println(event + " has been added to " + date);
                     break;
                 }
             }
@@ -87,7 +92,6 @@ public class Day implements Copyable<Day> {
      * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
-
         Lesson tmp = new Lesson(lesson);
         tmp.setDate(date);
         addEvent(tmp);
@@ -101,9 +105,8 @@ public class Day implements Copyable<Day> {
     public String view() {
 
         StringBuilder sb = new StringBuilder();
-        ListIterator<Event> iterator = events.listIterator();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next());
+        for (Event event : events) {
+            sb.append(event);
             sb.append("\n");
         }
         return sb.toString();
@@ -120,6 +123,6 @@ public class Day implements Copyable<Day> {
 
     @Override
     public Day getCopy() {
-        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
+        return new Day(new TreeSet<>(events), date, freeSlots.getCopy());
     }
 }

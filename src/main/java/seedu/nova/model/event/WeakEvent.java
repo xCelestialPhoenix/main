@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 
 /**
@@ -41,5 +42,22 @@ public class WeakEvent extends Event {
                 + "Time: " + getDayOfWeek() + ", "
                 + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
                 + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof WeakEvent) {
+            if (origin.getTaskFreq() == TaskFreq.WEEKLY) {
+                return getDayOfWeek().equals(((WeakEvent) o).getDayOfWeek())
+                        && getStartTime().equals(((WeakEvent) o).getStartTime())
+                        && getEndTime().equals(((WeakEvent) o).getEndTime());
+            } else {
+                return getDate().equals(((WeakEvent) o).getDate())
+                        && getStartTime().equals(((WeakEvent) o).getStartTime())
+                        && getEndTime().equals(((WeakEvent) o).getEndTime());
+            }
+        } else {
+            return super.equals(o);
+        }
     }
 }

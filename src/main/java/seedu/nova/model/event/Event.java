@@ -2,6 +2,7 @@ package seedu.nova.model.event;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import seedu.nova.model.util.time.duration.DateTimeDuration;
@@ -11,7 +12,7 @@ import seedu.nova.model.util.time.duration.WeekDayDuration;
 /**
  * Represents an Event that can be managed.
  */
-public class Event {
+public class Event implements Comparable<Event> {
     protected String desc;
     protected String venue;
     protected LocalTime startTime;
@@ -47,8 +48,16 @@ public class Event {
         return date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public LocalTime getStartTime() {
         return startTime;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return LocalDateTime.of(getDate(), getStartTime());
     }
 
     public LocalTime getEndTime() {
@@ -63,10 +72,6 @@ public class Event {
         return dtd.getStartDay();
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public void markDone() {
         isDone = true;
     }
@@ -75,4 +80,20 @@ public class Event {
         this.note = note;
     }
 
+    @Override
+    public int compareTo(Event o) {
+        return getStartDateTime().compareTo(o.getStartDateTime());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            return desc.equals(((Event) obj).desc)
+                    && date.equals(((Event) obj).date)
+                    && startTime.equals(((Event) obj).startTime)
+                    && endTime.equals(((Event) obj).endTime);
+        } else {
+            return super.equals(obj);
+        }
+    }
 }
