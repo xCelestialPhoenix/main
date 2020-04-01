@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import seedu.nova.model.schedule.Day;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.Day;
 import seedu.nova.model.util.time.TimeUtil;
 
 

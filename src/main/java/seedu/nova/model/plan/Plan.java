@@ -2,8 +2,8 @@ package seedu.nova.model.plan;
 
 import java.util.List;
 
-import seedu.nova.model.schedule.Day;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.Day;
 
 /**
  * task container

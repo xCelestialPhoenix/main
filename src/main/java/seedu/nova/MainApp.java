@@ -21,7 +21,6 @@ import seedu.nova.model.ModelManager;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.UserPrefs;
-import seedu.nova.model.Schedule;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.JsonNovaStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
