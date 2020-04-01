@@ -41,12 +41,14 @@ public interface Model {
     /**
      * Returns the user prefs' nova book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNovaFilePath();
+
+    Nova getNova();
 
     /**
      * Sets the user prefs' nova book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNovaFilePath(Path addressBookFilePath);
 
     /**
      * Replaces nova book data with the data in {@code addressBook}.
@@ -103,5 +105,5 @@ public interface Model {
 
     void addEvent(Event e);
 
-    public void addLesson(Lesson l);
+    void addLesson(Lesson l);
 }

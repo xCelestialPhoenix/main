@@ -1,21 +1,27 @@
 package seedu.nova.model.schedule;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.Copyable;
+import seedu.nova.model.util.time.duration.DateTimeDuration;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Day.
  */
-public class Day {
+public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
     private LinkedList<Event> events;
     private LocalDate date;
+    private DateTimeSlotList freeSlots;
 
     /**
      * Instantiates a new Day.
@@ -26,6 +32,13 @@ public class Day {
 
         events = new LinkedList<>();
         this.date = date;
+        freeSlots = DateTimeSlotList.ofDay(date);
+    }
+
+    private Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+        this.events = events;
+        this.date = date;
+        this.freeSlots = freeSlots;
     }
 
     /**
@@ -33,7 +46,7 @@ public class Day {
      *
      * @param event the event
      */
-    public void addEvent(Event event) {
+    void addEvent(Event event) {
 
         ListIterator<Event> iterator = events.listIterator();
         int index = 0;
@@ -56,6 +69,7 @@ public class Day {
                     }
                     */
                     //hasSlot = true;
+                    freeSlots.excludeDuration(event.getDtd());
                     events.add(index, event);
                     break;
                 }
@@ -102,4 +116,17 @@ public class Day {
         return sb.toString();
     }
 
+    /**
+     * Get free slots in the form of DateTimeDuration
+     *
+     * @return List of DateTimeDuration
+     */
+    public List<DateTimeDuration> getFreeSlot(Duration greaterThan) {
+        return freeSlots.getSlotList(greaterThan);
+    }
+
+    @Override
+    public Day getCopy() {
+        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
+    }
 }

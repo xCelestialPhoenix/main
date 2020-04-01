@@ -87,8 +87,10 @@ public class LogicParser {
         } else {
             //check mode
             switch (mode) {
+
             case HOME:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
             case ADDRESSBOOK:
                 //return addressBookParser.parseCommand(userInput);
                 return addressBookParser.parseCommand(commandWord, arguments);

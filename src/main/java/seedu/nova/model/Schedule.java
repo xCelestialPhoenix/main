@@ -1,16 +1,19 @@
-package seedu.nova.model.schedule;
+package seedu.nova.model;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.schedule.Week;
+import seedu.nova.model.util.Copyable;
 
 /**
- * The Schedule class to hold all the events.
+ * The type Schedule.
  */
-public class Schedule {
+public class Schedule implements Copyable<Schedule> {
 
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
@@ -25,8 +28,8 @@ public class Schedule {
     /**
      * Instantiates a new Schedule.
      *
-     * @param startDate the start date.
-     * @param endDate   the end date.
+     * @param startDate the start date
+     * @param endDate   the end date
      */
     public Schedule(LocalDate startDate, LocalDate endDate) {
 
@@ -36,10 +39,16 @@ public class Schedule {
         weeks = new Week[17];
     }
 
+    private Schedule(LocalDate startDate, LocalDate endDate, Week[] weeks) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.weeks = weeks;
+    }
+
     /**
-     * Adds an event to the schedule.
+     * Adds event.
      *
-     * @param event the event object to add.
+     * @param event the event
      */
     public void addEvent(Event event) {
 
@@ -55,13 +64,13 @@ public class Schedule {
     }
 
     /**
-     * Generates and add all lessons as events into the schedule.
+     * Adds lesson.
      *
-     * @param lesson the lesson to add.
+     * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
 
-        for (int i = 1; i < 14; i++) {
+        for (int i = 0; i < 14; i++) {
 
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
@@ -212,6 +221,11 @@ public class Schedule {
     private int calWeekNumber(LocalDate date) {
 
         return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK) + WEEK_OFFSET;
+    }
+
+    @Override
+    public Schedule getCopy() {
+        return new Schedule(startDate, endDate, (Week[]) Arrays.stream(weeks).map(Week::getCopy).toArray());
     }
 
 }
