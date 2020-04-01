@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.DateNotFoundException;
-import seedu.nova.model.EventNotFoundException;
+import seedu.nova.model.event.DateNotFoundException;
+import seedu.nova.model.event.EventNotFoundException;
 import seedu.nova.model.Model;
 
 /**

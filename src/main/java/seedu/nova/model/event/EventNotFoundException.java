@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.event;
 
 /**
  * Signals that the operation is not able to find the Event.

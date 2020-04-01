@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.event;
 
 /**
  * Signals that the operation is trying to add an event that has a timing that overlaps with another.

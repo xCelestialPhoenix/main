@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 import seedu.nova.model.event.Event;
+import seedu.nova.model.event.EventNotFoundException;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.event.TimeOverlapException;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;

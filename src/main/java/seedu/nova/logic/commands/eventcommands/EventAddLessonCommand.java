@@ -9,7 +9,7 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.TimeOverlapException;
+import seedu.nova.model.event.TimeOverlapException;
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 
