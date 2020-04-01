@@ -23,7 +23,7 @@ public class ScheduleParser {
 
         switch (commandWord) {
         case ScViewDayCommand.COMMAND_WORD:
-            return new ScViewDayCommandParser().parse(arguments);
+            return new ScViewCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

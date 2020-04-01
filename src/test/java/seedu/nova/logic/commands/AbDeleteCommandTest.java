@@ -1,5 +1,6 @@
 package seedu.nova.logic.commands;
 
+/*
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -18,16 +19,18 @@ import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.Person;
+
+*/
+
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code AbDeleteCommand}.
  */
 public class AbDeleteCommandTest {
-
+    /*
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
             1, 13), LocalDate.of(2020, 5, 3)));
 
@@ -110,9 +113,12 @@ public class AbDeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
+
+    /*
     private void showNoPerson(Model model) {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
+     */
 }
