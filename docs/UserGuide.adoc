@@ -427,7 +427,9 @@ Format: +
 `view week i\[week #]`
 
 [NOTE]
-`[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* `[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* Recess week is week 16
+
 
 Example: +
 Suppose you are interested in what is going to happen in week 6 of the semester, +
