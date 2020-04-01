@@ -48,9 +48,6 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
-        ListIterator<Event> iterator = events.listIterator();
-        int index = 0;
-
         if (events.size() == 0) {
             // if list is empty
             events.add(event);
@@ -98,9 +95,9 @@ public class Day implements Copyable<Day> {
 
     /**
      * determines if an event can be added to the list after a current event
-     * @param toAdd
-     * @param after
-     * @return
+     * @param toAdd event to be added
+     * @param after event that is supposed to come after the event to be added
+     * @return boolean determining whether the event can be added before the event in the list
      */
     public boolean checkAddBefore(Event toAdd, Event after) {
         boolean b1 = toAdd.getStartTime().compareTo(after.getStartTime()) <= 0;
