@@ -91,7 +91,7 @@ public class MainWindow extends UiPart<Stage> {
             //set mode to schedule first
             logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
 
-            CommandResult commandResult = logic.execute("view d\\" + today);
+            CommandResult commandResult = logic.execute("view t\\" + today);
             ResultDisplay r = new ResultDisplay();
             r.setFeedbackToUser(commandResult.getFeedbackToUser());
 
