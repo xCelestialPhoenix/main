@@ -75,7 +75,7 @@ Features are grouped together in modes of operation. There is a set of common co
 there is also a set of commands for you to use and get things done.
 
 === Common
-NOVA offers a set of common functionalities across all modes.
+NOVA offers a set of common functionalities across all modes. These commands can be executed within any mode of NOVA.
 
 ==== Exit : `exit`
 You can exit NOVA with this command. While exiting NOVA, contacts, schedules and
@@ -430,11 +430,13 @@ Format: +
 `[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
-Suppose you are interested in what is going to happen in week 6 of the semester,
+Suppose you are interested in what is going to happen in week 6 of the semester, +
  +
 `view week i\6`
 
-Nova will show your schedule in week 6 of the semester.
+NOVA will show your schedule in week 6 of the semester as seen below.
+
+<Insert screenshot>
 
 ==== Find Free Slots: `freeslot`
 You can find free slots on a day easily within your schedule without going through your schedule.
