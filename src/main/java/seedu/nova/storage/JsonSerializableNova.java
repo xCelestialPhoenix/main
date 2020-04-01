@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Nova;
+import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.person.Person;
 
 /**
@@ -50,7 +52,7 @@ class JsonSerializableNova {
      */
     public Nova toModelType() throws IllegalValueException {
         Nova nova = new Nova();
-        AddressBook ab = toModelTypeAb();
+        VersionedAddressBook ab = toModelTypeAb();
         //Call other toModelType();
 
         nova.setAddressBookNova(ab);
@@ -64,15 +66,20 @@ class JsonSerializableNova {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelTypeAb() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public VersionedAddressBook toModelTypeAb() throws IllegalValueException {
+        ReadOnlyAddressBook initialState;
+        AddressBook ab = new AddressBook();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (ab.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            ab.addPerson(person);
         }
+        initialState = ab;
+        VersionedAddressBook addressBook = new VersionedAddressBook(initialState);
+
         return addressBook;
     }
 

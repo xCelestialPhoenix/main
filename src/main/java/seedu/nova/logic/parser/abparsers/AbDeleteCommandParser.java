@@ -1,9 +1,13 @@
 package seedu.nova.logic.parser.abparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
+import seedu.nova.logic.parser.ArgumentMultimap;
+import seedu.nova.logic.parser.ArgumentTokenizer;
+import seedu.nova.logic.parser.CliSyntax;
 import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.exceptions.ParseException;
@@ -20,13 +24,22 @@ public class AbDeleteCommandParser implements Parser<AbDeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AbDeleteCommand parse(String args) throws ParseException {
-        try {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
+
+        /*try {
             Index index = ParserUtil.parseIndex(args);
             return new AbDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                             AbDeleteCommand.MESSAGE_USAGE), pe);
+        } */
+        if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
+            return new AbDeleteCommand(index);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbDeleteCommand.MESSAGE_USAGE));
         }
     }
 
