@@ -29,7 +29,6 @@ public class Day implements Copyable<Day> {
      * @param date the date
      */
     public Day(LocalDate date) {
-
         events = new LinkedList<>();
         this.date = date;
         freeSlots = DateTimeSlotList.ofDay(date);
@@ -47,37 +46,51 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
-
         ListIterator<Event> iterator = events.listIterator();
         int index = 0;
 
         if (events.size() == 0) {
+            // if list is empty
             events.add(event);
         } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
+            // if event to be added is after latest event in the list (i.e. add to the back)
             events.add(events.size(), event);
 
         } else {
-            boolean canAdd = false;
-
-            while (iterator.hasNext()) {
-                Event item = iterator.next();
-
-                if (checkAddBefore(event, item)) {
-                    freeSlots.excludeDuration(event.getDtd());
-                    events.add(index, event);
-                    canAdd = true;
-                    break;
-                }
-
-                index++;
-            }
-
-            if (!canAdd) {
-                // throw an exception if the timing overlaps
-                throw new TimeOverlapException();
-            }
-
+            // if event to be added is supposed to be somewhere in the middle of the list
+            addToMiddle(event);
         }
+    }
+
+    /**
+     * adds an event to correct position somewhere in the middle of the list
+     * @param toAdd the event to be added
+     */
+    void addToMiddle(Event toAdd) {
+        ListIterator<Event> iterator = events.listIterator();
+        int index = 0;
+
+        boolean canAdd = false;
+
+        while (iterator.hasNext()) {
+            Event item = iterator.next();
+
+            if (checkAddBefore(toAdd, item)) {
+                freeSlots.excludeDuration(toAdd.getDtd());
+
+                events.add(index, toAdd);
+                canAdd = true;
+                break;
+            }
+
+            index++;
+        }
+
+        if (!canAdd) {
+            // throw an exception if the timing overlaps
+            throw new TimeOverlapException();
+        }
+
     }
 
 
@@ -100,7 +113,6 @@ public class Day implements Copyable<Day> {
      * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
-
         Lesson tmp = new Lesson(lesson);
         tmp.setDate(date);
         addEvent(tmp);
