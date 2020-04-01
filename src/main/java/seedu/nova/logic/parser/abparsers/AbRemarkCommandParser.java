@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.nova.commons.core.index.Index;
-import seedu.nova.commons.exceptions.IllegalValueException;
-import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbRemarkCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
@@ -27,7 +25,8 @@ public class AbRemarkCommandParser implements Parser<AbRemarkCommand> {
      */
     public AbRemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_INDEX, CliSyntax.PREFIX_REMARK);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                CliSyntax.PREFIX_INDEX, CliSyntax.PREFIX_REMARK);
 
         Index index;
         /*try {

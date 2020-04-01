@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
-import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 
 /**

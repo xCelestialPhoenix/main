@@ -5,7 +5,6 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
-import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.CliSyntax;

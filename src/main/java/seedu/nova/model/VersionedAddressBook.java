@@ -3,10 +3,14 @@ package seedu.nova.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * For use in redo and undo command for Address Book feature.
+ * Save the state of AddressBook every time certain command is used.
+ */
 public class VersionedAddressBook extends AddressBook {
 
-    final List<ReadOnlyAddressBook> addressBookStateList;
-    int currStatePointer;
+    private final List<ReadOnlyAddressBook> addressBookStateList;
+    private int currStatePointer;
 
     public VersionedAddressBook(ReadOnlyAddressBook initialState) {
         super(initialState);
@@ -16,7 +20,9 @@ public class VersionedAddressBook extends AddressBook {
         currStatePointer = 0;
     }
 
-    //User did something to address book, save that state of address book
+    /**
+     * Save and add current state of address book.
+     */
     public void commit() {
         addressBookStateList.subList(currStatePointer + 1, addressBookStateList.size()).clear();
         addressBookStateList.add(new AddressBook(this));
@@ -34,6 +40,9 @@ public class VersionedAddressBook extends AddressBook {
         return currStatePointer < addressBookStateList.size() - 1;
     }
 
+    /**
+     * Undo the command.
+     */
     public void undo() {
         if (canUndo()) {
             currStatePointer--;
@@ -41,6 +50,9 @@ public class VersionedAddressBook extends AddressBook {
         }
     }
 
+    /**
+     * Redo the command.
+     */
     public void redo() {
         if (canRedo()) {
             currStatePointer++;

@@ -35,7 +35,8 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
     public AbEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_CATEGORY);
 
         Index index;
 
