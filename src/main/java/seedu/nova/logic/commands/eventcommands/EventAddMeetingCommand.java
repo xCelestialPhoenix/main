@@ -10,8 +10,9 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.event.TimeOverlapException;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.event.InvalidDateException;
+import seedu.nova.model.event.TimeOverlapException;
 
 /**
  * adds a Meeting into the Schedule.
@@ -48,6 +49,8 @@ public class EventAddMeetingCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
             throw new CommandException("You already have an event within that time frame.");
+        } catch (InvalidDateException e) {
+            throw new CommandException("That date does not fall within the semester.");
         }
 
     }

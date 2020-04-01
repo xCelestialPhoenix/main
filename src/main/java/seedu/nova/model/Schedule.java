@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import seedu.nova.model.event.DateNotFoundException;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.event.InvalidDateException;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
@@ -52,6 +53,11 @@ public class Schedule implements Copyable<Schedule> {
     public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
+
+        if (!checkDateValidity(date)) {
+            throw new InvalidDateException();
+        }
+
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
