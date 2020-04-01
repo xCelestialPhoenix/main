@@ -70,16 +70,18 @@ class JsonSerializableNova {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public VersionedAddressBook toModelTypeAb() throws IllegalValueException {
-        ReadOnlyAddressBook initialState = new AddressBook();
-        VersionedAddressBook addressBook = new VersionedAddressBook(initialState);
+        ReadOnlyAddressBook initialState;
+        AddressBook ab = new AddressBook();
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (ab.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            ab.addPerson(person);
         }
+        initialState = ab;
+        VersionedAddressBook addressBook = new VersionedAddressBook(initialState);
 
         return addressBook;
     }
