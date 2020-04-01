@@ -20,28 +20,54 @@ By: `Team CS2103T-F10-3`      Since: `Mar 2020`      Licence: `MIT`
 
 == Introduction
 
-Next-gen Organizing Virtual Assistant (NOVA) is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings. NOVA is designed for users who prefer to use the Command Line Interface (CLI).
+Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA). NOVA is a one-stop desktop
+application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings.
+NOVA is designed for users who prefer to use the Command Line Interface (CLI).
 
 image::GUI_v2.0.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 1: GUI of NOVA#_
 
-== Quick Start
+== About
 
-.  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `nova.jar` link:{repoURL}/releases[here].
+This UG is a reference guide to help you use NOVA. This document contains a quick start section to get you up and
+running soon.
+
+There is an entire section dedicated to how to use any particular feature in NOVA. Examples are provided for your
+better understanding. We have also provided a summary of commands for your quick reference. Should you face any
+problems, take a look at the FAQ section. There is a glossary at the end if you need clarification on a term that you
+do not understand.
+
+== Notations
+In this guide, you'll be seeing the following markup being used.
+
+[NOTE]
+This icon indicates details that could help you better understand how to use NOVA.
+
+[WARNING]
+This icon indicates actions that could negatively affect your experience while using NOVA.
+
+`Commands` and `input fields` are highlighted.
+
+== Quick Start
+Here are some steps to get you started:
+
+.  Ensure you have Java *11* or above installed in your Computer.
+.  Download the latest _nova.jar_ link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 .  Type the command in the command box and press kbd:[Enter] to execute it.
-.  Some example commands you can try:
+.  Try the following commands to get you warmed up:
 
-* *`nav ab`*: navigates to address book mode
+* *`nav ab`*: navigates to address book mode. +
+You can use the following commands once you are in address book mode:
 ** *`list`* : lists all contacts
-** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named `John Doe` to the Address Book and
+** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named *John Doe* to the Address Book
+ and
 categorise as classmate
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
@@ -54,6 +80,9 @@ NOVA offers a set of common functionalities across all modes.
 ==== Exit : `exit`
 You can exit NOVA with this command. While exiting NOVA, contacts, schedules and
 notes will be saved.
+
+Format: +
+`exit`
 
 ==== Navigation: `nav`
 You can navigate to the desired mode to use its features.
@@ -73,10 +102,10 @@ Change the mode of operation to address book.
 The address book feature allows you to keep in contact with your teammates and classmates. Access this mode by entering
 the command `nav ab`.
 
-image::addressbook.png[width="790" align="center"]
+image::addressbooknew.png[width="790" align="center"]
 
 [.text-center]
-_[.small]#Fig 3.2: GUI of NOVA after user typed contact `add n\John Doe p\12345678 c\teammate`#_
+_[.small]#Fig 3.2: GUI of NOVA after user typed contact `add n\John Doe p\12345678 e\\johndoe@hotmail.com c\teammate`#_
 
 ==== Add Contact: `add`
 You can add your classmate or teammate as contact.
@@ -100,43 +129,41 @@ classmate category.
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
 
-Format: `edit [index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
+At least one of the optional fields must be provided. Optional fields are `n\[name]`, `p\[phone number]`,
+`e\[email address]` or `c\[classmate/teammate]`.
+
+Format: `edit i\[index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
 [NOTE]
 ====
-* Edits the person at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided
-* Optional fields are `n\[name]`, `p\[phone number]`, `e\[email address]` or `c\[classmate/teammate]`
-* Existing values will be updated to the input values
-* `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
+* Edits the person at the specified `[index]` in the displayed person list
+* The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* `[name]` and `[classmate/teammate]` are not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe") +
 The name you add will be automatically formatted. (E.g. "jane doe" will become "Jane Doe")
-* `[classmate/teammate]` is not case-sensitive. (E.g. "ClasSMate" is the same as "classmate")
 * You can only edit either `classmate` or `teammate` as category
 ====
 
 Example:
 
-* `edit 1 p\88888888` +
+* `edit i\1 p\88888888` +
 Edits the phone number of the first person in your address book to 88888888.
 
-* `edit 3 e\\kly838@hotmail.com` +
+* `edit i\3 e\\kly838@hotmail.com` +
 Edits the email address of the third person in your address book to kly838@hotmail.com.
 
 ==== Delete Contact : `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
-Format: `delete [index]`
+Format: `delete i\[index]`
 
 [NOTE]
 ====
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person at the specified `[index]` in the displayed person list
+* The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 ====
 
 Example: +
-`delete 1`
+`delete i\1`
 
 Deletes the first person in your address book.
 
@@ -171,13 +198,13 @@ Lists all your contacts in the `teammate` category.
 
 ==== Find Contact: `find`
 You can find a contact added to the address book easily with a name.
+You can find contact by full name, or by first name or last name only.
 
 Format: `find n\[name]`
 
 [NOTE]
 ====
 * `[name]` is not case-sensitive. (E.g. "Jane doe" is the same as "jane Doe")
-* You can find partial name
 ====
 
 Example:
@@ -190,54 +217,51 @@ Finds all saved contacts named Jane.
 
 ==== Add Picture to Contact: `addpic`
 You can add a profile picture to a contact in your address book.
+If a profile picture had already been added, any newly added profile picture will be replaced
 
-Format: `addpic [index] pa\[path]`
+Format: `addpic i\[index] pa\[path]`
 
 [NOTE]
 ====
-* Adds profile picture of the person at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds profile picture of the person at the specified `[index]` in the displayed person list
+* The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 * Absolute file path is used for `[path]`
-* If a profile picture had already been added, any newly added profile picture will be replaced
 ====
 
 Example: +
-`addpic 2 pa\C:\Users\aloha\Desktop\aloha.png`
+`addpic i\2 pa\C:\Users\aloha\Desktop\aloha.png`
 
 Sets the profile picture of the second contact in your address book to aloha.png.
 
 ==== Delete Picture in Contact: `deletepic`
 You can delete the profile picture of a contact in your address book.
 
-Format: `deletepic [index]`
+Format: `deletepic i\[index]`
 
 [NOTE]
 ====
-* Deletes the picture at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the picture at the specified `[index]` in the displayed person list
+* The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 ====
 
 Example: +
-`deletepic 2`
+`deletepic i\2`
 
 Deletes the profile picture of the second contact in your address book.
 
 ==== Add Category Specific Remarks: `remark`
-You can add remarks, that are category specific, to a contact.
+You can add remarks that are category specific, to a contact.
 
-Format: `remark [index] r\[remark]`
+Format: `remark i\[index] r\[remark]`
 
 [NOTE]
 ====
-* Adds category specific remark at the specified `[index]`
-* The index refers to the index number shown in the displayed person list
-* The index **must be a positive integer** 1, 2, 3, …​
+* Adds category specific remark at the specified `[index]` in the displayed person list
+* The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 ====
 
 Example: +
-`remark 2 r\He's a nice teammate`
+`remark i\2 r\He's a nice teammate`
 
 Adds the remark "He's a nice teammate" to the second contact in your address book.
 
@@ -258,18 +282,18 @@ After you successfully enter a new command, you will lose all the undone command
 ==== Short Form [v2.0]:
 You can use the short form of your command.
 
-=== Manage Events
-You can track events by adding them into the organizer and manage them easily. Access this mode by entering
-the command `nav schedule`.
+=== Schedule
+Learn how to work with the schedule feature in NOVA. You can track important events by adding them into the schedule
+and manage them easily  You need to be in schedule mode. Enter the schedule mode by entering the command `nav schedule`.
+Your NOVA should look something like Figure 5.3 below.
 
 image::ManageEventsUI.png[width="790" align="center"]
 [.text-center]
-_[.small]#Figure 3.3: GUI of NOVA after user typed +
-`meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`#_
-
+_[.small]#Figure 5.3: GUI of NOVA after user typed `nav schedule`#_
 
 ==== Add a Meeting: `meeting`
 You can add a meeting as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -280,6 +304,7 @@ Creates an event for a team meeting at COM1 on 20 Feb 2020 to set up CS2103T web
 
 ==== Add a Study Session: `study`
 You can add a study session as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -291,6 +316,7 @@ Creates an event for study session at COM1 on 20 Feb 2020 from 4pm to 5pm.
 
 ==== Add a Consultation Session: `consultation`
 You can add a consultation session as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -301,6 +327,7 @@ Creates an event for consultation at COM1 on 20 Feb 2020 to clarify UML from 3pm
 
 ==== Add a Lesson: `lesson`
 You can add a lesson as one of your events.
+If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
 
@@ -311,6 +338,7 @@ Creates an event for CS2103T tutorial at COM1-B103 on Monday from 3pm to 5pm.
 
 ==== Delete Event: `delete`
 You can delete an event that you no longer want.
+If the event does not exist, NOVA will inform you.
 
 Format: `delete t\[YYYY-MM-DD] i\[index]`
 
@@ -324,6 +352,7 @@ Deletes the second event on 20 Feb 2020.
 
 ==== Mark Event as Done: `done`
 You can mark an event as done once it has been completed.
+If the event does not exist, NOVA will inform you.
 
 Format: `done t\[YYYY-MM-DD] i\[index]`
 
@@ -346,10 +375,11 @@ Format: `find event k\[keywords]`
 Example: +
 `find event cool peeps`
 
-Finds the events with description containing cool or peeps.
+Finds the events with description containing "cool peeps".
 
 ==== Add Notes to Event: `note`
 You can add additional notes about an event.
+If the event does not exist, NOVA will inform you.
 
 Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 
@@ -363,6 +393,7 @@ Adds a note with description "Remember to bring your charger!" to the second eve
 
 ==== Repeat an Event: `repeat`
 You can add repeated events which occur weekly for a given number of times.
+If the event does not exist, NOVA will inform you.
 
 Format: `repeat t\[YYYY-MM-DD] i\[index] c\[count]`
 
@@ -370,17 +401,9 @@ Format: `repeat t\[YYYY-MM-DD] i\[index] c\[count]`
 `[index]` and `[count]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
-`repeat 3 t\2020-03-02 i\2`
+`repeat t\2020-03-02 i\2 c\3`
 
 Your second event on 2nd March 2020 will be repeated for the next 3 weeks.
-
-=== Using Schedule
-Learn how to work with the schedule you have created in NOVA. You need to be in schedule mode. Enter the schedule
-mode by entering the command `nav schedule`.
-
-image::GUI_UsingSchedule.png[width = "790" align="center"]
-[.text-center]
-_[.small]#Fig 3.4: GUI of NOVA after entering the command `freeslot 2020-03-02`.#_
 
 ==== View Schedule of a Day: `view`
 You can view the schedule of a specified day.
@@ -389,9 +412,13 @@ Format: +
 `view t\[YYYY-MM-DD]`
 
 Example: +
+Suppose you want to check out what events are happening on 29 Feb, +
+ +
 `view t\2020-02-29`
 
-Shows your schedule on 29 Feb 2020
+NOVA will show your schedule on 29 Feb 2020 as seen below.
+
+<Insert screenshot here>
 
 ==== View Schedule of a Week: `view`
 You can view the schedule of a specified week.
@@ -403,31 +430,11 @@ Format: +
 `[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
+Suppose you are interested in what is going to happen in week 6 of the semester,
+ +
 `view week i\6`
 
-Shows your schedule of week 6 of the semester.
-
-==== View Schedule of a Month [v2.0]: `view`
-You can view the schedule of a specified month.
-
-Format: +
-`view t\[MMM]`
-
-[NOTE]
-`[MMM]` is not case sensitive. (JAN is the same as jan)
-
-Example: +
-`view t\mar`
-
-Shows you a list of events in March.
-
-==== View Timetable: `view`
-You can view the timetable that you have created.
-
-Format: +
-`view timetable`
-
-Shows you your timetable.
+Nova will show your schedule in week 6 of the semester.
 
 ==== Find Free Slots: `freeslot`
 You can find free slots on a day easily within your schedule without going through your schedule.
@@ -439,17 +446,6 @@ Example: +
 `freeslot t\2020-02-29`
 
 Finds the free slots on 29 Feb 2020.
-
-==== Set Reminder: `reminder`
-You can set a reminder for an event so that you would not forget.
-
-Format: +
-`reminder d\[decription] t\[YYYY-MM-DD]`
-
-Example: +
-`reminder d\project meeting t\2020-03-02`
-
-Set a reminder for the project meeting on 2 Mar 2020.
 
 === Daily Study Planner
 You can use it to create study-events automatically based on the current schedule and study plan.
@@ -544,7 +540,6 @@ Example 2: +
 ** There is already a same event in the same day.
 ** If the total time of all the events related to the task combined exceeds the total time specified by the task.
 
-
 === Progress Tracker
 A tracker to help you track your study and project progress. Access this mode by entering
 the command `nav tracker`.
@@ -612,6 +607,8 @@ Example: +
 `delete p\IP i\3`
 
 Deletes task 3 of IP in progress tracker.
+
+== Command Summary
 
 == FAQ
 
