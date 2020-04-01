@@ -430,11 +430,13 @@ Format: +
 `[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
-Suppose you are interested in what is going to happen in week 6 of the semester,
+Suppose you are interested in what is going to happen in week 6 of the semester, +
  +
 `view week i\6`
 
-Nova will show your schedule in week 6 of the semester.
+NOVA will show your schedule in week 6 of the semester as seen below.
+
+<Insert screenshot>
 
 ==== Find Free Slots: `freeslot`
 You can find free slots on a day easily within your schedule without going through your schedule.
