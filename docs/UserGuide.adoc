@@ -22,7 +22,7 @@ By: `Team CS2103T-F10-3`      Since: `Mar 2020`      Licence: `MIT`
 
 Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA). NOVA is a one-stop desktop
 application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings.
-NOVA is designed for users who prefer to use the Command Line Interface (CLI).
+NOVA is designed for users who prefer to interact with programs through typing.
 
 image::GUI_v2.0.png[width="790" align="center"]
 [.text-center]
@@ -53,7 +53,7 @@ This icon indicates actions that could negatively affect your experience while u
 Here are some steps to get you started:
 
 .  Ensure you have Java *11* or above installed in your Computer.
-.  Download the latest _nova.jar_ link:{repoURL}/releases[here].
+.  Download the latest *nova.jar* link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 .  Type the command in the command box and press kbd:[Enter] to execute it.
@@ -75,7 +75,7 @@ Features are grouped together in modes of operation. There is a set of common co
 there is also a set of commands for you to use and get things done.
 
 === Common
-NOVA offers a set of common functionalities across all modes. These commands can be executed within any mode of NOVA.
+NOVA offers a set of common functionalities across all modes. These commands can be executed within any mode in NOVA.
 
 ==== Exit : `exit`
 You can exit NOVA with this command. While exiting NOVA, contacts, schedules and
