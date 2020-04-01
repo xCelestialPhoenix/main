@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.nova.storage.StorageManager;
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Nova;
@@ -69,26 +70,9 @@ class JsonSerializableNova {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public VersionedAddressBook toModelTypeAb() throws IllegalValueException {
-        //ReadOnlyAddressBook initialState = new AddressBook();
-
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
-        }
-
-
+        ReadOnlyAddressBook initialState = new AddressBook();
         VersionedAddressBook addressBook = new VersionedAddressBook(initialState);
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -96,6 +80,7 @@ class JsonSerializableNova {
             }
             addressBook.addPerson(person);
         }
+
         return addressBook;
     }
 
