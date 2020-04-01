@@ -101,6 +101,7 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
         DateTimeDuration ed = cast(td);
         Map.Entry<LocalDateTime, DateTimeDuration> lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime());
         SortedMap<LocalDateTime, DateTimeDuration> nextFreeSlotMap = this.freeSlotMap.tailMap(ed.getStartDateTime());
+        nextFreeSlotMap = nextFreeSlotMap.headMap(ed.getEndDateTime());
 
         if (lastFreeSlot != null && ed.isOverlapping(lastFreeSlot.getValue())) {
             deleteDuration(lastFreeSlot.getValue());
@@ -108,11 +109,9 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
             comp.forEach(this::addDuration);
         }
         for (Map.Entry<LocalDateTime, DateTimeDuration> e : nextFreeSlotMap.entrySet()) {
-            if (e.getValue().isOverlapping(ed)) {
-                deleteDuration(e.getValue());
-                List<TimedDuration> comp = e.getValue().relativeComplementOf(ed);
-                comp.forEach(this::addDuration);
-            }
+            deleteDuration(e.getValue());
+            List<TimedDuration> comp = e.getValue().relativeComplementOf(ed);
+            comp.forEach(this::addDuration);
         }
     }
 
@@ -151,16 +150,15 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
         DateTimeDuration ed = cast(td);
         Map.Entry<LocalDateTime, DateTimeDuration> lastFreeSlot = this.freeSlotMap.floorEntry(ed.getStartDateTime());
         SortedMap<LocalDateTime, DateTimeDuration> nextFreeSlotMap = this.freeSlotMap.tailMap(ed.getStartDateTime());
+        nextFreeSlotMap = nextFreeSlotMap.headMap(ed.getEndDateTime());
 
         if (lastFreeSlot != null && ed.isConnected(lastFreeSlot.getValue())) {
             deleteDuration(lastFreeSlot.getValue());
             ed = new DateTimeDuration(lastFreeSlot.getValue().getStartDateTime(), ed.getEndDateTime());
         }
         for (Map.Entry<LocalDateTime, DateTimeDuration> e : nextFreeSlotMap.entrySet()) {
-            if (e.getValue().isConnected(ed)) {
-                deleteDuration(e.getValue());
-                ed = new DateTimeDuration(ed.getStartDateTime(), e.getValue().getEndDateTime());
-            }
+            deleteDuration(e.getValue());
+            ed = new DateTimeDuration(ed.getStartDateTime(), e.getValue().getEndDateTime());
         }
         addDuration(ed);
     }
