@@ -39,7 +39,14 @@ public class Schedule implements Copyable<Schedule> {
         weeks = new Week[17];
     }
 
-    private Schedule(LocalDate startDate, LocalDate endDate, Week[] weeks) {
+    /**
+     * Instantiates a new Schedule.
+     *
+     * @param startDate the start date
+     * @param endDate   the end date
+     * @param weeks     the weeks
+     */
+    public Schedule(LocalDate startDate, LocalDate endDate, Week[] weeks) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.weeks = weeks;
@@ -116,6 +123,36 @@ public class Schedule implements Copyable<Schedule> {
         }
 
         return weeks[weekNumber].view();
+    }
+
+    /**
+     * Gets start date.
+     *
+     * @return the start date
+     */
+    public LocalDate getStartDate() {
+
+        return startDate;
+    }
+
+    /**
+     * Gets end date.
+     *
+     * @return the end date
+     */
+    public LocalDate getEndDate() {
+
+        return endDate;
+    }
+
+    /**
+     * Get weeks week [ ].
+     *
+     * @return the week [ ]
+     */
+    public Week[] getWeeks() {
+
+        return weeks;
     }
 
     /**

@@ -35,7 +35,7 @@ public class Day implements Copyable<Day> {
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    public Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -114,6 +114,14 @@ public class Day implements Copyable<Day> {
         }
 
         return sb.toString();
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LinkedList getEvents() {
+        return events;
     }
 
     /**

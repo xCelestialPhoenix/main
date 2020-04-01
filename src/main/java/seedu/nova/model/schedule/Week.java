@@ -27,7 +27,7 @@ public class Week implements Copyable<Week> {
         startDate = date;
     }
 
-    private Week(Day[] days, LocalDate startDate) {
+    public Week(Day[] days, LocalDate startDate) {
         this.days = days;
         this.startDate = startDate;
     }
@@ -111,6 +111,16 @@ public class Week implements Copyable<Week> {
             }
         }
         return sb.toString();
+    }
+
+    public Day[] getDays() {
+
+        return days;
+    }
+
+    public LocalDate getStartDate() {
+
+        return startDate;
     }
 
     @Override
