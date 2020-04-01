@@ -75,7 +75,7 @@ Features are grouped together in modes of operation. There is a set of common co
 there is also a set of commands for you to use and get things done.
 
 === Common
-NOVA offers a set of common functionalities across all modes.
+NOVA offers a set of common functionalities across all modes. These commands can be executed within any mode of NOVA.
 
 ==== Exit : `exit`
 You can exit NOVA with this command. While exiting NOVA, contacts, schedules and
