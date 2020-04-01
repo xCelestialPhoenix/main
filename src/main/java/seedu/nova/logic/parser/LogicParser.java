@@ -89,8 +89,6 @@ public class LogicParser {
         } else {
             //check mode
             switch (mode) {
-            case HOME:
-                return navCommandParser.parse(arguments.trim());
             case ADDRESSBOOK:
                 //return addressBookParser.parseCommand(userInput);
                 return addressBookParser.parseCommand(commandWord, arguments);
