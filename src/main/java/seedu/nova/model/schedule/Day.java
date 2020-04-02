@@ -9,6 +9,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.EventNotFoundException;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.schedule.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.WeakEvent;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
@@ -62,6 +63,7 @@ public class Day implements Copyable<Day> {
 
     /**
      * adds an event to correct position somewhere in the middle of the list
+     *
      * @param toAdd the event to be added
      */
     void addToMiddle(Event toAdd) {
@@ -94,6 +96,7 @@ public class Day implements Copyable<Day> {
 
     /**
      * determines if an event can be added to the list after a current event
+     *
      * @param toAdd event to be added
      * @param after event that is supposed to come after the event to be added
      * @return boolean determining whether the event can be added before the event in the list
@@ -118,6 +121,7 @@ public class Day implements Copyable<Day> {
 
     /**
      * Removes an event.
+     *
      * @param index index of event in the LinkedList
      */
     Event deleteEvent(int index) {
@@ -126,11 +130,16 @@ public class Day implements Copyable<Day> {
         }
         Event deleted = events.remove(index - 1);
         freeSlots.includeDuration(deleted.getDtd());
+        if (deleted instanceof WeakEvent) {
+            WeakEvent wkE = (WeakEvent) deleted;
+            wkE.destroy();
+        }
         return deleted;
     }
 
     /**
      * Adds a note to an event.
+     *
      * @param index index of event in the LinkedList
      */
     public String addNote(String desc, int index) {
