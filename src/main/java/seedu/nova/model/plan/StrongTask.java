@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.WeakEvent;
 import seedu.nova.model.schedule.Day;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.WeakEvent;
 import seedu.nova.model.util.time.duration.DateTimeDuration;
 
 /**

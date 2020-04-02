@@ -5,9 +5,11 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.schedule.Week;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.InvalidDateException;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
 /**
@@ -53,6 +55,11 @@ public class Schedule implements Copyable<Schedule> {
     public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
+
+        if (!checkDateValidity(date)) {
+            throw new InvalidDateException();
+        }
+
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
@@ -82,6 +89,38 @@ public class Schedule implements Copyable<Schedule> {
             }
             weeks[i].addLesson(lesson);
         }
+    }
+
+    /**
+     * Deletes an event
+     * @param date the date of the event
+     * @param index the position of event in list
+     */
+    public String deleteEvent(LocalDate date, int index) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(date, index);
+    }
+
+    /**
+     * Adds a note to an Event.
+     * @param desc description of the note
+     * @param date the date of the event
+     * @param index the position of event in list
+     * @return
+     */
+    public String addNote(String desc, LocalDate date, int index) {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].addNote(desc, date, index);
     }
 
     /**

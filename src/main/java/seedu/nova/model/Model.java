@@ -6,10 +6,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+
 
 /**
  * The API of the Model component.
@@ -116,4 +117,9 @@ public interface Model {
     void addEvent(Event e);
 
     void addLesson(Lesson l);
+
+    String deleteEvent(LocalDate date, int index);
+
+    String addNote(String desc, LocalDate date, int index);
+
 }
