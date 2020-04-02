@@ -27,7 +27,7 @@ public class PtListCommand extends Command {
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
+    public static final String MESSAGE_NULLWEEK = "No task in specified week";
 
     private int weekNum;
     private String project;
@@ -53,8 +53,8 @@ public class PtListCommand extends Command {
         if (week == null) {
             throw new CommandException(MESSAGE_NULLWEEK);
         }
-
-        String result = week.getTaskList().listTasks();
+        String header = "IP Project " + "(Week " + weekNum + "):" + "\n";
+        String result = header + "  " + week.getTaskList().listTasks();
 
         return new CommandResult(result, false, false);
     }

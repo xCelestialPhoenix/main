@@ -1,4 +1,4 @@
-package seedu.nova.logic.commands.eventcommands;
+package seedu.nova.logic.commands.sccommands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
@@ -9,7 +9,9 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.InvalidDateException;
+import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
  * adds a Consultation into the Schedule.
@@ -40,8 +42,13 @@ public class EventAddConsultationCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.addEvent(toAdd);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        try {
+            model.addEvent(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (TimeOverlapException e) {
+            throw new CommandException("You already have an event within that time frame.");
+        } catch (InvalidDateException e) {
+            throw new CommandException("That date does not fall within the semester.");
+        }
     }
 }

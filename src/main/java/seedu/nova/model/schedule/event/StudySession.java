@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,7 +20,8 @@ public class StudySession extends Event {
                 + "Venue: " + venue + "\n"
                 + "Date/Time: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ", " + startTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
-                + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
+                + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + "\n"
+                + "Note: " + note;
     }
 
 

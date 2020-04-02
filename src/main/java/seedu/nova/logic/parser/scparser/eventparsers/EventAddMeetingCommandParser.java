@@ -1,4 +1,4 @@
-package seedu.nova.logic.parser.eventparsers;
+package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
-import seedu.nova.logic.commands.eventcommands.EventAddMeetingCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddMeetingCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.CliSyntax;
@@ -14,8 +14,8 @@ import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Meeting;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Meeting;
 
 /**
  * Parses input arguments and creates a new EventAddMeetingCommand object
@@ -51,6 +51,11 @@ public class EventAddMeetingCommandParser implements Parser<EventAddMeetingComma
         LocalDate date = ParserUtil.parseDate(dateTimeArr[0]);
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
+
+        if (startTime.compareTo(endTime) >= 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EventAddMeetingCommand.MESSAGE_USAGE));
+        }
 
         Event meeting = new Meeting(desc, venue, startTime, endTime, date);
         return new EventAddMeetingCommand(meeting);
