@@ -22,8 +22,9 @@ By: `Team CS2103T-F10-3`      Since: `Mar 2020`      Licence: `MIT`
 
 Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA).
 
-NOVA is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, from studying
-to planning project meetings. NOVA is designed for users who prefer to interact with programs through typing.
+NOVA is a one-stop desktop application for CS2103T students to manage all CS2103T related activities. Be it studying
+or planning project meetings, NOVA has you covered. NOVA is designed for users who prefer to interact with programs
+through typing.
 
 == About
 
@@ -32,8 +33,7 @@ running soon.
 
 There is an entire section dedicated to how to use any particular feature in NOVA. Examples are provided for your
 better understanding. We have also provided a summary of commands for your quick reference. Should you face any
-problems, take a look at the FAQ section. There is a glossary at the end if you need clarification on a term that you
-do not understand.
+problems, take a look at the FAQ section.
 
 == Notations
 In this guide, you'll be seeing the following markup being used.
@@ -73,15 +73,14 @@ Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
-Features are grouped together in modes of operation. There is a set of common commands and within every mode,
-there is also a set of commands for you to use and get things done.
+Features are grouped together in modes of operation. There is a set of common commands which can be used in any mode,
+and within every mode, there is also a set of commands for you to use and get things done.
 
 === Common
 NOVA offers a set of common functionalities across all modes. These commands can be executed within any mode in NOVA.
 
 ==== Exit : `exit`
-You can exit NOVA with this command. While exiting NOVA, contacts, schedules and
-notes will be saved.
+You can exit NOVA with this command. While exiting NOVA, contacts, schedules and notes will be saved.
 
 Format: +
 `exit`
