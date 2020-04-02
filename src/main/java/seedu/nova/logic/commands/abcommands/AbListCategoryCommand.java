@@ -14,7 +14,7 @@ public abstract class AbListCategoryCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List contacts according to category. "
             + "Parameters: "
-            + PREFIX_CATEGORY + "CATEGORY\n"
+            + PREFIX_CATEGORY + "[classmate/teammate]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "classmate ";
 

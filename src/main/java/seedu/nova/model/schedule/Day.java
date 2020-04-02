@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -150,10 +150,14 @@ public class Day implements Copyable<Day> {
 
         StringBuilder sb = new StringBuilder();
         ListIterator<Event> iterator = events.listIterator();
+        int index = 0;
         while (iterator.hasNext()) {
+            sb.append(++index);
+            sb.append(". ");
             sb.append(iterator.next());
             sb.append("\n");
         }
+
         return sb.toString();
     }
 

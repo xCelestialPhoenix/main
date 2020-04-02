@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import seedu.nova.model.Day;
 import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.Day;
 
 /**
  * Plan with definite tasks
