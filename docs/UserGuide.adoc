@@ -532,9 +532,9 @@ Suppose you want to check out what events are happening on 29 Feb, +
 
 NOVA will show your schedule on 29 Feb 2020 as seen below.
 
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/schedule_view_date.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
+_[.small]#Fig 5.3.7: GUI of NOVA after user typed contact `view t\2020-02-29`#_
 
 <<Top, [Back to Top]>>
 
@@ -557,9 +557,9 @@ Suppose you are interested in what is going to happen in week 6 of the semester,
 
 NOVA will show your schedule in week 6 of the semester as seen below.
 
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/schedule_view_week.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
+_[.small]#Fig 5.3.8: GUI of NOVA after user typed contact `view week i\6`#_
 
 <<Top, [Back to Top]>>
 
@@ -941,14 +941,21 @@ into your schedule
 | view t\[YYYY-MM-DD] | Shows the events happening on the specified date
 | view week i\[week #] | Shows the events happening on the specified week
 
+.5+| Daily Study Planner
+| delete p\[task name] | Deletes a task and all its events
+| flexible | Creates a flexible task
+| routine p\[task name] f\[daily/weekly] d\[event duration in minutes]| Creates a routine task
+| schedule | Schedules a tasks in the schedule
+| stats | Views the statistics of your planner
+
 .7+| Progress Tracker
 | add p\[ip/tp] w\[week number] d\[task description] | Adds a task to the specified week and project
 | list p\[ip/tp] w\[week number] | Lists the tasks that have been added to the specified week and project
-| delete p\ip w\3 t\3 | Adds the specified task in the specified week and project
-| done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done
+| delete p\ip w\3 t\3 | Deletes the specified task
+| done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done/undone
 | addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
+| editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
 | deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
-| editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Deletes the note in the specified task
 
 |=========================================================
 
