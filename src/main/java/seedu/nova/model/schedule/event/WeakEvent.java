@@ -25,6 +25,10 @@ public class WeakEvent extends Event {
         return origin;
     }
 
+    public void destroy() {
+        origin.deleteEvent(this);
+    }
+
     /**
      * Sets date.
      *
