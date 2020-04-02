@@ -1,14 +1,16 @@
-package seedu.nova.logic.parser.eventparsers;
+package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Pattern;
 
 import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.eventcommands.EventAddConsultationCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddLessonCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddMeetingCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddStudyCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddConsultationCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddLessonCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddMeetingCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddNoteCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddStudyCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventDeleteCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,6 +56,12 @@ public class EventParser {
 
         case EventAddLessonCommand.COMMAND_WORD:
             return new EventAddLessonCommandParser().parse(arguments);
+
+        case EventDeleteCommand.COMMAND_WORD:
+            return new EventDeleteCommandParser().parse(arguments);
+
+        case EventAddNoteCommand.COMMAND_WORD:
+            return new EventAddNoteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

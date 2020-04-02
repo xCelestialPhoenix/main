@@ -6,8 +6,9 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.TimeUtil;
 
@@ -66,11 +67,46 @@ public class Week implements Copyable<Week> {
 
     /**
      * gets a particular day
+     *
      * @param dow day of week of the day
      * @return the day
      */
     public Day getDay(DayOfWeek dow) {
         return days[dow.getValue() - 1];
+    }
+
+    /**
+     * Deletes an event
+     *
+     * @param date  the date of the event
+     * @param index the position of event in list
+     */
+    public String deleteEvent(LocalDate date, int index) {
+        int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return days[day].deleteEvent(index);
+    }
+
+    /**
+     * Adds a note to an Event.
+     *
+     * @param desc  description of the note
+     * @param date  the date of the event
+     * @param index the position of event in list
+     * @return
+     */
+    public String addNote(String desc, LocalDate date, int index) {
+        int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return days[day].addNote(desc, index);
     }
 
     /**

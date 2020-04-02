@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -19,8 +19,7 @@ public class Event implements Comparable<Event> {
     protected LocalTime startTime;
     protected LocalTime endTime;
     protected LocalDate date;
-    protected String note = "";
-    protected boolean isDone = false;
+    protected String note = "NIL";
     protected TimedDuration dtd;
 
     public Event(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
@@ -41,9 +40,6 @@ public class Event implements Comparable<Event> {
         this.dtd = new WeekDayDuration(dow, startTime, endTime);
     }
 
-    public boolean getIsDone() {
-        return isDone;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -71,10 +67,6 @@ public class Event implements Comparable<Event> {
 
     public DayOfWeek getDayOfWeek() {
         return dtd.getStartDay();
-    }
-
-    public void markDone() {
-        isDone = true;
     }
 
     public void addNote(String note) {

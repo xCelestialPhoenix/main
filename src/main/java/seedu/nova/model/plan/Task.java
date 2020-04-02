@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import seedu.nova.model.Schedule;
-import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.util.time.TimeUtil;
 
 
@@ -72,8 +72,9 @@ public abstract class Task {
     /**
      * Generate an event based on the day's schedule and specification of this task.
      * event is not added into day.
+     *
      * @param date date to generate event on
-     * @param sc the schedule
+     * @param sc   the schedule
      * @return event successfully scheduled?
      * @throws ImpossibleTaskException when cannot generate event
      */

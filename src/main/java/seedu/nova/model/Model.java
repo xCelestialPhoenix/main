@@ -8,12 +8,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
@@ -50,12 +50,12 @@ public interface Model {
      */
     Path getNovaFilePath();
 
-    Nova getNova();
-
     /**
      * Sets the user prefs' nova book file path.
      */
     void setNovaFilePath(Path addressBookFilePath);
+
+    Nova getNova();
 
     /**
      * Returns the AddressBook
@@ -133,6 +133,10 @@ public interface Model {
 
     String viewFreeSlot(LocalDate date);
 
+    String deleteEvent(LocalDate date, int index);
+
+    String addNote(String desc, LocalDate date, int index);
+
     //==============studyplanner=============
 
     void resetPlan();
@@ -146,4 +150,5 @@ public interface Model {
     Task searchTask(String name);
 
     boolean generateTaskEvent(Task task, LocalDate date) throws Exception;
+
 }
