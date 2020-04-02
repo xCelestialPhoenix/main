@@ -462,11 +462,12 @@ Finds the free slots on 29 Feb 2020.
  +
 
 === Daily Study Planner
-You can use it to create study-events automatically based on the current schedule and study plan.
-You can modify the auto-generated events on the schedule manually if you wish.
+Learn how to work with the planner feature in NOVA. You can add daily/weeky tasks into your study plan nd schedule it
+on any day you like hassle-free. You need to be in planner mode.
+Enter the planner mode by entering the command `nav planner`.
 
 ==== Create Routine Task: `routine`
-Creates routine tasks in your study plan.
+You can create routine tasks in your study plan.
 
 Format: +
 `routine p\[task name] f\[frequency] d\[event duration in minutes]`
@@ -476,12 +477,16 @@ Format: +
 [event duration in minutes] must be between 0 and 1440.
 
 Example: +
+Suppose you want to create a weekly routine task "read cs2103 textbook", +
+ +
 `routine p\read cs2103 textbook f\weekly d\30`
 
-Creates a new task “read cs2103 textbook” which will create an event “read cs2103 textbook” that lasts for 30 minutes weekly if possible when being scheduled.
+NOVA will create a new task “read cs2103 textbook” +
+When being scheduled, this task will create an event “read cs2103 textbook” that lasts for 30 minutes weekly if
+possible.
 
 ==== Create Flexible Day-Task: `flexible`
-Creates flexible tasks in your study plan, which will create one event per day when being scheduled.
+You can create flexible tasks in your study plan, which will create one event per day when being scheduled.
 
 Format: +
 `flexible p\[task name] t\[total minutes] mind\[maximum event duration in minutes] maxd\[maximum event duration in minutes]`
@@ -493,23 +498,30 @@ Format: +
 [maximum event duration in minutes] must be greater or equal to [minimum event duration in minutes].
 
 Example: +
+Suppose you want to create a flexible task "study vocabulary", +
+ +
 `flexible p\study vocabulary f\daily mind\10 maxd\60`
 
-Creates a new task “study vocabulary” which will create one event “study vocabulary” with duration as long as possible, from 10 minutes to 60 minutes, when being scheduled.
+NOVA will create a new task “study vocabulary” +
+When being scheduled, this task will create one event “study vocabulary” with duration as long as
+possible, from 10 minutes to 60 minutes.
 
 ==== Delete task: `delete`
-Deletes a task, and all its related future events.
+You can delete a task, and all its related future events.
 
 Format: +
 `delete p\[task name]`
 
 Example: +
+Suppose you want to delete the task "study vocabulary", +
+ +
 `delete p\study vocabulary`
 
-Deletes the task “study vocabulary” and all its related future events.
+NOVA will delete the task “study vocabulary” and all its related future events.
 
 ==== View Statistics: `stats`
-Views the statistics of every tasks currently in study plan +
+You can view the statistics of every tasks currently in study plan +
+The statistics are as below, +
 
 * For routine task,
 ** For weekly routine task, statistics consists of:
@@ -529,7 +541,8 @@ Format: +
 Display statistics of all the tasks currently in study plan.
 
 ==== Schedule Task: `schedule`
-Generate an event on a random spot on the specified day according to the requirements of the task if posssible. +
+You can generate an event on a random spot on the specified day according to the requirements of the task if
+possible. +
 The event is generated on a random slot, you will need to manually modify the event generated if you wish. +
 If it is impossible to schedule an event for the task for that day, you will be notified. +
 
@@ -537,7 +550,9 @@ Format: +
 `schedule p\[task name] d\[YYYY-MM-DD]` +
 
 Example 1: +
-`plan p\read cs2103 textbook d\2020-03-20`
+Suppose you want to schedule the weekly routine task "read cs2103 textbook", +
+ +
+`schedule p\read cs2103 textbook d\2020-03-20`
 
 * The planner finds a free slot bigger than 30 minutes as specified by the task, and creates an event “read cs2103 textbook” that lasts for 30 minutes on a random spot within the free slot
 * Situations in which the event will not be created and you will be notified:
@@ -545,14 +560,16 @@ Example 1: +
 ** There is already a same event in the same week (“read cs2103 textbook” is a weekly task).
 
 Example 2: +
-`plan p\study vocabulary d\2020-03-20` +
+Suppose you want to schedule the flexible task "study vocabulary", +
+ +
+`schedule p\study vocabulary d\2020-03-20` +
 
 * The planner finds a free slot bigger than 10 minutes as specified by the task, and creates an event “read cs2103 textbook” on a random spot within the free slot
 * The duration of the event will be the largest possible, within the range specified by the task. +
 * Situations in which the event will not be created and you will be notified:
 ** There is no such free slot available.
 ** There is already a same event in the same day.
-** If the total time of all the events related to the task combined exceeds the total time specified by the task.
+** The total time of all the events related to the task combined exceeds the total time specified by the task.
 
 === Progress Tracker
 A tracker to help you track your study and project progress. Access this mode by entering
