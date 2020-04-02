@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -219,10 +221,16 @@ public class ParserUtil {
      * @param date the date
      * @return the local date
      */
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws ParseException{
         requireNonNull(date);
         String trimmedDate = date.trim();
-        return LocalDate.parse(trimmedDate);
+
+        try {
+            return LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+
     }
 
     /**
