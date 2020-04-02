@@ -5,7 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.nova.model.AddressBook;
+import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyAddressBook;
+import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
@@ -36,12 +38,17 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static Nova getSampleNova() {
+        ReadOnlyAddressBook initialState = new AddressBook();
+        VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
-        return sampleAb;
+
+        Nova nova = new Nova();
+        nova.setAddressBookNova(sampleAb);
+
+        return nova;
     }
 
     /**

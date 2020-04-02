@@ -17,7 +17,7 @@ public class NavCommandParser implements Parser<NavCommand> {
         case "home":
             return new NavCommand(ModeEnum.HOME);
 
-        case "addressbook":
+        case "ab":
             return new NavCommand(ModeEnum.ADDRESSBOOK);
 
         case "event":
