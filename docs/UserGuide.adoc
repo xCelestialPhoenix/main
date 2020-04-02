@@ -557,7 +557,7 @@ Suppose you want to schedule the flexible task "study vocabulary", +
 * Situations in which the event will not be created and you will be notified:
 ** There is no such free slot available.
 ** There is already a same event in the same day.
-** If the total time of all the events related to the task combined exceeds the total time specified by the task.
+** The total time of all the events related to the task combined exceeds the total time specified by the task.
 
 === Progress Tracker
 A tracker to help you track your study and project progress. Access this mode by entering
