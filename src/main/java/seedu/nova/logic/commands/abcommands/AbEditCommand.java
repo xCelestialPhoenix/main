@@ -28,7 +28,7 @@ import seedu.nova.model.person.Remark;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the nova book.
  */
 public class AbEditCommand extends Command {
 
