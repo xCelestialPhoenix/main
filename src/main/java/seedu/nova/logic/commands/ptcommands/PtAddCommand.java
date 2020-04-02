@@ -9,8 +9,8 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.progresstracker.PtTaskList;
 import seedu.nova.model.progresstracker.PtWeek;
@@ -49,32 +49,33 @@ public class PtAddCommand extends Command {
         requireNonNull(model);
         ProgressTracker pt = model.getProgressTracker();
         PtWeek week = null;
+        Project project;
+
+        if (this.project.equals("ip")) {
+            project = pt.getIp();
+        } else {
+            project = pt.getTp();
+        }
 
         //Create new task
         TaskDesc taskDesc = new TaskDesc(this.taskDesc);
         PtTask newTask = new PtTask(taskDesc, this.weekNum);
 
-        if (project.equals("ip")) {
-            Ip ip = pt.getIp();
-            PtWeekList weekList = ip.getWeekList();
-            week = weekList.getWeek(weekNum);
+        PtWeekList weekList = project.getWeekList();
+        week = weekList.getWeek(weekNum);
 
-            //if week not created, create week
-            if (week == null) {
-                PtWeek newWeek = new PtWeek(weekNum);
-                weekList.addWeek(newWeek);
+        //if week not created, create week
+        if (week == null) {
+            PtWeek newWeek = new PtWeek(weekNum);
+            weekList.addWeek(newWeek);
 
-                week = newWeek;
-            }
-
-            PtTaskList taskList = week.getTaskList();
-            taskList.addTask(newTask);
-
-        } else {
-            //do nothing
+            week = newWeek;
         }
 
-        String result = "Added task to week " + weekNum + " of " + project;
+        PtTaskList taskList = week.getTaskList();
+        taskList.addTask(newTask);
+
+        String result = "Added task to week " + weekNum + " of " + this.project.toUpperCase();
 
         return new CommandResult(result, false, false);
     }

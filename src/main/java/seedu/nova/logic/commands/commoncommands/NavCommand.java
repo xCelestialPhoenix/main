@@ -9,6 +9,7 @@ import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.Tp;
 
 /**
  * Class for navigation command
@@ -34,12 +35,15 @@ public class NavCommand extends Command {
         if (this.modeEnum.equals(ModeEnum.PROGRESSTRACKER)) {
             ProgressTracker pt = model.getProgressTracker();
             Ip ip = pt.getIp();
-            double ipProgress = ip.getProgress();
+            Tp tp = pt.getTp();
 
-            String messageProgresstracker = "Projects: \n"
+            double ipProgress = ip.getProgress();
+            double tpProgress = tp.getProgress();
+
+            String messageProgressTracker = "Projects: \n"
                     + "  IP Project: " + ipProgress + "%\n"
-                    + "  TP Project: 0%";
-            return new CommandResult(messageProgresstracker, false, false);
+                    + "  TP Project: " + tpProgress + "%\n";
+            return new CommandResult(messageProgressTracker, false, false);
         }
 
         return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
