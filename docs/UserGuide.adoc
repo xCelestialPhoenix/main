@@ -230,7 +230,7 @@ Format: `find n\[name]`
 
 Example:
 
-* Suppose you want to find Jane doe within NOVA,
+* Suppose you want to find Jane Doe within NOVA,
 +
 `find n\Jane doe`
 +
