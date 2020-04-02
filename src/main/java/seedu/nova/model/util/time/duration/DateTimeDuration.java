@@ -318,6 +318,11 @@ public class DateTimeDuration implements TimedDuration {
     }
 
     @Override
+    public String toString() {
+        return this.startDateTime.toString() + " - " + this.endDateTime.toString();
+    }
+
+    @Override
     public DateTimeDuration getCopy() {
         return new DateTimeDuration(this.startDateTime, this.endDateTime, this.duration);
     }

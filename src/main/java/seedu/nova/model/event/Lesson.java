@@ -11,8 +11,9 @@ import java.time.format.FormatStyle;
 public class Lesson extends Event {
     private DayOfWeek day;
 
-    public Lesson(String desc, String venue, LocalTime startTime, LocalTime endTime, DayOfWeek day) {
-        super(desc, venue, startTime, endTime);
+    public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
+                  DayOfWeek day) {
+        super(description, venue, startTime, endTime, day);
         this.day = day;
     }
 

@@ -1,6 +1,8 @@
 package seedu.nova.logic.parser;
 
+import static seedu.nova.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +14,7 @@ import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
 import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.logic.parser.plannerparser.PlannerParser;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
 import seedu.nova.model.Model;
@@ -30,6 +33,7 @@ public class LogicParser {
     private final EventParser eventParser;
     private final seedu.nova.logic.parser.scparser.ScheduleParser scheduleParser;
     private final ProgresstrackerParser progresstrackerParser;
+    private final PlannerParser plannerParser;
     private Model model;
 
     public LogicParser(Model model) {
@@ -39,6 +43,7 @@ public class LogicParser {
         eventParser = new EventParser();
         scheduleParser = new ScheduleParser();
         progresstrackerParser = new ProgresstrackerParser();
+        plannerParser = new PlannerParser();
         this.model = model;
     }
 
@@ -65,8 +70,7 @@ public class LogicParser {
                 // EventHelpCommand.MESSAGE_USAGE));
 
             case SCHEDULE:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                // SchedulerHelpCommand.MESSAGE_USAGE));
+                throw new ParseException(MESSAGE_EMPTY_ARGUMENT);
 
             case PROGRESSTRACKER:
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,ptbHelpCommand.MESSAGE_USAGE));
@@ -86,8 +90,10 @@ public class LogicParser {
         } else {
             //check mode
             switch (mode) {
+
             case HOME:
-                return navCommandParser.parse(arguments.trim());
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
             case ADDRESSBOOK:
                 //return addressBookParser.parseCommand(userInput);
                 return addressBookParser.parseCommand(commandWord, arguments);
@@ -100,7 +106,8 @@ public class LogicParser {
 
             case PROGRESSTRACKER:
                 return progresstrackerParser.parseCommand(commandWord, arguments);
-
+            case PLANNER:
+                return plannerParser.parseCommand(commandWord, arguments);
             default:
                 throw new ParseException("No such mode");
             }

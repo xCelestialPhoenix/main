@@ -4,6 +4,7 @@ import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.sccommands.ScViewDayCommand;
+import seedu.nova.logic.commands.sccommands.ScViewFreeSlotCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,7 +24,9 @@ public class ScheduleParser {
 
         switch (commandWord) {
         case ScViewDayCommand.COMMAND_WORD:
-            return new ScViewDayCommandParser().parse(arguments);
+            return new ScViewCommandParser().parse(arguments);
+        case ScViewFreeSlotCommand.COMMAND_WORD:
+            return new ScViewFreeSlotCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

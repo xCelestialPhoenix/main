@@ -23,7 +23,7 @@ public class AbDeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new AbDeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, " i\\1", new AbDeleteCommand(INDEX_FIRST_PERSON));
     }
 
     @Test

@@ -1,21 +1,25 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.List;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
+import seedu.nova.model.util.Copyable;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The type Day.
  */
-public class Day {
+public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private LinkedList<Event> events;
+    private List<Event> events;
     private LocalDate date;
+    private DateTimeSlotList freeSlots;
 
     /**
      * Instantiates a new Day.
@@ -26,6 +30,13 @@ public class Day {
 
         events = new LinkedList<>();
         this.date = date;
+        freeSlots = DateTimeSlotList.ofDay(date);
+    }
+
+    private Day(List<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+        this.events = events;
+        this.date = date;
+        this.freeSlots = freeSlots;
     }
 
     /**
@@ -33,13 +44,14 @@ public class Day {
      *
      * @param event the event
      */
-    public void addEvent(Event event) {
-
-        ListIterator<Event> iterator = events.listIterator();
+    void addEvent(Event event) {
+        Iterator<Event> iterator = events.iterator();
         int index = 0;
 
         if (events.size() == 0) {
             events.add(event);
+        } else if (event.getStartTime().compareTo(events.get(0).getStartTime()) < 0) {
+            events.add(0, event);
         } else {
             //boolean hasSlot = false;
             while (iterator.hasNext()) {
@@ -54,8 +66,8 @@ public class Day {
                     }
                     */
                     //hasSlot = true;
+                    freeSlots.excludeDuration(event.getDtd());
                     events.add(index, event);
-                    System.err.println(events.get(index) + " has been added to " + date);
                     break;
                 }
             }
@@ -75,7 +87,6 @@ public class Day {
      * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
-
         Lesson tmp = new Lesson(lesson);
         tmp.setDate(date);
         addEvent(tmp);
@@ -89,12 +100,27 @@ public class Day {
     public String view() {
 
         StringBuilder sb = new StringBuilder();
-        ListIterator<Event> iterator = events.listIterator();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next());
+        int index = 0;
+        for (Event event : events) {
+            sb.append(++index);
+            sb.append(". ");
+            sb.append(event);
             sb.append("\n");
         }
         return sb.toString();
     }
 
+    /**
+     * Get free slots in the form of DateTimeDuration
+     *
+     * @return List of DateTimeDuration
+     */
+    public DateTimeSlotList getFreeSlotList() {
+        return freeSlots;
+    }
+
+    @Override
+    public Day getCopy() {
+        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
+    }
 }
