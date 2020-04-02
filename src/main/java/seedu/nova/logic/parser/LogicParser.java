@@ -12,10 +12,10 @@ import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
-import seedu.nova.logic.parser.eventparsers.EventParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
+import seedu.nova.logic.parser.scparser.eventparsers.EventParser;
 import seedu.nova.model.Model;
 
 /**

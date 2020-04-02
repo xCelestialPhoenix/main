@@ -1,4 +1,4 @@
-package seedu.nova.logic.commands.eventcommands;
+package seedu.nova.logic.commands.sccommands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
@@ -9,8 +9,10 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.schedule.event.TimeOverlapException;
+
 
 /**
  * adds a Lesson into the Schedule.
@@ -41,9 +43,12 @@ public class EventAddLessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.addLesson((Lesson) toAdd);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        try {
+            model.addLesson((Lesson) toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (TimeOverlapException e) {
+            throw new CommandException("You already have an event within that time frame.");
+        }
     }
 
 

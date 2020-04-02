@@ -13,10 +13,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.parser.ModeEnum;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+
 
 
 /**
@@ -245,6 +246,16 @@ public class ModelManager implements Model {
     @Override
     public void addLesson(Lesson l) {
         schedule.addLesson(l);
+    }
+
+    @Override
+    public String deleteEvent(LocalDate date, int index) {
+        return schedule.deleteEvent(date, index);
+    }
+
+    @Override
+    public String addNote(String desc, LocalDate date, int index) {
+        return schedule.addNote(desc, date, index);
     }
 
 }

@@ -24,10 +24,10 @@ import seedu.nova.model.Model;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -218,6 +218,16 @@ public class AbAddCommandTest {
 
         @Override
         public void addLesson(Lesson l) {
+        }
+
+        @Override
+        public String deleteEvent(LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String addNote(String desc, LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
         }
 
         public ProgressTracker getProgressTracker() {
