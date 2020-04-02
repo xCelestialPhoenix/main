@@ -20,13 +20,10 @@ By: `Team CS2103T-F10-3`      Since: `Mar 2020`      Licence: `MIT`
 
 == Introduction
 
-Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA). NOVA is a one-stop desktop
-application for CS2103T students to manage all CS2103T related activities, from studying to planning project meetings.
-NOVA is designed for users who prefer to interact with programs through typing.
+Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA).
 
-image::GUI_v2.0.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 1: GUI of NOVA#_
+NOVA is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, from studying
+to planning project meetings. NOVA is designed for users who prefer to interact with programs through typing.
 
 == About
 
@@ -56,6 +53,11 @@ Here are some steps to get you started:
 .  Download the latest *nova.jar* link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
++
+image::GUI_v2.0.png[width="790" align="center"]
+[.text-center]
+_[.small]#Fig 4: GUI of NOVA#_
++
 .  Type the command in the command box and press kbd:[Enter] to execute it.
 .  Try the following commands to get you warmed up:
 
@@ -406,7 +408,7 @@ Example: +
 Your second event on 2nd March 2020 will be repeated for the next 3 weeks.
 
 ==== View Schedule of a Day: `view`
-You can view the schedule of a specified day.
+You can view the schedule of a specified day. NOVA
 
 Format: +
 `view t\[YYYY-MM-DD]`
@@ -441,7 +443,7 @@ NOVA will show your schedule in week 6 of the semester as seen below.
 <Insert screenshot>
 
 ==== Find Free Slots: `freeslot`
-You can find free slots on a day easily within your schedule without going through your schedule.
+You can find free slots on a day easily within your schedule without looking through your schedule.
 
 Format: +
 `freeslot t\[YYYY-MM-DD]`
