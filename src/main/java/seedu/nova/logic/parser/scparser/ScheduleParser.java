@@ -4,13 +4,13 @@ import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.sccommands.ScViewDayCommand;
+import seedu.nova.logic.commands.sccommands.ScViewFreeSlotCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddConsultationCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddLessonCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddMeetingCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddNoteCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddStudyCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventDeleteCommand;
-
 import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.scparser.eventparsers.EventAddConsultationCommandParser;
 import seedu.nova.logic.parser.scparser.eventparsers.EventAddLessonCommandParser;
@@ -37,6 +37,8 @@ public class ScheduleParser {
         switch (commandWord) {
         case ScViewDayCommand.COMMAND_WORD:
             return new ScViewCommandParser().parse(arguments);
+        case ScViewFreeSlotCommand.COMMAND_WORD:
+            return new ScViewFreeSlotCommandParser().parse(arguments);
 
         case EventAddMeetingCommand.COMMAND_WORD:
             return new EventAddMeetingCommandParser().parse(arguments);
@@ -55,7 +57,6 @@ public class ScheduleParser {
 
         case EventAddNoteCommand.COMMAND_WORD:
             return new EventAddNoteCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

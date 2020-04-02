@@ -13,6 +13,7 @@ import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.logic.parser.plannerparser.PlannerParser;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
 import seedu.nova.logic.parser.scparser.eventparsers.EventParser;
@@ -32,6 +33,7 @@ public class LogicParser {
     private final EventParser eventParser;
     private final seedu.nova.logic.parser.scparser.ScheduleParser scheduleParser;
     private final ProgresstrackerParser progresstrackerParser;
+    private final PlannerParser plannerParser;
     private Model model;
 
     public LogicParser(Model model) {
@@ -41,6 +43,7 @@ public class LogicParser {
         eventParser = new EventParser();
         scheduleParser = new ScheduleParser();
         progresstrackerParser = new ProgresstrackerParser();
+        plannerParser = new PlannerParser();
         this.model = model;
     }
 
@@ -103,7 +106,8 @@ public class LogicParser {
 
             case PROGRESSTRACKER:
                 return progresstrackerParser.parseCommand(commandWord, arguments);
-
+            case PLANNER:
+                return plannerParser.parseCommand(commandWord, arguments);
             default:
                 throw new ParseException("No such mode");
             }

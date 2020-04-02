@@ -13,4 +13,8 @@ public class Ip extends Project {
     public PtWeekList getWeekList() {
         return weekList;
     }
+
+    public double getProgress() {
+        return weekList.getProgressProject();
+    }
 }
