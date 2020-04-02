@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final Schedule schedule;
-    private final ProgressTracker progressTracker;
+    private final ProgressTracker progressTracker = new ProgressTracker();
     private Mode mode;
 
     /**
@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         this.nova = nova;
         this.addressBook = nova.getAddressBookNova();
         this.userPrefs = new UserPrefs(userPrefs);
-        this.progressTracker = nova.getProgressTracker();
+        //this.progressTracker = nova.getProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
         this.mode = new Mode(ModeEnum.HOME);
