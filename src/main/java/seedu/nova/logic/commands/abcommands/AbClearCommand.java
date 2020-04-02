@@ -8,7 +8,7 @@ import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the nova book.
  */
 public class AbClearCommand extends Command {
 
