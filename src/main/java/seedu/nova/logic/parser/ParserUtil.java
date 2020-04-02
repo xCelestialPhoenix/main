@@ -221,7 +221,7 @@ public class ParserUtil {
      * @param date the date
      * @return the local date
      */
-    public static LocalDate parseDate(String date) throws ParseException{
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
 
