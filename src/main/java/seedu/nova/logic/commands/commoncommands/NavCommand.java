@@ -30,6 +30,7 @@ public class NavCommand extends Command {
 
         //Set mode in model
         Mode mode = model.getMode();
+        mode.setModeEnum(this.modeEnum);
 
         if (mode.getModeEnum().equals(this.modeEnum)) {
             return new CommandResult(String.format(MESSAGE_SAME_MODE, modeEnum.name().toLowerCase()), false, false);
