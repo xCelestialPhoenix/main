@@ -120,13 +120,13 @@ public class Day implements Copyable<Day> {
      * Removes an event.
      * @param index index of event in the LinkedList
      */
-    public String deleteEvent(int index) {
+    Event deleteEvent(int index) {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
         Event deleted = events.remove(index - 1);
         freeSlots.includeDuration(deleted.getDtd());
-        return deleted.toString();
+        return deleted;
     }
 
     /**

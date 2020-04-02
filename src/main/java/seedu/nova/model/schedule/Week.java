@@ -87,8 +87,9 @@ public class Week implements Copyable<Week> {
         if (days[day] == null) {
             throw new DateNotFoundException();
         }
-
-        return days[day].deleteEvent(index);
+        Event removed = days[day].deleteEvent(index);
+        events.remove(removed);
+        return removed.toString();
     }
 
     /**
