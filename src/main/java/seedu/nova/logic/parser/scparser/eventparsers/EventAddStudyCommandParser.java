@@ -1,4 +1,4 @@
-package seedu.nova.logic.parser.eventparsers;
+package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
-import seedu.nova.logic.commands.eventcommands.EventAddConsultationCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddStudyCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.CliSyntax;
@@ -14,27 +14,27 @@ import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
-import seedu.nova.model.event.Consultation;
-import seedu.nova.model.event.Event;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.StudySession;
 
 /**
- * Parses input arguments and creates a new EventAddConsultationCommand object
+ * Parses input arguments and creates a new EventAddStudyCommand object
  */
-public class EventAddConsultationCommandParser implements Parser<EventAddConsultationCommand> {
+public class EventAddStudyCommandParser implements Parser<EventAddStudyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EventAddMeetingCommand
-     * and returns an EventAddMeetingCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EventAddStudyCommand
+     * and returns an EventAddStudyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventAddConsultationCommand parse(String args) throws ParseException {
+    public EventAddStudyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESC, CliSyntax.PREFIX_VENUE, CliSyntax.PREFIX_TIME);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESC, CliSyntax.PREFIX_VENUE, CliSyntax.PREFIX_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EventAddConsultationCommand.MESSAGE_USAGE));
+                    EventAddStudyCommand.MESSAGE_USAGE));
         }
 
         String desc = argMultimap.getValue(CliSyntax.PREFIX_DESC).get();
@@ -45,7 +45,7 @@ public class EventAddConsultationCommandParser implements Parser<EventAddConsult
 
         if (dateTimeArr.length != 3) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EventAddConsultationCommand.MESSAGE_USAGE));
+                    EventAddStudyCommand.MESSAGE_USAGE));
         }
 
         LocalDate date = ParserUtil.parseDate(dateTimeArr[0]);
@@ -54,11 +54,11 @@ public class EventAddConsultationCommandParser implements Parser<EventAddConsult
 
         if (startTime.compareTo(endTime) >= 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EventAddConsultationCommand.MESSAGE_USAGE));
+                    EventAddStudyCommand.MESSAGE_USAGE));
         }
 
-        Event consultation = new Consultation(desc, venue, startTime, endTime, date);
-        return new EventAddConsultationCommand(consultation);
+        Event study = new StudySession(desc, venue, startTime, endTime, date);
+        return new EventAddStudyCommand(study);
     }
 
     /**

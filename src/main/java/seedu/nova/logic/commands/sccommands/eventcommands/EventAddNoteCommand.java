@@ -1,4 +1,4 @@
-package seedu.nova.logic.commands.eventcommands;
+package seedu.nova.logic.commands.sccommands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
@@ -12,8 +12,8 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 
 import seedu.nova.model.Model;
-import seedu.nova.model.event.DateNotFoundException;
-import seedu.nova.model.event.EventNotFoundException;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.EventNotFoundException;
 
 /**
  * adds a note into an Event.

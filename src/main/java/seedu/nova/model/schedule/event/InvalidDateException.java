@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 /**
  * ignals that the operation is trying to add an event with an invalid date.

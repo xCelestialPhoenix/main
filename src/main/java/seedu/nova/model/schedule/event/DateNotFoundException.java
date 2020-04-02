@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 /**
  * Signals that the operation is not able to find the date.

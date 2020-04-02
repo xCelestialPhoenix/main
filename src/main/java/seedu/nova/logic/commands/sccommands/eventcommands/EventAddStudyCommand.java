@@ -1,7 +1,6 @@
-package seedu.nova.logic.commands.eventcommands;
+package seedu.nova.logic.commands.sccommands.eventcommands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_VENUE;
@@ -10,34 +9,33 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.InvalidDateException;
-import seedu.nova.model.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.InvalidDateException;
+import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
- * adds a Meeting into the Schedule.
+ * adds a StudySession into the Schedule.
  */
-public class EventAddMeetingCommand extends Command {
+public class EventAddStudyCommand extends Command {
+    public static final String COMMAND_WORD = "study";
 
-    public static final String COMMAND_WORD = "meeting";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the schedule. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a study session to the schedule. \n"
             + "Parameters: "
             + PREFIX_DESC + "[description] "
             + PREFIX_VENUE + "[venue] "
             + PREFIX_TIME + "[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESC + "CS2103T GUI refactoring "
+            + PREFIX_DESC + "cool peeps revision "
             + PREFIX_VENUE + "COM1 Basement "
-            + PREFIX_TIME + "2020-03-10 14:00 16:00 ";
+            + PREFIX_TIME + "2020-03-19 14:00 15:00 ";
 
-    public static final String MESSAGE_SUCCESS = "New meeting has been added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New study session has been added: \n%1$s";
     private Event toAdd;
 
-    public EventAddMeetingCommand(Event meeting) {
-        requireNonNull(meeting);
-        this.toAdd = meeting;
+    public EventAddStudyCommand(Event study) {
+        requireNonNull(study);
+        this.toAdd = study;
     }
 
     @Override
@@ -52,6 +50,6 @@ public class EventAddMeetingCommand extends Command {
         } catch (InvalidDateException e) {
             throw new CommandException("That date does not fall within the semester.");
         }
-
     }
+
 }

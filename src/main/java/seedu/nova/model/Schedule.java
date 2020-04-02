@@ -5,11 +5,11 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import seedu.nova.model.event.DateNotFoundException;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.InvalidDateException;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.schedule.Week;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.InvalidDateException;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
 /**

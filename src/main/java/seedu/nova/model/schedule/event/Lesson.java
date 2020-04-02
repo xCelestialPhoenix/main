@@ -1,4 +1,4 @@
-package seedu.nova.model.event;
+package seedu.nova.model.schedule.event;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

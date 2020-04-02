@@ -4,9 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import seedu.nova.model.event.DateNotFoundException;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
 /**

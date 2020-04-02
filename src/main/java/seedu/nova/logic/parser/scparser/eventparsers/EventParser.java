@@ -1,16 +1,16 @@
-package seedu.nova.logic.parser.eventparsers;
+package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Pattern;
 
 import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.eventcommands.EventAddConsultationCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddLessonCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddMeetingCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddNoteCommand;
-import seedu.nova.logic.commands.eventcommands.EventAddStudyCommand;
-import seedu.nova.logic.commands.eventcommands.EventDeleteCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddConsultationCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddLessonCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddMeetingCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddNoteCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventAddStudyCommand;
+import seedu.nova.logic.commands.sccommands.eventcommands.EventDeleteCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
