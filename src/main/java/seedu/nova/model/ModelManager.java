@@ -269,7 +269,7 @@ public class ModelManager implements Model {
     }
 
     public String deleteEvent(LocalDate date, int index) {
-        return schedule.deleteEvent(date, index);
+        return schedule.deleteEvent(date, index).toString();
     }
 
     @Override

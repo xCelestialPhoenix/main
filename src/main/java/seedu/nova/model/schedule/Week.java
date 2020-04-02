@@ -81,7 +81,7 @@ public class Week implements Copyable<Week> {
      * @param date  the date of the event
      * @param index the position of event in list
      */
-    public String deleteEvent(LocalDate date, int index) {
+    public Event deleteEvent(LocalDate date, int index) {
         int day = date.getDayOfWeek().getValue() - 1;
 
         if (days[day] == null) {
@@ -89,7 +89,7 @@ public class Week implements Copyable<Week> {
         }
         Event removed = days[day].deleteEvent(index);
         events.remove(removed);
-        return removed.toString();
+        return removed;
     }
 
     /**
