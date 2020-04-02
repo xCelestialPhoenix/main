@@ -17,6 +17,7 @@ import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.progresstracker.TaskDesc;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -28,6 +29,7 @@ public class ParserUtil {
      */
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -159,6 +161,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parsers task number into an int
+     * @param taskNum string containing number to specify the task
+     * @return int of the task input
+     * @throws ParseException if is non-zero throw exception
+     */
+    public static int parseTask(String taskNum) throws ParseException {
+        requireNonNull(taskNum);
+        String trimmedNum = taskNum.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedNum)) {
+            throw new ParseException(MESSAGE_INVALID_TASK);
+        }
+        return Integer.parseInt(trimmedNum);
+    }
+
+    /**
      * Checks if project name is correct
      * @param project project name
      * @return project name
@@ -173,6 +190,23 @@ public class ParserUtil {
         }
 
         return trimmedProject;
+    }
+
+    /**
+     * Checks if taskDesc is blank
+     * @param taskDesc task description
+     * @return task description
+     * @throws ParseException if task description is blank
+     */
+    public static String parseTaskDesc(String taskDesc) throws ParseException {
+        requireNonNull(taskDesc);
+        String trimmedTaskDesc = taskDesc.trim();
+
+        if (!TaskDesc.isValidTaskDesc(trimmedTaskDesc)) {
+            throw new ParseException(TaskDesc.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedTaskDesc;
     }
 
     /**
