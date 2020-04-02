@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
+import seedu.nova.model.Schedule;
 
 /**
  * Plan with definite tasks
@@ -44,7 +43,7 @@ public class StudyPlan implements Plan {
     }
 
     @Override
-    public Event generateTaskEvent(Task task, LocalDate date, DateTimeSlotList dtsl) throws ImpossibleTaskException {
-        return task.generateEventOnDay(date, dtsl);
+    public boolean generateTaskEvent(Task task, LocalDate date, Schedule sc) throws ImpossibleTaskException {
+        return task.generateEventOnDay(date, sc);
     }
 }

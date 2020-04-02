@@ -103,9 +103,23 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    void redoAddressBook();
+
     String viewSchedule(LocalDate date);
 
+    String viewSchedule(int weekNumber);
+
     boolean isWithinSem(LocalDate date);
+
+    boolean isWithinSem(int weekNumber);
 
     Mode getMode();
 

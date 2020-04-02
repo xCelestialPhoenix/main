@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,23 +10,15 @@ import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.TimeUtil;
-import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
- * The type Week.
+ * The week class of schedule.
  */
 public class Week implements Copyable<Week> {
 
-    /**
-     * The Days.
-     */
-    final Day[] days;
-    /**
-     * The Start date.
-     */
-    final LocalDate startDate;
-
-    final Set<Event> events;
+    private final Day[] days;
+    private final LocalDate startDate;
+    private Set<Event> events;
 
     /**
      * Instantiates a new Week.
@@ -43,41 +35,46 @@ public class Week implements Copyable<Week> {
         events = new TreeSet<>();
     }
 
-    private Week(Day[] days, LocalDate startDate, TreeSet<Event> events) {
+    private Week(Day[] days, LocalDate startDate, Set<Event> events) {
         this.days = days;
         this.startDate = startDate;
         this.events = events;
     }
 
     /**
-     * Add event.
+     * Adds event.
      *
      * @param event the event
      */
-    void addEvent(Event event) {
-        if (events.contains(event)) {
-            return;
-        }
+    public void addEvent(Event event) {
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
+        events.add(event);
         days[day].addEvent(event);
     }
 
     /**
-     * Add lesson.
+     * Adds lesson.
      *
      * @param lesson the lesson
      */
     public void addLesson(Lesson lesson) {
-        if (events.contains(lesson)) {
-            return;
-        }
         int day = lesson.getDay().getValue() - 1;
+        events.add(lesson);
         days[day].addLesson(lesson);
     }
 
     /**
-     * View string.
+     * gets a particular day
+     * @param dow day of week of the day
+     * @return the day
+     */
+    public Day getDay(DayOfWeek dow) {
+        return days[dow.getValue() - 1];
+    }
+
+    /**
+     * View the schedule of a particular day.
      *
      * @param date the date
      * @return the string
@@ -88,8 +85,39 @@ public class Week implements Copyable<Week> {
         return days[day].view();
     }
 
-    public DateTimeSlotList getFreeSlots(DayOfWeek dow) {
-        return days[dow.getValue() - 1].getFreeSlotList();
+    /**
+     * View string.
+     *
+     * @return the string
+     */
+    public String view() {
+
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        for (Day day : days) {
+
+            index++;
+
+            if (day == null) {
+
+                continue;
+            }
+
+            String result = day.view();
+
+            if (!result.equals("")) {
+
+                sb.append(DayOfWeek.of(index));
+                sb.append(": \n");
+                sb.append(result);
+
+            }
+        }
+        return sb.toString();
+    }
+
+    public boolean hasEvent(Event event) {
+        return events.contains(event);
     }
 
     @Override

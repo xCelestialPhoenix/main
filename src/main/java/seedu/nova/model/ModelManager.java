@@ -27,6 +27,7 @@ import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
+
 /**
  * Represents the in-memory model of the data.
  */
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Nova nova;
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final Schedule schedule;
@@ -152,7 +153,8 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Address Book =============================================================
+    //=========== AB: Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -167,6 +169,33 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== AB: Undo/Redo =============================================================
+
+    @Override
+    public void commitAddressBook() {
+        addressBook.commit();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        addressBook.undo();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return addressBook.canRedo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        addressBook.redo();
     }
 
     @Override
@@ -198,9 +227,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String viewSchedule(int weekNumber) {
+
+        return schedule.view(weekNumber);
+
+    }
+
+    @Override
     public boolean isWithinSem(LocalDate date) {
 
         return schedule.checkDateValidity(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(int weekNumber) {
+
+        return schedule.checkWeekValidity(weekNumber);
 
     }
 
@@ -217,7 +260,7 @@ public class ModelManager implements Model {
 
     @Override
     public DateTimeSlotList getFreeSlotOn(LocalDate date) {
-        return schedule.getFreeSlotOn(date);
+        return schedule.getDay(date).getFreeSlotList();
     }
 
     @Override
@@ -253,9 +296,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
-        Event event = plan.generateTaskEvent(task, date, schedule.getFreeSlotOn(date));
-        schedule.addEvent(event);
-        return true;
+        return plan.generateTaskEvent(task, date, schedule);
     }
 
 }

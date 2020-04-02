@@ -3,6 +3,7 @@ package seedu.nova.logic.commands.abcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -37,12 +38,13 @@ public class AbEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            //+ "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: " + PREFIX_INDEX + "[index] "
+            + PREFIX_NAME + "[name] "
+            + PREFIX_PHONE + "[phone] "
+            + PREFIX_EMAIL + "[email] "
+            + PREFIX_CATEGORY + "[category]\n"
+            + "Example: " + COMMAND_WORD + " i\\1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_CATEGORY + "classmate";
@@ -84,6 +86,7 @@ public class AbEditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

@@ -1,6 +1,8 @@
 package seedu.nova.logic.parser;
 
+import static seedu.nova.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,8 +70,7 @@ public class LogicParser {
                 // EventHelpCommand.MESSAGE_USAGE));
 
             case SCHEDULE:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                // SchedulerHelpCommand.MESSAGE_USAGE));
+                throw new ParseException(MESSAGE_EMPTY_ARGUMENT);
 
             case PROGRESSTRACKER:
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,ptbHelpCommand.MESSAGE_USAGE));
@@ -89,6 +90,10 @@ public class LogicParser {
         } else {
             //check mode
             switch (mode) {
+
+            case HOME:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
             case ADDRESSBOOK:
                 //return addressBookParser.parseCommand(userInput);
                 return addressBookParser.parseCommand(commandWord, arguments);

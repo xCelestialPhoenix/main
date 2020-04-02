@@ -24,7 +24,7 @@ public class ScheduleParser {
 
         switch (commandWord) {
         case ScViewDayCommand.COMMAND_WORD:
-            return new ScViewDayCommandParser().parse(arguments);
+            return new ScViewCommandParser().parse(arguments);
         case ScViewFreeSlotCommand.COMMAND_WORD:
             return new ScViewFreeSlotCommandParser().parse(arguments);
         default:

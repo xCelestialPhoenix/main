@@ -1,8 +1,9 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import seedu.nova.model.event.Event;
 import seedu.nova.model.event.Lesson;
@@ -16,7 +17,7 @@ public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private Set<Event> events;
+    private List<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
 
@@ -27,12 +28,12 @@ public class Day implements Copyable<Day> {
      */
     public Day(LocalDate date) {
 
-        events = new TreeSet<>();
+        events = new LinkedList<>();
         this.date = date;
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(TreeSet<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    private Day(List<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -44,16 +45,38 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
-        if (events.contains(event)) {
-            return;
-        }
-        boolean hasSlot = freeSlots.isSupersetOf(event.getDtd());
-        if (hasSlot) {
-            freeSlots.excludeDuration(event.getDtd());
+        Iterator<Event> iterator = events.iterator();
+        int index = 0;
+
+        if (events.size() == 0) {
             events.add(event);
-            System.err.println(event + " has been added to " + date);
+        } else if (event.getStartTime().compareTo(events.get(0).getStartTime()) < 0) {
+            events.add(0, event);
         } else {
-            System.err.println("cannot fit " + event + " into " + date);
+            //boolean hasSlot = false;
+            while (iterator.hasNext()) {
+                //Check to see if startTime is taken
+                Event item = iterator.next();
+                index++;
+                if (event.getStartTime().compareTo(item.getStartTime()) >= 0) {
+
+                    /*
+                    if (iterator.hasNext() && (iterator.next().getStartTime().compareTo(event.getEndTime()) > 0)) {
+                        //Slot cannot fit
+                    }
+                    */
+                    //hasSlot = true;
+                    freeSlots.excludeDuration(event.getDtd());
+                    events.add(index, event);
+                    break;
+                }
+            }
+
+            /*
+            if (!hasSlot) {
+                //No slot available
+            }
+            */
         }
 
     }
@@ -77,7 +100,10 @@ public class Day implements Copyable<Day> {
     public String view() {
 
         StringBuilder sb = new StringBuilder();
+        int index = 0;
         for (Event event : events) {
+            sb.append(++index);
+            sb.append(". ");
             sb.append(event);
             sb.append("\n");
         }
@@ -95,6 +121,6 @@ public class Day implements Copyable<Day> {
 
     @Override
     public Day getCopy() {
-        return new Day(new TreeSet<>(events), date, freeSlots.getCopy());
+        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
     }
 }

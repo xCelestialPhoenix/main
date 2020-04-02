@@ -3,8 +3,7 @@ package seedu.nova.model.plan;
 import java.time.LocalDate;
 import java.util.List;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
+import seedu.nova.model.Schedule;
 
 /**
  * task container
@@ -20,5 +19,5 @@ public interface Plan {
 
     Task searchTask(String name);
 
-    Event generateTaskEvent(Task task, LocalDate date, DateTimeSlotList dtsl) throws ImpossibleTaskException;
+    boolean generateTaskEvent(Task task, LocalDate date, Schedule sc) throws ImpossibleTaskException;
 }
