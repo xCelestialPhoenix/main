@@ -408,7 +408,7 @@ Example: +
 Your second event on 2nd March 2020 will be repeated for the next 3 weeks.
 
 ==== View Schedule of a Day: `view`
-You can view the schedule of a specified day. NOVA
+You can view the schedule of a specified day. If there is nothing to do on that day, NOVA will tell you.
 
 Format: +
 `view t\[YYYY-MM-DD]`
@@ -421,9 +421,11 @@ Suppose you want to check out what events are happening on 29 Feb, +
 NOVA will show your schedule on 29 Feb 2020 as seen below.
 
 <Insert screenshot here>
+ +
+ +
 
 ==== View Schedule of a Week: `view`
-You can view the schedule of a specified week.
+You can view the schedule of a specified week. IF there is nothing to do on that week, NOVA will tell you.
 
 Format: +
 `view week i\[week #]`
@@ -441,6 +443,8 @@ Suppose you are interested in what is going to happen in week 6 of the semester,
 NOVA will show your schedule in week 6 of the semester as seen below.
 
 <Insert screenshot>
+ +
+ +
 
 ==== Find Free Slots: `freeslot`
 You can find free slots on a day easily within your schedule without looking through your schedule.
@@ -449,9 +453,13 @@ Format: +
 `freeslot t\[YYYY-MM-DD]`
 
 Example: +
+Suppose you want to find pockets of free time on 29 February 2020, +
+ +
 `freeslot t\2020-02-29`
 
 Finds the free slots on 29 Feb 2020.
+ +
+ +
 
 === Daily Study Planner
 You can use it to create study-events automatically based on the current schedule and study plan.
