@@ -91,6 +91,16 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    void redoAddressBook();
+
     String viewSchedule(LocalDate date);
 
     String viewSchedule(int weekNumber);
