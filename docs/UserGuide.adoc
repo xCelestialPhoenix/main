@@ -300,15 +300,15 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 
 [NOTE]
 ====
-The end time must be later than the start time.
+The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 ====
 
 Example: +
-If you wish to add a project meeting into your schedule, which is from 2pm to 3pm on February 20, 2020. +
+If you wish to add a project meeting into your schedule, which is from 2pm to 3pm on 20 February 2020, +
 
 `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`
 
-Creates an event for a team meeting at COM1 on 20 Feb 2020 to set up CS2103T website from 2pm to 3pm.
+NOVA creates an event for a team meeting at COM1 on 20 February 2020 to set up CS2103T website from 2pm to 3pm.
 
 ==== Add a Study Session: `study`
 You can add a study session as one of your events.
@@ -318,13 +318,15 @@ Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [En
 
 [NOTE]
 ====
-The end time must be later than the start time.
+The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 ====
 
 Example: +
+If you wish to add a group study session from 4pm to 5pm on 20 February 2020, +
+
 `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`
 
-Creates an event for study session at COM1 on 20 Feb 2020 from 4pm to 5pm.
+NOVA creates an event for study session at COM1 on 20 Feb 2020 from 4pm to 5pm.
 
 
 ==== Add a Consultation Session: `consultation`
@@ -335,13 +337,15 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 
 [NOTE]
 ====
-The end time must be later than the start time.
+The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 ====
 
 Example: +
+If you wish to add a consultation session from 3pm to 4pm on 20 February 2020, +
+
 `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`
 
-Creates an event for consultation at COM1 on 20 Feb 2020 to clarify UML from 3pm to 4pm.
+NOVA creates an event for consultation at COM1 on 20 Feb 2020 to clarify UML from 3pm to 4pm.
 
 ==== Add a Lesson: `lesson`
 You can add a lesson as one of your events.
@@ -351,13 +355,16 @@ Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time
 
 [NOTE]
 ====
-The end time must be later than the start time.
+The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 ====
 
 Example: +
-`lesson d\CS2103T tutorial v\COM1-B103 t\Monday 15:00 17:00`
 
-Creates an event for CS2103T tutorial at COM1-B103 on Monday from 3pm to 5pm.
+If you wish to add a weekly lesson from 3pm to 4pm on Friday, +
+
+`lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`
+
+NOVA creates events for CS2103T tutorial at COM1-B103 on Friday from 3pm to 4pm for the entire semester.
 
 ==== Delete Event: `delete`
 You can delete an event that you no longer want.
@@ -369,9 +376,12 @@ Format: `delete t\[YYYY-MM-DD] i\[index]`
 `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
+
+After doing `view t\2020-2-20`, you realise you do not want the second event in the printed list, +
+
 `delete t\2020-02-20 i\2`
 
-Deletes the second event on 20 Feb 2020.
+NOVA deletes the second event on 20 Feb 2020.
 
 
 ==== Add Notes to Event: `note`
@@ -384,9 +394,13 @@ Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
 
 Example: +
-`note d\Remember to bring your charger! t\2020-02-20 i\2`
 
-Adds a note with description "Remember to bring your charger!" to the second event on 20 Feb 2020.
+If you wish to add a note that indicates the work allocation to a meeting event, +
+
+`note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\2`
+
+NOVA adds a note with description "Alice - Logic component in DG, Bob - UI component in DG"
+to the second event on 20 Feb 2020.
 
 
 ==== View Schedule of a Day: `view`
