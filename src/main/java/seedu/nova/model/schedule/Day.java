@@ -1,17 +1,16 @@
 package seedu.nova.model.schedule;
 
-import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.EventNotFoundException;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.schedule.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.WeakEvent;
 import seedu.nova.model.util.Copyable;
-import seedu.nova.model.util.time.duration.DateTimeDuration;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
@@ -21,7 +20,7 @@ public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private LinkedList<Event> events;
+    private List<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
 
@@ -36,7 +35,7 @@ public class Day implements Copyable<Day> {
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(LinkedList<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    private Day(List<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -48,6 +47,7 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
+        Iterator<Event> iterator = events.iterator();
         if (events.size() == 0) {
             // if list is empty
             events.add(event);
@@ -63,10 +63,11 @@ public class Day implements Copyable<Day> {
 
     /**
      * adds an event to correct position somewhere in the middle of the list
+     *
      * @param toAdd the event to be added
      */
     void addToMiddle(Event toAdd) {
-        ListIterator<Event> iterator = events.listIterator();
+        Iterator<Event> iterator = events.listIterator();
         int index = 0;
 
         boolean canAdd = false;
@@ -95,6 +96,7 @@ public class Day implements Copyable<Day> {
 
     /**
      * determines if an event can be added to the list after a current event
+     *
      * @param toAdd event to be added
      * @param after event that is supposed to come after the event to be added
      * @return boolean determining whether the event can be added before the event in the list
@@ -119,17 +121,25 @@ public class Day implements Copyable<Day> {
 
     /**
      * Removes an event.
+     *
      * @param index index of event in the LinkedList
      */
-    public String deleteEvent(int index) {
+    Event deleteEvent(int index) {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        return events.remove(index - 1).toString();
+        Event deleted = events.remove(index - 1);
+        freeSlots.includeDuration(deleted.getDtd());
+        if (deleted instanceof WeakEvent) {
+            WeakEvent wkE = (WeakEvent) deleted;
+            wkE.destroy();
+        }
+        return deleted;
     }
 
     /**
      * Adds a note to an event.
+     *
      * @param index index of event in the LinkedList
      */
     public String addNote(String desc, int index) {
@@ -149,15 +159,13 @@ public class Day implements Copyable<Day> {
     public String view() {
 
         StringBuilder sb = new StringBuilder();
-        ListIterator<Event> iterator = events.listIterator();
         int index = 0;
-        while (iterator.hasNext()) {
+        for (Event event : events) {
             sb.append(++index);
             sb.append(". ");
-            sb.append(iterator.next());
+            sb.append(event);
             sb.append("\n");
         }
-
         return sb.toString();
     }
 
@@ -166,8 +174,8 @@ public class Day implements Copyable<Day> {
      *
      * @return List of DateTimeDuration
      */
-    public List<DateTimeDuration> getFreeSlot(Duration greaterThan) {
-        return freeSlots.getSlotList(greaterThan);
+    public DateTimeSlotList getFreeSlotList() {
+        return freeSlots;
     }
 
     @Override

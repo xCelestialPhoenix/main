@@ -1,11 +1,11 @@
 package seedu.nova.model.plan;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import seedu.nova.model.schedule.Day;
-import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.Schedule;
 
 /**
  * Plan with definite tasks
@@ -43,7 +43,7 @@ public class StudyPlan implements Plan {
     }
 
     @Override
-    public Event generateTaskEvent(Task task, Day day) throws ImpossibleTaskException {
-        return task.generateEventOnDay(day);
+    public boolean generateTaskEvent(Task task, LocalDate date, Schedule sc) throws ImpossibleTaskException {
+        return task.generateEventOnDay(date, sc);
     }
 }

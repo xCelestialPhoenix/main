@@ -8,8 +8,8 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtWeek;
 
 /**
@@ -27,7 +27,7 @@ public class PtListCommand extends Command {
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
+    public static final String MESSAGE_NULLWEEK = "No task in specified week";
 
     private int weekNum;
     private String project;
@@ -42,19 +42,21 @@ public class PtListCommand extends Command {
         requireNonNull(model);
         ProgressTracker pt = model.getProgressTracker();
         PtWeek week = null;
+        Project project;
 
-        if (project.equals("ip")) {
-            Ip ip = pt.getIp();
-            week = ip.getWeekList().getWeek(weekNum);
+        if (this.project.equals("ip")) {
+            project = pt.getIp();
         } else {
-            //do nothing
+            project = pt.getTp();
         }
+
+        week = project.getWeekList().getWeek(weekNum);
 
         if (week == null) {
             throw new CommandException(MESSAGE_NULLWEEK);
         }
-
-        String result = week.getTaskList().listTasks();
+        String header = this.project.toUpperCase() + " Project " + "(Week " + weekNum + "):" + "\n";
+        String result = header + "  " + week.getTaskList().listTasks();
 
         return new CommandResult(result, false, false);
     }
