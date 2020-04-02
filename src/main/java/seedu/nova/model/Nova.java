@@ -6,11 +6,12 @@ import seedu.nova.model.progresstracker.ProgressTracker;
  * Nova class
  */
 public class Nova {
-    private AddressBook addressBook = new AddressBook();
+
+    private VersionedAddressBook addressBook;
     private Schedule schedule;
     private ProgressTracker progressTracker;
 
-    public AddressBook getAddressBookNova() {
+    public VersionedAddressBook getAddressBookNova() {
         return this.addressBook;
     }
 
@@ -22,7 +23,7 @@ public class Nova {
         return this.progressTracker;
     }
 
-    public void setAddressBookNova(AddressBook addressBook) {
+    public void setAddressBookNova(VersionedAddressBook addressBook) {
         this.addressBook = addressBook;
     }
 

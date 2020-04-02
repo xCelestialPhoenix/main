@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
+import seedu.nova.model.schedule.Schedule;
 import seedu.nova.testutil.AddressBookBuilder;
  */
 

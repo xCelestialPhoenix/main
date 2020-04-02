@@ -16,6 +16,7 @@ import seedu.nova.model.progresstracker.ProgressTracker;
 public class NavCommand extends Command {
     public static final String COMMAND_WORD = "nav";
     public static final String MESSAGE_SUCCESS = "Changed mode to ";
+    public static final String MESSAGE_SAME_MODE = "You are already in %1$s mode";
 
     private ModeEnum modeEnum;
 
@@ -29,9 +30,10 @@ public class NavCommand extends Command {
 
         //Set mode in model
         Mode mode = model.getMode();
-        mode.setModeEnum(this.modeEnum);
 
-        if (this.modeEnum.equals(ModeEnum.PROGRESSTRACKER)) {
+        if (mode.getModeEnum().equals(this.modeEnum)) {
+            return new CommandResult(String.format(MESSAGE_SAME_MODE, modeEnum.name().toLowerCase()), false, false);
+        } else if (this.modeEnum.equals(ModeEnum.PROGRESSTRACKER)) {
             ProgressTracker pt = model.getProgressTracker();
             Ip ip = pt.getIp();
             double ipProgress = ip.getProgress();
@@ -40,8 +42,9 @@ public class NavCommand extends Command {
                     + "  IP Project: " + ipProgress + "%\n"
                     + "  TP Project: 0%";
             return new CommandResult(messageProgresstracker, false, false);
+        } else {
+            mode.setModeEnum(this.modeEnum);
+            return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
         }
-
-        return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
     }
 }
