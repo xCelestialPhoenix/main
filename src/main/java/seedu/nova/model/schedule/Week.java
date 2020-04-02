@@ -1,5 +1,6 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -8,18 +9,12 @@ import seedu.nova.model.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
 /**
- * The type Week.
+ * The week class of schedule.
  */
 public class Week implements Copyable<Week> {
 
-    /**
-     * The Days.
-     */
-    final Day[] days;
-    /**
-     * The Start date.
-     */
-    final LocalDate startDate;
+    private final Day[] days;
+    private final LocalDate startDate;
 
     /**
      * Instantiates a new Week.
@@ -38,11 +33,11 @@ public class Week implements Copyable<Week> {
     }
 
     /**
-     * Add event.
+     * Adds event.
      *
      * @param event the event
      */
-    void addEvent(Event event) {
+    public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
@@ -55,7 +50,7 @@ public class Week implements Copyable<Week> {
     }
 
     /**
-     * Add lesson.
+     * Adds lesson.
      *
      * @param lesson the lesson
      */
@@ -71,7 +66,7 @@ public class Week implements Copyable<Week> {
     }
 
     /**
-     * View string.
+     * View the schedule of a particular day.
      *
      * @param date the date
      * @return the string
@@ -87,8 +82,40 @@ public class Week implements Copyable<Week> {
         return days[day].view();
     }
 
+    /**
+     * View string.
+     *
+     * @return the string
+     */
+    public String view() {
+
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        for (Day day : days) {
+
+            index++;
+
+            if (day == null) {
+
+                continue;
+            }
+
+            String result = day.view();
+
+            if (!result.equals("")) {
+
+                sb.append(DayOfWeek.of(index));
+                sb.append(": \n");
+                sb.append(result);
+
+            }
+        }
+        return sb.toString();
+    }
+
     @Override
     public Week getCopy() {
+
         return new Week((Day[]) Arrays.stream(days).map(Day::getCopy).toArray(), startDate);
     }
 

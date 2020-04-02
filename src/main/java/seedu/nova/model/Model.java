@@ -103,7 +103,11 @@ public interface Model {
 
     String viewSchedule(LocalDate date);
 
+    String viewSchedule(int weekNumber);
+
     boolean isWithinSem(LocalDate date);
+
+    boolean isWithinSem(int weekNumber);
 
     Mode getMode();
 
@@ -111,5 +115,5 @@ public interface Model {
 
     void addEvent(Event e);
 
-    public void addLesson(Lesson l);
+    void addLesson(Lesson l);
 }

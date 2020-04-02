@@ -1,4 +1,4 @@
-package seedu.nova.model;
+package seedu.nova.model.schedule;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -53,6 +53,8 @@ public class Day implements Copyable<Day> {
 
         if (events.size() == 0) {
             events.add(event);
+        } else if (event.getStartTime().compareTo(events.get(0).getStartTime()) < 0) {
+            events.add(0, event);
         } else {
             //boolean hasSlot = false;
             while (iterator.hasNext()) {
@@ -69,7 +71,6 @@ public class Day implements Copyable<Day> {
                     //hasSlot = true;
                     freeSlots.excludeDuration(event.getDtd());
                     events.add(index, event);
-                    System.err.println(events.get(index) + " has been added to " + date);
                     break;
                 }
             }
@@ -104,10 +105,14 @@ public class Day implements Copyable<Day> {
 
         StringBuilder sb = new StringBuilder();
         ListIterator<Event> iterator = events.listIterator();
+        int index = 0;
         while (iterator.hasNext()) {
+            sb.append(++index);
+            sb.append(". ");
             sb.append(iterator.next());
             sb.append("\n");
         }
+
         return sb.toString();
     }
 
