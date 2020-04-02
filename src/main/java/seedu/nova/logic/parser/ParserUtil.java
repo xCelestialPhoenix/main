@@ -3,6 +3,7 @@ package seedu.nova.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.TaskDesc;
 
@@ -147,6 +149,7 @@ public class ParserUtil {
 
     /**
      * Parsers week number into an int
+     *
      * @param week string containing number to specify the week
      * @return int of the week input
      * @throws ParseException if is non-zero throw exception
@@ -177,6 +180,7 @@ public class ParserUtil {
 
     /**
      * Checks if project name is correct
+     *
      * @param project project name
      * @return project name
      * @throws ParseException if project name is wrong
@@ -219,5 +223,31 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         return LocalDate.parse(trimmedDate);
+    }
+
+    /**
+     * Parse minutes into Duration
+     *
+     * @param min minutes
+     * @return Duration
+     * @throws ParseException
+     */
+    public static Duration parseMinuteDuration(String min) throws ParseException {
+        requireNonNull(min);
+        String trimmedMin = min.trim();
+        return Duration.ofMinutes(Long.parseLong(trimmedMin));
+    }
+
+    /**
+     * Parse task frequency to TaskFreq
+     *
+     * @param freq frequency
+     * @return TaskFreq
+     * @throws ParseException
+     */
+    public static TaskFreq parseTaskFreq(String freq) throws ParseException {
+        requireNonNull(freq);
+        String trimmedFreq = freq.trim().toUpperCase();
+        return TaskFreq.valueOf(trimmedFreq);
     }
 }
