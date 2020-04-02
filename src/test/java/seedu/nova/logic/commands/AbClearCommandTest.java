@@ -12,7 +12,6 @@ import seedu.nova.logic.commands.abcommands.AbClearCommand;
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
  */
 
