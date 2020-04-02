@@ -1,6 +1,7 @@
 package seedu.nova.logic.commands.abcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
@@ -17,8 +18,8 @@ public class AbFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD n\\[MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n\\alice";
+            + "Parameters: KEYWORD n\\[more keywords]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice";
 
     private final NameContainsKeywordsPredicate predicate;
 

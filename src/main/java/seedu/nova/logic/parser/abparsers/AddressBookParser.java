@@ -15,7 +15,9 @@ import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbFindCommand;
 import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.abcommands.AbListCommand;
+import seedu.nova.logic.commands.abcommands.AbRedoCommand;
 import seedu.nova.logic.commands.abcommands.AbRemarkCommand;
+import seedu.nova.logic.commands.abcommands.AbUndoCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
@@ -80,6 +82,12 @@ public class AddressBookParser {
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
             } */
+
+        case AbUndoCommand.COMMAND_WORD:
+            return new AbUndoCommand();
+
+        case AbRedoCommand.COMMAND_WORD:
+            return new AbRedoCommand();
 
         case AbHelpCommand.COMMAND_WORD:
             return new AbHelpCommand();
