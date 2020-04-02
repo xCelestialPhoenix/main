@@ -624,14 +624,45 @@ Deletes task 3 of IP in progress tracker.
 
 == Command Summary
 
+[%autowidth,cols="<.^,<.^,<.^",options="header"]
+|=========================================================
+| Mode | Command | Description
+.2+| Common
+| exit | Exits NOVA
+| nav [home/ ab/ schedule/ planner/ tracker] | Changes the mode of NOVA
+
+.10+| Address Book
+| add n\[name] p\[phone number] e\[email address] c\[classmate/teammate] | Adds a contact into your address book
+| clear | Deletes all contacts within your address book
+| delete i\[index] | Deletes the contact at the specified index
+| edit i\[index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate] | Edits the contact at the
+specified index to the specified fields
+| find n\[name] | Finds a contact in your address book
+| list | Lists all the contacts in your address book
+| list c\[classmate/teammate] | Lists all the contacts of the specified category in your address book
+| redo | Redoes an undone command
+| remark i\[index] r\[remark] | Adds a category specific remark to the contact at the specified index
+| undo | Undoes a command
+
+.9+| Schedule
+| consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] | Adds a consultation
+event to your schedule
+| delete t\[YYYY-MM-DD] i\[index] | Deletes the event at the specified index on the specified day
+| freeslot t\[YYYY-MM-DD] | Find pockets of free time you have on the specified day
+| lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)] | Adds a lesson to your schedule
+| meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] | Adds a meeting event to
+your schedule
+| note d\[description] t\[YYYY-MM-DD] i\[index] | Adds a note to the event at the specified index of the specified date
+| study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] | Adds a study session event
+into your schedule
+| view t\[YYYY-MM-DD] | Shows the events happening on the specified date
+| view week i\[week #] | Shows the events happening on the specified week
+
+|=========================================================
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: You can install the app on the other computer and overwrite the empty data file it creates with the file that
 contains the data of your previous NOVA folder.
 
-*Q*: How can I delete all my data in one go? +
-*A*: You can go to the folder where your jar file is located at on your computer and delete all the files and folders
-except your jar file.
-
-== Glossary
