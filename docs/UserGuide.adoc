@@ -67,32 +67,22 @@ Here are some steps to get you started:
 +
 image::userguide/GUI.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 4: GUI of NOVA#_
+_[.small]#Fig 4.1: GUI of NOVA#_
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it.
 .  Try the following commands to get you warmed up:
 
 * *`nav ab`*: navigates to address book mode.
 +
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/addressbook.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 4.1: GUI of NOVA after entering `nav ab`#_
+_[.small]#Fig 4.2: GUI of NOVA after entering `nav ab`#_
 +
 You can use the following commands once you are in address book mode:
 
 ** *`list`* : lists all contacts
-+
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 4.2: GUI of NOVA after entering `list`#_
-+
 ** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named *John Doe* to the Address Book
  and categorise as classmate
-+
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 4.3: GUI of NOVA after entering `add n\John Doe p\98765432 e\\john@gmail.com c\classmate`#_
-+
 * *`exit`* : exits the app
 
 Refer to <<Features, Features>> for details of each command.
@@ -129,7 +119,7 @@ Suppose you want to use the address book, +
 
 NOVA will change the mode to address book as seen below.
 
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/schedule_nav.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.1.2: GUI of NOVA after entering `nav schedule`#_
 
@@ -140,7 +130,7 @@ Learn how to work with the Address Book in NOVA. The address book feature allows
 your teammates and classmates. Access this mode by entering the command `nav ab`. Your NOVA should look something
 like Figure 3.2 below.
 
-image::addressbook.png[width="790" align="center"]
+image::userguide/addressbook.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
@@ -166,20 +156,12 @@ into NOVA,
 NOVA will add a new contact named Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
 classmate category as seen below.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.1: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== List all Contacts: `list`
 You can list the contact's name, phone number and category of all contacts.
 
 Format: `list`
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -201,21 +183,13 @@ Example:
 `list c\classmate`
 +
 NOVA will lists all your contacts in the `classmate` category as seen below.
-+
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-+
+
 * Suppose you want to view all the teammate contacts that you have added into NOVA,
 +
 `list c\teammate`
 +
 NOVA will lists all your contacts in the `teammate` category as seen below.
-+
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-+
+
 <<Top, [Back to Top]>>
 
 ==== Find Contact: `find`
@@ -236,19 +210,11 @@ Example:
 +
 NOVA will find and list saved contacts named Jane Doe.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 * Or you can find Jane Doe with just Jane,
 +
 `find n\Jane`
 +
 NOVA will find and list saved contacts named Jane.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -299,10 +265,6 @@ Suppose you want add remark to the first contact in your address book after usin
 
 NOVA will add the remark "He's a nice teammate" to the first contact in your address book.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Delete Contact: `delete`
@@ -324,10 +286,6 @@ Suppose you want to delete the first contact in your address book after using th
 
 NOVA will delete the first contact in the list.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Clear all Contacts: `clear`
@@ -338,20 +296,12 @@ Format: `clear`
 [WARNING]
 Using `clear` command will **delete all** the contacts that you have saved.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Undo Command: `undo`
 You can undo a command that you have entered. If you cannot undo, NOVA will let you know.
 
 Format: `undo`
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -364,10 +314,6 @@ Format: `redo`
 [WARNING]
 After you successfully entered a command (apart from undo) after an undo command, you will lose all undone commands.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 === Schedule
@@ -375,7 +321,7 @@ Learn how to work with the schedule feature in NOVA. You can track important eve
 and manage them easily  You need to be in schedule mode. Enter the schedule mode by entering the command `nav schedule`.
 Your NOVA should look something like Figure 5.3 below.
 
-image::ManageEventsUI.png[width="790" align="center"]
+image::userguide/schedule_nav.png[width="790" align="center"]
 [.text-center]
 _[.small]#Figure 5.3: GUI of NOVA after user typed `nav schedule`#_
 
@@ -399,7 +345,7 @@ NOVA will create an event for a team meeting at COM1 on 20 February 2020 to set 
 
 image::userguide/EventMeeting.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`#_
+_[.small]#Fig 5.3.1: GUI of NOVA after user typed `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`#_
 
 <<Top, [Back to Top]>>
 
@@ -407,7 +353,7 @@ _[.small]#Fig 5.2: GUI of NOVA after user typed `meeting d\CS2103T website set-u
 You can add a study session as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
-Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
+Format: `study d\[description] v\[venue] t\ [YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
 [NOTE]
 ====
@@ -423,7 +369,7 @@ NOVA will create an event for study session at COM1 on 20 Feb 2020 from 4pm to 5
 
 image::userguide/EventStudy.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`#_
+_[.small]#Fig 5.3.2: GUI of NOVA after user typed `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`#_
 
 <<Top, [Back to Top]>>
 
@@ -447,7 +393,7 @@ NOVA will create an event for consultation at COM1 on 20 Feb 2020 to clarify UML
 
 image::userguide/EventConsultation.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`#_
+_[.small]#Fig 5.3.3: GUI of NOVA after user typed `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`#_
 
 <<Top, [Back to Top]>>
 
@@ -471,7 +417,7 @@ NOVA will create weekly events for CS2103T tutorial at COM1-B103 on Friday from 
 
 image::userguide/EventLesson.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed `lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`#_
+_[.small]#Fig 5.3.4: GUI of NOVA after user typed `lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`#_
 
 <<Top, [Back to Top]>>
 
@@ -493,7 +439,7 @@ NOVA will delete the second event on 20 Feb 2020.
 
 image::userguide/EventDelete.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
+_[.small]#Fig 5.3.5: GUI of NOVA after user typed contact `delete t\2020-02-20 i\2`#_
 
 <<Top, [Back to Top]>>
 
@@ -515,7 +461,7 @@ to the second event on 20 Feb 2020.
 
 image::userguide/EventNote.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
+_[.small]#Fig 5.3.6: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -563,7 +509,7 @@ _[.small]#Fig 5.3.8: GUI of NOVA after user typed contact `view week i\6`#_
 
 <<Top, [Back to Top]>>
 
-==== Find Free Slots: `freeslot`
+==== Find Free Slots [v2.0]: `freeslot`
 You can find free slots on a day easily within your schedule without looking through your schedule.
 
 Format: +
@@ -576,10 +522,6 @@ Suppose you want to find pockets of free time on 29 February 2020, +
 
 Finds the free slots on 29 Feb 2020.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 === Daily Study Planner
@@ -587,9 +529,9 @@ Learn how to work with the planner feature in NOVA. You can add daily/weeky task
 on any day you like hassle-free. You need to be in planner mode. Enter the planner mode by entering the command
 `nav planner`.
 
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/planner.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
+_[.small]#Fig 5.4: GUI of NOVA after user typed contact `nav planner`#_
 
 ==== Create Routine Task: `routine`
 You can create routine tasks in your study plan. When being scheduled, the tasks will lasts for 30 minutes weekly if
@@ -607,10 +549,6 @@ Suppose you want to create a weekly routine task "read cs2103 textbook",
 `routine p\read cs2103 textbook f\weekly d\30`
 
 NOVA will create a new task “read cs2103 textbook”.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -635,10 +573,6 @@ Suppose you want to create a flexible task "study vocabulary",
 
 NOVA will create a new task “study vocabulary”
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Delete task: `delete`
@@ -653,10 +587,6 @@ Suppose you want to delete the task "study vocabulary",
 `delete p\study vocabulary`
 
 NOVA will delete the task “study vocabulary” and all its related future events.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -679,10 +609,6 @@ Format: +
 
 NOVA will display the statistics of all the tasks currently in study plan.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Schedule Task: `schedule`
@@ -701,20 +627,12 @@ Suppose you want to schedule the weekly routine task "read cs2103 textbook",
 NOVA will finds a free slot bigger than 30 minutes as specified by the task, and creates an event “read cs2103
 textbook” that lasts for 30 minutes on a random spot within the free slot.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 Suppose you want to schedule the flexible task "study vocabulary", +
  +
 `schedule p\study vocabulary d\2020-03-20` +
 
 NOVA will finds a free slot bigger than 10 minutes as specified by the task, and creates an event “read cs2103
 textbook” on a random spot within the free slot.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -723,7 +641,7 @@ Learn how to work with the progress tracker feature in NOVA. You can track impor
 and manage them easily. You need to be in Progress Tracker mode. Enter the Progress Tracker mode by entering the
 command `nav progresstracker`. Your NOVA should look something like Figure 5.5 below.
 
-image::GUI_ProgressTracker.png[width="790" align="center"]
+image::userguide/progressTracker.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.5: GUI of NOVA after typing command `nav progresstracker`#_
 
@@ -748,10 +666,6 @@ Suppose you want to add a task to week 3 of IP project to remind yourself to do 
 
 NOVA will add a task “Do up javaFx” to week 3 of IP in progress tracker.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== View Project Task: `list`
@@ -773,10 +687,6 @@ Suppose you would like to view the tasks you have added to week 3 of IP project,
 
 NOVA will list the tasks in week 3 of IP project.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Delete Project Task: `delete`
@@ -796,10 +706,6 @@ Suppose you wish to delete task number 3 in week 3 of IP project,
 `delete p\ip w\3 t\3`
 
 NOVA will delete task 3 in week 3 of IP in progress tracker.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -821,10 +727,6 @@ Suppose you wish to set task number 2 in week 3 of IP project as done or undone,
 `done p\ip w\3 t\2`
 
 NOVA will set task 2 in week 3 of IP in progress tracker as done/undone depending on it's status originally.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -848,10 +750,6 @@ Suppose you wish to add a note to remind yourself to create a branch and tag for
 
 NOVA will add a note “Need create branch and tag” to task 2 in week 3 of IP.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Edit Note: `editNote`
@@ -874,10 +772,6 @@ Suppose you wish to edit the note added in task 2 of week 3 in IP project,
 
 NOVA will edit the note under task 2 of week 3 of IP.
 
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
-
 <<Top, [Back to Top]>>
 
 ==== Delete Note: `deleteNote`
@@ -898,10 +792,6 @@ Suppose you wish to delete the note added in task 2 of week 3 in IP project,
 `deleteNote p\[ip] w\3 t\2 i\2`
 
 NOVA will delete the note under task 2 of week 3 of IP.
-
-image::userguide/GUI.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2: GUI of NOVA after user typed contact `nav ab`#_
 
 <<Top, [Back to Top]>>
 
@@ -932,7 +822,7 @@ specified index to the specified fields
 | consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] | Adds a consultation
 event to your schedule
 | delete t\[YYYY-MM-DD] i\[index] | Deletes the event at the specified index on the specified day
-| freeslot t\[YYYY-MM-DD] | Find pockets of free time you have on the specified day
+| freeslot t\[YYYY-MM-DD] [v2.0] | Find pockets of free time you have on the specified day
 | lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)] | Adds a lesson to your schedule
 | meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)] | Adds a meeting event to
 your schedule
