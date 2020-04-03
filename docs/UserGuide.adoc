@@ -74,7 +74,7 @@ _[.small]#Fig 4: GUI of NOVA#_
 
 * *`nav ab`*: navigates to address book mode.
 +
-image::userguide/GUI.png[width="790" align="center"]
+image::userguide/addressbook.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 4.1: GUI of NOVA after entering `nav ab`#_
 +
