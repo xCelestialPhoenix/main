@@ -18,12 +18,12 @@ import seedu.nova.model.progresstracker.PtWeek;
 import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
- * Adds task to specified week
+ * Edits task to specified week
  */
-public class PtDeleteCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
+public class PtEditNoteCommand extends Command {
+    public static final String COMMAND_WORD = "editNote";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes task in the specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits note to specified task in the "
             + "project in the specified week. "
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
@@ -32,20 +32,23 @@ public class PtDeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
-            + PREFIX_TASK + "1";
+            + PREFIX_TASK + "1"
+            + PREFIX_DESC + "take note to do by 2359 Friday";
 
     public static final String MESSAGE_NULLWEEK = "Week not added yet";
-
     public static final String MESSAGE_NULLTASK = "No task with that index";
+    public static final String MESSAGE_NULLNOTE = "No note added yet";
 
     private int weekNum;
-    private String project;
     private int taskNum;
+    private String project;
+    private String note;
 
-    public PtDeleteCommand(int weekNum, String project, int taskNum) {
+    public PtEditNoteCommand(int weekNum, int taskNum, String project, String note) {
         this.weekNum = weekNum;
-        this.project = project.trim().toLowerCase();
         this.taskNum = taskNum;
+        this.project = project.trim().toLowerCase();
+        this.note = note;
     }
 
     @Override
@@ -67,22 +70,17 @@ public class PtDeleteCommand extends Command {
         //if week not created, create week
         if (week == null) {
             throw new CommandException(MESSAGE_NULLWEEK);
+        } else if (week.getTaskList().getTask(taskNum) == null) {
+            throw new CommandException(MESSAGE_NULLTASK);
+        } else if (week.getTaskList().getTask(taskNum).getNote().toString().equals("")) {
+            throw new CommandException(MESSAGE_NULLNOTE);
         }
 
         PtTaskList taskList = week.getTaskList();
-        PtTask taskDelete = taskList.getTask(taskNum);
+        PtTask task = taskList.getTask(taskNum);
+        task.setNote(note);
 
-        if (taskDelete == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
-        }
-
-        taskList.deleteTask(taskNum);
-
-        if (taskList.getNumTask() == 0) {
-            weekList.removeWeek(weekNum);
-        }
-
-        String result = "Deleted task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
+        String result = "Edited note to task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
 
         return new CommandResult(result, false, false);
     }

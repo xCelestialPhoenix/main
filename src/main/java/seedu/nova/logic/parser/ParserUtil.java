@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,7 @@ import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.TaskDesc;
 
 /**
@@ -32,6 +34,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -214,15 +217,39 @@ public class ParserUtil {
     }
 
     /**
+     * Checks if note is blank
+     * @param note note
+     * @return note
+     * @throws ParseException if note is blank
+     */
+    public static String parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+
+        if (!PtNote.isValidNote(trimmedNote)) {
+            throw new ParseException(PtNote.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedNote;
+    }
+
+
+    /**
      * Parse date local date.
      *
      * @param date the date
      * @return the local date
      */
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        return LocalDate.parse(trimmedDate);
+
+        try {
+            return LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+
     }
 
     /**

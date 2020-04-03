@@ -21,7 +21,7 @@ public class Schedule implements Copyable<Schedule> {
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
     private static final int SCHEDULE_RECESS_WEEK = 16;
-    private static final int WEEK_OFFSET = 1;
+    private static final int WEEK_OFFSET = 0;
 
     private final LocalDate startDate;
     private final LocalDate endDate;
