@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,10 +15,18 @@ import javafx.collections.transformation.FilteredList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.parser.ModeEnum;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.Plan;
+import seedu.nova.model.plan.StrongTask;
+import seedu.nova.model.plan.StudyPlan;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.TaskFreq;
+import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
+
 
 /**
  * Represents the in-memory model of the data.
@@ -25,11 +35,12 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Nova nova;
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final Schedule schedule;
-    private final ProgressTracker progressTracker;
+    private final Plan plan;
+    private final ProgressTracker progressTracker = new ProgressTracker();
     private Mode mode;
 
     /**
@@ -44,9 +55,10 @@ public class ModelManager implements Model {
         this.nova = nova;
         this.addressBook = nova.getAddressBookNova();
         this.userPrefs = new UserPrefs(userPrefs);
-        this.progressTracker = nova.getProgressTracker();
+        //this.progressTracker = nova.getProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
+        this.plan = new StudyPlan();
         this.mode = new Mode(ModeEnum.HOME);
     }
 
@@ -57,14 +69,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -106,15 +118,15 @@ public class ModelManager implements Model {
         return progressTracker;
     }
 
+    @Override
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
+    }
+
     //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
     }
 
     @Override
@@ -141,7 +153,8 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Address Book =============================================================
+    //=========== AB: Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -156,6 +169,33 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== AB: Undo/Redo =============================================================
+
+    @Override
+    public void commitAddressBook() {
+        addressBook.commit();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        addressBook.undo();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return addressBook.canRedo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        addressBook.redo();
     }
 
     @Override
@@ -187,9 +227,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String viewSchedule(int weekNumber) {
+
+        return schedule.view(weekNumber);
+
+    }
+
+    @Override
     public boolean isWithinSem(LocalDate date) {
 
         return schedule.checkDateValidity(date);
+
+    }
+
+    @Override
+    public boolean isWithinSem(int weekNumber) {
+
+        return schedule.checkWeekValidity(weekNumber);
 
     }
 
@@ -202,6 +256,56 @@ public class ModelManager implements Model {
     @Override
     public void addLesson(Lesson l) {
         schedule.addLesson(l);
+    }
+
+    @Override
+    public DateTimeSlotList getFreeSlotOn(LocalDate date) {
+        return schedule.getDay(date).getFreeSlotList();
+    }
+
+    @Override
+    public String viewFreeSlot(LocalDate date) {
+        return getFreeSlotOn(date).toString();
+    }
+
+    public String deleteEvent(LocalDate date, int index) {
+        return schedule.deleteEvent(date, index).toString();
+    }
+
+    @Override
+    public String addNote(String desc, LocalDate date, int index) {
+        return schedule.addNote(desc, date, index);
+    }
+
+    //=========== Study Planner =============================================================
+    @Override
+    public void resetPlan() {
+        plan.resetPlan();
+    }
+
+    @Override
+    public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
+        return plan.addTask(StrongTask.get(name, duration, freq));
+    }
+
+    @Override
+    public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
+        return plan.addTask(WeakTask.get(name, min, max, total));
+    }
+
+    @Override
+    public List<Task> getTaskList() {
+        return plan.getTaskList();
+    }
+
+    @Override
+    public Task searchTask(String name) {
+        return plan.searchTask(name);
+    }
+
+    @Override
+    public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+        return plan.generateTaskEvent(task, date, schedule);
     }
 
 }

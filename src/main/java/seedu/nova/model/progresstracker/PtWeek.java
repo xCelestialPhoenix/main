@@ -27,4 +27,8 @@ public class PtWeek {
     public PtTaskList getTaskList() {
         return taskList;
     }
+
+    public double getProgressWeek() {
+        return this.taskList.getProgressTasks();
+    }
 }

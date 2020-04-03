@@ -186,4 +186,13 @@ public class DateTimeSlotList implements SlotList<DateTimeDuration>, Copyable<Da
     public DateTimeSlotList getCopy() {
         return new DateTimeSlotList(new TreeSet<>(this.freeSlotSet), new TreeMap<>(this.freeSlotMap));
     }
+
+    @Override
+    public String toString() {
+        return freeSlotSet.stream()
+                .parallel()
+                .map(DateTimeDuration::toString)
+                .map(x -> String.format("%s\n", x))
+                .reduce("", (x, y) -> x + y);
+    }
 }
