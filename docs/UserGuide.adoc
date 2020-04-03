@@ -457,7 +457,7 @@ Suppose you wish to add a note that indicates the work allocation to a meeting e
 `note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`
 
 NOVA will add a note with the description "Alice - Logic component in DG, Bob - UI component in DG"
-to the second event on 20 Feb 2020.
+to the first event on 20 Feb 2020.
 
 image::userguide/EventNote.png[width="790" align="center"]
 [.text-center]
