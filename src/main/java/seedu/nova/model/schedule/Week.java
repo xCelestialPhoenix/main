@@ -73,8 +73,6 @@ public class Week implements Copyable<Week> {
 
         LocalDate d = startDate.plusDays(day);
         lesson.setDate(d);
-
-        events.add(lesson);
         days[day].addLesson(lesson);
     }
 
