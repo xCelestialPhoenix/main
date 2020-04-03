@@ -50,6 +50,11 @@ public class Week implements Copyable<Week> {
     public void addEvent(Event event) {
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            days[day] = new Day(date);
+        }
+
         events.add(event);
         days[day].addEvent(event);
     }
@@ -61,6 +66,14 @@ public class Week implements Copyable<Week> {
      */
     public void addLesson(Lesson lesson) {
         int day = lesson.getDay().getValue() - 1;
+
+        if (days[day] == null) {
+            days[day] = new Day(startDate.plusDays(day));
+        }
+
+        LocalDate d = startDate.plusDays(day);
+        lesson.setDate(d);
+
         events.add(lesson);
         days[day].addLesson(lesson);
     }
