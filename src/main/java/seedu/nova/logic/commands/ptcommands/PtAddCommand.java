@@ -34,6 +34,8 @@ public class PtAddCommand extends Command {
             + PREFIX_WEEK + "2"
             + PREFIX_DESC + "Implement javafx";
 
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
     private int weekNum;
     private String project;
     private String taskDesc;
@@ -47,36 +49,33 @@ public class PtAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (weekNum > 13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            ProgressTracker pt = model.getProgressTracker();
+            PtWeek week;
+            Project project;
+
+            if (this.project.equals("ip")) {
+                project = pt.getIp();
+            } else {
+                project = pt.getTp();
+            }
+
+            //Create new task
+            TaskDesc taskDesc = new TaskDesc(this.taskDesc);
+            PtTask newTask = new PtTask(taskDesc, this.weekNum);
+
+            PtWeekList weekList = project.getWeekList();
+            week = weekList.getWeek(weekNum);
+
+            PtTaskList taskList = week.getTaskList();
+            taskList.addTask(newTask);
+
+            String result = "Added task to week " + weekNum + " of " + this.project.toUpperCase();
+
+            return new CommandResult(result, false, false);
         }
-
-        //Create new task
-        TaskDesc taskDesc = new TaskDesc(this.taskDesc);
-        PtTask newTask = new PtTask(taskDesc, this.weekNum);
-
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
-
-        //if week not created, create week
-        if (week == null) {
-            PtWeek newWeek = new PtWeek(weekNum);
-            weekList.addWeek(newWeek);
-
-            week = newWeek;
-        }
-
-        PtTaskList taskList = week.getTaskList();
-        taskList.addTask(newTask);
-
-        String result = "Added task to week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
