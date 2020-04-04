@@ -1,33 +1,39 @@
 package seedu.nova.model;
 
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
-
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -44,20 +50,22 @@ public interface Model {
      */
     Path getNovaFilePath();
 
-    Nova getNova();
-
     /**
      * Sets the user prefs' nova book file path.
      */
     void setNovaFilePath(Path addressBookFilePath);
 
+    Nova getNova();
+
+    /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
+
     /**
      * Replaces nova book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the nova book.
@@ -83,11 +91,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -118,8 +129,26 @@ public interface Model {
 
     void addLesson(Lesson l);
 
+    DateTimeSlotList getFreeSlotOn(LocalDate date);
+
+    String viewFreeSlot(LocalDate date);
+
     String deleteEvent(LocalDate date, int index);
 
     String addNote(String desc, LocalDate date, int index);
+
+    //==============studyplanner=============
+
+    void resetPlan();
+
+    boolean addRoutineTask(String name, TaskFreq freq, Duration duration);
+
+    boolean addFlexibleTask(String name, Duration total, Duration min, Duration max);
+
+    List<Task> getTaskList();
+
+    Task searchTask(String name);
+
+    boolean generateTaskEvent(Task task, LocalDate date) throws Exception;
 
 }

@@ -3,8 +3,10 @@ package seedu.nova.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,6 +18,7 @@ import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.TaskDesc;
@@ -31,6 +34,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -148,6 +152,7 @@ public class ParserUtil {
 
     /**
      * Parsers week number into an int
+     *
      * @param week string containing number to specify the week
      * @return int of the week input
      * @throws ParseException if is non-zero throw exception
@@ -178,6 +183,7 @@ public class ParserUtil {
 
     /**
      * Checks if project name is correct
+     *
      * @param project project name
      * @return project name
      * @throws ParseException if project name is wrong
@@ -234,9 +240,41 @@ public class ParserUtil {
      * @param date the date
      * @return the local date
      */
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        return LocalDate.parse(trimmedDate);
+
+        try {
+            return LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+
+    }
+
+    /**
+     * Parse minutes into Duration
+     *
+     * @param min minutes
+     * @return Duration
+     * @throws ParseException
+     */
+    public static Duration parseMinuteDuration(String min) throws ParseException {
+        requireNonNull(min);
+        String trimmedMin = min.trim();
+        return Duration.ofMinutes(Long.parseLong(trimmedMin));
+    }
+
+    /**
+     * Parse task frequency to TaskFreq
+     *
+     * @param freq frequency
+     * @return TaskFreq
+     * @throws ParseException
+     */
+    public static TaskFreq parseTaskFreq(String freq) throws ParseException {
+        requireNonNull(freq);
+        String trimmedFreq = freq.trim().toUpperCase();
+        return TaskFreq.valueOf(trimmedFreq);
     }
 }

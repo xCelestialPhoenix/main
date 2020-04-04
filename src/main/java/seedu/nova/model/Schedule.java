@@ -5,6 +5,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import seedu.nova.model.schedule.Day;
 import seedu.nova.model.schedule.Week;
 import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
@@ -91,12 +92,20 @@ public class Schedule implements Copyable<Schedule> {
         }
     }
 
+    public Day getDay(LocalDate date) {
+        int weekNumber = calWeekNumber(date);
+        if (weeks[weekNumber] == null) {
+            return null;
+        }
+        return weeks[weekNumber].getDay(date.getDayOfWeek());
+    }
+
     /**
      * Deletes an event
      * @param date the date of the event
      * @param index the position of event in list
      */
-    public String deleteEvent(LocalDate date, int index) throws DateNotFoundException {
+    public Event deleteEvent(LocalDate date, int index) throws DateNotFoundException {
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
@@ -260,6 +269,21 @@ public class Schedule implements Copyable<Schedule> {
     private int calWeekNumber(LocalDate date) {
 
         return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK) + WEEK_OFFSET;
+    }
+
+    /**
+     * Check if event is in
+     * @param event event
+     * @return event is inside?
+     */
+    public boolean hasEvent(Event event) {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            return false;
+        }
+
+        return weeks[weekNumber].hasEvent(event);
     }
 
     @Override
