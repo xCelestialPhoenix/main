@@ -51,7 +51,7 @@ public class PtTaskList {
         int numDone = 0;
         int totalTask = getNumTask();
 
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < totalTask; i++) {
             PtTask task = list.get(i);
 
             if (task.isDone()) {
