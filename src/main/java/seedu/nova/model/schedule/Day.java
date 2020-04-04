@@ -1,8 +1,9 @@
 package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.EventNotFoundException;
@@ -19,7 +20,7 @@ public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private List<Event> events;
+    private Set<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
 
@@ -29,12 +30,12 @@ public class Day implements Copyable<Day> {
      * @param date the date
      */
     public Day(LocalDate date) {
-        events = new LinkedList<>();
+        events = new TreeSet<>();
         this.date = date;
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(List<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    private Day(Set<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -75,7 +76,8 @@ public class Day implements Copyable<Day> {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        Event deleted = events.remove(index - 1);
+        Event deleted = new ArrayList<>(events).remove(index - 1);
+        events.remove(deleted);
         freeSlots.includeDuration(deleted.getDtd());
         if (deleted instanceof WeakEvent) {
             WeakEvent wkE = (WeakEvent) deleted;
@@ -93,8 +95,9 @@ public class Day implements Copyable<Day> {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        events.get(index - 1).addNote(desc);
-        return events.get(index - 1).toString();
+        Event e = new ArrayList<>(events).get(index - 1);
+        e.addNote(desc);
+        return e.toString();
     }
 
 
@@ -127,6 +130,6 @@ public class Day implements Copyable<Day> {
 
     @Override
     public Day getCopy() {
-        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
+        return new Day(new TreeSet<>(events), date, freeSlots.getCopy());
     }
 }
