@@ -78,9 +78,6 @@ public class PtDeleteCommand extends Command {
 
         taskList.deleteTask(taskNum);
 
-        if (taskList.getNumTask() == 0) {
-            weekList.removeWeek(weekNum);
-        }
 
         String result = "Deleted task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
 
