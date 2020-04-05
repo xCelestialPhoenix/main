@@ -6,8 +6,8 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.plannercommands.DeleteTaskCommand;
 import seedu.nova.logic.commands.plannercommands.PlannerAddFlexibleTaskCommand;
 import seedu.nova.logic.commands.plannercommands.PlannerAddRoutineTaskCommand;
-import seedu.nova.logic.commands.plannercommands.PlannerListTaskCommand;
 import seedu.nova.logic.commands.plannercommands.PlannerScheduleTaskCommand;
+import seedu.nova.logic.commands.plannercommands.PlannerStatsCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,8 +29,8 @@ public class PlannerParser {
             return new AddFlexibleTaskCommandParser().parse(arguments);
         case PlannerAddRoutineTaskCommand.COMMAND_WORD:
             return new AddRoutineTaskCommandParser().parse(arguments);
-        case PlannerListTaskCommand.COMMAND_WORD:
-            return new ListTaskCommandParser().parse(arguments);
+        case PlannerStatsCommand.COMMAND_WORD:
+            return new StatsCommandParser().parse(arguments);
         case PlannerScheduleTaskCommand.COMMAND_WORD:
             return new ScheduleTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:

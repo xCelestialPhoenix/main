@@ -104,6 +104,21 @@ public class Week implements Copyable<Week> {
     }
 
     /**
+     * deletes an event
+     * @param event event to delete
+     * @return successfully deleted?
+     */
+    public boolean deleteEvent(Event event) {
+        int day = event.getDate().getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+        events.remove(event);
+        return days[day].deleteEvent(event);
+    }
+
+    /**
      * Adds a note to an Event.
      *
      * @param desc  description of the note

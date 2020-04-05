@@ -116,6 +116,21 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
+     * Deletes an event
+     * @param event the event
+     */
+    public boolean deleteEvent(Event event) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(event);
+    }
+
+
+    /**
      * Adds a note to an Event.
      * @param desc description of the note
      * @param date the date of the event

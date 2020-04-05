@@ -135,6 +135,8 @@ public interface Model {
 
     String deleteEvent(LocalDate date, int index);
 
+    boolean deleteEvent(Event event);
+
     String addNote(String desc, LocalDate date, int index);
 
     //==============studyplanner=============

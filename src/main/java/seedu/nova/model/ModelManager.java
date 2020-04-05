@@ -266,8 +266,14 @@ public class ModelManager implements Model {
         return getFreeSlotOn(date).toString();
     }
 
+    @Override
     public String deleteEvent(LocalDate date, int index) {
         return schedule.deleteEvent(date, index).toString();
+    }
+
+    @Override
+    public boolean deleteEvent(Event e) {
+        return schedule.deleteEvent(e);
     }
 
     @Override

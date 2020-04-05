@@ -2,11 +2,14 @@ package seedu.nova.logic.commands.plannercommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.plan.Task;
+import seedu.nova.model.schedule.event.Event;
 
 /**
  * delete a task
@@ -32,6 +35,13 @@ public class DeleteTaskCommand extends Command {
             return new CommandResult(MESSAGE_TASK_NOT_EXIST);
         }
         if (model.deleteTask(task)) {
+            for (Event e : task.getEventAfter(LocalDate.now())) {
+                try {
+                    model.deleteEvent(e);
+                } catch (Exception ee) {
+                    // do nothing
+                }
+            }
             return new CommandResult(MESSAGE_TASK_DELETE_SUCCESS + "\n" + task);
         } else {
             return new CommandResult(MESSAGE_TASK_DELETE_FAILED);
