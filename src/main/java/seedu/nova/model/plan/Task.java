@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 import seedu.nova.model.Schedule;
 import seedu.nova.model.schedule.event.Event;
@@ -136,6 +137,17 @@ public abstract class Task {
         default:
             return this.dayEventMap.remove(event.getDate(), event);
         }
+    }
+
+    /**
+     * List out all the events
+     * @return string of list of events
+     */
+    protected String listEvents() {
+        final List<Event> lst = getEvents();
+        return IntStream.range(0, lst.size())
+                .mapToObj(i -> "(" + i + ")\n" + lst.get(i).toString() + "\n")
+                .reduce("", (x, y) -> x + y);
     }
 
     @Override

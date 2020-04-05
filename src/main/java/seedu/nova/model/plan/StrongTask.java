@@ -59,6 +59,7 @@ public class StrongTask extends Task {
 
     @Override
     public String toString() {
-        return String.format("%s\nNo. of weeks done: %d\n", super.toString(), size());
+        return String.format("%s\nNo. of weeks done: %d\nEvents scheduled:\n %s\n", super.toString(), size(),
+                listEvents());
     }
 }
