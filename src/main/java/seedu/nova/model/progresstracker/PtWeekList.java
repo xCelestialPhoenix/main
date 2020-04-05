@@ -29,4 +29,31 @@ public class PtWeekList {
             return null;
         }
     }
+
+    public void removeWeek(int num) {
+        weekList.remove(num - 1);
+    }
+
+    public double getProgressProject() {
+        boolean weekExist;
+        int numWeeks = 0;
+        double totalPercentage = 0;
+
+        for (int i = 0; i < weekList.size(); i++) {
+            PtWeek current = weekList.get(i);
+
+            weekExist = current != null;
+
+            if (weekExist) {
+                numWeeks++;
+                totalPercentage = totalPercentage + current.getProgressWeek();
+            }
+        }
+
+        if (numWeeks == 0) {
+            return 0;
+        } else {
+            return totalPercentage / numWeeks;
+        }
+    }
 }

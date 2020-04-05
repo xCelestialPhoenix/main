@@ -13,10 +13,10 @@ import seedu.nova.logic.commands.abcommands.AbRemarkCommand;
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.person.Remark;
+import seedu.nova.model.schedule.Schedule;
 import seedu.nova.testutil.PersonBuilder;
  */
 
@@ -25,7 +25,7 @@ class AbRemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020,
-            1, 13), LocalDate.of(2020, 5, 3)));
+            1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
 
     @Test
     void execute_addRemarkUnfilteredList_success() {
@@ -38,7 +38,7 @@ class AbRemarkCommandTest {
         String expectedMessage = String.format(AbRemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)));
+                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)), new StudyPlan());
         expectedModel.setPerson(firstPerson, editedPerson);
 
         //assertCommandSuccess(abRemarkCommand, model, expectedMessage, expectedModel);

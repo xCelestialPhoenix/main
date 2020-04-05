@@ -9,15 +9,12 @@ import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-
-//import seedu.nova.logic.commands.abcommands.AbListCommand;
 
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
-import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
  */
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AbListCommand.
@@ -30,9 +27,9 @@ public class AbListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1, 13),
-                LocalDate.of(2020, 5, 3)));
+                LocalDate.of(2020, 5, 3)), new StudyPlan());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new Schedule(LocalDate.of(2020, 1,
-                13), LocalDate.of(2020, 5, 3)));
+                13), LocalDate.of(2020, 5, 3)), new StudyPlan());
     }
 
     /*@Test
