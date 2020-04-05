@@ -1,7 +1,6 @@
 package seedu.nova.model;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -11,7 +10,6 @@ import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
-import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.schedule.event.Event;

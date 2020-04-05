@@ -25,7 +25,8 @@ public class WeakTask extends Task {
         this.total = total;
     }
 
-    public static WeakTask get(String name, Duration mind, Duration maxd, Duration total) throws ImpossibleTaskException {
+    public static WeakTask get(String name, Duration mind, Duration maxd, Duration total)
+            throws ImpossibleTaskException {
         if (mind.compareTo(total) > 0) {
             throw new ImpossibleTaskException();
         }
@@ -73,7 +74,8 @@ public class WeakTask extends Task {
         Collections.sort(lst);
         Collections.reverse(lst);
         for (DateTimeDuration dtd : lst) {
-            if (dtd.getDuration().compareTo(getMaxDuration()) < 0 && dtd.getDuration().compareTo(getBaseDuration()) > 0) {
+            if (dtd.getDuration().compareTo(getMaxDuration()) < 0
+                    && dtd.getDuration().compareTo(getBaseDuration()) > 0) {
                 return dtd;
             } else {
                 return new DateTimeDuration(dtd.getStartDateTime(), dtd.getStartDateTime().plus(getMaxDuration()));

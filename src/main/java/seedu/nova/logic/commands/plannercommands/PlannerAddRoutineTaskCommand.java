@@ -9,7 +9,6 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.plan.StrongTask;
-import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
 
 /**
