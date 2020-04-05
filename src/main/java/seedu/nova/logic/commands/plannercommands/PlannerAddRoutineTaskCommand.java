@@ -8,6 +8,7 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
+import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.TaskFreq;
 
 /**
@@ -36,8 +37,9 @@ public class PlannerAddRoutineTaskCommand extends Command {
         if (model.searchTask(name) != null) {
             return new CommandResult(MESSAGE_TASK_ADY_EXIST);
         }
-        if (model.addRoutineTask(name, freq, duration)) {
-            return new CommandResult(MESSAGE_TASK_ADD_SUCCESS);
+        StrongTask task = StrongTask.get(name, duration, freq);
+        if (model.addRoutineTask(task)) {
+            return new CommandResult(MESSAGE_TASK_ADD_SUCCESS + "\n" + task);
         } else {
             return new CommandResult(MESSAGE_TASK_ADD_FAILED);
         }

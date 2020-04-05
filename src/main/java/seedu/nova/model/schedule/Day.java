@@ -87,6 +87,21 @@ public class Day implements Copyable<Day> {
     }
 
     /**
+     * Removes an event.
+     *
+     * @param event event to be removed
+     */
+    boolean deleteEvent(Event event) {
+        events.remove(event);
+        freeSlots.includeDuration(event.getDtd());
+        if (event instanceof WeakEvent) {
+            WeakEvent wkE = (WeakEvent) event;
+            wkE.destroy();
+        }
+        return true;
+    }
+
+    /**
      * Adds a note to an event.
      *
      * @param index index of event in the LinkedList
