@@ -22,10 +22,19 @@ public abstract class Task {
     protected Task(TaskDetails details) {
         this.details = details;
         this.dayEventMap = new TreeMap<>();
+        this.totalEventDuration = Duration.ZERO;
     }
 
     public String getName() {
         return details.getName();
+    }
+
+    public int size() {
+        return dayEventMap.size();
+    }
+
+    public List<Event> getEvents() {
+        return new ArrayList<>(dayEventMap.values());
     }
 
     public Duration getBaseDuration() {
@@ -76,10 +85,10 @@ public abstract class Task {
      *
      * @param date date to generate event on
      * @param sc   the schedule
-     * @return event successfully scheduled?
+     * @return event that is added. null if event not added
      * @throws ImpossibleTaskException when cannot generate event
      */
-    public abstract boolean generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException;
+    public abstract Event generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException;
 
     /**
      * Add event that is related to the task.
@@ -116,7 +125,6 @@ public abstract class Task {
     }
 
     /**
-     *
      * @param event
      * @return
      */

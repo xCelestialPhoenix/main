@@ -284,13 +284,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
-        return plan.addTask(StrongTask.get(name, duration, freq));
+    public boolean addRoutineTask(StrongTask task) {
+        return plan.addTask(task);
     }
 
     @Override
-    public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
-        return plan.addTask(WeakTask.get(name, min, max, total));
+    public boolean addFlexibleTask(WeakTask task) {
+        return plan.addTask(task);
     }
 
     @Override
@@ -304,7 +304,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+    public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
         return plan.generateTaskEvent(task, date, schedule);
     }
 

@@ -9,8 +9,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
+import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
@@ -141,14 +143,14 @@ public interface Model {
 
     void resetPlan();
 
-    boolean addRoutineTask(String name, TaskFreq freq, Duration duration);
+    boolean addRoutineTask(StrongTask st);
 
-    boolean addFlexibleTask(String name, Duration total, Duration min, Duration max);
+    boolean addFlexibleTask(WeakTask wt);
 
     List<Task> getTaskList();
 
     Task searchTask(String name);
 
-    boolean generateTaskEvent(Task task, LocalDate date) throws Exception;
+    Event generateTaskEvent(Task task, LocalDate date) throws Exception;
 
 }

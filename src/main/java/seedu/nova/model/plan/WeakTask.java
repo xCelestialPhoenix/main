@@ -25,21 +25,33 @@ public class WeakTask extends Task {
         this.total = total;
     }
 
-    public static WeakTask get(String name, Duration mind, Duration maxd, Duration total) {
+    public static WeakTask get(String name, Duration mind, Duration maxd, Duration total) throws ImpossibleTaskException {
+        if (mind.compareTo(total) > 0) {
+            throw new ImpossibleTaskException();
+        }
         return new WeakTask(new TaskDetails(name, mind, TaskFreq.DAILY), maxd, total);
     }
 
     public Duration getMaxDuration() {
-        return maxDuration;
+        if (total.minus(totalEventDuration).compareTo(maxDuration) > 0) {
+            return maxDuration;
+        } else {
+            return total.minus(totalEventDuration);
+        }
     }
 
     @Override
-    public boolean generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException {
+    public Event generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException {
         if (hasEventOn(date) && sc.hasEvent(getEventOn(date))) {
-            return false;
+            return null;
         } else {
             Day d = sc.getDay(date);
-            List<DateTimeDuration> dtdLst = d.getFreeSlotList().getSlotList(getBaseDuration());
+            List<DateTimeDuration> dtdLst;
+            if (d == null) {
+                dtdLst = new Day(date).getFreeSlotList().getSlotList(getBaseDuration());
+            } else {
+                dtdLst = d.getFreeSlotList().getSlotList(getBaseDuration());
+            }
             if (dtdLst.isEmpty()) {
                 throw new ImpossibleTaskException();
             } else {
@@ -47,20 +59,26 @@ public class WeakTask extends Task {
                 Event newEvent = new WeakEvent(getName(), dtd, this);
                 addEvent(newEvent);
                 sc.addEvent(newEvent);
-                return true;
+                return newEvent;
             }
         }
     }
 
-    private DateTimeDuration getBestTimeframe(List<DateTimeDuration> freeSlots) {
+    private DateTimeDuration getBestTimeframe(List<DateTimeDuration> freeSlots) throws ImpossibleTaskException {
         assert !freeSlots.isEmpty() : "no free slot to choose";
+        if (getMaxDuration().isZero()) {
+            throw new ImpossibleTaskException();
+        }
         List<DateTimeDuration> lst = new ArrayList<>(freeSlots);
         Collections.sort(lst);
-        DateTimeDuration dtd = lst.get(lst.size() - 1);
-        if (dtd.getDuration().compareTo(getMaxDuration()) < 0) {
-            return dtd;
-        } else {
-            return new DateTimeDuration(dtd.getStartDateTime(), dtd.getStartDateTime().plus(getMaxDuration()));
+        Collections.reverse(lst);
+        for (DateTimeDuration dtd : lst) {
+            if (dtd.getDuration().compareTo(getMaxDuration()) < 0 && dtd.getDuration().compareTo(getBaseDuration()) > 0) {
+                return dtd;
+            } else {
+                return new DateTimeDuration(dtd.getStartDateTime(), dtd.getStartDateTime().plus(getMaxDuration()));
+            }
         }
+        throw new ImpossibleTaskException();
     }
 }
