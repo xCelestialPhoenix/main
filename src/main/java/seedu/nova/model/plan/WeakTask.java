@@ -87,8 +87,8 @@ public class WeakTask extends Task {
     @Override
     public String toString() {
         return String.format("%s\nPercentage done: %f\nEvents scheduled:\n %s\n",
-                super.toString(),
-                (totalEventDuration.getSeconds() + 0.0) / total.getSeconds(),
+                super.toString(), (
+                        totalEventDuration.getSeconds() + 0.0) / total.getSeconds(),
                 listEvents());
     }
 }
