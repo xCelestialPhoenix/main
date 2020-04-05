@@ -151,6 +151,8 @@ public interface Model {
 
     Task searchTask(String name);
 
+    boolean deleteTask(Task task);
+
     Event generateTaskEvent(Task task, LocalDate date) throws Exception;
 
 }

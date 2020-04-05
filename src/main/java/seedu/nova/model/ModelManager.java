@@ -304,6 +304,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean deleteTask(Task task) {
+        return plan.deleteTask(task);
+    }
+
+    @Override
     public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
         return plan.generateTaskEvent(task, date, schedule);
     }
