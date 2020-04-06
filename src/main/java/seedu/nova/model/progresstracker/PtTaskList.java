@@ -18,6 +18,10 @@ public class PtTaskList {
         return list.size();
     }
 
+    public PtTask getTask(int taskNum) {
+        return list.get(taskNum - 1);
+    }
+
     /**
      * Lists the tasks in the task list
      * @return String listing out the tasks
@@ -27,9 +31,38 @@ public class PtTaskList {
 
         for (int i = 0; i < list.size(); i++) {
             PtTask task = list.get(i);
+            String note = task.getNote().toString() + "\n";
 
-            str = str + i + ") " + task.getTaskDesc().toString() + "\n";
+            str = str + (i + 1) + ") " + task.toString() + "\n"
+                    + "       Note: " + note;
         }
         return str;
+    }
+
+    public void addTask(PtTask task) {
+        list.add(task);
+    }
+
+    public void deleteTask(int taskNum) {
+        list.remove(taskNum - 1);
+    }
+
+    public double getProgressTasks() {
+        int numDone = 0;
+        int totalTask = getNumTask();
+
+        for (int i = 0; i < totalTask; i++) {
+            PtTask task = list.get(i);
+
+            if (task.isDone()) {
+                numDone++;
+            }
+        }
+
+        if (totalTask == 0) {
+            return 0;
+        } else {
+            return numDone / totalTask;
+        }
     }
 }

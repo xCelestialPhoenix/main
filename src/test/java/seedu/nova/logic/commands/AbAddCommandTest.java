@@ -7,9 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 //import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,10 +26,13 @@ import seedu.nova.model.Model;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -192,7 +197,18 @@ public class AbAddCommandTest {
         }
 
         @Override
+        public String viewSchedule(int weekNumber) {
+
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isWithinSem(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isWithinSem(int weekNumber) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -207,6 +223,55 @@ public class AbAddCommandTest {
 
         @Override
         public void addLesson(Lesson l) {
+        }
+
+        @Override
+        public DateTimeSlotList getFreeSlotOn(LocalDate date) {
+            return null;
+        }
+
+        @Override
+        public String viewFreeSlot(LocalDate date) {
+            return null;
+        }
+
+        public String deleteEvent(LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String addNote(String desc, LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPlan() {
+
+        }
+
+        @Override
+        public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
+            return false;
+        }
+
+        @Override
+        public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
+            return false;
+        }
+
+        @Override
+        public List<Task> getTaskList() {
+            return null;
+        }
+
+        @Override
+        public Task searchTask(String name) {
+            return null;
+        }
+
+        @Override
+        public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+            return false;
         }
 
         public ProgressTracker getProgressTracker() {
