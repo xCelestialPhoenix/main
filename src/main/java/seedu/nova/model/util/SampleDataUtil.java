@@ -39,14 +39,15 @@ public class SampleDataUtil {
     }
 
     public static Nova getSampleNova() {
-        ReadOnlyAddressBook initialState = new AddressBook();
-        VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
+        ReadOnlyAddressBook initialState;
+        AddressBook ab = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            ab.addPerson(samplePerson);
         }
 
         Nova nova = new Nova();
-        nova.setAddressBookNova(sampleAb);
+        VersionedAddressBook addressBook = new VersionedAddressBook(ab);
+        nova.setAddressBookNova(addressBook);
 
         return nova;
     }
