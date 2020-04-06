@@ -35,6 +35,8 @@ public class PtDoneCommand extends Command {
             + PREFIX_WEEK + "2"
             + PREFIX_TASK + "1";
 
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
     private int weekNum;
     private String project;
     private int taskNum;
@@ -48,32 +50,36 @@ public class PtDoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (weekNum > 13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            ProgressTracker pt = model.getProgressTracker();
+            PtWeek week;
+            Project project;
+
+            if (this.project.equals("ip")) {
+                project = pt.getIp();
+            } else {
+                project = pt.getTp();
+            }
+
+            PtWeekList weekList = project.getWeekList();
+            week = weekList.getWeek(weekNum);
+            PtTaskList taskList = week.getTaskList();
+
+            if (taskNum > taskList.getNumTask()) {
+                throw new CommandException(MESSAGE_NULLTASK);
+            }
+
+            PtTask task = taskList.getTask(taskNum);
+            task.setDone();
+
+            String result = "Changed done status of task " + taskNum + " in week " + weekNum + " of "
+                    + this.project.toUpperCase();
+
+            return new CommandResult(result, false, false);
         }
-
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
-
-        //if week not created, create week
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
-        }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask task = taskList.getTask(taskNum);
-        task.setDone();
-
-        String result = "Changed done status of task " + taskNum + " in week " + weekNum + " of "
-                + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
 
