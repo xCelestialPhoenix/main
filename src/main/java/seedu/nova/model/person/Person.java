@@ -106,11 +106,11 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append(", Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
+                .append(", Email: ")
                 .append(getEmail())
-                .append(" Category: ");
+                .append(", Category: ");
         getCategory().forEach(builder::append);
         //builder.append(" Remarks: ")
         //        .append(getRemark());
