@@ -113,8 +113,6 @@ public class Person {
                 .append(getEmail())
                 .append(", Category: ");
         getCategory().forEach(builder::append);
-        //builder.append(" Remarks: ")
-        //        .append(getRemark());
         return builder.toString();
     }
 

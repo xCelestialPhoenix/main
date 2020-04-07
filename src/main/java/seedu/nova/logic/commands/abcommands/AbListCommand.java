@@ -30,6 +30,5 @@ public class AbListCommand extends Command {
         }
 
         return new CommandResult(listOfPeople);
-        //return new CommandResult(MESSAGE_SUCCESS);
     }
 }

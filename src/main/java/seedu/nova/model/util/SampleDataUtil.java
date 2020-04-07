@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Nova;
-import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
@@ -37,7 +36,6 @@ public class SampleDataUtil {
     }
 
     public static Nova getSampleNova() {
-        ReadOnlyAddressBook initialState;
         AddressBook ab = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             ab.addPerson(samplePerson);

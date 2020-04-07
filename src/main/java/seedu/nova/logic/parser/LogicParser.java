@@ -1,7 +1,6 @@
 package seedu.nova.logic.parser;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
-import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;

@@ -39,13 +39,6 @@ public class AddressBookParser {
      */
     //public Command parseCommand(String userInput) throws ParseException {
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
-        /*final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");*/
         switch (commandWord) {
 
         case AbAddCommand.COMMAND_WORD:
@@ -71,16 +64,6 @@ public class AddressBookParser {
             } else {
                 return new AbListCategoryCommandParser().parse(arguments);
             }
-
-            /*if (arguments.trim().equals("")) {
-                return new AbListCommand();
-            } else if (arguments.toLowerCase().trim().equals("classmate")) {
-                return new AbListClassmateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(classmateList)));
-            } else if (arguments.toLowerCase().trim().equals("teammate")) {
-                return new AbListTeammateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(teammateList)));
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
-            } */
 
         case AbUndoCommand.COMMAND_WORD:
             return new AbUndoCommand();

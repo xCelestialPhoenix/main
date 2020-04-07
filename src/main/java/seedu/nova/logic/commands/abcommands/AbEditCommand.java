@@ -38,7 +38,6 @@ public class AbEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            //+ "Parameters: INDEX (must be a positive integer) "
             + "Parameters: " + PREFIX_INDEX + "[index] "
             + PREFIX_NAME + "[name] "
             + PREFIX_PHONE + "[phone] "

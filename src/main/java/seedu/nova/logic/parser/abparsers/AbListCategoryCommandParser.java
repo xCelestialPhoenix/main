@@ -46,19 +46,6 @@ public class AbListCategoryCommandParser implements Parser<AbListCategoryCommand
             String[] teammateList = {"teammate"};
             return new AbListTeammateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(teammateList)));
         }
-
-
-        //return new AbListCategoryCommandParser(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        /*String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.address.logic.commands.AbFindCommand.MESSAGE_USAGE));
-        }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));*/
     }
 
 }
