@@ -17,7 +17,6 @@ import seedu.nova.model.Schedule;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.storage.event.JsonAdaptedEvent;
 
 /**
