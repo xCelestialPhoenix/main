@@ -9,12 +9,19 @@ import java.time.format.FormatStyle;
  * Represents the lesson type of Event.
  */
 public class Lesson extends Event {
+    private static final String EVENT_TYPE = "lesson";
     private DayOfWeek day;
+
 
     public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
                   DayOfWeek day) {
         super(description, venue, startTime, endTime, day);
         this.day = day;
+    }
+
+    @Override
+    public String getEventType() {
+        return EVENT_TYPE;
     }
 
     public Lesson(Lesson lesson) {
