@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Nova;
-import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
@@ -24,29 +23,27 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                getTagSet("teammate"), EMPTY_REMARK),
+                getTagSet("teammate"), new Remark("He's actually very nice!")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                getTagSet("teammate"), EMPTY_REMARK),
+                getTagSet("classmate"), EMPTY_REMARK),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 getTagSet("teammate"), EMPTY_REMARK),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 getTagSet("teammate"), EMPTY_REMARK),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                getTagSet("teammate"), EMPTY_REMARK),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                getTagSet("teammate"), EMPTY_REMARK)
+                getTagSet("classmate"), new Remark("Very nice person who helps me with iP!"))
         };
     }
 
     public static Nova getSampleNova() {
-        ReadOnlyAddressBook initialState = new AddressBook();
-        VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
+        AddressBook ab = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+            ab.addPerson(samplePerson);
         }
 
         Nova nova = new Nova();
-        nova.setAddressBookNova(sampleAb);
+        VersionedAddressBook addressBook = new VersionedAddressBook(ab);
+        nova.setAddressBookNova(addressBook);
 
         return nova;
     }
