@@ -4,6 +4,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import seedu.nova.model.schedule.Day;
 import seedu.nova.model.schedule.Week;
@@ -284,6 +286,19 @@ public class Schedule implements Copyable<Schedule> {
         }
 
         return weeks[weekNumber].hasEvent(event);
+    }
+
+    public List<Event> getEventList() {
+        List<Event> events = new LinkedList<>();
+
+        for (Week w: weeks) {
+
+            if (w != null) {
+                events.addAll(w.getEventList());
+            }
+        }
+
+        return events;
     }
 
     @Override

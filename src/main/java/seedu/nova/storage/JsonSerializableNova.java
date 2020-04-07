@@ -17,6 +17,7 @@ import seedu.nova.model.Schedule;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.storage.event.JsonAdaptedEvent;
 
 /**
@@ -38,8 +39,12 @@ class JsonSerializableNova {
     @JsonCreator
     public JsonSerializableNova(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                 @JsonProperty("events") List<JsonAdaptedEvent> events) {
-        this.persons.addAll(persons);
-        this.events.addAll(events);
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
+        if (events != null) {
+            this.events.addAll(events);
+        }
     }
 
     /**
@@ -50,6 +55,9 @@ class JsonSerializableNova {
     public JsonSerializableNova(Nova source) {
         persons.addAll(source.getAddressBookNova().getPersonList().stream()
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+
+        events.addAll(source.getScheduleNova().getEventList().stream()
+                .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -60,9 +68,13 @@ class JsonSerializableNova {
     public Nova toModelType() throws IllegalValueException {
         Nova nova = new Nova();
         VersionedAddressBook ab = toModelTypeAb();
+        Schedule sc = toModelTypeSchedule();
+
         //Call other toModelType();
 
         nova.setAddressBookNova(ab);
+        nova.setScheduleNova(sc);
+
         //call other set methods
 
         return nova;
@@ -95,12 +107,21 @@ class JsonSerializableNova {
     /**
      * Converts this schedule into the model's {@code Schedule} object.
      */
-    public Schedule toModelTypeSchedule() {
+    public Schedule toModelTypeSchedule() throws IllegalValueException {
+
         Schedule sc = new Schedule(LocalDate.of(2020, 1, 13),
                 LocalDate.of(2020, 5, 3));
 
         for (JsonAdaptedEvent jsonAdaptedEvent: events) {
             Event event = jsonAdaptedEvent.toModelType();
+
+            //if (event instanceof Lesson) {
+            //    sc.addLesson((Lesson) event);
+            //} else {
+
+            sc.addEvent(event);
+
+            //}
 
         }
 

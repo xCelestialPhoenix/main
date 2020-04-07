@@ -15,6 +15,12 @@ public class StudySession extends Event {
         super(desc, venue, startTime, endTime, date);
     }
 
+    public StudySession(String desc, String venue, LocalTime startTime,
+                        LocalTime endTime, LocalDate date, String note) {
+        super(desc, venue, startTime, endTime, date);
+        this.note = note;
+    }
+
     @Override
     public String getEventType() {
         return EVENT_TYPE;

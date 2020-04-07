@@ -1,6 +1,7 @@
 package seedu.nova.model.schedule.event;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -14,18 +15,25 @@ public class Lesson extends Event {
 
 
     public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
-                  DayOfWeek day) {
+                   DayOfWeek day) {
         super(description, venue, startTime, endTime, day);
         this.day = day;
+    }
+
+    public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
+                  DayOfWeek day, LocalDate date) {
+        super(description, venue, startTime, endTime, day);
+        this.day = day;
+        this.date = date;
+    }
+
+    public Lesson(Lesson lesson) {
+        this(lesson.desc, lesson.venue, lesson.startTime, lesson.endTime, lesson.day);
     }
 
     @Override
     public String getEventType() {
         return EVENT_TYPE;
-    }
-
-    public Lesson(Lesson lesson) {
-        this(lesson.desc, lesson.venue, lesson.startTime, lesson.endTime, lesson.day);
     }
 
     public DayOfWeek getDay() {

@@ -10,7 +10,9 @@ import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.model.schedule.event.Consultation;
 import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.schedule.event.Meeting;
+import seedu.nova.model.schedule.event.StudySession;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -127,6 +129,13 @@ public class JsonAdaptedEvent {
     public Event toStudy() throws IllegalValueException {
         checkFields();
 
+        LocalDate localDate = ParserUtil.parseDate(date);
+        LocalTime start = ParserUtil.parseTime(startTime);
+        LocalTime end = ParserUtil.parseTime(endTime);
+
+        Event study = new StudySession(desc, venue, start, end, localDate, note);
+
+        return study;
     }
 
     /**
@@ -136,6 +145,15 @@ public class JsonAdaptedEvent {
      */
     public Event toLesson() throws IllegalValueException {
         checkFields();
+
+        LocalDate localDate = ParserUtil.parseDate(date);
+
+        LocalTime start = ParserUtil.parseTime(startTime);
+        LocalTime end = ParserUtil.parseTime(endTime);
+
+        Event lesson = new Lesson(desc, venue, start, end, localDate.getDayOfWeek(), localDate);
+
+        return lesson;
 
     }
 
