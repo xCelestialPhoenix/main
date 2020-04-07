@@ -13,7 +13,6 @@ import seedu.nova.logic.commands.abcommands.AbClearCommand;
 import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
 import seedu.nova.logic.commands.abcommands.AbEditCommand;
 import seedu.nova.logic.commands.abcommands.AbFindCommand;
-import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.abcommands.AbListCommand;
 import seedu.nova.logic.commands.abcommands.AbRedoCommand;
 import seedu.nova.logic.commands.abcommands.AbRemarkCommand;
@@ -88,9 +87,6 @@ public class AddressBookParser {
 
         case AbRedoCommand.COMMAND_WORD:
             return new AbRedoCommand();
-
-        case AbHelpCommand.COMMAND_WORD:
-            return new AbHelpCommand();
 
         case AbRemarkCommand.COMMAND_WORD:
             return new AbRemarkCommandParser().parse(arguments);

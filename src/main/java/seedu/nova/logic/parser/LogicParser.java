@@ -8,7 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
@@ -63,7 +62,7 @@ public class LogicParser {
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavHelpCommand.MESSAGE_USAGE));
 
             case ADDRESSBOOK:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
+                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
 
             case EVENT:
                 //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
