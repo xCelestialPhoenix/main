@@ -17,7 +17,6 @@ public class HelpMessages {
             + "\u2022 list \n"
             + "List classmate/teammate: \n"
             + "\u2022 list c\\[classmate/teammate] \n"
-            + "\u2022 NOTE: Remark will only appear with list classmate/teammate \n"
             + "Find contact: \n"
             + "find n\\[name] \n"
             + "To undo, type undo \n"
