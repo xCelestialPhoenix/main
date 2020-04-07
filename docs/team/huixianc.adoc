@@ -1,4 +1,4 @@
-= Chua Hui Xian - Project Portfolio
+= Chua Huixian - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -10,25 +10,58 @@
 NOVA is a desktop application to help CS2103T with event planning and managing schedules.
 
 == Summary of contributions
+This section shows a summary of my coding, documentation and other contributions to the project.
 
 * *Major enhancement*:
+I added the ability to manage events.
+
+** What it does:
+
+** Justification:
+
+** Highlights:
+
+** Credits:
+
 
 * *Minor enhancement*:
 
+
 * *Code contributed*:
+Please click these links to see samples of my code
+[Functional Code][Test Code]
+
 
 * *Other contributions*:
 
 ** Project management:
 
 ** Enhancements to existing features:
+*** Updated the GUI layout to make the panels aligned
 
 ** Documentation:
+*** Helped to enable auto-publishing of documentation on GitHub Pages via Travis.
 
 ** Community:
+*** Reported bugs and gave suggestions for other teams
+(https://github.com/AY1920S2-CS2103T-T10-3/main/issues/131[1],
+https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-370050890[2],
+https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-382543444[3],
+https://github.com/huixianc/ped/issues[4])
 
 ** Tools:
 
+
 == Contributions to the User Guide
+|===
+|_Given below are sections I contributed to the User Guide.
+They showcase my ability to write documentation targeting end-users._
+|===
+
+
 
 == Contributions to the Developer Guide
+|===
+|_Given below are sections I contributed to the Developer Guide.
+They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
