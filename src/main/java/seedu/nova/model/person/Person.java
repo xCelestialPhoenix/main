@@ -105,7 +105,8 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        String name = getName().toString().trim();
+        builder.append(name)
                 .append(", Phone: ")
                 .append(getPhone())
                 .append(", Email: ")

@@ -22,7 +22,9 @@ public class AbListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         String listOfPeople = model.getAddressBook().getPersonList().size() > 0
-                ? "Listed all contacts:\n" : "There is no contact saved.";
+                ? "Listed all contacts. Remarks will only appear with "
+                + "list c\\classmate or list c\\teammate command.\n\n"
+                : "There is no contact saved.";
         for (int i = 0; i < model.getAddressBook().getPersonList().size(); i++) {
             listOfPeople = listOfPeople + (i + 1) + ". " + model.getAddressBook().getPersonList().get(i) + "\n";
         }

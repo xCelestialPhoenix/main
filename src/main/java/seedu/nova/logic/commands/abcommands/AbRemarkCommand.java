@@ -30,10 +30,16 @@ public class AbRemarkCommand extends Command {
             + "Parameters: " + PREFIX_INDEX + "[index] "
             + PREFIX_REMARK + "[remark]\n"
             + "Example: " + COMMAND_WORD + " i\\1 "
-            + PREFIX_REMARK + "Likes to swim.";
+            + PREFIX_REMARK + "Likes to swim.\n"
+            + "Note: Please only use remark command after using list, list c\\classmate, list c\\teammate or "
+            + "find command. You may wish to undo if you accidentally used remark command on the wrong person.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s.\n\n"
+            + "Note: Please only use remark command after using list, list c\\classmate, list c\\teammate or "
+            + "find command. You may wish to undo if you accidentally used remark command on the wrong person.";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s.\n\n"
+            + "Note: Please only use remark command after using list, list c\\classmate, list c\\teammate or "
+            + "find command. You may wish to undo if you accidentally used remark command on the wrong person.";
 
     private final Index index;
     private final Remark remark;

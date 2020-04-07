@@ -39,7 +39,7 @@ public class AbListCategoryCommandParser implements Parser<AbListCategoryCommand
             throw new ParseException("Please only provide 1 category.");
         }
 
-        if (categoryList.iterator().next().toString().equals("[classmate]")) {
+        if (categoryList.iterator().next().toString().equals("classmate")) {
             String[] classmateList = {"classmate"};
             return new AbListClassmateCommand(new CategoryContainsKeywordsPredicate(Arrays.asList(classmateList)));
         } else {
