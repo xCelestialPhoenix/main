@@ -3,6 +3,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" maxHeight="1.7976931348623157E308" minHeight="150.0" prefHeight="150.0" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" maxHeight="1.7976931348623157E308" minHeight="150.0" prefHeight="150.0" styleClass="result-display" wrapText="true" />
+<StackPane fx:id="placeHolder" minHeight="120.0"
+           styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           style="-fx-background-color: #FFB6C1;" alignment="TOP_LEFT">
 </StackPane>
