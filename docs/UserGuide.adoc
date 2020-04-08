@@ -333,7 +333,8 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add meetings to dates that fall within the semester.
 ====
 
 Example: +
@@ -357,7 +358,8 @@ Format: `study d\[description] v\[venue] t\ [YYYY-MM-DD] [Start time (HH:MM)] [E
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add study sessions to dates that fall within the semester.
 ====
 
 Example: +
@@ -381,7 +383,8 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add consultation sessions to dates that fall within the semester.====
 ====
 
 Example: +
@@ -398,14 +401,16 @@ _[.small]#Fig 5.3.3: GUI of NOVA after user typed `consultation d\clarify UML v\
 <<Top, [Back to Top]>>
 
 ==== Add a Lesson: `lesson`
-You can add a lesson as one of your events.
+You can add a weekly lesson as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The lesson will be repeated weekly from weeks 1 to 13.
+* There will not be lessons in the recess week.
 ====
 
 Example: +
