@@ -167,6 +167,10 @@ public class Day implements Copyable<Day> {
         return events.get(index - 1).toString();
     }
 
+    public List<Event> getEventList() {
+        return events;
+    }
+
 
     /**
      * View string.

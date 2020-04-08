@@ -127,7 +127,7 @@ public interface Model {
 
     void addEvent(Event e);
 
-    void addLesson(Lesson l);
+    void addAllLessons(Lesson l);
 
     DateTimeSlotList getFreeSlotOn(LocalDate date);
 
