@@ -222,7 +222,7 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public void addLesson(Lesson l) {
+        public void addAllLessons(Lesson l) {
         }
 
         @Override
