@@ -220,7 +220,7 @@ NOVA will find and list saved contacts named Jane.
 
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know. +
-Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you edit contact.
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you edit contact.**
 
 At least one of the optional fields must be provided. Optional fields are `n\[name]`, `p\[phone number]`,
 `e\[email address]` or `c\[classmate/teammate]`.
@@ -246,9 +246,9 @@ NOVA will edit the phone number of the first contact in your list to 88888888.
 
 <<Top, [Back to Top]>>
 
-==== Add Category Specific Remarks: `remark`
+==== Add, Edit or Delete Remark: `remark`
 You can add remarks that are category specific, to a contact. +
-Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you add remark to your contact.
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you add, edit or delete remark to your contact.**
 
 Format: `remark i\[index] r\[remark]`
 
@@ -271,7 +271,7 @@ NOVA will add the remark "He's a nice teammate" to the first contact in your add
 
 ==== Delete Contact: `delete`
 You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know. +
-Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you delete contact.
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you delete contact.**
 
 Format: `delete i\[index]`
 
