@@ -4,6 +4,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import seedu.nova.model.schedule.Day;
 import seedu.nova.model.schedule.Week;
@@ -21,7 +23,7 @@ public class Schedule implements Copyable<Schedule> {
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
     private static final int SCHEDULE_RECESS_WEEK = 16;
-    private static final int WEEK_OFFSET = 0;
+    private static final int WEEK_OFFSET = 1;
 
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -49,7 +51,7 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Adds event.
+     * Adds a single event to the schedule.
      *
      * @param event the event
      */
@@ -64,7 +66,7 @@ public class Schedule implements Copyable<Schedule> {
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
-            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
+            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber + WEEK_OFFSET));
         }
 
         weeks[weekNumber].addEvent(event);
@@ -72,22 +74,21 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Adds lesson.
+     * Adds all weekly lessons to the schedule for the semester.
      *
      * @param lesson the lesson
      */
-    public void addLesson(Lesson lesson) {
-
-        for (int i = 0; i < 14; i++) {
-
+    public void addAllLessons(Lesson lesson) {
+        for (int i = 1; i <= 14; i++) {
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
                 continue;
             }
 
             if (weeks[i] == null) {
-                weeks[i] = new Week(startDate.plusWeeks(i));
+                weeks[i] = new Week(startDate.plusWeeks(i - 1));
             }
+
             weeks[i].addLesson(lesson);
         }
     }
@@ -299,6 +300,19 @@ public class Schedule implements Copyable<Schedule> {
         }
 
         return weeks[weekNumber].hasEvent(event);
+    }
+
+    public List<Event> getEventList() {
+        List<Event> events = new LinkedList<>();
+
+        for (Week w: weeks) {
+
+            if (w != null) {
+                events.addAll(w.getEventList());
+            }
+        }
+
+        return events;
     }
 
     @Override
