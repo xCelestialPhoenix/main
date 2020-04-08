@@ -64,7 +64,7 @@ public class Schedule implements Copyable<Schedule> {
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
-            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
+            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber + WEEK_OFFSET));
         }
 
         weeks[weekNumber].addEvent(event);
@@ -78,7 +78,7 @@ public class Schedule implements Copyable<Schedule> {
      */
     public void addLesson(Lesson lesson) {
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 1; i <= 14; i++) {
 
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
@@ -114,6 +114,21 @@ public class Schedule implements Copyable<Schedule> {
 
         return weeks[weekNumber].deleteEvent(date, index);
     }
+
+    /**
+     * Deletes an event
+     * @param event the event
+     */
+    public boolean deleteEvent(Event event) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(event);
+    }
+
 
     /**
      * Adds a note to an Event.

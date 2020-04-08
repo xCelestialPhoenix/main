@@ -47,12 +47,13 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
-        Iterator<Event> iterator = events.iterator();
         if (events.size() == 0) {
             // if list is empty
+            freeSlots.excludeDuration(event.getDtd());
             events.add(event);
         } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
             // if event to be added is after latest event in the list (i.e. add to the back)
+            freeSlots.excludeDuration(event.getDtd());
             events.add(events.size(), event);
 
         } else {
@@ -129,12 +130,28 @@ public class Day implements Copyable<Day> {
             throw new EventNotFoundException();
         }
         Event deleted = events.remove(index - 1);
+        events.remove(deleted);
         freeSlots.includeDuration(deleted.getDtd());
         if (deleted instanceof WeakEvent) {
             WeakEvent wkE = (WeakEvent) deleted;
             wkE.destroy();
         }
         return deleted;
+    }
+
+    /**
+     * Removes an event.
+     *
+     * @param event event to be removed
+     */
+    boolean deleteEvent(Event event) {
+        events.remove(event);
+        freeSlots.includeDuration(event.getDtd());
+        if (event instanceof WeakEvent) {
+            WeakEvent wkE = (WeakEvent) event;
+            wkE.destroy();
+        }
+        return true;
     }
 
     /**
