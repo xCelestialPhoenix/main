@@ -49,6 +49,7 @@ solutions
 == Contributions to the User Guide
 
 * Overall
+** Ensured the language used was user centric
 ** Ensured team member's contributions were free of errors
 ** Integrated team member's contribution to form a cohesive documentation
 
