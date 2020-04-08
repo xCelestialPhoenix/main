@@ -219,7 +219,8 @@ NOVA will find and list saved contacts named Jane.
 <<Top, [Back to Top]>>
 
 ==== Edit Contact: `edit`
-You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
+You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know. +
+Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you edit contact.
 
 At least one of the optional fields must be provided. Optional fields are `n\[name]`, `p\[phone number]`,
 `e\[email address]` or `c\[classmate/teammate]`.
@@ -246,7 +247,8 @@ NOVA will edit the phone number of the first contact in your list to 88888888.
 <<Top, [Back to Top]>>
 
 ==== Add Category Specific Remarks: `remark`
-You can add remarks that are category specific, to a contact.
+You can add remarks that are category specific, to a contact. +
+Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you add remark to your contact.
 
 Format: `remark i\[index] r\[remark]`
 
@@ -254,7 +256,7 @@ Format: `remark i\[index] r\[remark]`
 ====
 * Adds category specific remark at the specified `[index]` in the displayed contact list
 * The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
-* To remove any remarks that you have added for a contact, use `remark i\[index] r\`
+* To remove any remarks that you have added for a contact, use `remark i\[index] r\` or `remark i\[index]`
 ====
 
 Example: +
@@ -268,7 +270,8 @@ NOVA will add the remark "He's a nice teammate" to the first contact in your add
 <<Top, [Back to Top]>>
 
 ==== Delete Contact: `delete`
-You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
+You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know. +
+Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you delete contact.
 
 Format: `delete i\[index]`
 
