@@ -31,8 +31,10 @@ public class PtTaskList {
 
         for (int i = 0; i < list.size(); i++) {
             PtTask task = list.get(i);
+            String note = task.getNote().toString() + "\n";
 
-            str = str + (i + 1) + ") " + task.toString() + "\n";
+            str = str + (i + 1) + ") " + task.toString() + "\n"
+                    + "       Note: " + note;
         }
         return str;
     }
@@ -49,7 +51,7 @@ public class PtTaskList {
         int numDone = 0;
         int totalTask = getNumTask();
 
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < totalTask; i++) {
             PtTask task = list.get(i);
 
             if (task.isDone()) {

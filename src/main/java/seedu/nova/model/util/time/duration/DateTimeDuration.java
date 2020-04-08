@@ -79,7 +79,7 @@ public class DateTimeDuration implements TimedDuration {
         return new DateTimeDuration(
                 LocalDateTime.of(LocalDate.of(lDate.getYear(), lDate.getMonth(), lDate.getDayOfMonth()),
                         TimeUtil.BEGIN_DAY_TIME),
-                LocalDateTime.of(lDate, TimeUtil.END_DAY_TIME)
+                LocalDateTime.of(lDate.plusDays(1), TimeUtil.BEGIN_DAY_TIME)
         );
     }
 
@@ -92,7 +92,7 @@ public class DateTimeDuration implements TimedDuration {
     public static DateTimeDuration parseWeekFromDate(LocalDate monDate) {
         return new DateTimeDuration(
                 LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate), TimeUtil.BEGIN_DAY_TIME),
-                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate).plusDays(6), TimeUtil.END_DAY_TIME)
+                LocalDateTime.of(TimeUtil.getMondayOfWeek(monDate).plusDays(1), TimeUtil.BEGIN_DAY_TIME)
         );
     }
 
