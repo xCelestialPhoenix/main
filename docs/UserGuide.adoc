@@ -493,7 +493,10 @@ Format: +
 [NOTE]
 ====
 * `[week #]` must be a positive integer. (E.g. 1, 2, 3, ...)
-* Recess week is week 16
+* Week number for special weeks are as such:
+** Recess week is week 16
+** Reading week is week 14
+** Final examination week is week 15
 ====
 
 Example: +
