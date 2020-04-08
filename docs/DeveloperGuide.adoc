@@ -243,11 +243,11 @@ image::UndoRedoState0.png[]
 
 Step 2. The user executes `delete i\5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-image::UndoRedoState1edited.png[]
+image::UndoRedoState1.png[width=446]
 
 Step 3. The user executes `add n\David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-image::UndoRedoState2edited.png[]
+image::UndoRedoState2.png[width=446]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
@@ -943,7 +943,7 @@ _{ more test cases ... }_
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 .. Test case: `delete i\0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete i\x` (where x is larger than the list size), `delete x` (where x is integer or string)
    Expected: Similar to previous.
 
 _{ more test cases ... }_
