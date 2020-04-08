@@ -50,9 +50,11 @@ public class Day implements Copyable<Day> {
         Iterator<Event> iterator = events.iterator();
         if (events.size() == 0) {
             // if list is empty
+            freeSlots.excludeDuration(event.getDtd());
             events.add(event);
         } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
             // if event to be added is after latest event in the list (i.e. add to the back)
+            freeSlots.excludeDuration(event.getDtd());
             events.add(events.size(), event);
 
         } else {
