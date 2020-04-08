@@ -51,7 +51,7 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Adds event.
+     * Adds a single event to the schedule.
      *
      * @param event the event
      */
@@ -74,13 +74,13 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Adds lesson.
+     * Adds all weekly lessons to the schedule for the semester.
      *
      * @param lesson the lesson
      */
-    public void addLesson(Lesson lesson) {
+    public void addAllLessons(Lesson lesson) {
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 1; i <= 14; i++) {
 
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week

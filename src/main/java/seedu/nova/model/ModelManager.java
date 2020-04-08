@@ -256,8 +256,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addLesson(Lesson l) {
-        schedule.addLesson(l);
+    public void addAllLessons(Lesson l) {
+        schedule.addAllLessons(l);
     }
 
     @Override
