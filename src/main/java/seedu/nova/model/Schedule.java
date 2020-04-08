@@ -86,8 +86,9 @@ public class Schedule implements Copyable<Schedule> {
             }
 
             if (weeks[i] == null) {
-                weeks[i] = new Week(startDate.plusWeeks(i));
+                weeks[i] = new Week(startDate.plusWeeks(i - 1));
             }
+
             weeks[i].addLesson(lesson);
         }
     }
