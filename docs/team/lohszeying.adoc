@@ -11,20 +11,32 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 
 == Summary of contributions
 
-* *Major enhancement*: added **the ability to sort and list contacts by category**
+* *Major enhancement*: added **the ability to sort and list contacts by category within Address Book mode**
 ** What it does: Allows the user to sort fellow CS2103T students by classmate or teammate, as well as viewing contacts by classmate or teammate
 ** Justification: User can easily see who are their fellow classmates or teammates
-** Highlights: This enhancement affects the existing code from address book level 3, and needed some consideration to make category field compulsory
+** Highlights: This enhancement affects the existing code from address book level 3, and needed some consideration to make category field compulsory rather than optional
 
-* *Minor enhancement*:
+* *Major enhancement*: added the **ability to undo or redo commands within Address Book mode**
+** What it does: Allows the user to undo or redo whatever the commands that they typed within Address Book
+** Justification: User can easily accidentally edit, delete or clear contacts within Address Book
+** Highlights: This enhancement affects the existing code within Address Book mode
+** Credits: Implementation of Undo/Redo from link:https://github.com/nus-cs2103-AY1920S2/addressbook-level3/blob/master/docs/DeveloperGuide.adoc#proposed-undoredo-feature[here]
+
+* *Minor enhancement*: added **sort contacts alphabetically automatically**
+** What it does: Allows the user to have an easier time to find added contacts
+** Justification: User can easily find their contacts after using list
 
 * *Code contributed*:
+** Refactored Address Book Level 3 to suit NOVA's needs, such as changing the commands to include `Ab` in front
 
 * *Other contributions*:
 
 ** Project management:
+*** Managed releases `v1.2.1` to `v1.3` (2 releases on GitHub)
 
 ** Enhancements to existing features:
+*** Automatically format contact name, no matter how the user input. For example, if the user input the name as `AliCE yeoH`, NOVA will automatically format the name as `Alice Yeoh`
+*** Edited inde tag within NOVA's Address Book from `[index]` to `i\[index]`
 
 ** Documentation:
 
@@ -34,4 +46,20 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 
 == Contributions to the User Guide
 
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+//include::../UserGuide.adoc[tag=delete]
+
+//include::../UserGuide.adoc[tag=dataencryption]
+
 == Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+//include::../DeveloperGuide.adoc[tag=undoredo]
+
+//include::../DeveloperGuide.adoc[tag=dataencryption]
