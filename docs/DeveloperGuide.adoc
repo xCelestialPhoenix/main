@@ -91,6 +91,8 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 [[Design-Logic]]
+
+// tag::logic[]
 === Logic component
 
 [[fig-LogicClassDiagram]]
@@ -106,7 +108,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
+// end::logic[]
 
 [[Design-Model]]
 === Model component
@@ -156,6 +158,8 @@ The `Messages` is used by Address Book feature and deals with messages to displa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::events[]
+
 === Manage Events
 The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
 Users are able to:
@@ -163,7 +167,6 @@ Users are able to:
 * add events
 * delete events
 * add notes to events
-
 
 ==== Implementation - Deleting an event
 The delete feature allows users to remove events from the schedule.
@@ -201,6 +204,7 @@ Aspect: Syntax of Deleting an Event
 ** Pros: more recognisable for users
 ** Cons: difficulty in implementing as certain events may have the exact same descriptions
 
+// end::events[]
 
 // tag::undoredo[]
 === Address Book
