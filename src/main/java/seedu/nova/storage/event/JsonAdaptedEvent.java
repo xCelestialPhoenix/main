@@ -151,7 +151,7 @@ public class JsonAdaptedEvent {
         LocalTime start = ParserUtil.parseTime(startTime);
         LocalTime end = ParserUtil.parseTime(endTime);
 
-        Event lesson = new Lesson(desc, venue, start, end, localDate.getDayOfWeek(), localDate);
+        Event lesson = new Lesson(desc, venue, start, end, localDate.getDayOfWeek(), localDate, note);
 
         return lesson;
 

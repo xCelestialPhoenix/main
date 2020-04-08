@@ -21,10 +21,11 @@ public class Lesson extends Event {
     }
 
     public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
-                  DayOfWeek day, LocalDate date) {
+                  DayOfWeek day, LocalDate date, String note) {
         super(description, venue, startTime, endTime, day);
         this.day = day;
         this.date = date;
+        this.note = note;
     }
 
     public Lesson(Lesson lesson) {
