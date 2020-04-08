@@ -4,16 +4,29 @@
 :stylesDir: ../stylesheets
 
 == PROJECT: NOVA
+Since: `Apr 2020`
 
 == Overview
 
-NOVA is a desktop application to help CS2103T with event planning and managing schedules.
+NOVA is a one-stop desktop application for CS2103T students to manage all CS2103T related activities, be it studying
+or planning project meetings.
 
 == Summary of contributions
 
+I am in charge of creating the commands to view the schedule and also the maintainer of
+the project's documentation.
+
 * *Major enhancement*:
+** Implemented the view feature of schedule +
++
+A schedule that cannot be viewed is useless. I implemented two levels of viewing (by date or by week) to allow
+users to have a choice of viewing the schedule at the atomic level, or an overview.
 
 * *Minor enhancement*:
+** Created framework of schedule +
++
+The structure of the schedule determines how we would be coding our features. Thus, having a accurate and robust
+framework is crucial in helping us visualize our end product.
 
 * *Code contributed*:
 
@@ -24,13 +37,24 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 ** Enhancements to existing features:
 
 ** Documentation:
-*** Performs quality check on UG and DG
-*** Standardize format of UG
+*** Performed quality check on user guide and developer guide
+*** Standardized format of user guide
 
 ** Community:
+*** Shared problems faced with others on the forum so people encountering similar problems as me can discuss our
+solutions
 
 ** Tools:
 
 == Contributions to the User Guide
+
+* Overall
+** Ensured team member's contributions were free of errors
+** Integrated team member's contribution to form a cohesive documentation
+
+* Sections
+** 5.3.7. View Schedule of a day
+** 5.3.8. View Schedule of a Week
+** 6. Command Summary
 
 == Contributions to the Developer Guide
