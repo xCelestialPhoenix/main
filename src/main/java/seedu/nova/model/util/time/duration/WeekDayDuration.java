@@ -138,7 +138,7 @@ public class WeekDayDuration implements TimedDuration {
     @Override
     public boolean isSubsetOf(TimedDuration another) {
         if (another instanceof DateTimeDuration) {
-            return another.isSubsetOf(toDateTimeDuration(((DateTimeDuration) another).getStartDate()));
+            return toDateTimeDuration(((DateTimeDuration) another).getStartDate()).isSubsetOf(another);
         } else {
             return getDtd().isSubsetOf(((WeekDayDuration) another).getDtd());
         }

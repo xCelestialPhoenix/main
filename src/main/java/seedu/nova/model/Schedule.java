@@ -21,7 +21,7 @@ public class Schedule implements Copyable<Schedule> {
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
     private static final int SCHEDULE_RECESS_WEEK = 16;
-    private static final int WEEK_OFFSET = 1;
+    private static final int WEEK_OFFSET = 0;
 
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -114,6 +114,21 @@ public class Schedule implements Copyable<Schedule> {
 
         return weeks[weekNumber].deleteEvent(date, index);
     }
+
+    /**
+     * Deletes an event
+     * @param event the event
+     */
+    public boolean deleteEvent(Event event) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(event);
+    }
+
 
     /**
      * Adds a note to an Event.

@@ -13,8 +13,8 @@ import seedu.nova.model.plan.Task;
 /**
  * List task command
  */
-public class PlannerListTaskCommand extends Command {
-    public static final String COMMAND_WORD = "list";
+public class PlannerStatsCommand extends Command {
+    public static final String COMMAND_WORD = "stats";
     private static final String listTitle = "Your tasks inside study plan: \n";
 
     /**
