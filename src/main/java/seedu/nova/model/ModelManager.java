@@ -57,7 +57,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         //this.progressTracker = nova.getProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
+        this.schedule = new Schedule(userPrefs.getScheduleStartDate(), userPrefs.getScheduleEndDate());
         this.plan = new StudyPlan();
         this.mode = new Mode(ModeEnum.HOME);
     }
