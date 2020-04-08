@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="NOVA App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -22,11 +22,11 @@
             </stylesheets>
             <AnchorPane fx:id="anchorPane" prefHeight="349.0" prefWidth="458.0" style="-fx-background-color: white;">
                 <children>
-                    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutX="252.0" prefHeight="316.0" prefWidth="206.0" style="-fx-background-color: #FFB6C1;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutX="252.0" maxHeight="1.7976931348623157E308" prefWidth="206.0" style="-fx-background-color: #FFB6C1;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <content>
 
                             <VBox fx:id="resultHolder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #FFB6C1;">
-                                <VBox fx:id="resultDisplayPlaceholder" prefHeight="149.0" prefWidth="104.0" VBox.vgrow="ALWAYS" />
+                                <VBox fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" prefWidth="104.0" snapToPixel="false" VBox.vgrow="ALWAYS" />
                             </VBox>
                         </content>
                     </ScrollPane>
@@ -40,10 +40,10 @@
                         <content>
                             <VBox prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
                         </content></ScrollPane>
-                    <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="265.0" prefHeight="265.0" prefWidth="254.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0">
-                  <content>
-                     <VBox fx:id="helpHolder" prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS"/>
-                  </content>
+                    <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="265.0" prefHeight="265.0" prefWidth="254.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0">
+                        <content>
+                            <VBox fx:id="helpHolder" prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
+                        </content>
                     </ScrollPane>
                 </children>
             </AnchorPane>

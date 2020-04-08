@@ -1,5 +1,7 @@
 package seedu.nova.ui;
 
+import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -83,7 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
         //add schedule for the day in homepage
         try {
-            //get localdate fof today
+            //get localdate of today
             String today = LocalDate.now().toString();
 
             //set mode to schedule first
@@ -98,7 +100,7 @@ public class MainWindow extends UiPart<Stage> {
             //set mode back to home
             logic.getModel().getMode().setModeEnum(ModeEnum.HOME);
         } catch (CommandException | ParseException e) {
-            String commandText = "view t\\" + LocalDate.now().toString();
+            String commandText = "view d\\" + LocalDate.now().toString();
             logger.info("Invalid command: " + commandText);
 
             ResultDisplay r = new ResultDisplay();
@@ -153,7 +155,29 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isChangeMode()) {
-                helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+
+                ModeEnum mode = logic.getModel().getMode().getModeEnum();
+
+                switch (mode) {
+                case HOME:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                case ADDRESSBOOK:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                case EVENT:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                case SCHEDULE:
+                    helpBox.setHelp(HELP_SCHEDULE);
+                    break;
+                case PROGRESSTRACKER:
+                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    break;
+                default:
+                    logger.info("Invalid mode: " + mode.name());
+                }
+
             }
 
             return commandResult;
