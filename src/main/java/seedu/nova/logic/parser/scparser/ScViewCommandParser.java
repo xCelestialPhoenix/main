@@ -52,6 +52,10 @@ public class ScViewCommandParser implements Parser<ScViewCommand> {
 
         } else if (arePrefixesPresent(argMultimap, PREFIX_INDEX)) {
 
+            if (!argMultimap.getPreamble().equals("week")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ScViewWeekCommand.MESSAGE_USAGE));
+            }
             Index weekNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
             return new ScViewWeekCommand(weekNumber.getOneBased());
 

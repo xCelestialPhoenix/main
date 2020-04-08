@@ -12,7 +12,7 @@ import seedu.nova.model.Model;
  */
 public class ScViewWeekCommand extends ScViewCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views your schedule on a particular week. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " week : Views your schedule on a particular week. "
             + "Parameters: "
             + PREFIX_INDEX + "[week #]";
 
