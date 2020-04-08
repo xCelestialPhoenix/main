@@ -60,8 +60,8 @@ Each of the four components
 
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
-.Class Diagram of the Logic Component
-image::LogicClassDiagram.png[]
+.Architecture Diagram of the Logic Component
+image::LogicArchitecture.png[]
 
 [discrete]
 ==== How the architecture components interact with each other
@@ -106,11 +106,6 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("done t\2020-03-20 i\2")` API call.
-
-.Interactions Inside the Logic Component for the `done t\2020-03-20 i\2` Command
-image::EventMarkDoneSeqDiagram.png[]
 
 
 [[Design-Model]]
@@ -167,35 +162,36 @@ Users are able to:
 
 * add events
 * delete events
-* mark events as done
 * add notes to events
-* find events
-* repeat events
 
-==== Implementation - Marking an event as done
-The mark as done feature allows users to mark events they have completed as done.
-This feature is facilitated by `EventParser`, `EventMarkDoneCommandParser` and `EventMarkDoneCommand`.
-The operation is exposed in the `Model` interface as `Model#markDone()`.
 
-Given below is an example usage scenario and how the mark event as done mechanism behaves at each step.
+==== Implementation - Deleting an event
+The delete feature allows users to remove events from the schedule.
+This feature is facilitated by `ScheduleParser`, `EventDeleteCommandParser` and `EventDeleteCommand`.
+The operation is exposed in the `Model` interface as `Model#deleteEvent()`.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
 1. The user does `view t\2020-03-20` to view their events on 20th March 2020.
 
-2. The user executes `done t\2020-03-20 i\2` command to mark the second event on 20th March 2020 as done.
+2. The user executes `delete t\2020-03-20 i\2` command to delete the second event on 20th March 2020.
 
-3. `EventMarkDoneParser` creates a new `EventMarkDoneCommand`.
+3. `EventDeleteCommandParser` creates a new `EventDeleteCommand`.
 
-4. `LogicManager` executes the `EventMarkDoneCommand`.
+4. `LogicManager` executes the `EventDeleteCommand`.
 
-5. `Model#markDone()` is called, and the `Schedule` object in `ModelManager` is updated.
+5. `Model#deleteEvent()` is called, and the `Schedule` object in `ModelManager` is updated.
 
-The following sequence diagram shows how the mark event as done operation works:
+The following sequence diagram shows how the delete operation works:
 
-image::EventMarkDoneSeqDiagram.png[]
+image::EventDeleteSeqDiagram.png[]
 
+The following activity diagram shows what happens when a user inputs a delete command:
+
+image::EventDeleteActDiagram.png[]
 
 ==== Design Considerations
-Aspect: Syntax of Marking an Event as Done
+Aspect: Syntax of Deleting an Event
 
 * **Alternative 1 (current choice):** choosing the event by its date and its index in the list of events on that date
 ** Pros: relatively short to type, greater ease of implementation
