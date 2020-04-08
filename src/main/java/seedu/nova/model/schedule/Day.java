@@ -1,9 +1,9 @@
 package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.EventNotFoundException;
@@ -20,7 +20,7 @@ public class Day implements Copyable<Day> {
 
     private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
-    private Set<Event> events;
+    private List<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
 
@@ -30,12 +30,12 @@ public class Day implements Copyable<Day> {
      * @param date the date
      */
     public Day(LocalDate date) {
-        events = new TreeSet<>();
+        events = new LinkedList<>();
         this.date = date;
         freeSlots = DateTimeSlotList.ofDay(date);
     }
 
-    private Day(Set<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
+    private Day(List<Event> events, LocalDate date, DateTimeSlotList freeSlots) {
         this.events = events;
         this.date = date;
         this.freeSlots = freeSlots;
@@ -47,13 +47,66 @@ public class Day implements Copyable<Day> {
      * @param event the event
      */
     void addEvent(Event event) {
-        boolean hasSlot = freeSlots.isSupersetOf(event.getDtd());
-        if (hasSlot) {
+        if (events.size() == 0) {
+            // if list is empty
             freeSlots.excludeDuration(event.getDtd());
             events.add(event);
+        } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
+            // if event to be added is after latest event in the list (i.e. add to the back)
+            freeSlots.excludeDuration(event.getDtd());
+            events.add(events.size(), event);
+
         } else {
+            // if event to be added is supposed to be somewhere in the middle of the list
+            addToMiddle(event);
+        }
+    }
+
+    /**
+     * adds an event to correct position somewhere in the middle of the list
+     *
+     * @param toAdd the event to be added
+     */
+    void addToMiddle(Event toAdd) {
+        Iterator<Event> iterator = events.listIterator();
+        int index = 0;
+
+        boolean canAdd = false;
+
+        while (iterator.hasNext()) {
+            Event item = iterator.next();
+
+            if (checkAddBefore(toAdd, item)) {
+                freeSlots.excludeDuration(toAdd.getDtd());
+
+                events.add(index, toAdd);
+                canAdd = true;
+                break;
+            }
+
+            index++;
+        }
+
+        if (!canAdd) {
+            // throw an exception if the timing overlaps
             throw new TimeOverlapException();
         }
+
+    }
+
+
+    /**
+     * determines if an event can be added to the list after a current event
+     *
+     * @param toAdd event to be added
+     * @param after event that is supposed to come after the event to be added
+     * @return boolean determining whether the event can be added before the event in the list
+     */
+    public boolean checkAddBefore(Event toAdd, Event after) {
+        boolean b1 = toAdd.getStartTime().compareTo(after.getStartTime()) <= 0;
+        boolean b2 = toAdd.getEndTime().compareTo(after.getStartTime()) <= 0;
+
+        return b1 && b2;
     }
 
     /**
@@ -76,7 +129,7 @@ public class Day implements Copyable<Day> {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        Event deleted = new ArrayList<>(events).remove(index - 1);
+        Event deleted = events.remove(index - 1);
         events.remove(deleted);
         freeSlots.includeDuration(deleted.getDtd());
         if (deleted instanceof WeakEvent) {
@@ -110,9 +163,8 @@ public class Day implements Copyable<Day> {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        Event e = new ArrayList<>(events).get(index - 1);
-        e.addNote(desc);
-        return e.toString();
+        events.get(index - 1).addNote(desc);
+        return events.get(index - 1).toString();
     }
 
 
@@ -145,6 +197,6 @@ public class Day implements Copyable<Day> {
 
     @Override
     public Day getCopy() {
-        return new Day(new TreeSet<>(events), date, freeSlots.getCopy());
+        return new Day(new LinkedList<>(events), date, freeSlots.getCopy());
     }
 }

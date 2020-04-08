@@ -21,7 +21,7 @@ public class Schedule implements Copyable<Schedule> {
     private static final int DAYS_IN_WEEK = 7;
     private static final int ACTUAL_RECESS_WEEK = 7;
     private static final int SCHEDULE_RECESS_WEEK = 16;
-    private static final int WEEK_OFFSET = 0;
+    private static final int WEEK_OFFSET = 1;
 
     private final LocalDate startDate;
     private final LocalDate endDate;
@@ -64,7 +64,7 @@ public class Schedule implements Copyable<Schedule> {
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
-            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
+            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber + WEEK_OFFSET));
         }
 
         weeks[weekNumber].addEvent(event);
@@ -78,7 +78,7 @@ public class Schedule implements Copyable<Schedule> {
      */
     public void addLesson(Lesson lesson) {
 
-        for (int i = 0; i < 14; i++) {
+        for (int i = 1; i <= 14; i++) {
 
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
