@@ -91,6 +91,12 @@ public class Event implements Comparable<Event> {
     }
 
     @Override
+    public String toString() {
+        return "name: " + desc + "\n" + "date: " + date + "\n" + "start time: "
+                + startTime + "\n" + "end time: " + endTime;
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(desc, date, startTime, endTime);
     }
