@@ -79,7 +79,6 @@ public class Schedule implements Copyable<Schedule> {
      * @param lesson the lesson
      */
     public void addAllLessons(Lesson lesson) {
-        
         for (int i = 1; i <= 14; i++) {
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
