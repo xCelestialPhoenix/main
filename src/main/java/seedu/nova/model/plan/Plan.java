@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import seedu.nova.model.Schedule;
+import seedu.nova.model.schedule.event.Event;
 
 /**
  * task container
@@ -19,5 +20,5 @@ public interface Plan {
 
     Task searchTask(String name);
 
-    boolean generateTaskEvent(Task task, LocalDate date, Schedule sc) throws ImpossibleTaskException;
+    Event generateTaskEvent(Task task, LocalDate date, Schedule sc) throws ImpossibleTaskException;
 }
