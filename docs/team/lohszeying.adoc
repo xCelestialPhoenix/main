@@ -11,7 +11,10 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 
 == Summary of contributions
 
-* *Major enhancement*:
+* *Major enhancement*: added **the ability to sort and list contacts by category**
+** What it does: Allows the user to sort fellow CS2103T students by classmate or teammate, as well as viewing contacts by classmate or teammate
+** Justification: User can easily see who are their fellow classmates or teammates
+** Highlights: This enhancement affects the existing code from address book level 3, and needed some consideration to make category field compulsory
 
 * *Minor enhancement*:
 
