@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -20,7 +19,6 @@ import seedu.nova.model.plan.Plan;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.plan.Task;
-import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.schedule.event.Event;
@@ -270,8 +268,14 @@ public class ModelManager implements Model {
         return getFreeSlotOn(date).toString();
     }
 
+    @Override
     public String deleteEvent(LocalDate date, int index) {
         return schedule.deleteEvent(date, index).toString();
+    }
+
+    @Override
+    public boolean deleteEvent(Event e) {
+        return schedule.deleteEvent(e);
     }
 
     @Override
@@ -286,13 +290,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
-        return plan.addTask(StrongTask.get(name, duration, freq));
+    public boolean addRoutineTask(StrongTask task) {
+        return plan.addTask(task);
     }
 
     @Override
-    public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
-        return plan.addTask(WeakTask.get(name, min, max, total));
+    public boolean addFlexibleTask(WeakTask task) {
+        return plan.addTask(task);
     }
 
     @Override
@@ -306,7 +310,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+    public boolean deleteTask(Task task) {
+        return plan.deleteTask(task);
+    }
+
+    @Override
+    public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
         return plan.generateTaskEvent(task, date, schedule);
     }
 

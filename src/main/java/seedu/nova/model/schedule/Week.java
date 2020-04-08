@@ -75,8 +75,6 @@ public class Week implements Copyable<Week> {
 
         LocalDate d = startDate.plusDays(day);
         lesson.setDate(d);
-
-        events.add(lesson);
         days[day].addLesson(lesson);
     }
 
@@ -105,6 +103,21 @@ public class Week implements Copyable<Week> {
         Event removed = days[day].deleteEvent(index);
         events.remove(removed);
         return removed;
+    }
+
+    /**
+     * deletes an event
+     * @param event event to delete
+     * @return successfully deleted?
+     */
+    public boolean deleteEvent(Event event) {
+        int day = event.getDate().getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+        events.remove(event);
+        return days[day].deleteEvent(event);
     }
 
     /**
