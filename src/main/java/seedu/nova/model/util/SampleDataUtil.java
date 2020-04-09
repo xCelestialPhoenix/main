@@ -60,6 +60,8 @@ public class SampleDataUtil {
             new PtTask(new TaskDesc("task 2"), new Ip(), new PtNote("note 2"), 1, false),
             new PtTask(new TaskDesc("task 1"), new Tp(), new PtNote("note 1"), 1, true),
             new PtTask(new TaskDesc("task 2"), new Tp(), new PtNote("note 2"), 1, true),
+        };
+    }
 
     public static Event[] getSampleEvents() {
         return new Event[] {
