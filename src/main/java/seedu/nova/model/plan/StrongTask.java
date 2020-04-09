@@ -26,12 +26,17 @@ public class StrongTask extends Task {
     }
 
     @Override
-    public boolean generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException {
+    public Event generateEventOnDay(LocalDate date, Schedule sc) throws ImpossibleTaskException {
         if (hasEventOn(date) && sc.hasEvent(getEventOn(date))) {
-            return false;
+            return null;
         } else {
             Day d = sc.getDay(date);
-            List<DateTimeDuration> dtdLst = d.getFreeSlotList().getSlotList(getBaseDuration());
+            List<DateTimeDuration> dtdLst;
+            if (d == null) {
+                dtdLst = new Day(date).getFreeSlotList().getSlotList(getBaseDuration());
+            } else {
+                dtdLst = d.getFreeSlotList().getSlotList(getBaseDuration());
+            }
             if (dtdLst.isEmpty()) {
                 throw new ImpossibleTaskException();
             } else {
@@ -39,7 +44,7 @@ public class StrongTask extends Task {
                 Event newEvent = new WeakEvent(getName(), dtd, this);
                 addEvent(newEvent);
                 sc.addEvent(newEvent);
-                return true;
+                return newEvent;
             }
         }
     }
@@ -50,5 +55,11 @@ public class StrongTask extends Task {
         Collections.shuffle(lst);
         DateTimeDuration dtd = lst.get(0);
         return new DateTimeDuration(dtd.getStartDateTime(), dtd.getStartDateTime().plus(getBaseDuration()));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\nNo. of weeks done: %d\nEvents scheduled:\n %s\n", super.toString(), size(),
+                listEvents());
     }
 }
