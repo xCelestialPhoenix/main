@@ -1,5 +1,6 @@
 package seedu.nova.ui;
 
+import static seedu.nova.commons.core.HelpMessages.HELP_ADDRESS_BOOK;
 import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
 
 import java.time.LocalDate;
@@ -149,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
                 case ADDRESSBOOK:
-                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    helpBox.setHelp(HELP_ADDRESS_BOOK);
                     break;
                 case EVENT:
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
