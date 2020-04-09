@@ -8,14 +8,17 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.schedule.event.Event;
 
 /**
  * Schedule Task command
  */
 public class PlannerScheduleTaskCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
-    private static final String MESSAGE_EVENT_GEN_SUCCESS = "New event added on ";
+    private static final String MESSAGE_EVENT_GEN_SUCCESS = "New event added: ";
     private static final String MESSAGE_EVENT_GEN_FAILED = "Failed to add new event";
+    private static final String MESSAGE_EVENT_ADY_EXIST = "There's already an existing event in the same day/week: ";
     private static final String TASK_NOT_FOUND = "Cannot find task ";
 
     private String taskName;
@@ -37,15 +40,19 @@ public class PlannerScheduleTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.searchTask(taskName) == null) {
+        Task t = model.searchTask(taskName);
+        if (t == null) {
             throw new CommandException(taskNotFoundMsg());
         }
+        if (t.hasEventOn(date)) {
+            return new CommandResult(MESSAGE_EVENT_ADY_EXIST + "\n" + t.getEventOn(date));
+        }
+        Event event;
         try {
-            model.generateTaskEvent(model.searchTask(taskName), date);
+            event = model.generateTaskEvent(t, date);
         } catch (Exception e) {
             return new CommandResult(MESSAGE_EVENT_GEN_FAILED);
         }
-        return new CommandResult(MESSAGE_EVENT_GEN_SUCCESS);
+        return new CommandResult(MESSAGE_EVENT_GEN_SUCCESS + "\n" + event);
     }
 }

@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 //import java.util.Arrays;
@@ -27,8 +26,9 @@ import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
-import seedu.nova.model.plan.TaskFreq;
+import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
@@ -223,7 +223,7 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public void addLesson(Lesson l) {
+        public void addAllLessons(Lesson l) {
         }
 
         @Override
@@ -241,6 +241,11 @@ public class AbAddCommandTest {
         }
 
         @Override
+        public boolean deleteEvent(Event event) {
+            return false;
+        }
+
+        @Override
         public String addNote(String desc, LocalDate date, int index) {
             throw new AssertionError("This method should not be called.");
         }
@@ -251,12 +256,12 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
+        public boolean addRoutineTask(StrongTask st) {
             return false;
         }
 
         @Override
-        public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
+        public boolean addFlexibleTask(WeakTask wt) {
             return false;
         }
 
@@ -271,8 +276,13 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+        public boolean deleteTask(Task task) {
             return false;
+        }
+
+        @Override
+        public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
+            return null;
         }
 
         public ProgressTracker getProgressTracker() {
