@@ -40,6 +40,21 @@ public class Event implements Comparable<Event> {
         this.dtd = new WeekDayDuration(dow, startTime, endTime);
     }
 
+    public String getEventType() {
+        return "type";
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public String getNote() {
+        return note;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -88,6 +103,12 @@ public class Event implements Comparable<Event> {
         } else {
             return super.equals(obj);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "name: " + desc + "\n" + "date: " + date + "\n" + "start time: "
+                + startTime + "\n" + "end time: " + endTime;
     }
 
     @Override

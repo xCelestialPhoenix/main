@@ -18,6 +18,14 @@ public class PtWeekList {
         }
     }
 
+    public ArrayList<PtWeek> getWeekList() {
+        return weekList;
+    }
+
+    public int getNumWeeks() {
+        return weekList.size();
+    }
+
     public PtWeek getWeek(int num) {
         if (weekList.size() >= num) {
             return weekList.get(num - 1);
@@ -26,9 +34,13 @@ public class PtWeekList {
         }
     }
 
+    /**
+     * Calculates the progress for the project
+     * @return a double representing the percentage of tasks done in the project
+     */
     public double getProgressProject() {
         boolean hasTask;
-        int numWeeks = 0;
+        double numWeeks = 0;
         double totalPercentage = 0;
 
         for (int i = 0; i < weekList.size(); i++) {

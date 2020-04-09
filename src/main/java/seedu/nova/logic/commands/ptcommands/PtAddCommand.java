@@ -11,10 +11,8 @@ import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 import seedu.nova.model.progresstracker.TaskDesc;
 
 /**
@@ -49,15 +47,16 @@ public class PtAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        boolean isOver13 = weekNum > 13;
 
-        if (weekNum > 13) {
+        if (isOver13) {
             throw new CommandException(MESSAGE_NOWEEK);
         } else {
             ProgressTracker pt = model.getProgressTracker();
-            PtWeek week;
             Project project;
+            boolean isIpProject = this.project.equals("ip");
 
-            if (this.project.equals("ip")) {
+            if (isIpProject) {
                 project = pt.getIp();
             } else {
                 project = pt.getTp();
@@ -65,15 +64,12 @@ public class PtAddCommand extends Command {
 
             //Create new task
             TaskDesc taskDesc = new TaskDesc(this.taskDesc);
-            PtTask newTask = new PtTask(taskDesc, this.weekNum);
+            PtTask newTask = new PtTask(taskDesc, project, new PtNote(""), this.weekNum, false);
 
-            PtWeekList weekList = project.getWeekList();
-            week = weekList.getWeek(weekNum);
+            model.addPtTask(this.project, weekNum, newTask);
 
-            PtTaskList taskList = week.getTaskList();
-            taskList.addTask(newTask);
-
-            String result = "Added task to week " + weekNum + " of " + this.project.toUpperCase();
+            String projectName = this.project.toUpperCase();
+            String result = "Added task to week " + weekNum + " of " + projectName;
 
             return new CommandResult(result, false, false);
         }

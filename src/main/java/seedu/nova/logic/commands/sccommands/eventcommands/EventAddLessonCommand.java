@@ -44,7 +44,7 @@ public class EventAddLessonCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.addLesson((Lesson) toAdd);
+            model.addAllLessons((Lesson) toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
             throw new CommandException("You already have an event within that time frame.");
