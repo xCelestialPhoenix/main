@@ -129,6 +129,7 @@ public class SampleDataUtil {
         for (PtTask samplePtTask : getSamplePtTasks()) {
             sampleProgressTracker.addPtTask(samplePtTask.getProject().getProjectName(),
                     samplePtTask.getPtWeek(), samplePtTask);
+        }
 
         for (Event sampleEvent : getSampleEvents()) {
             sampleSchedule.addEvent(sampleEvent);
