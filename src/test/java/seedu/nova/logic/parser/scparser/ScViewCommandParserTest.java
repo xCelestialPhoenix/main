@@ -39,7 +39,8 @@ class ScViewCommandParserTest {
 
     @Test
     void parse_viewDayBothArguments() {
-        assertParseFailure(parser, testDateBothArgument, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, testDateBothArgument, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ScViewCommand.MESSAGE_USAGE));
     }
 
     @Test
