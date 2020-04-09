@@ -36,6 +36,8 @@ import seedu.nova.model.schedule.event.StudySession;
 public class SampleDataUtil {
 
     public static final Remark EMPTY_REMARK = new Remark("");
+    public static final LocalDate SAMPLE_START_DATE = LocalDate.of(2020, 1, 13);
+    public static final LocalDate SAMPLE_END_DATE = LocalDate.of(2020, 5, 3);
 
     public static Person[] getSamplePersons() {
         return new Person[] {
@@ -116,9 +118,7 @@ public class SampleDataUtil {
     public static Nova getSampleNova() {
         ReadOnlyAddressBook initialState = new AddressBook();
         VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
-
-        Schedule sampleSchedule = new Schedule(LocalDate.of(2020, 1, 13),
-                LocalDate.of(2020, 5, 3));
+        Schedule sampleSchedule = new Schedule(SAMPLE_START_DATE, SAMPLE_END_DATE);
 
         ProgressTracker sampleProgressTracker = new ProgressTracker();
 
