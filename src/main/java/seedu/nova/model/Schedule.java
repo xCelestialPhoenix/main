@@ -68,7 +68,6 @@ public class Schedule implements Copyable<Schedule> {
         if (weeks[weekNumber] == null) {
             weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber - WEEK_OFFSET));
         }
-
         weeks[weekNumber].addEvent(event);
 
     }

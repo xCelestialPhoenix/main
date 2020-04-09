@@ -181,12 +181,14 @@ public class Day implements Copyable<Day> {
 
         StringBuilder sb = new StringBuilder();
         int index = 0;
+
         for (Event event : events) {
             sb.append(++index);
             sb.append(". ");
             sb.append(event);
             sb.append("\n");
         }
+
         return sb.toString();
     }
 
