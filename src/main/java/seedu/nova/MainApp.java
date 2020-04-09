@@ -2,6 +2,7 @@ package seedu.nova;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -21,6 +22,7 @@ import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.progresstracker.ProgressTracker;
@@ -91,6 +93,8 @@ public class MainApp extends Application {
             Nova nova = new Nova();
             nova.setAddressBookNova(new VersionedAddressBook(new AddressBook()));
             nova.setProgressTrackerNova(new ProgressTracker());
+            nova.setScheduleNova(new Schedule(LocalDate.of(2020, 1, 13),
+                    LocalDate.of(2020, 5, 3)));
 
             initialData = nova;
         } catch (IOException e) {
