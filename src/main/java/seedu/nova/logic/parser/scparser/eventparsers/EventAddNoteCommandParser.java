@@ -18,7 +18,7 @@ import seedu.nova.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EventAddNoteCommand object
  */
-public class EventAddNoteCommandParser implements Parser<EventAddNoteCommand>  {
+public class EventAddNoteCommandParser implements Parser<EventAddNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EventAddNoteCommand
      * and returns an EventAddNoteCommand object for execution.
