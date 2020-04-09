@@ -88,6 +88,7 @@ public class MainWindow extends UiPart<Stage> {
             //get localdate of today
             String today = LocalDate.now().toString();
 
+
             //set mode to schedule first
             logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
 

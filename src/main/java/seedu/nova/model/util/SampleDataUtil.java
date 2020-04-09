@@ -18,6 +18,12 @@ import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.person.Remark;
+import seedu.nova.model.progresstracker.Ip;
+import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtNote;
+import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.TaskDesc;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Consultation;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
@@ -47,6 +53,15 @@ public class SampleDataUtil {
                 getTagSet("teammate"), EMPTY_REMARK),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 getTagSet("teammate"), EMPTY_REMARK)
+        };
+    }
+
+    public static PtTask[] getSamplePtTasks() {
+        return new PtTask[] {
+            new PtTask(new TaskDesc("task 1"), new Ip(), new PtNote("note 1"), 1, false),
+            new PtTask(new TaskDesc("task 2"), new Ip(), new PtNote("note 2"), 1, false),
+            new PtTask(new TaskDesc("task 1"), new Tp(), new PtNote("note 1"), 1, true),
+            new PtTask(new TaskDesc("task 2"), new Tp(), new PtNote("note 2"), 1, true),
         };
     }
 
@@ -97,7 +112,6 @@ public class SampleDataUtil {
             new Lesson("CS2103T Tutorial", "COM1 B1-03", LocalTime.parse("10:00"),
                     LocalTime.parse("11:00"), DayOfWeek.FRIDAY,
                     LocalDate.parse("2020-04-17"), "product demo!")
-
         };
     }
 
@@ -106,8 +120,15 @@ public class SampleDataUtil {
         VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
         Schedule sampleSchedule = new Schedule(SAMPLE_START_DATE, SAMPLE_END_DATE);
 
+        ProgressTracker sampleProgressTracker = new ProgressTracker();
+
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+
+        for (PtTask samplePtTask : getSamplePtTasks()) {
+            sampleProgressTracker.addPtTask(samplePtTask.getProject().getProjectName(),
+                    samplePtTask.getPtWeek(), samplePtTask);
         }
 
         for (Event sampleEvent : getSampleEvents()) {
@@ -116,6 +137,7 @@ public class SampleDataUtil {
 
         Nova nova = new Nova();
         nova.setAddressBookNova(sampleAb);
+        nova.setProgressTrackerNova(sampleProgressTracker);
         nova.setScheduleNova(sampleSchedule);
 
         return nova;

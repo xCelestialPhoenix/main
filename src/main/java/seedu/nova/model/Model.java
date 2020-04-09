@@ -12,6 +12,7 @@ import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -123,8 +124,6 @@ public interface Model {
 
     Mode getMode();
 
-    ProgressTracker getProgressTracker();
-
     void addEvent(Event e);
 
     void addAllLessons(Lesson l);
@@ -155,4 +154,23 @@ public interface Model {
 
     Event generateTaskEvent(Task task, LocalDate date) throws Exception;
 
+    //============== Progress Tracker =============
+
+    ProgressTracker getProgressTracker();
+
+    String listPtTask(String projectName, int weekNum);
+
+    void addPtTask(String projectName, int weekNum, PtTask task);
+
+    boolean deletePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc);
+
+    boolean setDonePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean addPtNote(String projectName, int weekNum, int taskNum, String note);
+
+    boolean deletePtNote(String projectName, int weekNum, int taskNum);
+
+    boolean editPtNote(String projectName, int weekNum, int taskNum, String note);
 }
