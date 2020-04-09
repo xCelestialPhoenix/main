@@ -28,13 +28,13 @@ I added the ability to manage events.
 
 
 * *Code contributed*:
-Please click these links to see samples of my code
-[Functional Code][Test Code]
-
+Please click these links to see samples of my code:
+https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=huixianc&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[Code Dashboard]
 
 * *Other contributions*:
 
 ** Project management:
+*** Helped to maintain the team repository and facilitated merging of Pull Requests from Week 11 to 13.
 
 ** Enhancements to existing features:
 *** Updated the GUI layout to make the panels aligned
@@ -58,10 +58,12 @@ https://github.com/huixianc/ped/issues[4])
 They showcase my ability to write documentation targeting end-users._
 |===
 
-
+include::../UserGuide.adoc[tag=event]
 
 == Contributions to the Developer Guide
 |===
 |_Given below are sections I contributed to the Developer Guide.
 They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+
+include::../UserGuide.adoc[tag=logic]
