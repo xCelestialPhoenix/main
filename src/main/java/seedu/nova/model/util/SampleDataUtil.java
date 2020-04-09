@@ -133,7 +133,6 @@ public class SampleDataUtil {
         }
 
         Nova nova = new Nova();
-      
         VersionedAddressBook addressBook = new VersionedAddressBook(ab);
         nova.setAddressBookNova(addressBook);
 
