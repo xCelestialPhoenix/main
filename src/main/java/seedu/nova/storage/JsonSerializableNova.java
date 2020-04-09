@@ -45,10 +45,10 @@ class JsonSerializableNova {
      */
     @JsonCreator
     public JsonSerializableNova(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                @JsonProperty("ptTasks") List<JsonAdaptedPtTask> ptTasks, 
+                                @JsonProperty("ptTasks") List<JsonAdaptedPtTask> ptTasks,
                                 @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.ptTasks.addAll(ptTasks);
-      
+
         if (persons != null) {
             this.persons.addAll(persons);
         }
