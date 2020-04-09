@@ -1,24 +1,39 @@
 package seedu.nova.model.progresstracker;
 
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a project task
  */
 public class PtTask {
+    private Project project;
     private TaskDesc taskDesc;
     private PtNote note;
-    private PtWeek ptWeek;
+    private int ptWeek;
     private boolean isDone;
 
-    public PtTask(TaskDesc taskDesc, int num) {
+    public PtTask(TaskDesc taskDesc, Project project, PtNote note, int ptWeek, boolean isDone) {
         this.taskDesc = taskDesc;
-        ptWeek = new PtWeek(num);
-        isDone = false;
-        note = new PtNote("");
+        this.project = project;
+        this.ptWeek = ptWeek;
+        this.isDone = isDone;
+        this.note = note;
     }
 
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * return string of boolean isDone
+     * @return true or false
+     */
+    public String isDoneString() {
+        if (isDone) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
     public void setDone() {
@@ -27,6 +42,15 @@ public class PtTask {
         } else {
             isDone = true;
         }
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        requireNonNull(project);
+        this.project = project;
     }
 
     public TaskDesc getTaskDesc() {
@@ -45,7 +69,7 @@ public class PtTask {
         this.note = new PtNote(noteDesc);
     }
 
-    public PtWeek getPtWeek() {
+    public int getPtWeek() {
         return ptWeek;
     }
 

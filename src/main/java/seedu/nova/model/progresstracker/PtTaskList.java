@@ -1,5 +1,7 @@
 package seedu.nova.model.progresstracker;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,10 @@ public class PtTaskList {
         return list.size();
     }
 
+    public ArrayList<PtTask> getList() {
+        return list;
+    }
+
     public PtTask getTask(int taskNum) {
         return list.get(taskNum - 1);
     }
@@ -33,13 +39,19 @@ public class PtTaskList {
             PtTask task = list.get(i);
             String note = task.getNote().toString() + "\n";
 
-            str = str + (i + 1) + ") " + task.toString() + "\n"
+            str = str + "  " + (i + 1) + ") " + task.toString() + "\n"
                     + "       Note: " + note;
         }
+
         return str;
     }
 
+    /**
+     * Adds task to the list
+     * @param task to be added
+     */
     public void addTask(PtTask task) {
+        requireNonNull(task);
         list.add(task);
     }
 
@@ -47,9 +59,13 @@ public class PtTaskList {
         list.remove(taskNum - 1);
     }
 
+    /**
+     * Calculates the progress for a week
+     * @return a double representing the percentage of tasks done in a week
+     */
     public double getProgressTasks() {
-        int numDone = 0;
-        int totalTask = getNumTask();
+        double numDone = 0;
+        double totalTask = getNumTask();
 
         for (int i = 0; i < totalTask; i++) {
             PtTask task = list.get(i);

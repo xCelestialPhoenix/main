@@ -17,6 +17,7 @@ import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -153,11 +154,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ProgressTracker getProgressTracker() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void addEvent(Event e) {
         throw new AssertionError("This method should not be called.");
     }
@@ -224,6 +220,52 @@ public class ModelStub implements Model {
 
     @Override
     public Event generateTaskEvent(Task task, LocalDate date) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    //=========== Progress Tracker =============================================================
+    @Override
+    public ProgressTracker getProgressTracker() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public String listPtTask(String projectName, int weekNum) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addPtTask(String projectName, int weekNum, PtTask task) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean deletePtTask(String projectName, int weekNum, int taskNum) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean setDonePtTask(String projectName, int weekNum, int taskNum) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean addPtNote(String projectName, int weekNum, int taskNum, String note) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean deletePtNote(String projectName, int weekNum, int taskNum) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean editPtNote(String projectName, int weekNum, int taskNum, String note) {
         throw new AssertionError("This method should not be called.");
     }
 }
