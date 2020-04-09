@@ -129,8 +129,8 @@ public class Day implements Copyable<Day> {
         if (index > events.size()) {
             throw new EventNotFoundException();
         }
-        Event deleted = events.remove(index - 1);
-        events.remove(deleted);
+        Event deleted = events.remove(index);
+
         freeSlots.includeDuration(deleted.getDtd());
         if (deleted instanceof WeakEvent) {
             WeakEvent wkE = (WeakEvent) deleted;
