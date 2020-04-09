@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 //import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,14 @@ import seedu.nova.model.Model;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.ReadOnlyUserPrefs;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StrongTask;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -217,7 +222,66 @@ public class AbAddCommandTest {
         }
 
         @Override
-        public void addLesson(Lesson l) {
+        public void addAllLessons(Lesson l) {
+        }
+
+        @Override
+        public DateTimeSlotList getFreeSlotOn(LocalDate date) {
+            return null;
+        }
+
+        @Override
+        public String viewFreeSlot(LocalDate date) {
+            return null;
+        }
+
+        public String deleteEvent(LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean deleteEvent(Event event) {
+            return false;
+        }
+
+        @Override
+        public String addNote(String desc, LocalDate date, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetPlan() {
+
+        }
+
+        @Override
+        public boolean addRoutineTask(StrongTask st) {
+            return false;
+        }
+
+        @Override
+        public boolean addFlexibleTask(WeakTask wt) {
+            return false;
+        }
+
+        @Override
+        public List<Task> getTaskList() {
+            return null;
+        }
+
+        @Override
+        public Task searchTask(String name) {
+            return null;
+        }
+
+        @Override
+        public boolean deleteTask(Task task) {
+            return false;
+        }
+
+        @Override
+        public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
+            return null;
         }
 
         public ProgressTracker getProgressTracker() {

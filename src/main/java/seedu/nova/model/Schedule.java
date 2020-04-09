@@ -4,10 +4,15 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
+import seedu.nova.model.schedule.Day;
 import seedu.nova.model.schedule.Week;
+import seedu.nova.model.schedule.event.DateNotFoundException;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.InvalidDateException;
+import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.Copyable;
 
 /**
@@ -46,42 +51,100 @@ public class Schedule implements Copyable<Schedule> {
     }
 
     /**
-     * Adds event.
+     * Adds a single event to the schedule.
      *
      * @param event the event
      */
     public void addEvent(Event event) {
 
         LocalDate date = event.getDate();
+
+        if (!checkDateValidity(date)) {
+            throw new InvalidDateException();
+        }
+
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
-            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber));
+            weeks[weekNumber] = new Week(startDate.plusWeeks(weekNumber - WEEK_OFFSET));
         }
-
         weeks[weekNumber].addEvent(event);
 
     }
 
     /**
-     * Adds lesson.
+     * Adds all weekly lessons to the schedule for the semester.
      *
      * @param lesson the lesson
      */
-    public void addLesson(Lesson lesson) {
-
-        for (int i = 0; i < 14; i++) {
-
+    public void addAllLessons(Lesson lesson) {
+        for (int i = 1; i <= 14; i++) {
             if (i == ACTUAL_RECESS_WEEK) {
                 //No lesson on recess week
                 continue;
             }
 
             if (weeks[i] == null) {
-                weeks[i] = new Week(startDate.plusWeeks(i));
+                weeks[i] = new Week(startDate.plusWeeks(i - 1));
             }
+
             weeks[i].addLesson(lesson);
         }
+    }
+
+    public Day getDay(LocalDate date) {
+        int weekNumber = calWeekNumber(date);
+        if (weeks[weekNumber] == null) {
+            return null;
+        }
+        return weeks[weekNumber].getDay(date.getDayOfWeek());
+    }
+
+    /**
+     * Deletes an event
+     * @param date the date of the event
+     * @param index the position of event in list
+     */
+    public Event deleteEvent(LocalDate date, int index) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(date, index);
+    }
+
+    /**
+     * Deletes an event
+     * @param event the event
+     */
+    public boolean deleteEvent(Event event) throws DateNotFoundException {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].deleteEvent(event);
+    }
+
+
+    /**
+     * Adds a note to an Event.
+     * @param desc description of the note
+     * @param date the date of the event
+     * @param index the position of event in list
+     * @return
+     */
+    public String addNote(String desc, LocalDate date, int index) {
+        int weekNumber = calWeekNumber(date);
+
+        if (weeks[weekNumber] == null) {
+            throw new DateNotFoundException();
+        }
+
+        return weeks[weekNumber].addNote(desc, date, index);
     }
 
     /**
@@ -221,6 +284,34 @@ public class Schedule implements Copyable<Schedule> {
     private int calWeekNumber(LocalDate date) {
 
         return (int) (DAYS.between(startDate, date) / DAYS_IN_WEEK) + WEEK_OFFSET;
+    }
+
+    /**
+     * Check if event is in
+     * @param event event
+     * @return event is inside?
+     */
+    public boolean hasEvent(Event event) {
+        int weekNumber = calWeekNumber(event.getDate());
+
+        if (weeks[weekNumber] == null) {
+            return false;
+        }
+
+        return weeks[weekNumber].hasEvent(event);
+    }
+
+    public List<Event> getEventList() {
+        List<Event> events = new LinkedList<>();
+
+        for (Week w: weeks) {
+
+            if (w != null) {
+                events.addAll(w.getEventList());
+            }
+        }
+
+        return events;
     }
 
     @Override
