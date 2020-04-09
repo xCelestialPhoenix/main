@@ -16,8 +16,8 @@ public class ScViewWeekCommand extends ScViewCommand {
             + "Parameters: "
             + PREFIX_INDEX + "[week #]";
 
-    private static final String MESSAGE_WEEK_OUT_OF_RANGE = "The date is not within the schedule";
-    private static final String MESSAGE_WEEK_NO_EVENT = "You have no events on that week";
+    public static final String MESSAGE_WEEK_OUT_OF_RANGE = "The date is not within the schedule";
+    public static final String MESSAGE_WEEK_NO_EVENT = "You have no events on that week";
 
     private final int weekNumber;
 

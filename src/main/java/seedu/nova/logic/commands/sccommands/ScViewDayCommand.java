@@ -18,9 +18,9 @@ public class ScViewDayCommand extends ScViewCommand {
             + "Parameters: "
             + PREFIX_DATE + "[YYYY-MM-DD]";
 
-    private static final String MESSAGE_DATE_OUT_OF_RANGE = "The date is not within the schedule";
-    private static final String MESSAGE_NO_EVENT = "You have no event on that day";
-    private static final String MESSAGE_NO_EVENT_TODAY = "You have no event today";
+    public static final String MESSAGE_DATE_OUT_OF_RANGE = "The date is not within the schedule";
+    public static final String MESSAGE_NO_EVENT = "You have no event on that day";
+    public static final String MESSAGE_NO_EVENT_TODAY = "You have no event today";
 
     private final LocalDate date;
 
@@ -31,6 +31,7 @@ public class ScViewDayCommand extends ScViewCommand {
      */
     public ScViewDayCommand(LocalDate date) {
 
+        requireNonNull(date);
         this.date = date;
     }
 
