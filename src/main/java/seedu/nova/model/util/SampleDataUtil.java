@@ -14,6 +14,13 @@ import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.person.Phone;
 import seedu.nova.model.person.Remark;
+import seedu.nova.model.progresstracker.Ip;
+import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtNote;
+import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.TaskDesc;
+import seedu.nova.model.progresstracker.Tp;
+
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
@@ -38,6 +45,15 @@ public class SampleDataUtil {
         };
     }
 
+    public static PtTask[] getSamplePtTasks() {
+        return new PtTask[] {
+            new PtTask(new TaskDesc("task 1"), new Ip(), new PtNote("note 1"), 1, false),
+            new PtTask(new TaskDesc("task 2"), new Ip(), new PtNote("note 2"), 1, false),
+            new PtTask(new TaskDesc("task 1"), new Tp(), new PtNote("note 1"), 1, true),
+            new PtTask(new TaskDesc("task 2"), new Tp(), new PtNote("note 2"), 1, true),
+        };
+    }
+
     public static Nova getSampleNova() {
         ReadOnlyAddressBook initialState = new AddressBook();
         VersionedAddressBook sampleAb = new VersionedAddressBook(initialState);
@@ -45,8 +61,16 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
 
+        ProgressTracker sampleProgressTracker = new ProgressTracker();
+
+        for (PtTask samplePtTask : getSamplePtTasks()) {
+            sampleProgressTracker.addPtTask(samplePtTask.getProject().getProjectName(),
+                    samplePtTask.getPtWeek(), samplePtTask);
+        }
+
         Nova nova = new Nova();
         nova.setAddressBookNova(sampleAb);
+        nova.setProgressTrackerNova(sampleProgressTracker);
 
         return nova;
     }

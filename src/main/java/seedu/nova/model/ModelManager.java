@@ -23,6 +23,7 @@ import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final Schedule schedule;
     private final Plan plan;
-    private final ProgressTracker progressTracker = new ProgressTracker();
+    private final ProgressTracker progressTracker;
     private Mode mode;
 
     /**
@@ -55,7 +56,7 @@ public class ModelManager implements Model {
         this.nova = nova;
         this.addressBook = nova.getAddressBookNova();
         this.userPrefs = new UserPrefs(userPrefs);
-        //this.progressTracker = nova.getProgressTracker();
+        this.progressTracker = nova.getProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
         this.plan = new StudyPlan();
@@ -112,18 +113,12 @@ public class ModelManager implements Model {
         return mode;
     }
 
-    //=========== ProgressTracker ==================================================================================
-    @Override
-    public ProgressTracker getProgressTracker() {
-        return progressTracker;
-    }
-
+    //=========== AddressBook ================================================================================
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
-    //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
@@ -308,4 +303,49 @@ public class ModelManager implements Model {
         return plan.generateTaskEvent(task, date, schedule);
     }
 
+    //=========== Progress Tracker =============================================================
+    @Override
+    public ProgressTracker getProgressTracker() {
+        return progressTracker;
+    }
+
+    @Override
+    public String listPtTask(String projectName, int weekNum) {
+        return progressTracker.listPtTask(projectName, weekNum);
+    }
+
+    @Override
+    public void addPtTask(String projectName, int weekNum, PtTask task) {
+        progressTracker.addPtTask(projectName, weekNum, task);
+    }
+
+    @Override
+    public boolean deletePtTask(String projectName, int weekNum, int taskNum) {
+        return progressTracker.deletePtTask(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc) {
+        return progressTracker.editPtTask(projectName, weekNum, taskNum, taskDesc);
+    }
+
+    @Override
+    public boolean setDonePtTask(String projectName, int weekNum, int taskNum) {
+        return progressTracker.setDonePtTask(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean addPtNote(String projectName, int weekNum, int taskNum, String note) {
+        return progressTracker.addPtNote(projectName, weekNum, taskNum, note);
+    }
+
+    @Override
+    public boolean deletePtNote(String projectName, int weekNum, int taskNum) {
+        return progressTracker.deletePtNote(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean editPtNote(String projectName, int weekNum, int taskNum, String note) {
+        return progressTracker.editPtNote(projectName, weekNum, taskNum, note);
+    }
 }

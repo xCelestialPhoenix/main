@@ -30,6 +30,7 @@ import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -276,6 +277,45 @@ public class AbAddCommandTest {
 
         public ProgressTracker getProgressTracker() {
             return null;
+        }
+
+        @Override
+        public String listPtTask(String projectName, int weekNum) {
+            return "";
+        }
+
+        @Override
+        public void addPtTask(String projectName, int weekNum, PtTask task) {
+        }
+
+        @Override
+        public boolean deletePtTask(String projectName, int weekNum, int taskNum) {
+            return false;
+        }
+
+        @Override
+        public boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc) {
+            return false;
+        }
+
+        @Override
+        public boolean setDonePtTask(String projectName, int weekNum, int taskNum) {
+            return false;
+        }
+
+        @Override
+        public boolean addPtNote(String projectName, int weekNum, int taskNum, String note) {
+            return false;
+        }
+
+        @Override
+        public boolean deletePtNote(String projectName, int weekNum, int taskNum) {
+            return false;
+        }
+
+        @Override
+        public boolean editPtNote(String projectName, int weekNum, int taskNum, String note) {
+            return false;
         }
     }
 
