@@ -47,4 +47,11 @@ public class ScViewWeekCommand extends ScViewCommand {
         return new CommandResult(message);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScViewWeekCommand // instanceof handles nulls
+                && weekNumber == ((ScViewWeekCommand) other).weekNumber);
+    }
+
 }

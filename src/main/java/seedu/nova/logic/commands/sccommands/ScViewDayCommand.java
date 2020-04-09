@@ -57,4 +57,11 @@ public class ScViewDayCommand extends ScViewCommand {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScViewDayCommand // instanceof handles nulls
+                && date.equals(((ScViewDayCommand) other).date));
+    }
+
 }

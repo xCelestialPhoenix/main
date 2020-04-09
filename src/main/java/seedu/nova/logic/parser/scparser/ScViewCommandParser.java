@@ -1,7 +1,6 @@
 package seedu.nova.logic.parser.scparser;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.nova.commons.core.Messages.MESSAGE_TOO_MANY_ARGUMENTS;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_INDEX;
 
@@ -37,31 +36,38 @@ public class ScViewCommandParser implements Parser<ScViewCommand> {
         if ((arePrefixesPresent(argMultimap, PREFIX_DATE) && arePrefixesPresent(argMultimap, PREFIX_INDEX))
                 || (!arePrefixesPresent(argMultimap, PREFIX_DATE) && !arePrefixesPresent(argMultimap, PREFIX_INDEX))) {
 
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
+            if (argMultimap.getPreamble().isEmpty() || !argMultimap.getPreamble().equals("week")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ScViewWeekCommand.MESSAGE_USAGE));
+            }
         }
 
-        if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+        if (argMultimap.getPreamble().isEmpty()) {
+            //View date command
 
-            if (!argMultimap.getPreamble().isEmpty()) {
-
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewDayCommand.MESSAGE_USAGE));
+            if (!arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
             }
 
             LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
             return new ScViewDayCommand(date);
 
-        } else if (arePrefixesPresent(argMultimap, PREFIX_INDEX)) {
-
+        } else {
+            //View with preamble
             if (!argMultimap.getPreamble().equals("week")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ScViewCommand.MESSAGE_USAGE));
+            }
+
+            if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ScViewWeekCommand.MESSAGE_USAGE));
             }
+
+            //view week command
             Index weekNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
             return new ScViewWeekCommand(weekNumber.getOneBased());
-
-        } else {
-            //We not reach this statement.
-            throw new ParseException(MESSAGE_TOO_MANY_ARGUMENTS);
         }
 
     }

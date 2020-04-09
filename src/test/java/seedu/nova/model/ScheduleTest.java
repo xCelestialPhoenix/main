@@ -1,6 +1,5 @@
 package seedu.nova.model;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,6 +9,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Meeting;
 
@@ -38,7 +38,7 @@ class ScheduleTest {
 
         LocalDate testDate = LocalDate.of(2020, 3, 5);
         Event sampleEvent = new Meeting("Test Description", "Test Venue", LocalTime.of(14, 0),
-                LocalTime.of(16,0), testDate);
+                LocalTime.of(16, 0), testDate);
 
         schedule.addEvent(sampleEvent);
 

@@ -21,9 +21,11 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
+/**
+ * A default model stub that have all of the methods failing.
+ */
+
 public class ModelStub implements Model {
-
-
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {

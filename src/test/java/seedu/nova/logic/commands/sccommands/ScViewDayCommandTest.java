@@ -7,6 +7,7 @@ import static seedu.nova.testutil.TypicalEvents.MEETING;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Schedule;
@@ -15,8 +16,8 @@ import seedu.nova.testutil.ModelStub;
 
 class ScViewDayCommandTest {
 
-    private static final LocalDate SCHEDULE_START_DATE = LocalDate.of(2020,1, 13);
-    private static final LocalDate SCHEDULE_END_DATE = LocalDate.of(2020,5, 3);
+    private static final LocalDate SCHEDULE_START_DATE = LocalDate.of(2020, 1, 13);
+    private static final LocalDate SCHEDULE_END_DATE = LocalDate.of(2020, 5, 3);
 
     @Test
     void constructor_nullDate_throwsNullPointerException() {
@@ -52,21 +53,21 @@ class ScViewDayCommandTest {
     void execute_dateBeforeStart_throwsCommandException() {
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
-        assertThrows(CommandException.class,
-                () -> new ScViewDayCommand(SCHEDULE_START_DATE.minusDays(1)).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ScViewDayCommand(SCHEDULE_START_DATE.minusDays(1))
+                .execute(modelStub));
     }
 
     @Test
     void execute_dateAfterEnd_throwsCommandException() {
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
-        assertThrows(CommandException.class,
-                () -> new ScViewDayCommand(SCHEDULE_END_DATE.plusDays(1)).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ScViewDayCommand(SCHEDULE_END_DATE.plusDays(1))
+                .execute(modelStub));
     }
 
     private class ModelStubWithSchedule extends ModelStub {
 
-        Schedule schedule = new Schedule(SCHEDULE_START_DATE, SCHEDULE_END_DATE);
+        private Schedule schedule = new Schedule(SCHEDULE_START_DATE, SCHEDULE_END_DATE);
 
         @Override
         public void addEvent(Event e) {

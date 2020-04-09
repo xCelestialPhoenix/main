@@ -10,6 +10,10 @@ import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.schedule.event.Meeting;
 import seedu.nova.model.schedule.event.StudySession;
 
+/**
+ * A utility class containing a list of {@code Event} objects to be used in tests.
+ */
+
 public class TypicalEvents {
 
     public static final Event MEETING = new Meeting("Project Meeting", "COM1-B108",

@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.nova.testutil.TypicalEvents.MEETING;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Schedule;
@@ -16,8 +16,8 @@ import seedu.nova.testutil.ModelStub;
 
 class ScViewWeekCommandTest {
 
-    private static final LocalDate SCHEDULE_START_DATE = LocalDate.of(2020,1, 13);
-    private static final LocalDate SCHEDULE_END_DATE = LocalDate.of(2020,5, 3);
+    private static final LocalDate SCHEDULE_START_DATE = LocalDate.of(2020, 1, 13);
+    private static final LocalDate SCHEDULE_END_DATE = LocalDate.of(2020, 5, 3);
 
     @Test
     void execute_validWeekNoEvent_viewSuccessful() throws Exception {
@@ -30,7 +30,7 @@ class ScViewWeekCommandTest {
     @Test
     void execute_validWeekWithEvent_viewSuccessful() throws Exception {
 
-        final String expectedMessage = MEETING.getDayOfWeek() +  ": \n" + "1. " + MEETING + "\n";
+        final String expectedMessage = MEETING.getDayOfWeek() + ": \n" + "1. " + MEETING + "\n";
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
         modelStub.addEvent(MEETING);
@@ -42,21 +42,19 @@ class ScViewWeekCommandTest {
     void execute_weekBeforeStart_throwsCommandException() {
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
-        assertThrows(CommandException.class,
-                () -> new ScViewWeekCommand(0).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ScViewWeekCommand(0).execute(modelStub));
     }
 
     @Test
     void execute_weekAfterEnd_throwsCommandException() {
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
-        assertThrows(CommandException.class,
-                () -> new ScViewWeekCommand(17).execute(modelStub));
+        assertThrows(CommandException.class, () -> new ScViewWeekCommand(17).execute(modelStub));
     }
 
     private class ModelStubWithSchedule extends ModelStub {
 
-        Schedule schedule = new Schedule(SCHEDULE_START_DATE, SCHEDULE_END_DATE);
+        private Schedule schedule = new Schedule(SCHEDULE_START_DATE, SCHEDULE_END_DATE);
 
         @Override
         public void addEvent(Event e) {

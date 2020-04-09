@@ -10,6 +10,7 @@ import static seedu.nova.testutil.TypicalEvents.STUDY_SESSION;
 import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
