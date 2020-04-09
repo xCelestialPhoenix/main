@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import seedu.nova.model.AddressBook;
 import seedu.nova.model.Nova;
-import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.category.Category;
@@ -133,7 +132,6 @@ public class SampleDataUtil {
         }
 
         Nova nova = new Nova();
-      
         VersionedAddressBook addressBook = new VersionedAddressBook(ab);
         nova.setAddressBookNova(addressBook);
 
