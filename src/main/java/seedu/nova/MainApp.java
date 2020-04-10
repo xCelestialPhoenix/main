@@ -25,6 +25,7 @@ import seedu.nova.model.ReadOnlyUserPrefs;
 import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
 import seedu.nova.model.VersionedAddressBook;
+import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.JsonNovaStorage;
@@ -95,6 +96,7 @@ public class MainApp extends Application {
             nova.setProgressTrackerNova(new ProgressTracker());
             nova.setScheduleNova(new Schedule(LocalDate.of(2020, 1, 13),
                     LocalDate.of(2020, 5, 3)));
+            nova.setStudyPlan(new StudyPlan());
 
             initialData = nova;
         } catch (IOException e) {

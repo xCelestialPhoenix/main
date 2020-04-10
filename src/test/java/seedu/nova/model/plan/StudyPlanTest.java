@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.nova.model.Schedule;
 import seedu.nova.model.schedule.event.Event;
 
