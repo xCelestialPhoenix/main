@@ -44,6 +44,18 @@ public class PtAddCommand extends Command {
         this.taskDesc = taskDesc;
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getTaskDesc() {
+        return taskDesc;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -72,6 +84,19 @@ public class PtAddCommand extends Command {
             String result = "Added task to week " + weekNum + " of " + projectName;
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtAddCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtAddCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtAddCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskDesc = ((PtAddCommand) obj).getTaskDesc().equals(this.getTaskDesc());
+
+            return isSameProject && isSameWeek && isSameTaskDesc;
         }
     }
 }
