@@ -50,4 +50,16 @@ public class Lesson extends Event {
                 + " - " + endTime.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)) + "\n"
                 + "Note: " + note;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            return desc.equals(((Event) obj).desc)
+                    && startTime.equals(((Event) obj).startTime)
+                    && endTime.equals(((Event) obj).endTime)
+                    && day.equals(((Lesson) obj).day);
+        } else {
+            return super.equals(obj);
+        }
+    }
 }
