@@ -6,6 +6,7 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 
+import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -31,9 +32,9 @@ public class EventDeleteCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Event has been deleted: \n%1$s";
     private LocalDate date;
-    private int index;
+    private Index index;
 
-    public EventDeleteCommand(LocalDate date, int index) {
+    public EventDeleteCommand(LocalDate date, Index index) {
         requireNonNull(date);
 
         this.date = date;
@@ -45,7 +46,8 @@ public class EventDeleteCommand extends Command {
         requireNonNull(model);
 
         try {
-            String response = model.deleteEvent(date, index);
+            int i = index.getZeroBased();
+            String response = model.deleteEvent(date, i);
             return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
@@ -55,6 +57,14 @@ public class EventDeleteCommand extends Command {
             throw new CommandException("Invalid index.");
         }
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventDeleteCommand // instanceof handles nulls
+                && index.equals(((EventDeleteCommand) other).index)
+                && date.equals(((EventDeleteCommand) other).date)); // state check
     }
 
 }
