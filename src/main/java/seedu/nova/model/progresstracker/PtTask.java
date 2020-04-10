@@ -13,6 +13,10 @@ public class PtTask {
     private boolean isDone;
 
     public PtTask(TaskDesc taskDesc, Project project, PtNote note, int ptWeek, boolean isDone) {
+        requireNonNull(taskDesc);
+        requireNonNull(project);
+        requireNonNull(note);
+
         this.taskDesc = taskDesc;
         this.project = project;
         this.ptWeek = ptWeek;
@@ -84,6 +88,28 @@ public class PtTask {
             return "\u2718";
         }
     }
+
+    /**
+     * Returns true if both ptTasks are the same and data fields.
+     * This defines a stronger notion of equality between two ptTasks.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof PtTask)) {
+            return false;
+        }
+
+        PtTask otherPtTask = (PtTask) other;
+        return otherPtTask.getProject().getProjectName().equals(getProject().getProjectName())
+                && otherPtTask.getNote().toString().equals(getNote().toString())
+                && otherPtTask.getTaskDesc().toString().equals(getTaskDesc().toString())
+                && (otherPtTask.getPtWeek() == getPtWeek()) && (otherPtTask.isDone() == isDone());
+    }
+
 
     @Override
     public String toString() {

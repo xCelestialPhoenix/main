@@ -5,6 +5,7 @@ import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
+import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventDeleteCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
@@ -37,7 +38,7 @@ public class EventDeleteCommandParser implements Parser<EventDeleteCommand> {
         String index = argMultimap.getValue(CliSyntax.PREFIX_INDEX).get();
 
         LocalDate localDate = ParserUtil.parseDate(date);
-        int i = Integer.parseInt(index);
+        Index i = ParserUtil.parseIndex(index);
 
         return new EventDeleteCommand(localDate, i);
     }

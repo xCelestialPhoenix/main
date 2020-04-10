@@ -1,5 +1,7 @@
 package seedu.nova.model.progresstracker;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a note
  */
@@ -15,6 +17,7 @@ public class PtNote {
     private String note;
 
     public PtNote(String note) {
+        requireNonNull(note);
         this.note = note;
     }
 
@@ -23,7 +26,7 @@ public class PtNote {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid note.
      */
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);

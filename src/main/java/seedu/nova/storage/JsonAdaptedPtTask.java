@@ -62,7 +62,7 @@ public class JsonAdaptedPtTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
         }
         if (!(project.toUpperCase().equals("IP") || project.toUpperCase().equals("TP"))) {
-            throw new IllegalValueException("Not a valid CS2103T project");
+            throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
         }
         if (project.toUpperCase().equals("IP")) {
             modelProject = new Ip();
