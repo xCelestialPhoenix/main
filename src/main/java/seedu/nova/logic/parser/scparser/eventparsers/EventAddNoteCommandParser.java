@@ -5,10 +5,12 @@ import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
+import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddNoteCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.CliSyntax;
+import seedu.nova.logic.parser.Parser;
 import seedu.nova.logic.parser.ParserUtil;
 import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
@@ -16,7 +18,7 @@ import seedu.nova.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EventAddNoteCommand object
  */
-public class EventAddNoteCommandParser {
+public class EventAddNoteCommandParser implements Parser<EventAddNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EventAddNoteCommand
      * and returns an EventAddNoteCommand object for execution.
@@ -37,7 +39,7 @@ public class EventAddNoteCommandParser {
         String index = argMultimap.getValue(CliSyntax.PREFIX_INDEX).get();
 
         LocalDate localDate = ParserUtil.parseDate(date);
-        int i = Integer.parseInt(index);
+        Index i = ParserUtil.parseIndex(index);
 
         return new EventAddNoteCommand(desc, localDate, i);
     }

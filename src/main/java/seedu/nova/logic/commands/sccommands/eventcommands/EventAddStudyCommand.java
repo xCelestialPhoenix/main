@@ -10,7 +10,6 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.InvalidDateException;
 import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
@@ -31,6 +30,9 @@ public class EventAddStudyCommand extends Command {
             + PREFIX_TIME + "2020-03-19 14:00 15:00 ";
 
     public static final String MESSAGE_SUCCESS = "New study session has been added: \n%1$s";
+    public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
+    public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
+
     private Event toAdd;
 
     public EventAddStudyCommand(Event study) {
@@ -42,13 +44,15 @@ public class EventAddStudyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.isWithinSem(toAdd.getDate())) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
         try {
             model.addEvent(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
             throw new CommandException("You already have an event within that time frame.");
-        } catch (InvalidDateException e) {
-            throw new CommandException("That date does not fall within the semester.");
         }
     }
 

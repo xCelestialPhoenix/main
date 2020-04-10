@@ -6,6 +6,9 @@ import static seedu.nova.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.nova.testutil.Assert.assertThrows;
 import static seedu.nova.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -30,6 +33,14 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "classmate";
     private static final String VALID_TAG_2 = "teammate";
+
+    private static final String VALID_DATE = "2020-04-10";
+    private static final String VALID_TIME = "14:00";
+    private static final String VALID_DAY = "FRIDAY";
+
+    private static final String INVALID_DATE = "2020-04-31";
+    private static final String INVALID_TIME = "25:00";
+    private static final String INVALID_DAY = "Freeday";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -168,4 +179,69 @@ public class ParserUtilTest {
 
         assertEquals(expectedCategorySet, actualCategorySet);
     }
+
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    }
+
+    @Test
+    public void parseTime_validValue_success() throws Exception {
+        LocalTime expectedTime = LocalTime.parse(VALID_TIME);
+
+        // No whitespaces
+        assertEquals(expectedTime, ParserUtil.parseTime("14:00"));
+
+        // Leading and trailing whitespaces
+        assertEquals(expectedTime, ParserUtil.parseTime("  14:00  "));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_validValue_success() throws Exception {
+        // No whitespaces
+        LocalDate expectedDate = LocalDate.parse(VALID_DATE);
+
+        assertEquals(expectedDate, ParserUtil.parseDate("2020-04-10"));
+
+        // Leading and trailing whitespaces
+        assertEquals(expectedDate, ParserUtil.parseDate("  2020-04-10  "));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDay_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDay((String) null));
+    }
+
+    @Test
+    public void parseDay_validValue_success() throws Exception {
+        DayOfWeek expectedDay = DayOfWeek.valueOf(VALID_DAY);
+
+        // No whitespaces
+        assertEquals(expectedDay, ParserUtil.parseDay("Friday"));
+
+        // Leading and trailing whitespaces
+        assertEquals(expectedDay, ParserUtil.parseDay("  Friday  "));
+    }
+
+    @Test
+    public void parseDay_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DAY));
+    }
+
+
 }
