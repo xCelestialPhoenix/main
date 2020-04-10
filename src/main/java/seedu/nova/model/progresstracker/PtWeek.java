@@ -36,7 +36,11 @@ public class PtWeek {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidWeek(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX) && Integer.valueOf(test) <= 13) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
