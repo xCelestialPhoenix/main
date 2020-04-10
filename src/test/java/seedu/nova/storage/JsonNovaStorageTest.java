@@ -21,19 +21,31 @@ import seedu.nova.model.AddressBook;
 import seedu.nova.model.ReadOnlyAddressBook;
 */
 
-public class JsonAddressBookStorageTest {
-    /*
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.nova.commons.exceptions.DataConversionException;
+import seedu.nova.model.Nova;
+
+
+public class JsonNovaStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonNovaStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
     public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+        assertThrows(NullPointerException.class, () -> readNova(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<Nova> readNova(String filePath) throws Exception {
         return new JsonNovaStorage(Paths.get(filePath)).readNova(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -45,35 +57,51 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readNova("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readNova("notJsonFormatNova.json"));
+    }
+
+
+    @Test
+    public void readNova_invalidPersonAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readNova("invalidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readNova_invalidAndValidPersonAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readNova("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readNova_invalidAndValidPtTasks_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readNova("invalidAndValidPtTask.json"));
     }
 
+    @Test
+    public void readNova_invalidPtTasks_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readNova("invalidPtTask.json"));
+    }
+    /*
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = getTypicalAddressBook();
-        JsonNovaStorage jsonAddressBookStorage = new JsonNovaStorage(filePath);
+        AddressBook originalAb = getTypicalAddressBook();
+        ProgressTracker originalPt = getTypicalProgressTracker();
+        JsonNovaStorage jsonNovaStorage = new JsonNovaStorage(filePath);
+        Nova nova = new Nova();
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readNova(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
+        nova.setAddressBookNova((VersionedAddressBook) originalAb);
+        nova.setProgressTrackerNova(originalPt);
+        jsonNovaStorage.saveNova(nova, filePath);
+        Nova readBack = jsonNovaStorage.readNova(filePath).get();
+        assertEquals(originalAb, new AddressBook(readBack.getAddressBookNova()));
 
+        /*
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
@@ -86,9 +114,9 @@ public class JsonAddressBookStorageTest {
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readNova().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
-
-    }
-
+         */
+    //}
+    /*
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
