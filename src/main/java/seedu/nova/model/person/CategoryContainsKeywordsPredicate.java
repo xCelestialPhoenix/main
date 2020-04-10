@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Category} matches any of the keywords given.
  */
 public class CategoryContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

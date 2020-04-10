@@ -24,9 +24,13 @@ public class AbDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: " + PREFIX_INDEX + "[index] \n"
-            + "Example: " + COMMAND_WORD + " i\\1";
+            + "Example: " + COMMAND_WORD + " i\\1\n"
+            + "Note: Please only use delete command after using list, list c\\classmate, list c\\teammate or "
+            + "find command. You may wish to undo if you accidentally used delete command on the wrong person.";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s\n\n"
+            + "Note: Please only use delete command after using list, list c\\classmate, list c\\teammate or "
+            + "find command. You may wish to undo if you accidentally used delete command on the wrong person.";
 
     private final Index targetIndex;
 

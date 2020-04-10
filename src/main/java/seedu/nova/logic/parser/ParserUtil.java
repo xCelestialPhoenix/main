@@ -35,6 +35,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
+    public static final String MESSAGE_INVALID_TIME_FORMAT = "Time format is invalid.";
+    public static final String MESSAGE_INVALID_DAY_FORMAT = "Day of week format is invalid.";
+
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -136,18 +140,37 @@ public class ParserUtil {
         return categorySet;
     }
 
-    public static LocalTime parseTime(String time) {
-        return LocalTime.parse(time.trim());
+    /**
+     * parse the time into a LocalTime
+     * @param time String value of time
+     * @return LocalDate object
+     * @throws ParseException if time is invalid
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+
+        String trimmedTime = time.trim();
+
+        try {
+            return LocalTime.parse(trimmedTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_TIME_FORMAT);
+        }
     }
 
     /**
      * Parses {@code String day} into a {@code DayOfWeek}.
      */
-    public static DayOfWeek parseDay(String day) {
-        day = day.toUpperCase();
-        DayOfWeek d = DayOfWeek.valueOf(day);
+    public static DayOfWeek parseDay(String day) throws ParseException {
+        requireNonNull(day);
 
-        return d;
+        day = day.toUpperCase().trim();
+        try {
+            DayOfWeek d = DayOfWeek.valueOf(day);
+            return d;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_INVALID_DAY_FORMAT);
+        }
     }
 
     /**
