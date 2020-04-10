@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -116,7 +117,7 @@ public class EventAddStudyCommandTest {
     }
 
     private class ModelStubAcceptingStudyAdded extends ModelStub {
-        private LinkedList<Event> eventsAdded = new LinkedList<>();
+        private List<Event> eventsAdded = new LinkedList<>();
 
         @Override
         public boolean isWithinSem(LocalDate date) {

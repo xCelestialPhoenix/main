@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +93,7 @@ public class EventAddLessonCommandTest {
 
 
     private class ModelStubAcceptingLessonAdded extends ModelStub {
-        private LinkedList<Event> eventsAdded = new LinkedList<>();
+        private List<Event> eventsAdded = new LinkedList<>();
 
         @Override
         public void addAllLessons(Lesson lesson) {

@@ -31,11 +31,15 @@ public class EventDeleteCommand extends Command {
             + PREFIX_INDEX + "2 ";
 
     public static final String MESSAGE_SUCCESS = "Event has been deleted: \n%1$s";
+    public static final String MESSAGE_INVALID_DATE = "Invalid date - you have no events on that date.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index.";
+
     private LocalDate date;
     private Index index;
 
     public EventDeleteCommand(LocalDate date, Index index) {
         requireNonNull(date);
+        requireNonNull(index);
 
         this.date = date;
         this.index = index;
@@ -51,10 +55,10 @@ public class EventDeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
-            throw new CommandException("Invalid date - you have no events on that date.");
+            throw new CommandException(MESSAGE_INVALID_DATE);
 
         } catch (EventNotFoundException e) {
-            throw new CommandException("Invalid index.");
+            throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 
     }
