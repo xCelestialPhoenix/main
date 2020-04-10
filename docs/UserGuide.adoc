@@ -572,11 +572,14 @@ Format: +
 ====
 
 Example: +
-Suppose you want to create a flexible task "study vocabulary",
+Suppose you want to create a flexible task "study vocabulary", +
+ +
+`flexible p\study vocabulary t\100 mind\10 maxd\60`
 
-`flexible p\study vocabulary f\daily mind\10 maxd\60`
-
-NOVA will create a new task “study vocabulary”
+NOVA will create a new task “study vocabulary” +
+When being scheduled, this task will create one event “study vocabulary” with duration as long as
+possible, from 10 minutes to 60 minutes. +
+The total duration of all the event scheduled will not exceed 100 minutes.
 
 <<Top, [Back to Top]>>
 
@@ -622,19 +625,19 @@ possible. The event is generated on a random slot, you will need to manually mod
 If it is impossible to schedule an event for the task for that day, you will be notified.
 
 Format: +
-`schedule p\[task name] d\[YYYY-MM-DD]` +
+`schedule p\[task name] t\[YYYY-MM-DD]` +
 
 Example: +
 Suppose you want to schedule the weekly routine task "read cs2103 textbook",
 
-`schedule p\read cs2103 textbook d\2020-03-20`
+`schedule p\read cs2103 textbook t\2020-03-20`
 
 NOVA will finds a free slot bigger than 30 minutes as specified by the task, and creates an event “read cs2103
 textbook” that lasts for 30 minutes on a random spot within the free slot.
 
 Suppose you want to schedule the flexible task "study vocabulary", +
  +
-`schedule p\study vocabulary d\2020-03-20` +
+`schedule p\study vocabulary t\2020-03-20` +
 
 NOVA will finds a free slot bigger than 10 minutes as specified by the task, and creates an event “read cs2103
 textbook” on a random spot within the free slot.
