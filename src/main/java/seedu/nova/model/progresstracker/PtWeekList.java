@@ -10,16 +10,20 @@ public class PtWeekList {
 
     public PtWeekList() {
         weekList = new ArrayList<>();
+
+        //create 13 weeks since one semester only has 13 weeks
+        for (int i = 0; i < 13; i++) {
+            PtWeek week = new PtWeek(i + 1);
+            weekList.add(week);
+        }
     }
 
-    /**
-     * Adds week into list
-     * @param week
-     */
-    public void addWeek(PtWeek week) {
-        int num = week.getWeekNum();
+    public ArrayList<PtWeek> getWeekList() {
+        return weekList;
+    }
 
-        weekList.add(num - 1, week);
+    public int getNumWeeks() {
+        return weekList.size();
     }
 
     public PtWeek getWeek(int num) {
@@ -30,21 +34,22 @@ public class PtWeekList {
         }
     }
 
-    public void removeWeek(int num) {
-        weekList.remove(num - 1);
-    }
-
+    /**
+     * Calculates the progress for the project
+     * @return a double representing the percentage of tasks done in the project
+     */
     public double getProgressProject() {
-        boolean weekExist;
-        int numWeeks = 0;
+        boolean hasTask;
+        double numWeeks = 0;
         double totalPercentage = 0;
 
         for (int i = 0; i < weekList.size(); i++) {
             PtWeek current = weekList.get(i);
+            PtTaskList taskList = current.getTaskList();
 
-            weekExist = current != null;
+            hasTask = taskList.getNumTask() != 0;
 
-            if (weekExist) {
+            if (hasTask) {
                 numWeeks++;
                 totalPercentage = totalPercentage + current.getProgressWeek();
             }

@@ -1,7 +1,6 @@
 package seedu.nova.model;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,9 +8,11 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
-import seedu.nova.model.plan.TaskFreq;
+import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -123,11 +124,9 @@ public interface Model {
 
     Mode getMode();
 
-    ProgressTracker getProgressTracker();
-
     void addEvent(Event e);
 
-    void addLesson(Lesson l);
+    void addAllLessons(Lesson l);
 
     DateTimeSlotList getFreeSlotOn(LocalDate date);
 
@@ -135,20 +134,43 @@ public interface Model {
 
     String deleteEvent(LocalDate date, int index);
 
+    boolean deleteEvent(Event event);
+
     String addNote(String desc, LocalDate date, int index);
 
     //==============studyplanner=============
 
     void resetPlan();
 
-    boolean addRoutineTask(String name, TaskFreq freq, Duration duration);
+    boolean addRoutineTask(StrongTask st);
 
-    boolean addFlexibleTask(String name, Duration total, Duration min, Duration max);
+    boolean addFlexibleTask(WeakTask wt);
 
     List<Task> getTaskList();
 
     Task searchTask(String name);
 
-    boolean generateTaskEvent(Task task, LocalDate date) throws Exception;
+    boolean deleteTask(Task task);
 
+    Event generateTaskEvent(Task task, LocalDate date) throws Exception;
+
+    //============== Progress Tracker =============
+
+    ProgressTracker getProgressTracker();
+
+    String listPtTask(String projectName, int weekNum);
+
+    void addPtTask(String projectName, int weekNum, PtTask task);
+
+    boolean deletePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc);
+
+    boolean setDonePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean addPtNote(String projectName, int weekNum, int taskNum, String note);
+
+    boolean deletePtNote(String projectName, int weekNum, int taskNum);
+
+    boolean editPtNote(String projectName, int weekNum, int taskNum, String note);
 }

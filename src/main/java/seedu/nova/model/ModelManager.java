@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nova.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
@@ -20,9 +19,9 @@ import seedu.nova.model.plan.Plan;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.plan.Task;
-import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -40,7 +39,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final Schedule schedule;
     private final Plan plan;
-    private final ProgressTracker progressTracker = new ProgressTracker();
+    private final ProgressTracker progressTracker;
     private Mode mode;
 
     /**
@@ -55,9 +54,10 @@ public class ModelManager implements Model {
         this.nova = nova;
         this.addressBook = nova.getAddressBookNova();
         this.userPrefs = new UserPrefs(userPrefs);
-        //this.progressTracker = nova.getProgressTracker();
+        this.progressTracker = nova.getProgressTracker();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
+        this.schedule = nova.getScheduleNova();
+        // this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
         this.plan = new StudyPlan();
         this.mode = new Mode(ModeEnum.HOME);
     }
@@ -103,6 +103,7 @@ public class ModelManager implements Model {
 
     @Override
     public Nova getNova() {
+        nova.setScheduleNova(schedule);
         return this.nova;
     }
 
@@ -112,18 +113,12 @@ public class ModelManager implements Model {
         return mode;
     }
 
-    //=========== ProgressTracker ==================================================================================
-    @Override
-    public ProgressTracker getProgressTracker() {
-        return progressTracker;
-    }
-
+    //=========== AddressBook ================================================================================
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
 
-    //=========== AddressBook ================================================================================
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
@@ -254,8 +249,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addLesson(Lesson l) {
-        schedule.addLesson(l);
+    public void addAllLessons(Lesson l) {
+        schedule.addAllLessons(l);
     }
 
     @Override
@@ -268,8 +263,14 @@ public class ModelManager implements Model {
         return getFreeSlotOn(date).toString();
     }
 
+    @Override
     public String deleteEvent(LocalDate date, int index) {
         return schedule.deleteEvent(date, index).toString();
+    }
+
+    @Override
+    public boolean deleteEvent(Event e) {
+        return schedule.deleteEvent(e);
     }
 
     @Override
@@ -284,13 +285,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean addRoutineTask(String name, TaskFreq freq, Duration duration) {
-        return plan.addTask(StrongTask.get(name, duration, freq));
+    public boolean addRoutineTask(StrongTask task) {
+        return plan.addTask(task);
     }
 
     @Override
-    public boolean addFlexibleTask(String name, Duration total, Duration min, Duration max) {
-        return plan.addTask(WeakTask.get(name, min, max, total));
+    public boolean addFlexibleTask(WeakTask task) {
+        return plan.addTask(task);
     }
 
     @Override
@@ -304,8 +305,58 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean generateTaskEvent(Task task, LocalDate date) throws Exception {
+    public boolean deleteTask(Task task) {
+        return plan.deleteTask(task);
+    }
+
+    @Override
+    public Event generateTaskEvent(Task task, LocalDate date) throws Exception {
         return plan.generateTaskEvent(task, date, schedule);
     }
 
+    //=========== Progress Tracker =============================================================
+    @Override
+    public ProgressTracker getProgressTracker() {
+        return progressTracker;
+    }
+
+    @Override
+    public String listPtTask(String projectName, int weekNum) {
+        return progressTracker.listPtTask(projectName, weekNum);
+    }
+
+    @Override
+    public void addPtTask(String projectName, int weekNum, PtTask task) {
+        progressTracker.addPtTask(projectName, weekNum, task);
+    }
+
+    @Override
+    public boolean deletePtTask(String projectName, int weekNum, int taskNum) {
+        return progressTracker.deletePtTask(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc) {
+        return progressTracker.editPtTask(projectName, weekNum, taskNum, taskDesc);
+    }
+
+    @Override
+    public boolean setDonePtTask(String projectName, int weekNum, int taskNum) {
+        return progressTracker.setDonePtTask(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean addPtNote(String projectName, int weekNum, int taskNum, String note) {
+        return progressTracker.addPtNote(projectName, weekNum, taskNum, note);
+    }
+
+    @Override
+    public boolean deletePtNote(String projectName, int weekNum, int taskNum) {
+        return progressTracker.deletePtNote(projectName, weekNum, taskNum);
+    }
+
+    @Override
+    public boolean editPtNote(String projectName, int weekNum, int taskNum, String note) {
+        return progressTracker.editPtNote(projectName, weekNum, taskNum, note);
+    }
 }

@@ -2,12 +2,14 @@ package seedu.nova.logic.parser.ptparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Pattern;
-
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.ptcommands.PtAddCommand;
+import seedu.nova.logic.commands.ptcommands.PtAddNoteCommand;
 import seedu.nova.logic.commands.ptcommands.PtDeleteCommand;
+import seedu.nova.logic.commands.ptcommands.PtDeleteNoteCommand;
 import seedu.nova.logic.commands.ptcommands.PtDoneCommand;
+import seedu.nova.logic.commands.ptcommands.PtEditCommand;
+import seedu.nova.logic.commands.ptcommands.PtEditNoteCommand;
 import seedu.nova.logic.commands.ptcommands.PtListCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
@@ -15,11 +17,6 @@ import seedu.nova.logic.parser.exceptions.ParseException;
  * Parses user input for progress tracker feature.
  */
 public class ProgresstrackerParser {
-
-    /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -40,6 +37,18 @@ public class ProgresstrackerParser {
 
         case PtDoneCommand.COMMAND_WORD:
             return new PtDoneCommandParser().parse(arguments);
+
+        case PtEditCommand.COMMAND_WORD:
+            return new PtEditCommandParser().parse(arguments);
+
+        case PtAddNoteCommand.COMMAND_WORD:
+            return new PtAddNoteCommandParser().parse(arguments);
+
+        case PtDeleteNoteCommand.COMMAND_WORD:
+            return new PtDeleteNoteCommandParser().parse(arguments);
+
+        case PtEditNoteCommand.COMMAND_WORD:
+            return new PtEditNoteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

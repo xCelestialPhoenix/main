@@ -1,25 +1,39 @@
 package seedu.nova.model.progresstracker;
 
-import seedu.nova.model.note.NotesList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a project task
  */
 public class PtTask {
+    private Project project;
     private TaskDesc taskDesc;
-    private NotesList notesList;
-    private PtWeek ptWeek;
+    private PtNote note;
+    private int ptWeek;
     private boolean isDone;
 
-    public PtTask(TaskDesc taskDesc, int num) {
+    public PtTask(TaskDesc taskDesc, Project project, PtNote note, int ptWeek, boolean isDone) {
         this.taskDesc = taskDesc;
-        ptWeek = new PtWeek(num);
-        notesList = new NotesList();
-        isDone = false;
+        this.project = project;
+        this.ptWeek = ptWeek;
+        this.isDone = isDone;
+        this.note = note;
     }
 
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * return string of boolean isDone
+     * @return true or false
+     */
+    public String isDoneString() {
+        if (isDone) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
     public void setDone() {
@@ -30,15 +44,32 @@ public class PtTask {
         }
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        requireNonNull(project);
+        this.project = project;
+    }
+
     public TaskDesc getTaskDesc() {
         return taskDesc;
     }
 
-    public NotesList getNotesList() {
-        return notesList;
+    public void setTaskDesc(String taskDesc) {
+        this.taskDesc = new TaskDesc(taskDesc);
     }
 
-    public PtWeek getPtWeek() {
+    public PtNote getNote() {
+        return note;
+    }
+
+    public void setNote(String noteDesc) {
+        this.note = new PtNote(noteDesc);
+    }
+
+    public int getPtWeek() {
         return ptWeek;
     }
 

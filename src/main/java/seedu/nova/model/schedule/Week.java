@@ -3,6 +3,8 @@ package seedu.nova.model.schedule;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -50,6 +52,11 @@ public class Week implements Copyable<Week> {
     public void addEvent(Event event) {
         LocalDate date = event.getDate();
         int day = date.getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            days[day] = new Day(date);
+        }
+
         events.add(event);
         days[day].addEvent(event);
     }
@@ -61,7 +68,13 @@ public class Week implements Copyable<Week> {
      */
     public void addLesson(Lesson lesson) {
         int day = lesson.getDay().getValue() - 1;
-        events.add(lesson);
+
+        if (days[day] == null) {
+            days[day] = new Day(startDate.plusDays(day));
+        }
+
+        LocalDate d = startDate.plusDays(day);
+        lesson.setDate(d);
         days[day].addLesson(lesson);
     }
 
@@ -93,6 +106,21 @@ public class Week implements Copyable<Week> {
     }
 
     /**
+     * deletes an event
+     * @param event event to delete
+     * @return successfully deleted?
+     */
+    public boolean deleteEvent(Event event) {
+        int day = event.getDate().getDayOfWeek().getValue() - 1;
+
+        if (days[day] == null) {
+            throw new DateNotFoundException();
+        }
+        events.remove(event);
+        return days[day].deleteEvent(event);
+    }
+
+    /**
      * Adds a note to an Event.
      *
      * @param desc  description of the note
@@ -108,6 +136,16 @@ public class Week implements Copyable<Week> {
         }
 
         return days[day].addNote(desc, index);
+    }
+
+    public List<Event> getEventList() {
+        List<Event> list = new LinkedList<>();
+
+        for (Day day: days) {
+            list.addAll(day.getEventList());
+        }
+
+        return list;
     }
 
     /**

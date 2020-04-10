@@ -9,12 +9,10 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 import seedu.nova.model.progresstracker.TaskDesc;
 
 /**
@@ -34,6 +32,8 @@ public class PtAddCommand extends Command {
             + PREFIX_WEEK + "2"
             + PREFIX_DESC + "Implement javafx";
 
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
     private int weekNum;
     private String project;
     private String taskDesc;
@@ -47,35 +47,31 @@ public class PtAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
+        boolean isOver13 = weekNum > 13;
 
-        //Create new task
-        TaskDesc taskDesc = new TaskDesc(this.taskDesc);
-        PtTask newTask = new PtTask(taskDesc, this.weekNum);
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
+        } else {
+            ProgressTracker pt = model.getProgressTracker();
+            Project project;
+            boolean isIpProject = this.project.equals("ip");
 
-        if (project.equals("ip")) {
-            Ip ip = pt.getIp();
-            PtWeekList weekList = ip.getWeekList();
-            week = weekList.getWeek(weekNum);
-
-            //if week not created, create week
-            if (week == null) {
-                PtWeek newWeek = new PtWeek(weekNum);
-                weekList.addWeek(newWeek);
-
-                week = newWeek;
+            if (isIpProject) {
+                project = pt.getIp();
+            } else {
+                project = pt.getTp();
             }
 
-            PtTaskList taskList = week.getTaskList();
-            taskList.addTask(newTask);
+            //Create new task
+            TaskDesc taskDesc = new TaskDesc(this.taskDesc);
+            PtTask newTask = new PtTask(taskDesc, project, new PtNote(""), this.weekNum, false);
 
-        } else {
-            //do nothing
+            model.addPtTask(this.project, weekNum, newTask);
+
+            String projectName = this.project.toUpperCase();
+            String result = "Added task to week " + weekNum + " of " + projectName;
+
+            return new CommandResult(result, false, false);
         }
-
-        String result = "Added task to week " + weekNum + " of " + project;
-
-        return new CommandResult(result, false, false);
     }
 }
