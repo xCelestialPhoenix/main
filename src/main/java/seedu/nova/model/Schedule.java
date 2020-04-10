@@ -59,10 +59,6 @@ public class Schedule implements Copyable<Schedule> {
 
         LocalDate date = event.getDate();
 
-        if (!checkDateValidity(date)) {
-            throw new InvalidDateException();
-        }
-
         int weekNumber = calWeekNumber(date);
 
         if (weeks[weekNumber] == null) {
