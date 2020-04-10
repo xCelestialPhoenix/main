@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 import seedu.nova.model.Schedule;
+import seedu.nova.model.schedule.event.Event;
 
 class StudyPlanTest {
 
@@ -55,13 +56,22 @@ class StudyPlanTest {
     @Test
     void generateTaskEvent() {
         try {
-            plan.generateTaskEvent(StrongTask.get("fuck", Duration.ZERO, TaskFreq.DAILY),
+            Event e = plan.generateTaskEvent(StrongTask.get("fuck", Duration.ZERO, TaskFreq.DAILY),
                     LocalDate.of(2020, 1, 26),
                     schedule);
-            assertEquals(1,
-                    schedule.getDay(LocalDate.of(2020, 1, 26)).getEventList().size());
+            assertTrue(
+                    schedule.getDay(LocalDate.of(2020, 1, 26)).getEventList().contains(e));
         } catch (Exception e) {
             fail();
+        }
+
+        try {
+            plan.generateTaskEvent(StrongTask.get("fuck", Duration.ZERO, TaskFreq.DAILY),
+                    LocalDate.of(2021, 1, 26),
+                    schedule);
+            fail();
+        } catch (Exception e) {
+            //do nothing
         }
     }
 }
