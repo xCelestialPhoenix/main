@@ -50,8 +50,7 @@ public class AbEditCommandTest {
         AbEditCommand abEditCommand = new AbEditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(AbEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        //Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        
         Model expectedModel = new ModelManager(model.getNova(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
