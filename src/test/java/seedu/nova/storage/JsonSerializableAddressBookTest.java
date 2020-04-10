@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.commons.util.JsonUtil;
-import seedu.nova.model.AddressBook;
 import seedu.nova.model.VersionedAddressBook;
-import seedu.nova.model.person.Address;
 import seedu.nova.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
@@ -30,7 +28,6 @@ public class JsonSerializableAddressBookTest {
         VersionedAddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalVersionedAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
-
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {

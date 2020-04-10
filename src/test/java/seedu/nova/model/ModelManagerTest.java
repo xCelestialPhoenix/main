@@ -7,11 +7,9 @@ import static seedu.nova.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.nova.testutil.Assert.assertThrows;
 import static seedu.nova.testutil.TypicalPersons.ALICE;
 import static seedu.nova.testutil.TypicalPersons.BENSON;
-import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
-//import seedu.nova.model.schedule.Schedule;
 import seedu.nova.testutil.AddressBookBuilder;
 
 
