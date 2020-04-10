@@ -61,6 +61,7 @@ public class Day implements Copyable<Day> {
 
         if (canAdd) {
             events.add(event);
+            freeSlots.excludeDuration(event.getDtd());
             Collections.sort(events);
         } else {
             throw new TimeOverlapException();
