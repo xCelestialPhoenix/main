@@ -56,4 +56,11 @@ public class EventAddStudyCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventAddStudyCommand // instanceof handles nulls
+                && toAdd.equals(((EventAddStudyCommand) other).toAdd));
+    }
+
 }
