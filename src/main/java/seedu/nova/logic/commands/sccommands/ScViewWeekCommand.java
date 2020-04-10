@@ -12,12 +12,12 @@ import seedu.nova.model.Model;
  */
 public class ScViewWeekCommand extends ScViewCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views your schedule on a particular week. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " week : Views your schedule on a particular week. "
             + "Parameters: "
             + PREFIX_INDEX + "[week #]";
 
-    private static final String MESSAGE_WEEK_OUT_OF_RANGE = "The date is not within the schedule";
-    private static final String MESSAGE_WEEK_NO_EVENT = "You have no events on that week";
+    public static final String MESSAGE_WEEK_OUT_OF_RANGE = "The date is not within the schedule";
+    public static final String MESSAGE_WEEK_NO_EVENT = "You have no events on that week";
 
     private final int weekNumber;
 
@@ -45,6 +45,13 @@ public class ScViewWeekCommand extends ScViewCommand {
             message = MESSAGE_WEEK_NO_EVENT;
         }
         return new CommandResult(message);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScViewWeekCommand // instanceof handles nulls
+                && weekNumber == ((ScViewWeekCommand) other).weekNumber);
     }
 
 }

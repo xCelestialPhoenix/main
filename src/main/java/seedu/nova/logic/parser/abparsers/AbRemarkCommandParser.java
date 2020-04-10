@@ -29,11 +29,6 @@ public class AbRemarkCommandParser implements Parser<AbRemarkCommand> {
                 CliSyntax.PREFIX_INDEX, CliSyntax.PREFIX_REMARK);
 
         Index index;
-        /*try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbRemarkCommand.MESSAGE_USAGE), ive);
-        } */
 
         if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
             index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());

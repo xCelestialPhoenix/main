@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.nova.commons.core.GuiSettings;
@@ -15,6 +16,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path novaFilePath = Paths.get("data" , "Nova.json");
+    private LocalDate scheduleStartDate = LocalDate.of(2020, 1, 13);
+    private LocalDate scheduleEndDate = LocalDate.of(2020, 5, 3);
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +39,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setNovaFilePath(newUserPrefs.getNovaFilePath());
+        setScheduleStartDate(newUserPrefs.getScheduleStartDate());
+        setScheduleEndDate(newUserPrefs.getScheduleEndDate());
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,6 +59,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setNovaFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.novaFilePath = addressBookFilePath;
+    }
+
+    public LocalDate getScheduleStartDate() {
+        return scheduleStartDate;
+    }
+
+    public void setScheduleStartDate(LocalDate scheduleStartDate) {
+        requireNonNull(scheduleStartDate);
+        this.scheduleStartDate = scheduleStartDate;
+    }
+
+    public LocalDate getScheduleEndDate() {
+        return scheduleEndDate;
+    }
+
+    public void setScheduleEndDate(LocalDate scheduleEndDate) {
+        requireNonNull(scheduleEndDate);
+        this.scheduleEndDate = scheduleEndDate;
     }
 
     @Override

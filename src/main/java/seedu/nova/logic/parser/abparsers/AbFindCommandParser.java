@@ -39,16 +39,6 @@ public class AbFindCommandParser implements Parser<AbFindCommand> {
 
         String[] nameKeywords = name.toString().split("\\s+");
         return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        /*String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AbFindCommand.MESSAGE_USAGE));
-        }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new AbFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));*/
     }
 
 }

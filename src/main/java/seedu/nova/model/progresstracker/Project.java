@@ -8,6 +8,8 @@ public abstract class Project {
 
     public abstract PtWeekList getWeekList();
 
+    public abstract String getProjectName();
+
     /**
      * Checks if is Ip or Tp
      * @param projectName name of project
@@ -22,4 +24,5 @@ public abstract class Project {
             return false;
         }
     }
+
 }

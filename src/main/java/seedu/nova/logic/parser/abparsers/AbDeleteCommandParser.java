@@ -27,14 +27,6 @@ public class AbDeleteCommandParser implements Parser<AbDeleteCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
-        /*try {
-            Index index = ParserUtil.parseIndex(args);
-            return new AbDeleteCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AbDeleteCommand.MESSAGE_USAGE), pe);
-        } */
         if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
             return new AbDeleteCommand(index);
