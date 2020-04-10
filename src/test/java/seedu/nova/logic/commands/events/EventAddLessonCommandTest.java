@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ import seedu.nova.testutil.ModelStub;
 
 public class EventAddLessonCommandTest {
     private static final Event validLesson = new Lesson("CS2103T Lecture", "I3 AUD",
-            LocalTime.of(14, 0), LocalTime.of(16, 0), DayOfWeek.FRIDAY);
+            LocalTime.of(14, 0), LocalTime.of(16, 0), LocalDate.parse("2020-04-10"), DayOfWeek.FRIDAY);
 
     @Test
     public void constructor_nullLesson_throwsNullPointerException() {
@@ -61,7 +62,7 @@ public class EventAddLessonCommandTest {
     public void equals() {
 
         Event lesson2 = new Lesson("CS2103T Lecture", "I3 AUD",
-                LocalTime.of(14, 0), LocalTime.of(16, 0), DayOfWeek.MONDAY);
+                LocalTime.of(14, 0), LocalTime.of(16, 0), LocalDate.parse("2020-04-06"), DayOfWeek.MONDAY);
 
         EventAddLessonCommand command1 = new EventAddLessonCommand(validLesson);
         EventAddLessonCommand command2 = new EventAddLessonCommand(lesson2);
