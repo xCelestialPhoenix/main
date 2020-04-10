@@ -38,10 +38,13 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TAG_HUSBAND = "teammate";
     public static final String VALID_TAG_FRIEND = "classmate";
-    public static final String VALID_PROJECT = "ip";
+    public static final String VALID_PROJECTIP = "ip";
+    public static final String VALID_PROJECTTP = "tp";
     public static final String VALID_WEEK = "1";
+    public static final String VALID_WEEK_2 = "2";
     public static final String VALID_TASK = "1";
     public static final String VALID_TASKDESC = "Example task description";
+    public static final String VALID_TASKDESC_2 = "Example task description 2";
     public static final String VALID_NOTE = "Example note";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -52,10 +55,13 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_CATEGORY + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_CATEGORY + VALID_TAG_HUSBAND;
-    public static final String PROJECT_IP = " " + PREFIX_PROJECT + VALID_PROJECT;
+    public static final String PROJECT_IP = " " + PREFIX_PROJECT + VALID_PROJECTIP;
+    public static final String PROJECT_TP = " " + PREFIX_PROJECT + VALID_PROJECTTP;
     public static final String WEEK_ONE = " " + PREFIX_WEEK + VALID_WEEK;
+    public static final String WEEK_TWO = " " + PREFIX_WEEK + VALID_WEEK_2;
     public static final String PT_TASK = " " + PREFIX_TASK + VALID_TASK;
     public static final String PT_TASKDESC = " " + PREFIX_DESC + VALID_TASKDESC;
+    public static final String PT_TASKDESC_2 = " " + PREFIX_DESC + VALID_TASKDESC_2;
     public static final String PT_NOTE = " " + PREFIX_DESC + VALID_NOTE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names

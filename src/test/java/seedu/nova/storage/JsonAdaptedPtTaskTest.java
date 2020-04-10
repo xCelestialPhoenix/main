@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static seedu.nova.storage.JsonAdaptedPtTask.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.nova.testutil.Assert.assertThrows;
-import static seedu.nova.testutil.TypicalPtTasks.ptTaskIp1;
+import static seedu.nova.testutil.TypicalPtTasks.PTTASKIP1;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,15 +19,15 @@ public class JsonAdaptedPtTaskTest {
     private static final String INVALID_TASKDESC = "";
     private static final int INVALID_WEEK = -1;
 
-    private static final String VALID_PROJECT = ptTaskIp1.getProject().getProjectName();
-    private static final String VALID_NOTE = ptTaskIp1.getNote().toString();
-    private static final String VALID_TASKDESC = ptTaskIp1.getTaskDesc().toString();
-    private static final int VALID_WEEK = ptTaskIp1.getPtWeek();
+    private static final String VALID_PROJECT = PTTASKIP1.getProject().getProjectName();
+    private static final String VALID_NOTE = PTTASKIP1.getNote().toString();
+    private static final String VALID_TASKDESC = PTTASKIP1.getTaskDesc().toString();
+    private static final int VALID_WEEK = PTTASKIP1.getPtWeek();
 
     @Test
     public void toModelType_validPtTaskDetails_returnsPtTask() throws Exception {
-        JsonAdaptedPtTask ptTask = new JsonAdaptedPtTask(ptTaskIp1);
-        assertEquals(ptTaskIp1, ptTask.toModelType());
+        JsonAdaptedPtTask ptTask = new JsonAdaptedPtTask(PTTASKIP1);
+        assertEquals(PTTASKIP1, ptTask.toModelType());
     }
 
     @Test
