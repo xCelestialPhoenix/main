@@ -26,8 +26,7 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 ** What it does: Allows the user to have an easier time to find added contacts
 ** Justification: User can easily find their contacts after using list
 
-* *Code contributed*:
-** Refactored Address Book Level 3 to suit NOVA's needs, such as changing the commands to include `Ab` in front
+* *Code contributed*: Please click link:https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=lohszeying&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[here] to see my code contributions
 
 * *Other contributions*:
 
