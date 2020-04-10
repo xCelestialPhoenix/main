@@ -185,6 +185,7 @@ public class Week implements Copyable<Week> {
                 sb.append(DayOfWeek.of(index));
                 sb.append(": \n");
                 sb.append(result);
+                sb.append("\n");
 
             }
         }
