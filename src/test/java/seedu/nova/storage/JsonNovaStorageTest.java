@@ -1,16 +1,16 @@
 package seedu.nova.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.nova.testutil.Assert.assertThrows;
-import static seedu.nova.testutil.TypicalPersons.ALICE;
-import static seedu.nova.testutil.TypicalPersons.HOON;
-import static seedu.nova.testutil.TypicalPersons.IDA;
-import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
+//import static seedu.nova.testutil.TypicalPersons.ALICE;
+//import static seedu.nova.testutil.TypicalPersons.HOON;
+//import static seedu.nova.testutil.TypicalPersons.IDA;
+//import static seedu.nova.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.nova.testutil.TypicalPersons.getTypicalVersionedAddressBook;
 import static seedu.nova.testutil.TypicalPtTasks.getTypicalProgressTracker;
-import static seedu.nova.testutil.TypicalEvents.getTypicalEvents;
-import static seedu.nova.testutil.TypicalEvents.getTypicalSchedule;
+//import static seedu.nova.testutil.TypicalEvents.getTypicalEvents;
+//import static seedu.nova.testutil.TypicalEvents.getTypicalSchedule;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,20 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nova.commons.exceptions.DataConversionException;
-import seedu.nova.model.AddressBook;
-import seedu.nova.model.VersionedAddressBook;
-import seedu.nova.model.ReadOnlyAddressBook;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.nova.commons.exceptions.DataConversionException;
 import seedu.nova.model.Nova;
 import seedu.nova.model.VersionedAddressBook;
 import seedu.nova.model.progresstracker.ProgressTracker;
@@ -143,10 +130,6 @@ public class JsonNovaStorageTest {
 
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        Nova newNova = new Nova();
-        newNova.setAddressBookNova(new VersionedAddressBook(new AddressBook()));
-        // Should throw null if file path is not found, rather than related to Nova. Hence, added the above
-        // If just new Nova(), this will throw exception rather than null file path
-        assertThrows(NullPointerException.class, () -> saveNova(newNova, null));
+        assertThrows(NullPointerException.class, () -> saveNova(new Nova(), null));
     }
 }
