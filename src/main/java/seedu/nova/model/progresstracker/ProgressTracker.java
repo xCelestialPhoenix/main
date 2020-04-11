@@ -100,10 +100,9 @@ public class ProgressTracker {
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        PtTask taskDelete = ptTaskList.getTask(taskNum);
-
-        if (taskDelete == null) {
+        if (isOutOfBound) {
             return false;
         } else {
             ptTaskList.deleteTask(taskNum);
@@ -137,11 +136,13 @@ public class ProgressTracker {
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
 
-        PtTask taskEdit = ptTaskList.getTask(taskNum);
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        if (taskEdit == null) {
+        if (isOutOfBound) {
             return false;
         } else {
+            PtTask taskEdit = ptTaskList.getTask(taskNum);
+
             taskEdit.setTaskDesc(taskDesc);
             return true;
         }
@@ -170,11 +171,13 @@ public class ProgressTracker {
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
-        PtTask taskToSetDone = ptTaskList.getTask(taskNum);
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        if (taskToSetDone == null) {
+        if (isOutOfBound) {
             return false;
         } else {
+            PtTask taskToSetDone = ptTaskList.getTask(taskNum);
+
             taskToSetDone.setDone();
             return true;
         }
@@ -205,11 +208,16 @@ public class ProgressTracker {
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
-        PtTask taskToAddNote = ptTaskList.getTask(taskNum);
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        if (taskToAddNote == null) {
+        if (isOutOfBound) {
             return false;
-        } else if (!taskToAddNote.getNote().toString().equals("")) {
+        }
+
+        PtTask taskToAddNote = ptTaskList.getTask(taskNum);
+        boolean hasNote = !taskToAddNote.getNote().toString().equals("");
+
+        if (hasNote) {
             return false;
         } else {
             taskToAddNote.setNote(note);
@@ -240,13 +248,13 @@ public class ProgressTracker {
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        PtTask taskToDeleteNote = ptTaskList.getTask(taskNum);
-
-        if (taskToDeleteNote == null) {
+        if (isOutOfBound) {
             return false;
         }
 
+        PtTask taskToDeleteNote = ptTaskList.getTask(taskNum);
         PtNote noteDelete = taskToDeleteNote.getNote();
         boolean isEmptyNote = noteDelete.toString().equals("");
 
@@ -282,13 +290,13 @@ public class ProgressTracker {
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
+        boolean isOutOfBound = ptTaskList.getNumTask() < taskNum;
 
-        PtTask taskToEditNote = ptTaskList.getTask(taskNum);
-
-        if (taskToEditNote == null) {
+        if (isOutOfBound) {
             return false;
         }
 
+        PtTask taskToEditNote = ptTaskList.getTask(taskNum);
         PtNote noteEdit = taskToEditNote.getNote();
         boolean isEmptyNote = noteEdit.toString().equals("");
 

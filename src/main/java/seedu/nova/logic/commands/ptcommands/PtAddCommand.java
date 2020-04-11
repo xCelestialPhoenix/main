@@ -34,11 +34,16 @@ public class PtAddCommand extends Command {
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
+    public static final String MESSAGE_SUCCESS = "Added task to week %d of %s";
+
     private int weekNum;
     private String project;
     private String taskDesc;
 
     public PtAddCommand(int weekNum, String project, String taskDesc) {
+        requireNonNull(project);
+        requireNonNull(taskDesc);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskDesc = taskDesc;
@@ -81,7 +86,7 @@ public class PtAddCommand extends Command {
             model.addPtTask(this.project, weekNum, newTask);
 
             String projectName = this.project.toUpperCase();
-            String result = "Added task to week " + weekNum + " of " + projectName;
+            String result = String.format(MESSAGE_SUCCESS, weekNum, projectName);
 
             return new CommandResult(result, false, false);
         }

@@ -14,11 +14,12 @@ import seedu.nova.model.progresstracker.Tp;
  *
  */
 public class TypicalPtTasks {
+
     public static final PtTask PTTASKIP1 = new PtTask(new TaskDesc("task 1"), new Ip(),
             new PtNote("note 1"), 1, false);
 
     public static final PtTask PTTASKIP2 = new PtTask(new TaskDesc("task 2"), new Ip(),
-            new PtNote("note 2"), 2, true);
+            new PtNote(""), 2, true);
 
     public static final PtTask PTTASKTP1 = new PtTask(new TaskDesc("task 1"), new Tp(),
             new PtNote("note 1"), 1, false);
