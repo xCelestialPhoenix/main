@@ -9,7 +9,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.PtTask;
@@ -69,14 +68,13 @@ public class PtAddCommand extends Command {
         if (isOver13) {
             throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            ProgressTracker pt = model.getProgressTracker();
             Project project;
             boolean isIpProject = this.project.equals("ip");
 
             if (isIpProject) {
-                project = pt.getIp();
+                project = model.getProgressTrackerIp();
             } else {
-                project = pt.getTp();
+                project = model.getProgressTrackerTp();
             }
 
             //Create new task
