@@ -32,6 +32,8 @@ public class EventAddLessonCommand extends Command {
             + PREFIX_TIME + "Friday 10:00 11:00 ";
 
     public static final String MESSAGE_SUCCESS = "New lesson has been added: \n%1$s";
+    public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
+
     private Event toAdd;
 
     public EventAddLessonCommand(Event lesson) {
@@ -47,8 +49,15 @@ public class EventAddLessonCommand extends Command {
             model.addAllLessons((Lesson) toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
-            throw new CommandException("You already have an event within that time frame.");
+            throw new CommandException(MESSAGE_TIME_OVERLAP);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventAddLessonCommand // instanceof handles nulls
+                && toAdd.equals(((EventAddLessonCommand) other).toAdd));
     }
 
 

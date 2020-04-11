@@ -1,7 +1,8 @@
 package seedu.nova.model.schedule;
 
 import java.time.LocalDate;
-import java.util.Iterator;
+import java.time.LocalTime;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,73 +42,72 @@ public class Day implements Copyable<Day> {
         this.freeSlots = freeSlots;
     }
 
+
     /**
      * Adds event.
      *
      * @param event the event
      */
-    void addEvent(Event event) {
-        if (events.size() == 0) {
-            // if list is empty
-            freeSlots.excludeDuration(event.getDtd());
-            events.add(event);
-        } else if (event.getStartTime().compareTo(events.get(events.size() - 1).getEndTime()) >= 0) {
-            // if event to be added is after latest event in the list (i.e. add to the back)
-            freeSlots.excludeDuration(event.getDtd());
-            events.add(events.size(), event);
+    public void addEvent(Event event) {
+        boolean canAdd = true;
 
-        } else {
-            // if event to be added is supposed to be somewhere in the middle of the list
-            addToMiddle(event);
-        }
-    }
+        for (Event curr: events) {
+            canAdd = checkCanAdd(event, curr);
 
-    /**
-     * adds an event to correct position somewhere in the middle of the list
-     *
-     * @param toAdd the event to be added
-     */
-    void addToMiddle(Event toAdd) {
-        Iterator<Event> iterator = events.listIterator();
-        int index = 0;
-
-        boolean canAdd = false;
-
-        while (iterator.hasNext()) {
-            Event item = iterator.next();
-
-            if (checkAddBefore(toAdd, item)) {
-                freeSlots.excludeDuration(toAdd.getDtd());
-
-                events.add(index, toAdd);
-                canAdd = true;
+            if (!canAdd) {
                 break;
             }
-
-            index++;
         }
 
-        if (!canAdd) {
-            // throw an exception if the timing overlaps
+        if (canAdd) {
+            events.add(event);
+            freeSlots.excludeDuration(event.getDtd());
+            Collections.sort(events);
+        } else {
             throw new TimeOverlapException();
         }
-
     }
-
 
     /**
-     * determines if an event can be added to the list after a current event
-     *
-     * @param toAdd event to be added
-     * @param after event that is supposed to come after the event to be added
-     * @return boolean determining whether the event can be added before the event in the list
+     * Checks if a given event overlaps with an existing event.
+     * @param event the given event
+     * @param curr the existing event
+     * @return boolean that determines if there is no overlap
      */
-    public boolean checkAddBefore(Event toAdd, Event after) {
-        boolean b1 = toAdd.getStartTime().compareTo(after.getStartTime()) <= 0;
-        boolean b2 = toAdd.getEndTime().compareTo(after.getStartTime()) <= 0;
+    boolean checkCanAdd(Event event, Event curr) {
+        boolean canAdd = true;
 
-        return b1 && b2;
+        LocalTime currStart = curr.getStartTime();
+        LocalTime currEnd = curr.getEndTime();
+
+        boolean haveSameStart = currStart.equals(event.getStartTime());
+        boolean haveSameEnd = currEnd.equals(event.getEndTime());
+
+
+        boolean eventStartIsBetween = isBetween(event.getStartTime(), currStart, currEnd);
+        boolean eventEndIsBetween = isBetween(event.getEndTime(), currStart, currEnd);
+
+        if (haveSameStart || haveSameEnd || eventStartIsBetween || eventEndIsBetween) {
+            canAdd = false;
+        }
+
+        return canAdd;
     }
+
+    /**
+     * determines if a given time is in between 2 other times
+     * @param time the given time
+     * @param start the start time
+     * @param end the end time
+     * @return a boolean
+     */
+    boolean isBetween(LocalTime time, LocalTime start, LocalTime end) {
+        int isAfterStart = time.compareTo(start);
+        int isBeforeEnd = time.compareTo(end);
+
+        return isAfterStart > 0 && isBeforeEnd < 0;
+    }
+
 
     /**
      * Add lesson.
@@ -126,11 +126,11 @@ public class Day implements Copyable<Day> {
      * @param index index of event in the LinkedList
      */
     Event deleteEvent(int index) {
-        if (index > events.size()) {
+        if (index >= events.size()) {
             throw new EventNotFoundException();
         }
-        Event deleted = events.remove(index - 1);
-        events.remove(deleted);
+        Event deleted = events.remove(index);
+
         freeSlots.includeDuration(deleted.getDtd());
         if (deleted instanceof WeakEvent) {
             WeakEvent wkE = (WeakEvent) deleted;
@@ -160,11 +160,11 @@ public class Day implements Copyable<Day> {
      * @param index index of event in the LinkedList
      */
     public String addNote(String desc, int index) {
-        if (index > events.size()) {
+        if (index >= events.size()) {
             throw new EventNotFoundException();
         }
-        events.get(index - 1).addNote(desc);
-        return events.get(index - 1).toString();
+        events.get(index).addNote(desc);
+        return events.get(index).toString();
     }
 
     public List<Event> getEventList() {
@@ -173,9 +173,9 @@ public class Day implements Copyable<Day> {
 
 
     /**
-     * View string.
+     * View the events for the day.
      *
-     * @return the string
+     * @return the string of events
      */
     public String view() {
 

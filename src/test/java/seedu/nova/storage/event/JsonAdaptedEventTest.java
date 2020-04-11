@@ -7,8 +7,6 @@ import static seedu.nova.testutil.TypicalEvents.LESSON;
 import static seedu.nova.testutil.TypicalEvents.MEETING;
 import static seedu.nova.testutil.TypicalEvents.STUDY_SESSION;
 
-import java.time.format.DateTimeParseException;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
@@ -68,14 +66,14 @@ class JsonAdaptedEventTest {
     public void toModelType_invalidStartTime_throwsDateTimeParseException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_EVENT_TYPE, "Test Description", "Test Venue", VALID_DATE,
                 INVALID_START_TIME, VALID_END_TIME, "Test Note");
-        assertThrows(DateTimeParseException.class, event::toModelType);
+        assertThrows(ParseException.class, event::toModelType);
     }
 
     @Test
     public void toModelType_invalidEndTime_throwsDateTimeParseException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_EVENT_TYPE, "Test Description", "Test Venue", VALID_DATE,
                 VALID_START_TIME, INVALID_END_TIME, "Test Note");
-        assertThrows(DateTimeParseException.class, event::toModelType);
+        assertThrows(ParseException.class, event::toModelType);
     }
 
     @Test

@@ -2,6 +2,8 @@ package seedu.nova.model.progresstracker;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 /**
  * Represents a progress tracker
  */
@@ -24,8 +26,9 @@ public class ProgressTracker {
 
     /**
      * Lists tasks in specified project and week
+     *
      * @param projectName specified project
-     * @param weekNum specified week
+     * @param weekNum     specified week
      * @return listing of the tasks in the specified week and project
      */
     public String listPtTask(String projectName, int weekNum) {
@@ -48,10 +51,11 @@ public class ProgressTracker {
     }
 
     /**
-     * adds a ptTask to the specified project and week
+     * adds a pttask to the specified project and week
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param task to be added
+     * @param weekNum     specified week
+     * @param task        to be added
      */
     public void addPtTask(String projectName, int weekNum, PtTask task) {
         requireNonNull(projectName);
@@ -75,9 +79,10 @@ public class ProgressTracker {
 
     /**
      * deletes task from specified project and week
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
+     * @param weekNum     specified week
+     * @param taskNum     specified task
      * @return true if successful, false if no task
      */
     public boolean deletePtTask(String projectName, int weekNum, int taskNum) {
@@ -108,9 +113,10 @@ public class ProgressTracker {
 
     /**
      * edits task from specified project and week
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
+     * @param weekNum     specified week
+     * @param taskNum     specified task
      * @return true if successful, false if no task
      */
     public boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc) {
@@ -143,9 +149,10 @@ public class ProgressTracker {
 
     /**
      * sets done for specified task
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
+     * @param weekNum     specified week
+     * @param taskNum     specified task
      * @return true if successful, false if no task
      */
     public boolean setDonePtTask(String projectName, int weekNum, int taskNum) {
@@ -175,10 +182,11 @@ public class ProgressTracker {
 
     /**
      * adds ptNote to a specified task
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
-     * @param note ptNote to add
+     * @param weekNum     specified week
+     * @param taskNum     specified task
+     * @param note        ptNote to add
      * @return true if successful, false if no task
      */
     public boolean addPtNote(String projectName, int weekNum, int taskNum, String note) {
@@ -194,13 +202,14 @@ public class ProgressTracker {
             project = getTp();
         }
 
-
         PtWeekList ptWeekList = project.getWeekList();
         PtWeek ptWeek = ptWeekList.getWeek(weekNum);
         PtTaskList ptTaskList = ptWeek.getTaskList();
         PtTask taskToAddNote = ptTaskList.getTask(taskNum);
 
         if (taskToAddNote == null) {
+            return false;
+        } else if (!taskToAddNote.getNote().toString().equals("")) {
             return false;
         } else {
             taskToAddNote.setNote(note);
@@ -210,9 +219,10 @@ public class ProgressTracker {
 
     /**
      * deletes the note of the specified task
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
+     * @param weekNum     specified week
+     * @param taskNum     specified task
      * @return true if successful, false if not successful
      */
     public boolean deletePtNote(String projectName, int weekNum, int taskNum) {
@@ -250,9 +260,10 @@ public class ProgressTracker {
 
     /**
      * edits the note of the specified task
+     *
      * @param projectName specified project
-     * @param weekNum specified week
-     * @param taskNum specified task
+     * @param weekNum     specified week
+     * @param taskNum     specified task
      * @return true if successful, false if not successful
      */
     public boolean editPtNote(String projectName, int weekNum, int taskNum, String note) {
@@ -278,14 +289,94 @@ public class ProgressTracker {
             return false;
         }
 
-        PtNote noteDelete = taskToEditNote.getNote();
-        boolean isEmptyNote = noteDelete.toString().equals("");
+        PtNote noteEdit = taskToEditNote.getNote();
+        boolean isEmptyNote = noteEdit.toString().equals("");
 
         if (isEmptyNote) {
             return false;
         } else {
             taskToEditNote.setNote(note);
             return true;
+        }
+    }
+
+    /**
+     * Returns a list of ptTasks in Ip project
+     */
+    public ArrayList<PtTask> toIpPtTaskList() {
+        ArrayList<PtTask> ipTasks = new ArrayList<>();
+
+        PtWeekList ipWeekList = getIp().getWeekList();
+
+        for (PtWeek week : ipWeekList.getWeekList()) {
+            int weekNum = week.getWeekNum();
+
+            for (PtTask task : ipWeekList.getWeek(weekNum).getTaskList().getList()) {
+                ipTasks.add(task);
+            }
+        }
+        return ipTasks;
+    }
+
+    /**
+     * Returns a list of ptTasks in Tp project
+     */
+    public ArrayList<PtTask> toTpPtTaskList() {
+        ArrayList<PtTask> tpTasks = new ArrayList<>();
+
+        PtWeekList tpWeekList = getTp().getWeekList();
+
+        for (PtWeek week : tpWeekList.getWeekList()) {
+            int weekNum = week.getWeekNum();
+
+            for (PtTask task : tpWeekList.getWeek(weekNum).getTaskList().getList()) {
+                tpTasks.add(task);
+            }
+        }
+
+        return tpTasks;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof ProgressTracker) {
+            boolean ipTaskEqual = true;
+            boolean tpTaskEqual = true;
+
+            ArrayList<PtTask> ipTasks = toIpPtTaskList();
+            ArrayList<PtTask> tpTasks = toTpPtTaskList();
+            ArrayList<PtTask> otherIpTasks = ((ProgressTracker) other).toIpPtTaskList();
+            ArrayList<PtTask> otherTpTasks = ((ProgressTracker) other).toTpPtTaskList();
+
+            if (ipTasks.size() != otherIpTasks.size() || tpTasks.size() != otherTpTasks.size()) {
+                ipTaskEqual = false;
+                tpTaskEqual = false;
+            } else {
+                for (int i = 0; i < ipTasks.size(); i++) {
+                    PtTask ipTaskCurrent = ipTasks.get(i);
+                    PtTask otherIpTaskCurrent = otherIpTasks.get(i);
+
+                    if (!ipTaskCurrent.equals(otherIpTaskCurrent)) {
+                        ipTaskEqual = false;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < tpTasks.size(); i++) {
+                    PtTask tpTaskCurrent = tpTasks.get(i);
+                    PtTask otherTpTaskCurrent = otherIpTasks.get(i);
+
+                    if (!tpTaskCurrent.equals(otherTpTaskCurrent)) {
+                        tpTaskEqual = false;
+                        break;
+                    }
+                }
+            }
+            return ipTaskEqual && tpTaskEqual;
+        } else {
+            return false;
         }
     }
 }

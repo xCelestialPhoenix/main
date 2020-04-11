@@ -30,7 +30,7 @@ class ScViewWeekCommandTest {
     @Test
     void execute_validWeekWithEvent_viewSuccessful() throws Exception {
 
-        final String expectedMessage = MEETING.getDayOfWeek() + ": \n" + "1. " + MEETING + "\n";
+        final String expectedMessage = MEETING.getDayOfWeek() + ": \n" + "1. " + MEETING + "\n\n";
 
         ModelStubWithSchedule modelStub = new ModelStubWithSchedule();
         modelStub.addEvent(MEETING);
