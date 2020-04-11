@@ -127,7 +127,8 @@ _[.small]#Fig 5.1.2: GUI of NOVA after entering `nav schedule`#_
 
 === Address Book
 Learn how to work with the Address Book in NOVA. The address book feature allows you to keep in contact with
-your teammates and classmates. Access this mode by entering the command `nav ab`. Your NOVA should look something
+your teammates and classmates, and contacts are automatically sorted by alphabetical order. +
+Access this mode by entering the command `nav ab`. Your NOVA should look something
 like Figure 5.2 below.
 
 image::userguide/addressbook.png[width="790" align="center"]
@@ -219,7 +220,8 @@ NOVA will find and list saved contacts named Jane.
 <<Top, [Back to Top]>>
 
 ==== Edit Contact: `edit`
-You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know.
+You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know. +
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you edit contact.**
 
 Format: `edit i\[index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
@@ -257,8 +259,9 @@ _[.small]#Fig 5.2.5.2: Successfully changed Alex Yeoh's phone number#_
 
 <<Top, [Back to Top]>>
 
-==== Add Category Specific Remarks: `remark`
-You can add remarks that are category specific, to a contact.
+==== Add, Edit or Delete Remark: `remark`
+You can add remarks that are category specific, to a contact. +
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you add, edit or delete remark to your contact.**
 
 Format: `remark i\[index] r\[remark]`
 
@@ -271,7 +274,7 @@ Confirm the position of the contact in your most recent list to avoid editing ot
 [NOTE]
 ====
 * The `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
-* To remove any remarks, use `remark i\[index] r\`
+* To remove any remarks, use `remark i\[index] r\` or `remark i\[index]`
 ====
 
 Example: +
@@ -292,7 +295,8 @@ _[.small]#Fig 5.2.6.2: Successfully added remark to Bernice Yu#_
 <<Top, [Back to Top]>>
 
 ==== Delete Contact: `delete`
-You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
+You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know. +
+**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you delete contact.**
 
 Format: `delete i\[index]`
 
@@ -370,7 +374,8 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add meetings to dates that fall within the semester.
 ====
 
 Example: +
@@ -395,7 +400,8 @@ Format: `study d\[description] v\[venue] t\ [YYYY-MM-DD] [Start time (HH:MM)] [E
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add study sessions to dates that fall within the semester.
 ====
 
 Example: +
@@ -420,7 +426,8 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* You can only add consultation sessions to dates that fall within the semester.====
 ====
 
 Example: +
@@ -438,14 +445,16 @@ _[.small]#Fig 5.3.3: Display message after entering +
 <<Top, [Back to Top]>>
 
 ==== Add a Lesson: `lesson`
-You can add a lesson as one of your events.
+You can add a weekly lesson as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
 
 [NOTE]
 ====
-The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
+* The lesson will be repeated weekly from weeks 1 to 13.
+* There will not be lessons in the recess week.
 ====
 
 Example: +
