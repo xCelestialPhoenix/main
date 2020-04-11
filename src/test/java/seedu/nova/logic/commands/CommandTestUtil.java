@@ -53,10 +53,20 @@ public class CommandTestUtil {
 
     public static final String VALID_CONSULTATION_DESC = "Design Principles";
     public static final String VALID_CONSULTATION_DESC_2 = "Sequence Diagrams";
+    public static final String VALID_CONS_VENUE = "COM2-0203";
+    public static final String VALID_CONS_TIME_DATE = "2020-03-20 16:00 17:00";
 
-    public static final String VALID_VENUE = "COM2-0203";
+    public static final String VALID_MEETING_DESC = "Project Meeting";
+    public static final String VALID_MEETING_DESC_2 = "Meeting for GUI";
+    public static final String VALID_MEETING_VENUE = "COM1-B108";
+    public static final String VALID_MEETING_TIME_DATE = "2020-03-09 14:00 15:00";
+
+    public static final String VALID_STUDY_DESC = "UML Diagrams";
+    public static final String VALID_STUDY_DESC_2 = "Software Design";
+    public static final String VALID_STUDY_VENUE = "Home";
+    public static final String VALID_STUDY_TIME_DATE = "2020-03-12 11:00 12:00";
+
     public static final String VALID_VENUE_2 = "COM1-0201";
-    public static final String VALID_TIME_DATE = "2020-03-20 16:00 17:00";
     public static final String VALID_TIME_DATE_2 = "2020-03-20 12:00 13:00";
 
 
@@ -81,10 +91,20 @@ public class CommandTestUtil {
 
     public static final String CONSULTATION_DESC = " " + PREFIX_DESC + VALID_CONSULTATION_DESC;
     public static final String CONSULTATION_DESC_2 = " " + PREFIX_DESC + VALID_CONSULTATION_DESC_2;
+    public static final String CONS_VENUE = " " + PREFIX_VENUE + VALID_CONS_VENUE;
+    public static final String CONS_TIME_DATE = " " + PREFIX_TIME + VALID_CONS_TIME_DATE;
 
-    public static final String VENUE = " " + PREFIX_VENUE + VALID_VENUE;
+    public static final String MEETING_DESC = " " + PREFIX_DESC + VALID_MEETING_DESC;
+    public static final String MEETING_DESC_2 = " " + PREFIX_DESC + VALID_MEETING_DESC_2;
+    public static final String MEETING_VENUE = " " + PREFIX_VENUE + VALID_MEETING_VENUE;
+    public static final String MEETING_TIME_DATE = " " + PREFIX_TIME + VALID_MEETING_TIME_DATE;
+
+    public static final String STUDY_DESC = " " + PREFIX_DESC + VALID_STUDY_DESC;
+    public static final String STUDY_DESC_2 = " " + PREFIX_DESC + VALID_STUDY_DESC_2;
+    public static final String STUDY_VENUE = " " + PREFIX_VENUE + VALID_STUDY_VENUE;
+    public static final String STUDY_TIME_DATE = " " + PREFIX_TIME + VALID_STUDY_TIME_DATE;
+
     public static final String VENUE_2 = " " + PREFIX_VENUE + VALID_VENUE_2;
-    public static final String TIME_DATE = " " + PREFIX_TIME + VALID_TIME_DATE;
     public static final String TIME_DATE_2 = " " + PREFIX_TIME + VALID_TIME_DATE_2;
 
 
@@ -102,10 +122,7 @@ public class CommandTestUtil {
     public static final String INVALID_TIME_DATE_2 = " " + PREFIX_TIME + "2020-02-20 17:00 16:00";
     public static final String INVALID_TIME_DATE_3 = " " + PREFIX_TIME + "2020-02-20 14:00";
     public static final String INVALID_TIME_DATE_4 = " " + PREFIX_TIME + "14:00 16:00";
-
-
-
-
+    public static final String INVALID_TIME_DATE_5 = " " + PREFIX_TIME + "2020-02-20 14:00 25:00";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
