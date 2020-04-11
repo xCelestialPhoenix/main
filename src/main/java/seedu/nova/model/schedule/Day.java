@@ -173,9 +173,9 @@ public class Day implements Copyable<Day> {
 
 
     /**
-     * View string.
+     * View the events for the day.
      *
-     * @return the string
+     * @return the string of events
      */
     public String view() {
 
