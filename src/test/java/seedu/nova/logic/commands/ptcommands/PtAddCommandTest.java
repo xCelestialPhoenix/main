@@ -113,5 +113,17 @@ public class PtAddCommandTest {
         public ProgressTracker getProgressTracker() {
             return new ProgressTracker();
         }
+
+        @Override
+        public Ip getProgressTrackerIp() {
+            ProgressTracker pt = getProgressTracker();
+            return pt.getIp();
+        }
+
+        @Override
+        public Tp getProgressTrackerTp() {
+            ProgressTracker pt = getProgressTracker();
+            return pt.getTp();
+        }
     }
 }

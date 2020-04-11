@@ -39,23 +39,6 @@ public class PtEditNoteCommandTest {
                 null));
     }
 
-    /*
-    @Test
-    public void execute_validProjectAndWeekAndTaskIndex_success() {
-        nova.setProgressTrackerNova(pt);
-        nova.setAddressBookNova(ab);
-        Model model = new ModelManager(nova, new UserPrefs());
-
-        PtEditNoteCommand ptEditNoteCommand = new PtEditNoteCommand(1, 1, "ip", "new note");
-
-        String expectedMessage = String.format(PtEditNoteCommand.MESSAGE_SUCCESS, 1, 1, "IP");
-
-        ModelManager expectedModel = new ModelManager(model.getNova(), new UserPrefs());
-
-        assertCommandSuccess(ptEditNoteCommand, model, expectedMessage, expectedModel);
-    }
-    */
-
     @Test
     public void execute_invalidWeekIndex_throwsCommandException() {
         nova.setProgressTrackerNova(pt);

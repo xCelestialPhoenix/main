@@ -16,8 +16,10 @@ import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -226,6 +228,16 @@ public class ModelStub implements Model {
     //=========== Progress Tracker =============================================================
     @Override
     public ProgressTracker getProgressTracker() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Ip getProgressTrackerIp() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Tp getProgressTrackerTp() {
         throw new AssertionError("This method should not be called.");
     }
 
