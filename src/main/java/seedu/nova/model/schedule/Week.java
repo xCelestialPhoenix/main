@@ -152,7 +152,7 @@ public class Week implements Copyable<Week> {
      * View the schedule of a particular day.
      *
      * @param date the date
-     * @return the string
+     * @return the string of events
      */
     public String view(LocalDate date) {
 
@@ -161,9 +161,9 @@ public class Week implements Copyable<Week> {
     }
 
     /**
-     * View string.
+     * View the schedule of the week.
      *
-     * @return the string
+     * @return the string of events
      */
     public String view() {
 
@@ -185,6 +185,7 @@ public class Week implements Copyable<Week> {
                 sb.append(DayOfWeek.of(index));
                 sb.append(": \n");
                 sb.append(result);
+                sb.append("\n");
 
             }
         }
