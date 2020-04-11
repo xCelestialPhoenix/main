@@ -278,11 +278,7 @@ Confirm the position of the contact in your most recent list to avoid editing ot
 ====
 
 Example: +
-Suppose you want add remark to Bernice Yu in your address book after using `list` as show below,
-
-image::userguide/addressbook_list.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.6.1: Example display message after entering `list`#_
+Suppose you want add remark to Bernice Yu in your address book after using `list` as seen in Fig 5.2.5.1,
 
 type the command: `remark i\2 r\She's a nice teammate`
 
@@ -313,11 +309,7 @@ Confirm the position of the contact in your most recent list to avoid editing ot
 ====
 
 Example: +
-Suppose you want to delete Alex Yeoh's contact after using the `list` as shown below,
-
-image::userguide/addressbook_list.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.7.1: Example display message after entering `list`#_
+Suppose you want to delete Alex Yeoh's contact after using the `list` as seen in Fig 5.2.5.1,
 
 enter the command: `delete i\1`
 
