@@ -9,6 +9,8 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_WEEK;
 import static seedu.nova.testutil.Assert.assertThrows;
 
@@ -49,6 +51,15 @@ public class CommandTestUtil {
     public static final String VALID_TASKDESC_2 = "Example task description 2";
     public static final String VALID_NOTE = "Example note";
 
+    public static final String VALID_CONSULTATION_DESC = "Design Principles";
+    public static final String VALID_CONSULTATION_DESC_2 = "Sequence Diagrams";
+
+    public static final String VALID_VENUE = "COM2-0203";
+    public static final String VALID_VENUE_2 = "COM1-0201";
+    public static final String VALID_TIME_DATE = "2020-03-20 16:00 17:00";
+    public static final String VALID_TIME_DATE_2 = "2020-03-20 12:00 13:00";
+
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -68,6 +79,15 @@ public class CommandTestUtil {
     public static final String PT_TASKDESC_2 = " " + PREFIX_DESC + VALID_TASKDESC_2;
     public static final String PT_NOTE = " " + PREFIX_DESC + VALID_NOTE;
 
+    public static final String CONSULTATION_DESC = " " + PREFIX_DESC + VALID_CONSULTATION_DESC;
+    public static final String CONSULTATION_DESC_2 = " " + PREFIX_DESC + VALID_CONSULTATION_DESC_2;
+
+    public static final String VENUE = " " + PREFIX_VENUE + VALID_VENUE;
+    public static final String VENUE_2 = " " + PREFIX_VENUE + VALID_VENUE_2;
+    public static final String TIME_DATE = " " + PREFIX_TIME + VALID_TIME_DATE;
+    public static final String TIME_DATE_2 = " " + PREFIX_TIME + VALID_TIME_DATE_2;
+
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -77,6 +97,15 @@ public class CommandTestUtil {
     public static final String INVALID_TASK = " " + PREFIX_TASK + "0";
     public static final String INVALID_TASKDESC = " " + PREFIX_DESC + "";
     public static final String INVALID_NOTE = " " + PREFIX_DESC + "";
+
+    public static final String INVALID_TIME_DATE_1 = " " + PREFIX_TIME + "2020-02-30 14:00 16:00";
+    public static final String INVALID_TIME_DATE_2 = " " + PREFIX_TIME + "2020-02-20 17:00 16:00";
+    public static final String INVALID_TIME_DATE_3 = " " + PREFIX_TIME + "2020-02-20 14:00";
+    public static final String INVALID_TIME_DATE_4 = " " + PREFIX_TIME + "14:00 16:00";
+
+
+
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
