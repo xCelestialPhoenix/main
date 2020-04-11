@@ -52,7 +52,7 @@ public class EventAddLessonCommandParser implements Parser<EventAddLessonCommand
         DayOfWeek day = ParserUtil.parseDay(dateTimeArr[0]);
         LocalTime startTime = ParserUtil.parseTime(dateTimeArr[1]);
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
-        LocalDate placeholder = LocalDate.parse("2020-01-13");
+        LocalDate placeholder = LocalDate.parse("2020-01-17");
 
         if (startTime.compareTo(endTime) >= 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
