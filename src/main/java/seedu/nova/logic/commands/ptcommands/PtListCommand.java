@@ -28,12 +28,24 @@ public class PtListCommand extends Command {
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
+    public static final String MESSAGE_SUCCESS = "%s Project (Week %d):\n";
+
     private int weekNum;
     private String project;
 
     public PtListCommand(int weekNum, String project) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
     }
 
     @Override
@@ -52,10 +64,22 @@ public class PtListCommand extends Command {
                 throw new CommandException(MESSAGE_NULLWEEK);
             }
 
-            String header = this.project.toUpperCase() + " Project " + "(Week " + weekNum + "):" + "\n";
+            String header = String.format(MESSAGE_SUCCESS, this.project.toUpperCase(), weekNum);
             String result = header + listResult;
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtListCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtListCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtListCommand) obj).getWeekNum() == this.getWeekNum();
+
+            return isSameProject && isSameWeek;
         }
     }
 }

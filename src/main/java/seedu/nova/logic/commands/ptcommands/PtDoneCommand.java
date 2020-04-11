@@ -28,16 +28,33 @@ public class PtDoneCommand extends Command {
             + PREFIX_TASK + "1";
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
     public static final String MESSAGE_NULLTASK = "No task with that index";
+
+    public static final String MESSAGE_SUCCESS = "Changed done status of task %d in week %d of %s";
 
     private int weekNum;
     private String project;
     private int taskNum;
 
     public PtDoneCommand(int weekNum, String project, int taskNum) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskNum = taskNum;
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
     }
 
     @Override
@@ -55,10 +72,22 @@ public class PtDoneCommand extends Command {
             }
 
             String projectName = this.project.toUpperCase();
-            String result = "Changed done status of task " + taskNum + " in week " + weekNum + " of "
-                    + projectName;
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtDoneCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtDoneCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtDoneCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtDoneCommand) obj).getTaskNum() == this.getTaskNum();
+
+            return isSameProject && isSameWeek && isSameTaskNum;
         }
     }
 }
