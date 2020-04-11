@@ -2,6 +2,7 @@ package seedu.nova;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -16,11 +17,15 @@ import seedu.nova.commons.util.ConfigUtil;
 import seedu.nova.commons.util.StringUtil;
 import seedu.nova.logic.Logic;
 import seedu.nova.logic.LogicManager;
+import seedu.nova.model.AddressBook;
 import seedu.nova.model.Model;
 import seedu.nova.model.ModelManager;
 import seedu.nova.model.Nova;
 import seedu.nova.model.ReadOnlyUserPrefs;
+import seedu.nova.model.Schedule;
 import seedu.nova.model.UserPrefs;
+import seedu.nova.model.VersionedAddressBook;
+import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.util.SampleDataUtil;
 import seedu.nova.storage.JsonNovaStorage;
 import seedu.nova.storage.JsonUserPrefsStorage;
@@ -80,14 +85,20 @@ public class MainApp extends Application {
         try {
             novaOptional = storage.readNova();
             if (!novaOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample data file");
             }
             initialData = novaOptional.orElseGet(SampleDataUtil::getSampleNova);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new Nova();
+            logger.warning("Data file not in the correct format. Will be starting with an empty data file");
+            Nova nova = new Nova();
+            nova.setAddressBookNova(new VersionedAddressBook(new AddressBook()));
+            nova.setProgressTrackerNova(new ProgressTracker());
+            nova.setScheduleNova(new Schedule(LocalDate.of(2020, 1, 13),
+                    LocalDate.of(2020, 5, 3)));
+
+            initialData = nova;
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty data file");
             initialData = new Nova();
         }
 

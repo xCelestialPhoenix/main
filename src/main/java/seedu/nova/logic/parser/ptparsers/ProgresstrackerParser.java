@@ -2,8 +2,6 @@ package seedu.nova.logic.parser.ptparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Pattern;
-
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.ptcommands.PtAddCommand;
 import seedu.nova.logic.commands.ptcommands.PtAddNoteCommand;
@@ -19,11 +17,6 @@ import seedu.nova.logic.parser.exceptions.ParseException;
  * Parses user input for progress tracker feature.
  */
 public class ProgresstrackerParser {
-
-    /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.

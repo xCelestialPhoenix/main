@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Adds task to specified week
@@ -28,17 +22,16 @@ public class PtAddNoteCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
-            + PREFIX_DESC + "TASK DESCRIPTION \n"
+            + PREFIX_DESC + "NOTE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
             + PREFIX_TASK + "1"
             + PREFIX_DESC + "take note to do by 2359 Friday";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
-
-    public static final String MESSAGE_NULLTASK = "No task with that index";
-
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+    public static final String MESSAGE_FAILURE = "Command failed. Please check that there is a task "
+            + " or that there isn't an existing note in the specified index";
 
     private int weekNum;
     private int taskNum;
@@ -55,33 +48,22 @@ public class PtAddNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            boolean isAddSuccess = model.addPtNote(this.project, weekNum, taskNum, note);
+
+            if (!isAddSuccess) {
+                throw new CommandException(MESSAGE_FAILURE);
+            }
+
+            String projectName = this.project.toUpperCase();
+            String result = "Added note to task " + taskNum + " in week " + weekNum + " of " + projectName;
+
+            return new CommandResult(result, false, false);
         }
-
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
-
-        //if week not created, create week
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLWEEK);
-        } else if (week.getTaskList().getTask(taskNum) == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
-        }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask task = taskList.getTask(taskNum);
-        task.setNote(note);
-
-        String result = "Added note to task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
 
