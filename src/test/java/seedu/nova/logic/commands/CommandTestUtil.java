@@ -36,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_TAG_TEAMMATE = "teammate";
+    public static final String VALID_TAG_CLASSMATE = "classmate";
     public static final String VALID_TAG_HUSBAND = "teammate";
     public static final String VALID_TAG_FRIEND = "classmate";
     public static final String VALID_PROJECTIP = "ip";
@@ -53,6 +55,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String TAG_DESC_CLASSMATE = " " + PREFIX_CATEGORY + VALID_TAG_CLASSMATE;
+    public static final String TAG_DESC_TEAMMATE = " " + PREFIX_CATEGORY + VALID_TAG_TEAMMATE;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_CATEGORY + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_CATEGORY + VALID_TAG_HUSBAND;
     public static final String PROJECT_IP = " " + PREFIX_PROJECT + VALID_PROJECTIP;
@@ -83,10 +87,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_CLASSMATE).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_TEAMMATE, VALID_TAG_CLASSMATE).build();
     }
 
     /**
