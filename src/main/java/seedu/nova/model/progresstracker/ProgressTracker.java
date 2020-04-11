@@ -51,7 +51,7 @@ public class ProgressTracker {
     }
 
     /**
-     * adds a ptTask to the specified project and week
+     * adds a pttask to the specified project and week
      *
      * @param projectName specified project
      * @param weekNum     specified week

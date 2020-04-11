@@ -31,7 +31,8 @@ public class ResultDisplay extends UiPart<Region> {
         Text txt = new Text();
         txt.setText(feedbackToUser);
         txt.setStyle("-fx-font: 18 arial;");
-        txt.wrappingWidthProperty().bind(width);
+        txt.setWrappingWidth(980);
+        //txt.wrappingWidthProperty().bind(width);
         placeHolder.getChildren().add(txt);
         VBox.setVgrow(txt, Priority.NEVER);
     }

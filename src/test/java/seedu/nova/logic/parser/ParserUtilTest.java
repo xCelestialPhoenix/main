@@ -27,6 +27,11 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_WEEK = "-1";
+    private static final String INVALID_TASK = "-1";
+    private static final String INVALID_PROJECT = "IPP";
+    private static final String INVALID_TASKDESC = "";
+    private static final String INVALID_NOTE = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -243,5 +248,28 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseDay(INVALID_DAY));
     }
 
+    @Test
+    public void parseWeek_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWeek(INVALID_WEEK));
+    }
 
+    @Test
+    public void parseTask_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTask(INVALID_TASK));
+    }
+
+    @Test
+    public void parseProject_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProject(INVALID_PROJECT));
+    }
+
+    @Test
+    public void parseTaskDesc_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTaskDesc(INVALID_TASKDESC));
+    }
+
+    @Test
+    public void parseNote_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNote(INVALID_NOTE));
+    }
 }

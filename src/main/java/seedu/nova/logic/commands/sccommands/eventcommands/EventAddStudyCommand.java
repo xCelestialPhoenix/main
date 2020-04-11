@@ -52,8 +52,15 @@ public class EventAddStudyCommand extends Command {
             model.addEvent(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
-            throw new CommandException("You already have an event within that time frame.");
+            throw new CommandException(MESSAGE_TIME_OVERLAP);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventAddStudyCommand // instanceof handles nulls
+                && toAdd.equals(((EventAddStudyCommand) other).toAdd));
     }
 
 }
