@@ -18,7 +18,7 @@ import seedu.nova.model.schedule.event.Consultation;
 import seedu.nova.model.schedule.event.Event;
 
 /**
- * Parses input arguments and creates a new EventAddConsultationCommand object
+ * Parses input arguments and creates a new EventAddConsultationCommand object.
  */
 public class EventAddConsultationCommandParser implements Parser<EventAddConsultationCommand> {
 

@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.EventNotFoundException;
 import seedu.nova.model.schedule.event.Lesson;
-import seedu.nova.model.schedule.event.TimeOverlapException;
 import seedu.nova.model.schedule.event.WeakEvent;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.TimeOverlapException;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
@@ -18,8 +18,6 @@ import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
  * The type Day.
  */
 public class Day implements Copyable<Day> {
-
-    private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
 
     private List<Event> events;
     private LocalDate date;
@@ -158,6 +156,7 @@ public class Day implements Copyable<Day> {
      * Adds a note to an event.
      *
      * @param index index of event in the LinkedList
+     * @return String representing the event with added note
      */
     public String addNote(String desc, int index) {
         if (index >= events.size()) {
