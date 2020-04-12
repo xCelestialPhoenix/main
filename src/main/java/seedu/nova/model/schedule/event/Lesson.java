@@ -14,12 +14,31 @@ public class Lesson extends Event {
     private DayOfWeek day;
 
 
+    /**
+     * Constructs a lesson event.
+     * @param description description of lesson
+     * @param venue venue of lesson
+     * @param startTime time at which lesson starts
+     * @param endTime time at which lesson ends
+     * @param date date of lesson
+     * @param day day of week of lesson
+     */
     public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime, LocalDate date,
                    DayOfWeek day) {
         super(description, venue, startTime, endTime, date);
         this.day = day;
     }
 
+    /**
+     * Constructs a lesson event with a note.
+     * @param description description of lesson
+     * @param venue venue of lesson
+     * @param startTime time at which lesson starts
+     * @param endTime time at which lesson ends
+     * @param date date of lesson
+     * @param day day of week of lesson
+     * @param note note related to lesson
+     */
     public Lesson(String description, String venue, LocalTime startTime, LocalTime endTime,
                   DayOfWeek day, LocalDate date, String note) {
         super(description, venue, startTime, endTime, date);
@@ -27,6 +46,10 @@ public class Lesson extends Event {
         this.note = note;
     }
 
+    /**
+     * Constructs a copy of the Lesson.
+     * @param lesson lesson object to be copied
+     */
     public Lesson(Lesson lesson) {
         this(lesson.desc, lesson.venue, lesson.startTime, lesson.endTime, lesson.date, lesson.day);
     }
