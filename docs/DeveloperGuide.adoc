@@ -543,6 +543,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |student |delete profile picture to added contact|don't need the contact picture within NOVA anymore
 
+// tag::eventuserstory[]
 |`* * *` |student |create meeting events | can keep track of my schedule
 
 |`* * *` |student |create study session events | can keep track of my schedule
@@ -555,13 +556,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |delete events | can get rid of events that I do not need anymore
 
-|`* * *` |student |mark events as done | know which events I have completed
+|`* * *` |student |add notes to events | can jot down additional details about the events
 
-|`* * *` |student |find events | can check if I have any specific events according to keyword(s)
+|`* *` |student |mark events as done | know which events I have completed
 
-|`* *` |student |add notes to events | can jot down additional details about the events
+|`* *` |student |find events | can check if I have any specific events according to keyword(s)
 
 |`* *` |student |repeat events | can add multiple similar events at one go
+// end::eventuserstory[]
 
 |`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
@@ -943,6 +945,7 @@ Use case ends.
 +
 Use case ends.
 
+// tag::eventusecase[]
 [discrete]
 === Use case 16: User lists tasks in a week of a project.
 
@@ -960,6 +963,7 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+// end::eventusecase[]
 
 [discrete]
 === Use case 17: User set an added task as done.
