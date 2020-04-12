@@ -1,7 +1,7 @@
 package seedu.nova.logic.commands.ptcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
+
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_WEEK;
@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Adds task to specified week
@@ -28,59 +22,73 @@ public class PtDeleteCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
-            + PREFIX_DESC + "TASK DESCRIPTION \n"
+            + PREFIX_TASK + "TASK \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
             + PREFIX_TASK + "1";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
-    public static final String MESSAGE_NULLTASK = "No task with that index";
+    public static final String MESSAGE_FAILURE = "No task with that index";
+
+    public static final String MESSAGE_SUCCESS = "Deleted task %d in week %d of %s";
 
     private int weekNum;
     private String project;
     private int taskNum;
 
     public PtDeleteCommand(int weekNum, String project, int taskNum) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskNum = taskNum;
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            boolean isDeleteSuccess = model.deletePtTask(this.project, weekNum, taskNum);
+
+            if (!isDeleteSuccess) {
+                throw new CommandException(MESSAGE_FAILURE);
+            }
+
+            String projectName = this.project.toUpperCase();
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
+
+            return new CommandResult(result, false, false);
         }
+    }
 
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtDeleteCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtDeleteCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtDeleteCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtDeleteCommand) obj).getTaskNum() == this.getTaskNum();
 
-        //if week not created, create week
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLWEEK);
+            return isSameProject && isSameWeek && isSameTaskNum;
         }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask taskDelete = taskList.getTask(taskNum);
-
-        if (taskDelete == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
-        }
-
-        taskList.deleteTask(taskNum);
-
-
-        String result = "Deleted task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }

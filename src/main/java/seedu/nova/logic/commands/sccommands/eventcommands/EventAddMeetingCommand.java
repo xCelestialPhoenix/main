@@ -11,7 +11,6 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.InvalidDateException;
 import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
@@ -33,6 +32,9 @@ public class EventAddMeetingCommand extends Command {
             + PREFIX_TIME + "2020-03-10 14:00 16:00 ";
 
     public static final String MESSAGE_SUCCESS = "New meeting has been added: \n%1$s";
+    public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
+    public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
+
     private Event toAdd;
 
     public EventAddMeetingCommand(Event meeting) {
@@ -44,14 +46,23 @@ public class EventAddMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.isWithinSem(toAdd.getDate())) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
         try {
             model.addEvent(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (TimeOverlapException e) {
-            throw new CommandException("You already have an event within that time frame.");
-        } catch (InvalidDateException e) {
-            throw new CommandException("That date does not fall within the semester.");
+            throw new CommandException(MESSAGE_TIME_OVERLAP);
         }
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventAddMeetingCommand // instanceof handles nulls
+                && toAdd.equals(((EventAddMeetingCommand) other).toAdd));
     }
 }

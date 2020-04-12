@@ -27,9 +27,6 @@ public class VersionedAddressBook extends AddressBook {
         addressBookStateList.subList(currStatePointer + 1, addressBookStateList.size()).clear();
         addressBookStateList.add(new AddressBook(this));
         currStatePointer++;
-        /*for (int i = 0; i < addressBookStateList.size(); i++) {
-            System.out.println(addressBookStateList.get(i).getPersonList().get(0).getRemark());
-        } */
     }
 
     public boolean canUndo() {

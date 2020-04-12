@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Adds task to specified week
@@ -28,6 +22,7 @@ public class PtEditCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
+            + PREFIX_TASK + "TASK "
             + PREFIX_DESC + "TASK DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
@@ -35,9 +30,11 @@ public class PtEditCommand extends Command {
             + PREFIX_TASK + "1"
             + PREFIX_DESC + "Implement javafx";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
-    public static final String MESSAGE_NULLTASK = "No task with that index";
+    public static final String MESSAGE_FAILURE = "No task with that index";
+
+    public static final String MESSAGE_SUCCESS = "Edited task %d in week %d of %s";
 
     private int weekNum;
     private String project;
@@ -45,42 +42,64 @@ public class PtEditCommand extends Command {
     private int taskNum;
 
     public PtEditCommand(int weekNum, String project, String taskDesc, int taskNum) {
+        requireNonNull(project);
+        requireNonNull(taskDesc);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskDesc = taskDesc;
         this.taskNum = taskNum;
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getTaskDesc() {
+        return taskDesc;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            boolean isEditSuccess = model.editPtTask(this.project, weekNum, taskNum, taskDesc);
+
+            if (!isEditSuccess) {
+                throw new CommandException(MESSAGE_FAILURE);
+            }
+
+            String projectName = this.project.toUpperCase();
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
+
+            return new CommandResult(result, false, false);
         }
+    }
 
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtEditCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtEditCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtEditCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskDesc = ((PtEditCommand) obj).getTaskDesc().equals(this.getTaskDesc());
+            boolean isSameTaskNum = ((PtEditCommand) obj).getTaskNum() == this.getTaskNum();
 
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLWEEK);
-        } else if (week.getTaskList().getTask(taskNum) == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
+            return isSameProject && isSameWeek && isSameTaskNum && isSameTaskDesc;
         }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask editTask = taskList.getTask(taskNum);
-
-        editTask.setTaskDesc(this.taskDesc);
-
-        String result = "Edited task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
 

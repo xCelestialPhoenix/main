@@ -3,9 +3,13 @@ package seedu.nova.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.nova.logic.parser.CliSyntax.PREFIX_WEEK;
 import static seedu.nova.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -32,8 +36,20 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_TAG_TEAMMATE = "teammate";
+    public static final String VALID_TAG_CLASSMATE = "classmate";
     public static final String VALID_TAG_HUSBAND = "teammate";
     public static final String VALID_TAG_FRIEND = "classmate";
+    public static final String VALID_PROJECTIP = "ip";
+    public static final String VALID_PROJECTTP = "tp";
+    public static final String VALID_WEEK = "1";
+    public static final String VALID_WEEK_2 = "2";
+    public static final String VALID_TASK = "1";
+    public static final String VALID_TASK2 = "2";
+    public static final String VALID_TASKDESC = "Example task description";
+    public static final String VALID_TASKDESC_2 = "Example task description 2";
+    public static final String VALID_NOTE = "Example note";
+    public static final String VALID_NOTE2 = "Example note2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -41,13 +57,31 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String TAG_DESC_CLASSMATE = " " + PREFIX_CATEGORY + VALID_TAG_CLASSMATE;
+    public static final String TAG_DESC_TEAMMATE = " " + PREFIX_CATEGORY + VALID_TAG_TEAMMATE;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_CATEGORY + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_CATEGORY + VALID_TAG_HUSBAND;
+    public static final String PROJECT_IP = " " + PREFIX_PROJECT + VALID_PROJECTIP;
+    public static final String PROJECT_TP = " " + PREFIX_PROJECT + VALID_PROJECTTP;
+    public static final String WEEK_ONE = " " + PREFIX_WEEK + VALID_WEEK;
+    public static final String WEEK_TWO = " " + PREFIX_WEEK + VALID_WEEK_2;
+    public static final String PT_TASK = " " + PREFIX_TASK + VALID_TASK;
+    public static final String PT_TASK2 = " " + PREFIX_TASK + VALID_TASK2;
+    public static final String PT_TASKDESC = " " + PREFIX_DESC + VALID_TASKDESC;
+    public static final String PT_TASKDESC_2 = " " + PREFIX_DESC + VALID_TASKDESC_2;
+    public static final String PT_NOTE = " " + PREFIX_DESC + VALID_NOTE;
+    public static final String PT_NOTE2 = " " + PREFIX_DESC + VALID_NOTE2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_CATEGORY + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PROJECT = " " + PREFIX_PROJECT + "";
+    public static final String INVALID_WEEK = " " + PREFIX_WEEK + "-1";
+    public static final String INVALID_WEEK2 = " " + PREFIX_WEEK + "14";
+    public static final String INVALID_TASK = " " + PREFIX_TASK + "0";
+    public static final String INVALID_TASKDESC = " " + PREFIX_DESC + "";
+    public static final String INVALID_NOTE = " " + PREFIX_DESC + "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -58,10 +92,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_CLASSMATE).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_TEAMMATE, VALID_TAG_CLASSMATE).build();
     }
 
     /**

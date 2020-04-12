@@ -310,7 +310,7 @@ The view tasks feature for the IP project allows the user to view a list of task
 Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
 1. The user keys in 'view p\ip w\2' into the command box.
-2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of IP project.
+2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of the IP project.
 3. 'PtListCommandParser' creates a new 'PtListCommand'.
 4. 'LogicManager' executes the 'PtListCommand'.
 5. 'Model#listTasks()' is called and the list of tasks is retrieved.

@@ -6,6 +6,7 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 
+import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -30,11 +31,17 @@ public class EventDeleteCommand extends Command {
             + PREFIX_INDEX + "2 ";
 
     public static final String MESSAGE_SUCCESS = "Event has been deleted: \n%1$s";
-    private LocalDate date;
-    private int index;
+    public static final String MESSAGE_NO_EVENT = "Invalid date - you have no events on that date.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index - that event does not exist.";
+    public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
 
-    public EventDeleteCommand(LocalDate date, int index) {
+
+    private LocalDate date;
+    private Index index;
+
+    public EventDeleteCommand(LocalDate date, Index index) {
         requireNonNull(date);
+        requireNonNull(index);
 
         this.date = date;
         this.index = index;
@@ -44,17 +51,30 @@ public class EventDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.isWithinSem(date)) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
         try {
-            String response = model.deleteEvent(date, index);
+            int i = index.getZeroBased();
+            String response = model.deleteEvent(date, i);
             return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
-            throw new CommandException("Invalid date - you have no events on that date.");
+            throw new CommandException(MESSAGE_NO_EVENT);
 
         } catch (EventNotFoundException e) {
-            throw new CommandException("Invalid index.");
+            throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventDeleteCommand // instanceof handles nulls
+                && index.equals(((EventDeleteCommand) other).index)
+                && date.equals(((EventDeleteCommand) other).date)); // state check
     }
 
 }
