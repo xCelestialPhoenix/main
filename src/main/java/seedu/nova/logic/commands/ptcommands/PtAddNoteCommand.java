@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Adds task to specified week
@@ -28,17 +22,19 @@ public class PtAddNoteCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
-            + PREFIX_DESC + "TASK DESCRIPTION \n"
+            + PREFIX_DESC + "NOTE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
             + PREFIX_TASK + "1"
             + PREFIX_DESC + "take note to do by 2359 Friday";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
-    public static final String MESSAGE_NULLTASK = "No task with that index";
+    public static final String MESSAGE_FAILURE = "Command failed. Please check that there is a task "
+            + " or that there isn't an existing note in the specified index";
 
+    public static final String MESSAGE_SUCCESS = "Added note to task %d in week %d of %s";
 
     private int weekNum;
     private int taskNum;
@@ -46,42 +42,64 @@ public class PtAddNoteCommand extends Command {
     private String note;
 
     public PtAddNoteCommand(int weekNum, int taskNum, String project, String note) {
+        requireNonNull(project);
+        requireNonNull(note);
+
         this.weekNum = weekNum;
         this.taskNum = taskNum;
         this.project = project.trim().toLowerCase();
         this.note = note;
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            boolean isAddSuccess = model.addPtNote(this.project, weekNum, taskNum, note);
+
+            if (!isAddSuccess) {
+                throw new CommandException(MESSAGE_FAILURE);
+            }
+
+            String projectName = this.project.toUpperCase();
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
+
+            return new CommandResult(result, false, false);
         }
+    }
 
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtAddNoteCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtAddNoteCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtAddNoteCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtAddNoteCommand) obj).getTaskNum() == (this.getTaskNum());
+            boolean isSameNote = ((PtAddNoteCommand) obj).getNote().equals(this.getNote());
 
-        //if week not created, create week
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLWEEK);
-        } else if (week.getTaskList().getTask(taskNum) == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
+            return isSameProject && isSameWeek && isSameNote && isSameTaskNum;
         }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask task = taskList.getTask(taskNum);
-        task.setNote(note);
-
-        String result = "Added note to task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
 

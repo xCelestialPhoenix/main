@@ -37,7 +37,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNovaFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -8,9 +8,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtWeek;
 
 /**
  * Executes list command
@@ -31,41 +28,58 @@ public class PtListCommand extends Command {
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
+    public static final String MESSAGE_SUCCESS = "%s Project (Week %d):\n";
+
     private int weekNum;
     private String project;
 
     public PtListCommand(int weekNum, String project) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (weekNum > 13) {
+        if (isOver13) {
             throw new CommandException(MESSAGE_NOWEEK);
         } else {
+            String listResult = model.listPtTask(this.project, weekNum);
 
-            if (this.project.equals("ip")) {
-                project = pt.getIp();
-            } else {
-                project = pt.getTp();
-            }
+            boolean noTask = listResult.equals("");
 
-            week = project.getWeekList().getWeek(weekNum);
-
-            if (week.getTaskList().getNumTask() == 0) {
+            if (noTask) {
                 throw new CommandException(MESSAGE_NULLWEEK);
             }
 
-            String header = this.project.toUpperCase() + " Project " + "(Week " + weekNum + "):" + "\n";
-            String result = header + "  " + week.getTaskList().listTasks();
+            String header = String.format(MESSAGE_SUCCESS, this.project.toUpperCase(), weekNum);
+            String result = header + listResult;
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtListCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtListCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtListCommand) obj).getWeekNum() == this.getWeekNum();
+
+            return isSameProject && isSameWeek;
         }
     }
 }

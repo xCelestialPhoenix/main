@@ -40,12 +40,6 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
 
         Index index;
 
-        /*try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbEditCommand.MESSAGE_USAGE), pe);
-        }*/
-
         if (argMultimap.getValue(CliSyntax.PREFIX_INDEX).isPresent()) {
             index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
         } else {
@@ -62,7 +56,6 @@ public class AbEditCommandParser implements Parser<AbEditCommand> {
         if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()));
         }
-        //parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setCategories);
 
         if (argMultimap.getAllValues(PREFIX_CATEGORY).size() == 1) {
             editPersonDescriptor.setCategories(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CATEGORY)));

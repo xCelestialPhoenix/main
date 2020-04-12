@@ -20,32 +20,24 @@
                 <URL value="@DarkTheme.css" />
                 <URL value="@Extensions.css" />
             </stylesheets>
-            <AnchorPane fx:id="anchorPane" prefHeight="349.0" prefWidth="458.0" style="-fx-background-color: white;">
-                <children>
-                    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutX="252.0" maxHeight="1.7976931348623157E308" prefWidth="206.0" style="-fx-background-color: #FFB6C1;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <content>
+            <AnchorPane fx:id="anchorPane" prefHeight="349.0" prefWidth="458.0" style="-fx-background-color: #FFFFFF;">
+                <StackPane fx:id="scrollPaneHolder" prefHeight="Infinity" prefWidth="Infinity" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER">
 
-                            <VBox fx:id="resultHolder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #FFB6C1;">
-                                <VBox fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" prefWidth="104.0" snapToPixel="false" VBox.vgrow="ALWAYS" />
-                            </VBox>
-                        </content>
-                    </ScrollPane>
-
-                    <StackPane fx:id="commandBoxPlaceholder" alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="458.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                        <padding>
-                            <Insets bottom="5" left="10" right="10" top="5" />
-                        </padding>
-                    </StackPane>
-                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="265.0" prefWidth="254.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <content>
-                            <VBox prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
-                        </content></ScrollPane>
-                    <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="265.0" prefHeight="265.0" prefWidth="254.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0">
-                        <content>
-                            <VBox fx:id="helpHolder" prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
-                        </content>
-                    </ScrollPane>
-                </children>
+                    <VBox fx:id="resultDisplayPlaceholder" minHeight="${scrollPaneHolder.height}" minWidth="${scrollPaneHolder.width}" snapToPixel="false" style="-fx-background-color: #FFB6C1;" />
+                </ScrollPane>
+                </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="458.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                    </padding>
+                </StackPane>
+                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="265.0" prefWidth="254.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
+                </ScrollPane>
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="265.0" prefHeight="265.0" prefWidth="254.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0">
+                    <VBox fx:id="helpHolder" prefHeight="265.0" prefWidth="254.0" VBox.vgrow="ALWAYS" />
+                </ScrollPane>
             </AnchorPane>
         </Scene>
     </scene>

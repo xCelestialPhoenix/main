@@ -25,8 +25,8 @@ public class AbListClassmateCommand extends AbListCategoryCommand {
         String listOfPeople = model.getFilteredPersonList().size() > 0
                 ? "Listed classmate:\n" : "There is no classmate contact saved.";
         for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i)
-                    + " Remark: " + model.getFilteredPersonList().get(i).getRemark()
+            listOfPeople = listOfPeople + (i + 1) + ". " + model.getFilteredPersonList().get(i) + ".\n"
+                    + "    Remark: " + model.getFilteredPersonList().get(i).getRemark()
                     + "\n";
         }
 

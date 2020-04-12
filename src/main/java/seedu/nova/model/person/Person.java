@@ -105,15 +105,14 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
+        String name = getName().toString().trim();
+        builder.append(name)
+                .append(", Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
+                .append(", Email: ")
                 .append(getEmail())
-                .append(" Category: ");
+                .append(", Category: ");
         getCategory().forEach(builder::append);
-        //builder.append(" Remarks: ")
-        //        .append(getRemark());
         return builder.toString();
     }
 

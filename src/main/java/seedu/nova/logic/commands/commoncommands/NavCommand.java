@@ -32,14 +32,19 @@ public class NavCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        logger.info("executing nav command to" + this.modeEnum.name());
+
         requireNonNull(model);
 
-        //Set mode in model
         Mode mode = model.getMode();
+        boolean isCurrentMode = mode.getModeEnum().equals(this.modeEnum);
+        boolean isProgressTrackerMode = this.modeEnum.equals(ModeEnum.PROGRESSTRACKER);
 
-        if (mode.getModeEnum().equals(this.modeEnum)) {
-            return new CommandResult(String.format(MESSAGE_SAME_MODE, modeEnum.name().toLowerCase()), false, false);
-        } else if (this.modeEnum.equals(ModeEnum.PROGRESSTRACKER)) {
+        if (isCurrentMode) {
+            String modeName = modeEnum.name().toLowerCase();
+
+            return new CommandResult(String.format(MESSAGE_SAME_MODE, modeName), false, false);
+        } else if (isProgressTrackerMode) {
             mode.setModeEnum(this.modeEnum);
 
             ProgressTracker pt = model.getProgressTracker();
@@ -47,15 +52,19 @@ public class NavCommand extends Command {
             Tp tp = pt.getTp();
             double ipProgress = ip.getProgress();
             double tpProgress = tp.getProgress();
-            String commandMessage = MESSAGE_SUCCESS + mode.getModeEnum().name() + "\n";
 
+            String modeName = mode.getModeEnum().name();
+            String commandMessage = MESSAGE_SUCCESS + modeName + "\n";
             String messageProgresstracker = "Projects: \n"
                     + "  IP Project: " + ipProgress + "%\n"
                     + "  TP Project: " + tpProgress + "%";
+
             return new CommandResult(commandMessage + messageProgresstracker, true, false);
         } else {
             mode.setModeEnum(this.modeEnum);
-            return new CommandResult(MESSAGE_SUCCESS + mode.getModeEnum().name(), true, false);
+            String modeName = mode.getModeEnum().name();
+
+            return new CommandResult(MESSAGE_SUCCESS + modeName, true, false);
         }
     }
 }

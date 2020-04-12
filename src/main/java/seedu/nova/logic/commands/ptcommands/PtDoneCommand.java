@@ -1,7 +1,7 @@
 package seedu.nova.logic.commands.ptcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
+
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_WEEK;
@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Adds task to specified week
@@ -23,13 +17,11 @@ import seedu.nova.model.progresstracker.PtWeekList;
 public class PtDoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_NULLTASK = "No task with that index";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets specified task as done "
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
-            + PREFIX_DESC + "TASK DESCRIPTION \n"
+            + PREFIX_TASK + "TASK \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
@@ -37,48 +29,65 @@ public class PtDoneCommand extends Command {
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
+    public static final String MESSAGE_NULLTASK = "No task with that index";
+
+    public static final String MESSAGE_SUCCESS = "Changed done status of task %d in week %d of %s";
+
     private int weekNum;
     private String project;
     private int taskNum;
 
     public PtDoneCommand(int weekNum, String project, int taskNum) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskNum = taskNum;
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        boolean isOver13 = weekNum > 13;
 
-        if (weekNum > 13) {
+        if (isOver13) {
             throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            ProgressTracker pt = model.getProgressTracker();
-            PtWeek week;
-            Project project;
+            boolean isSetDoneSuccessful = model.setDonePtTask(this.project, weekNum, taskNum);
 
-            if (this.project.equals("ip")) {
-                project = pt.getIp();
-            } else {
-                project = pt.getTp();
-            }
-
-            PtWeekList weekList = project.getWeekList();
-            week = weekList.getWeek(weekNum);
-            PtTaskList taskList = week.getTaskList();
-
-            if (taskNum > taskList.getNumTask()) {
+            if (!isSetDoneSuccessful) {
                 throw new CommandException(MESSAGE_NULLTASK);
             }
 
-            PtTask task = taskList.getTask(taskNum);
-            task.setDone();
-
-            String result = "Changed done status of task " + taskNum + " in week " + weekNum + " of "
-                    + this.project.toUpperCase();
+            String projectName = this.project.toUpperCase();
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtDoneCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtDoneCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtDoneCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtDoneCommand) obj).getTaskNum() == this.getTaskNum();
+
+            return isSameProject && isSameWeek && isSameTaskNum;
         }
     }
 }

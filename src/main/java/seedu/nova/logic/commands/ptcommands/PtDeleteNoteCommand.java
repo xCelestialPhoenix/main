@@ -1,7 +1,7 @@
 package seedu.nova.logic.commands.ptcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
+
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_WEEK;
@@ -10,12 +10,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
-import seedu.nova.model.progresstracker.Project;
-import seedu.nova.model.progresstracker.PtTask;
-import seedu.nova.model.progresstracker.PtTaskList;
-import seedu.nova.model.progresstracker.PtWeek;
-import seedu.nova.model.progresstracker.PtWeekList;
 
 /**
  * Deletes note in specified task
@@ -23,20 +17,23 @@ import seedu.nova.model.progresstracker.PtWeekList;
 public class PtDeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "deleteNote";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes note to specified task in the "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes note in specified task in the "
             + "project in the specified week. "
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
             + PREFIX_WEEK + "WEEK "
-            + PREFIX_DESC + "TASK DESCRIPTION \n"
+            + PREFIX_TASK + "TASK \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2"
             + PREFIX_TASK + "1";
 
-    public static final String MESSAGE_NULLWEEK = "Week not added yet";
-    public static final String MESSAGE_NULLTASK = "No task with that index";
-    public static final String MESSAGE_NULLNOTE = "No note added yet";
+    public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
+    public static final String MESSAGE_FAILURE = "Command failed. Please check that there is a task "
+            + " or note in the specified index";
+
+    public static final String MESSAGE_SUCCESS = "Deleted note to task %d in week %d of %s";
 
     private int weekNum;
     private int taskNum;
@@ -48,38 +45,50 @@ public class PtDeleteNoteCommand extends Command {
         this.project = project.trim().toLowerCase();
     }
 
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ProgressTracker pt = model.getProgressTracker();
-        PtWeek week = null;
-        Project project;
+        boolean isOver13 = weekNum > 13;
 
-        if (this.project.equals("ip")) {
-            project = pt.getIp();
+        if (isOver13) {
+            throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            project = pt.getTp();
+            boolean isDeleteNoteSuccess = model.deletePtNote(this.project, weekNum, taskNum);
+
+            if (!isDeleteNoteSuccess) {
+                throw new CommandException(MESSAGE_FAILURE);
+            }
+
+            String projectName = this.project.toUpperCase();
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
+
+            return new CommandResult(result, false, false);
         }
+    }
 
-        PtWeekList weekList = project.getWeekList();
-        week = weekList.getWeek(weekNum);
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtDeleteNoteCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtDeleteNoteCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtDeleteNoteCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtDeleteNoteCommand) obj).getTaskNum() == (this.getTaskNum());
 
-        //if week not created, create week
-        if (week == null) {
-            throw new CommandException(MESSAGE_NULLWEEK);
-        } else if (week.getTaskList().getTask(taskNum) == null) {
-            throw new CommandException(MESSAGE_NULLTASK);
-        } else if (week.getTaskList().getTask(taskNum).getNote().toString().equals("")) {
-            throw new CommandException(MESSAGE_NULLNOTE);
+            return isSameProject && isSameWeek && isSameTaskNum;
         }
-
-        PtTaskList taskList = week.getTaskList();
-        PtTask task = taskList.getTask(taskNum);
-        task.setNote("");
-
-        String result = "Deleted note to task " + taskNum + " in week " + weekNum + " of " + this.project.toUpperCase();
-
-        return new CommandResult(result, false, false);
     }
 }
 

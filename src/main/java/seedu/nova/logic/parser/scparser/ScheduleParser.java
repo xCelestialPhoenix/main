@@ -3,7 +3,7 @@ package seedu.nova.logic.parser.scparser;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.nova.logic.commands.Command;
-import seedu.nova.logic.commands.sccommands.ScViewDayCommand;
+import seedu.nova.logic.commands.sccommands.ScViewCommand;
 import seedu.nova.logic.commands.sccommands.ScViewFreeSlotCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddConsultationCommand;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddLessonCommand;
@@ -35,7 +35,7 @@ public class ScheduleParser {
     public Command parseCommand(String commandWord, String arguments) throws ParseException {
 
         switch (commandWord) {
-        case ScViewDayCommand.COMMAND_WORD:
+        case ScViewCommand.COMMAND_WORD:
             return new ScViewCommandParser().parse(arguments);
         case ScViewFreeSlotCommand.COMMAND_WORD:
             return new ScViewFreeSlotCommandParser().parse(arguments);
