@@ -12,7 +12,9 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.LogicParser;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
@@ -67,7 +69,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getNovaFilePath() {
         return model.getNovaFilePath();
     }
 
@@ -84,5 +86,25 @@ public class LogicManager implements Logic {
     @Override
     public Model getModel() {
         return this.model;
+    }
+
+    @Override
+    public void setMode(Mode mode, ModeEnum modeEnum) {
+        mode.setModeEnum(modeEnum);
+    }
+
+    @Override
+    public Mode getMode() {
+        return model.getMode();
+    }
+
+    @Override
+    public ModeEnum getModeEnum(Mode mode) {
+        return model.getModeEnum(mode);
+    }
+
+    @Override
+    public String getModeName(ModeEnum modeEnum) {
+        return model.getModeName(modeEnum);
     }
 }

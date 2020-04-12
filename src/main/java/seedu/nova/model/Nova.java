@@ -1,5 +1,7 @@
 package seedu.nova.model;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.nova.model.progresstracker.ProgressTracker;
 
 /**
@@ -32,6 +34,7 @@ public class Nova {
     }
 
     public void setProgressTrackerNova(ProgressTracker progressTracker) {
+        requireNonNull(progressTracker);
         this.progressTracker = progressTracker;
     }
 }

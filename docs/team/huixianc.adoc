@@ -1,4 +1,4 @@
-= Chua Hui Xian - Project Portfolio
+= Chua Huixian - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -10,28 +10,61 @@
 NOVA is a desktop application to help CS2103T with event planning and managing schedules.
 
 == Summary of contributions
+This section shows a summary of my coding, documentation and other contributions to the project.
 
 * *Major enhancement*:
+I added the ability to manage events.
+
+** What it does:
+
+** Justification:
+
+** Highlights:
+
+** Credits:
+
 
 * *Minor enhancement*:
 
+
 * *Code contributed*:
+Please click these links to see samples of my code:
+https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=huixianc&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[Code Dashboard]
 
 * *Other contributions*:
 
 ** Project management:
+*** Helped to maintain the team repository and facilitated merging of Pull Requests from Week 11 to 13.
 
 ** Enhancements to existing features:
+*** Updated the GUI layout to make the panels aligned
 
 ** Documentation:
+*** Helped to enable auto-publishing of documentation on GitHub Pages via Travis.
 
 ** Community:
+*** Reported bugs and gave suggestions for other teams
+(https://github.com/AY1920S2-CS2103T-T10-3/main/issues/131[1],
+https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-370050890[2],
+https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-382543444[3],
+https://github.com/huixianc/ped/issues[4])
 
 ** Tools:
 
+
 == Contributions to the User Guide
+|===
+|_Given below are sections I contributed to the User Guide.
+They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=event]
 
 == Contributions to the Developer Guide
+|===
+|_Given below are sections I contributed to the Developer Guide.
+They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
 
 include::../DeveloperGuide.adoc[tag=logic]
 

@@ -31,4 +31,20 @@ public class PtWeek {
     public double getProgressWeek() {
         return this.taskList.getProgressTasks();
     }
+
+    /**
+     * Returns true if a given string is a valid email.
+     */
+    public static boolean isValidWeek(String test) {
+        if (test.matches(VALIDATION_REGEX) && Integer.valueOf(test) > 0 && Integer.valueOf(test) <= 13) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(weekNum);
+    }
 }

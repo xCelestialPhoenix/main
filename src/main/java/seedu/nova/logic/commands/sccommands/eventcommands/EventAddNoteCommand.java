@@ -7,6 +7,7 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 
+import seedu.nova.commons.core.index.Index;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -36,10 +37,13 @@ public class EventAddNoteCommand extends Command {
 
     private String desc;
     private LocalDate date;
-    private int index;
+    private Index index;
 
-    public EventAddNoteCommand(String desc, LocalDate date, int index) {
+    public EventAddNoteCommand(String desc, LocalDate date, Index index) {
+        requireNonNull(desc);
         requireNonNull(date);
+        requireNonNull(index);
+
         this.desc = desc;
         this.date = date;
         this.index = index;
@@ -50,7 +54,8 @@ public class EventAddNoteCommand extends Command {
         requireNonNull(model);
 
         try {
-            String response = model.addNote(desc, date, index);
+            int i = index.getZeroBased();
+            String response = model.addNote(desc, date, i);
             return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
@@ -59,6 +64,15 @@ public class EventAddNoteCommand extends Command {
         } catch (EventNotFoundException e) {
             throw new CommandException("Invalid index.");
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventAddNoteCommand // instanceof handles nulls
+                && index.equals(((EventAddNoteCommand) other).index)
+                && date.equals(((EventAddNoteCommand) other).date)
+                && desc.equals(((EventAddNoteCommand) other).desc)); // state check
     }
 
 }
