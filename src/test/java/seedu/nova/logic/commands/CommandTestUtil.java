@@ -47,9 +47,11 @@ public class CommandTestUtil {
     public static final String VALID_WEEK = "1";
     public static final String VALID_WEEK_2 = "2";
     public static final String VALID_TASK = "1";
+    public static final String VALID_TASK2 = "2";
     public static final String VALID_TASKDESC = "Example task description";
     public static final String VALID_TASKDESC_2 = "Example task description 2";
     public static final String VALID_NOTE = "Example note";
+    public static final String VALID_NOTE2 = "Example note2";
 
     public static final String VALID_CONSULTATION_DESC = "Design Principles";
     public static final String VALID_CONSULTATION_DESC_2 = "Sequence Diagrams";
@@ -91,9 +93,11 @@ public class CommandTestUtil {
     public static final String WEEK_ONE = " " + PREFIX_WEEK + VALID_WEEK;
     public static final String WEEK_TWO = " " + PREFIX_WEEK + VALID_WEEK_2;
     public static final String PT_TASK = " " + PREFIX_TASK + VALID_TASK;
+    public static final String PT_TASK2 = " " + PREFIX_TASK + VALID_TASK2;
     public static final String PT_TASKDESC = " " + PREFIX_DESC + VALID_TASKDESC;
     public static final String PT_TASKDESC_2 = " " + PREFIX_DESC + VALID_TASKDESC_2;
     public static final String PT_NOTE = " " + PREFIX_DESC + VALID_NOTE;
+    public static final String PT_NOTE2 = " " + PREFIX_DESC + VALID_NOTE2;
 
     public static final String CONSULTATION_DESC = " " + PREFIX_DESC + VALID_CONSULTATION_DESC;
     public static final String CONSULTATION_DESC_2 = " " + PREFIX_DESC + VALID_CONSULTATION_DESC_2;
@@ -126,6 +130,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_CATEGORY + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_PROJECT = " " + PREFIX_PROJECT + "";
     public static final String INVALID_WEEK = " " + PREFIX_WEEK + "-1";
+    public static final String INVALID_WEEK2 = " " + PREFIX_WEEK + "14";
     public static final String INVALID_TASK = " " + PREFIX_TASK + "0";
     public static final String INVALID_TASKDESC = " " + PREFIX_DESC + "";
     public static final String INVALID_NOTE = " " + PREFIX_DESC + "";

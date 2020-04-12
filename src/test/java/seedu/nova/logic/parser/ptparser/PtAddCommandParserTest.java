@@ -2,6 +2,7 @@ package seedu.nova.logic.parser.ptparser;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_PROJECT;
+import static seedu.nova.logic.commands.CommandTestUtil.INVALID_TASKDESC;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_WEEK;
 import static seedu.nova.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.nova.logic.commands.CommandTestUtil.PROJECT_IP;
@@ -20,6 +21,7 @@ import seedu.nova.logic.commands.ptcommands.PtAddCommand;
 import seedu.nova.logic.parser.ptparsers.PtAddCommandParser;
 import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.TaskDesc;
 import seedu.nova.testutil.PtTaskBuilder;
 
 public class PtAddCommandParserTest {
@@ -72,8 +74,8 @@ public class PtAddCommandParserTest {
         // invalid week - non-zero
         assertParseFailure(parser, PROJECT_IP + INVALID_WEEK + PT_TASKDESC, MESSAGE_INVALID_WEEK);
 
-        // invalid week - greater than 13
-        assertParseFailure(parser, PROJECT_IP + INVALID_WEEK + PT_TASKDESC, MESSAGE_INVALID_WEEK);
+        // invalid taskDesc
+        assertParseFailure(parser, PROJECT_IP + WEEK_ONE + INVALID_TASKDESC, TaskDesc.MESSAGE_CONSTRAINTS);
     }
 }
 
