@@ -263,7 +263,7 @@ The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
 
-NOTE: The lifeline for `AbUndoCommand` and `AbUndoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `AbUndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -282,7 +282,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 image::CommitActivityDiagram.png[]
 
-==== Design Considerations
+==== Design Considerations - Undo or redo command
 
 ===== Aspect: How undo & redo executes
 
@@ -302,6 +302,39 @@ image::CommitActivityDiagram.png[]
 ** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
+
+==== Implementation - Delete a contact
+
+The edit feature allows users to edit a contact from Address Book. This feature is facilitated by `AddressBookParser`, `AbDeleteCommandParser` and `AbDeleteCommand`.
+The operation is exposed in the `Model` interface as `Model#deletePerson()`.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+. The user does `list`, `list c\classmate`, `list c\teammate`, or `find n\[name]` to view their contacts.
+. The user executes `delete i\1` command to delete the first contact.
+. `AbDeleteCommandParser` creates a new `AbDeleteCommand`.
+. `LogicManager` executes the `AbDeleteCommand`.
+. `Model#deletePerson()` is called, and the `AddressBook` object in `ModelManager` is updated.
+
+The following sequence diagram shows how the delete operation works:
+
+image::AbDeleteSequenceDiagram.png[]
+
+NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram shows how the delete mechanism works:
+
+image::AbDeleteActivityDiagram.png[]
+
+==== Design Considerations - Delete a contact
+===== Aspect: Deleting a contact by index or name
+
+* **Alternative 1 (current choice):** Use index tag to delete contact
+** Pros: Shorter command to type by using index
+** Cons: Users need to use `list`, `list c\classmate`, `list c\teammate` or `find n\[name]` command before deleting contact
+* **Alternative 2:** Use name to delete contact
+** Pros: No need to use `list`, `list c\classmate`, `list c\teammate` or `find n\[name]` prior to deleting contact
+** Cons: Need to handle contacts with the same name
 
 === View tasks under IP project
 The view tasks feature for the IP project allows the user to view a list of tasks that were added.
