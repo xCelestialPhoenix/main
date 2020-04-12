@@ -66,4 +66,6 @@ include::../UserGuide.adoc[tag=event]
 They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../UserGuide.adoc[tag=logic]
+include::../DeveloperGuide.adoc[tag=logic]
+
+include::../DeveloperGuide.adoc[tag=events]

@@ -15,6 +15,7 @@ import seedu.nova.logic.parser.plannerparser.PlannerParser;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
 import seedu.nova.logic.parser.scparser.eventparsers.EventParser;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 
 /**
@@ -52,30 +53,19 @@ public class LogicParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        ModeEnum mode = model.getMode().getModeEnum();
+        Mode mode = model.getMode();
+        ModeEnum modeEnum = model.getModeEnum(mode);
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        boolean noSuchMode = (!modeEnum.equals(ModeEnum.ADDRESSBOOK)) && (!modeEnum.equals(ModeEnum.PROGRESSTRACKER))
+                && (!modeEnum.equals(ModeEnum.SCHEDULE)) && (!modeEnum.equals(ModeEnum.HOME))
+                && (!modeEnum.equals(ModeEnum.PLANNER));
 
         if (!matcher.matches()) {
-            switch (mode) {
-            case HOME:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NavHelpCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_EMPTY_ARGUMENT);
+        }
 
-            case ADDRESSBOOK:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AbHelpCommand.MESSAGE_USAGE));
-
-            case EVENT:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                // EventHelpCommand.MESSAGE_USAGE));
-
-            case SCHEDULE:
-                throw new ParseException(MESSAGE_EMPTY_ARGUMENT);
-
-            case PROGRESSTRACKER:
-                //throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,ptbHelpCommand.MESSAGE_USAGE));
-
-            default:
-                throw new ParseException("No such mode");
-            }
+        if (noSuchMode) {
+            throw new ParseException("No such mode");
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -87,7 +77,7 @@ public class LogicParser {
             return new ExitCommand();
         } else {
             //check mode
-            switch (mode) {
+            switch (modeEnum) {
 
             case HOME:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -96,14 +86,12 @@ public class LogicParser {
                 //return addressBookParser.parseCommand(userInput);
                 return addressBookParser.parseCommand(commandWord, arguments);
 
-            case EVENT:
-                return eventParser.parseCommand(commandWord, arguments);
-
             case SCHEDULE:
                 return scheduleParser.parseCommand(commandWord, arguments);
 
             case PROGRESSTRACKER:
                 return progresstrackerParser.parseCommand(commandWord, arguments);
+
             case PLANNER:
                 return plannerParser.parseCommand(commandWord, arguments);
             default:

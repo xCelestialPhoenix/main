@@ -78,16 +78,16 @@ public class PtDoneCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtDoneCommand doneIpProjectTaskCommand = new PtDoneCommand(1,
-                ipProjectTask.getProject().getProjectName(), 1);
+                ipProjectTask.getProjectName(), 1);
         PtDoneCommand doneTpProjectTaskCommand = new PtDoneCommand(1,
-                tpProjectTask.getProject().getProjectName(), 1);
+                tpProjectTask.getProjectName(), 1);
 
         // same object -> returns true
         assertTrue(doneIpProjectTaskCommand.equals(doneIpProjectTaskCommand));
 
         // same values -> returns true
         PtDoneCommand doneIpProjectTaskCommandCopy = new PtDoneCommand(1,
-                ipProjectTask.getProject().getProjectName(), 1);
+                ipProjectTask.getProjectName(), 1);
         assertTrue(doneIpProjectTaskCommand.equals(doneIpProjectTaskCommandCopy));
 
         //different types -> returns false
