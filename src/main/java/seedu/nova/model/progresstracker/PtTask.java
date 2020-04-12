@@ -52,6 +52,10 @@ public class PtTask {
         return project;
     }
 
+    public String getProjectName() {
+        return project.getProjectName();
+    }
+
     public void setProject(Project project) {
         requireNonNull(project);
         this.project = project;
@@ -61,12 +65,20 @@ public class PtTask {
         return taskDesc;
     }
 
+    public String getTaskDescString() {
+        return taskDesc.toString();
+    }
+
     public void setTaskDesc(String taskDesc) {
         this.taskDesc = new TaskDesc(taskDesc);
     }
 
     public PtNote getNote() {
         return note;
+    }
+
+    public String getNoteString() {
+        return note.toString();
     }
 
     public void setNote(String noteDesc) {

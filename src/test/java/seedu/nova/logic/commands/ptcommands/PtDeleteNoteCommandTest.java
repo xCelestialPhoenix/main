@@ -83,16 +83,16 @@ public class PtDeleteNoteCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtDeleteNoteCommand deleteNoteIpProjectTaskCommand = new PtDeleteNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName());
+                ipProjectTask.getProjectName());
         PtDeleteNoteCommand deleteNoteTpProjectTaskCommand = new PtDeleteNoteCommand(1, 1,
-                tpProjectTask.getProject().getProjectName());
+                tpProjectTask.getProjectName());
 
         // same object -> returns true
         assertTrue(deleteNoteIpProjectTaskCommand.equals(deleteNoteIpProjectTaskCommand));
 
         // same values -> returns true
         PtDeleteNoteCommand deleteNoteIpProjectTaskCommandCopy = new PtDeleteNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName());
+                ipProjectTask.getProjectName());
         assertTrue(deleteNoteIpProjectTaskCommand.equals(deleteNoteIpProjectTaskCommandCopy));
 
         //different types -> returns false
