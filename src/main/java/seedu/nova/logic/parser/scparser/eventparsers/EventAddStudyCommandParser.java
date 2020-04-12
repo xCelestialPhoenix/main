@@ -18,7 +18,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.StudySession;
 
 /**
- * Parses input arguments and creates a new EventAddStudyCommand object
+ * Parses input arguments and creates a new EventAddStudyCommand object.
  */
 public class EventAddStudyCommandParser implements Parser<EventAddStudyCommand> {
 

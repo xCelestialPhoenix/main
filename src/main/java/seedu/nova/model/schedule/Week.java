@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.TimeUtil;
 
@@ -126,7 +126,7 @@ public class Week implements Copyable<Week> {
      * @param desc  description of the note
      * @param date  the date of the event
      * @param index the position of event in list
-     * @return
+     * @return String representing the event with added note
      */
     public String addNote(String desc, LocalDate date, int index) {
         int day = date.getDayOfWeek().getValue() - 1;

@@ -6,7 +6,16 @@ package seedu.nova.commons.core;
 public class HelpMessages {
 
     //============== The help message for the home page ==================
-    public static final String HELP_HOME = "";
+    public static final String HELP_HOME = "Help: Home Mode \n"
+            + "=================== \n"
+            + "Nav to addressbook: "
+            + "nav ab \n\n"
+            + "Nav to schedule: "
+            + "nav schedule \n\n"
+            + "Nav to ProgressTracker: "
+            + "nav progresstracker \n"
+            + "Nav Planner: \n"
+            + "nav planner \n\n";
 
     //============== The help message for the address book page ==================
     public static final String HELP_ADDRESS_BOOK = "Help: Address Book Mode \n"
@@ -58,6 +67,24 @@ public class HelpMessages {
     public static final String HELP_STUDY_PLANNER = "";
 
     //============== The help message for the progress tracker page ==================
-    public static final String HELP_PROGRESS_TRACKER = "";
+    public static final String HELP_PROGRESS_TRACKER = "Help: ProgressTracker Mode \n"
+            + "=================== \n"
+            + "List tasks: \n"
+            + "list p\\[project] w\\[week] \n\n"
+            + "Add task: \n"
+            + "add p\\[project] w\\[week] d\\[task description] \n\n"
+            + "Delete task: \n"
+            + "delete p\\[project] w\\[week] t\\[task] \n\n"
+            + "Edit task: \n"
+            + "edit p\\[project] w\\[week] t\\[task] d\\[task description] \n\n"
+            + "Set task as done: \n"
+            + "done p\\[project] w\\[week] t\\[task] \n\n"
+            + "Add note to task \n"
+            + "addNote p\\[project] w\\[week] t\\[task] d\\[note] \n\n"
+            + "Delete note from task \n"
+            + "deleteNote p\\[project] w\\[week] t\\[task] \n\n"
+            + "Edit note in task \n"
+            + "editNote p\\[project] w\\[week] t\\[task] d\\[note] \n\n";
+
 
 }

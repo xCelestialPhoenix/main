@@ -42,10 +42,10 @@ public class JsonAdaptedPtTask {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPtTask(PtTask source) {
-        project = source.getProject().getProjectName();
-        taskDesc = source.getTaskDesc().toString();
+        project = source.getProjectName();
+        taskDesc = source.getTaskDescString();
         week = String.valueOf(source.getPtWeek());
-        note = source.getNote().toString();
+        note = source.getNoteString();
         isDone = source.isDoneString();
     }
 
