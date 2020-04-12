@@ -614,7 +614,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
-// tag::viewScheduleUserStories
+// tag::viewScheduleUserStories[]
 
 |`* * *` |Student | View my schedule for a day| Know the flow of events on that day
 
@@ -622,7 +622,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |Student | View my timetable | Can check when my classes are
 
-// tag::viewScheduleUserStories
+// end::viewScheduleUserStories[]
 
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
@@ -1085,7 +1085,7 @@ Use case ends.
 // tag::viewScheduleUseCases[]
 
 [discrete]
-=== Use case 14: View the schedule for a day
+=== Use case 21: View the schedule for a day
 
 *MSS*
 
@@ -1105,7 +1105,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 15: View the schedule for a week
+=== Use case 22: View the schedule for a week
 
 *MSS*
 
@@ -1129,7 +1129,7 @@ Use case ends.
 //tag::studyplannermss[]
 
 [discrete]
-=== Use case 22: User add a task into study plan.
+=== Use case 23: User add a task into study plan.
 
 *MSS*
 
@@ -1147,7 +1147,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 23: User add a task into study plan
+=== Use case 24: User add a task into study plan
 
 *MSS*
 
@@ -1165,7 +1165,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 24: User view statistics of every tasks in study plan
+=== Use case 25: User view statistics of every tasks in study plan
 
 *MSS*
 
@@ -1183,7 +1183,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 25: User schedules a task into a particular day.
+=== Use case 26: User schedules a task into a particular day.
 
 *MSS*
 

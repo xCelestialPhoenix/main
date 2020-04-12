@@ -90,4 +90,7 @@ include::../UserGuide.adoc[tag=view]
 |===
 
 include::../DeveloperGuide.adoc[tag=model]
-include::../DeveloperGuide.adoc[tag=view]
+
+include::../DeveloperGuide.adoc[tag=viewScheduleUserStories]
+
+include::../DeveloperGuide.adoc[tag=viewScheduleUseCases]
