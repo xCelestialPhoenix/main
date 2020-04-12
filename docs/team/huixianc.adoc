@@ -77,6 +77,7 @@ include::../UserGuide.adoc[tag=events]
 They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+
 |===
 |_1. The Logic component section under Design._
 |===
@@ -100,3 +101,5 @@ include::../DeveloperGuide.adoc[tag=eventuserstory]
 |===
 
 include::../DeveloperGuide.adoc[tag=eventusecase]
+
+

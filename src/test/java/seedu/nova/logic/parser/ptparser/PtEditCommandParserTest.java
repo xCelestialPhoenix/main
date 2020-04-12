@@ -37,29 +37,29 @@ public class PtEditCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK + PT_TASKDESC,
-                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString(), 1));
+                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString(), 1));
 
         // multiple projects - last project accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_TP + PROJECT_IP + WEEK_ONE + PT_TASK + PT_TASKDESC,
-                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString(), 1));
+                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString(), 1));
 
         // multiple weeks - last week accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE + PT_TASK + PT_TASKDESC,
-                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString(), 1));
+                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString(), 1));
 
         // multiple taskNum - last taskNum accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK2 + PT_TASK
                         + PT_TASKDESC_2 + PT_TASKDESC,
-                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString(), 1));
+                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString(), 1));
 
         // multiple taskDesc - last taskDesc accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK + PT_TASKDESC_2 + PT_TASKDESC,
-                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString(), 1));
+                new PtEditCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString(), 1));
     }
 
     @Test

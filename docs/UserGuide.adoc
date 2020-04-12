@@ -152,10 +152,15 @@ Example: +
 Suppose you want to add your classmate named Jane Doe, with phone number 12345678 and email address janedoe@gmail.com
 into NOVA,
 
-`add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
+enter the command: `add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
 
 NOVA will add a new contact named Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
-classmate category as seen below.
+classmate category and display a confirmation message as seen below.
+
+image::userguide/addressbook_add.png[width="690" align="center"]
+[.text-center]
+_[.small]#Fig 5.2.1: Display message after entering +
+`add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`#_
 
 <<Top, [Back to Top]>>
 
@@ -221,7 +226,6 @@ NOVA will find and list saved contacts named Jane.
 
 ==== Edit Contact: `edit`
 You can edit the contacts that you have added. If the contact you want to edit does not exist, NOVA will let you know. +
-**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you edit contact.**
 
 Format: `edit i\[index] n\[name] p\[phone number] e\[email address] c\[classmate/teammate]`
 
@@ -245,23 +249,22 @@ Optional fields are `n\[name]`, `p\[phone number]`,
 Example: +
 Suppose you want to edit the Alex Yeoh's phone number in your address book after using `list` as shown below,
 
-image::userguide/addressbook_list.png[width="790" align="center"]
+image::userguide/addressbook_list.png[width="690" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.5.1: Example display message after entering `list`#_
 
-`edit i\1 p\88888888`
+enter the command: `edit i\1 p\88888888`
 
-NOVA will edit the phone number of the first contact in your list to 88888888 as shown below.
+NOVA will edit the phone number of Alex Yeoh to 88888888 as shown below.
 
 image::userguide/addressbook_edit.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2.5.2: Successfully changed Alex Yeoh's phone number#_
+_[.small]#Fig 5.2.5.2: Display message after entering `edit i\1 p\88888888`#_
 
 <<Top, [Back to Top]>>
 
 ==== Add, Edit or Delete Remark: `remark`
-You can add remarks that are category specific, to a contact. +
-**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you add, edit or delete remark to your contact.**
+You can add remarks that are category specific, to a contact.
 
 Format: `remark i\[index] r\[remark]`
 
@@ -278,25 +281,20 @@ Confirm the position of the contact in your most recent list to avoid editing ot
 ====
 
 Example: +
-Suppose you want add remark to Bernice Yu in your address book after using `list` as show below,
+Suppose you want add remark to Bernice Yu in your address book after using `list` as seen in Fig 5.2.5.1,
 
-image::userguide/addressbook_list.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.6.1: Example display message after entering `list`#_
-
-type the command: `remark i\2 r\She's a nice teammate`
+enter the command: `remark i\2 r\She's a nice teammate`
 
 NOVA will add the remark "She's a nice teammate" to Bernice Yu in your address book as shown below.
 
 image::userguide/addressbook_remark.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2.6.2: Successfully added remark to Bernice Yu#_
+_[.small]#Fig 5.2.6.2: Display message after entering `remark i\2 r\She's a nice teammate`#_
 
 <<Top, [Back to Top]>>
 
 ==== Delete Contact: `delete`
-You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know. +
-**Please use `list`, `list c\teammate`, `list c\classmate` or `find` command before you delete contact.**
+You can delete a contact that you have added. If the contact you try to delete does not exist, NOVA will let you know.
 
 Format: `delete i\[index]`
 
@@ -313,11 +311,7 @@ Confirm the position of the contact in your most recent list to avoid editing ot
 ====
 
 Example: +
-Suppose you want to delete Alex Yeoh's contact after using the `list` as shown below,
-
-image::userguide/addressbook_list.png[width="790" align="center"]
-[.text-center]
-_[.small]#Fig 5.2.7.1: Example display message after entering `list`#_
+Suppose you want to delete Alex Yeoh's contact after using the `list` as seen in Fig 5.2.5.1,
 
 enter the command: `delete i\1`
 
@@ -325,7 +319,7 @@ NOVA will delete Alex Yeoh from your the address book.
 
 image::userguide/addressbook_delete.png[width="790" align="center"]
 [.text-center]
-_[.small]#Fig 5.2.7.2: Successfully deleted Alex Yeoh#_
+_[.small]#Fig 5.2.7.2: Display message after entering `delete i\1`#_
 
 <<Top, [Back to Top]>>
 
@@ -382,11 +376,11 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 Example: +
 Suppose you wish to add a project meeting into your schedule, which is from 2pm to 3pm on 20 Feb 2020, +
 
-`meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`
+enter the command: `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`
 
 NOVA will create an event for a team meeting at COM1 on 20 Feb 2020 to set up CS2103T website from 2pm to 3pm.
 
-image::userguide/EventMeeting.png[width="590" align="center"]
+image::userguide/EventMeeting.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.1: Display message after entering +
  `meeting d\CS2103T website set-up v\COM1 t\2020-02-20 14:00 15:00`#_
@@ -408,11 +402,11 @@ Format: `study d\[description] v\[venue] t\ [YYYY-MM-DD] [Start time (HH:MM)] [E
 Example: +
 Suppose you wish to add a group study session from 4pm to 5pm on 20 Feb 2020, +
 
-`study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`
+enter the command: `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`
 
 NOVA will create an event for study session at COM1 on 20 Feb 2020 from 4pm to 5pm.
 
-image::userguide/EventStudy.png[width="590" align="center"]
+image::userguide/EventStudy.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.2: Display message after entering +
  `study d\cool peeps revision v\COM1 t\2020-02-20 16:00 17:00`#_
@@ -428,17 +422,17 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
-* You can only add consultation sessions to dates that fall within the semester.====
+* You can only add consultation sessions to dates that fall within the semester.
 ====
 
 Example: +
 Suppose you wish to add a consultation session from 3pm to 4pm on 20 Feb 2020, +
 
-`consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`
+enter the command: `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`
 
 NOVA will create an event for consultation at COM1 on 20 Feb 2020 to clarify UML from 3pm to 4pm.
 
-image::userguide/EventConsultation.png[width="590" align="center"]
+image::userguide/EventConsultation.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.3: Display message after entering +
  `consultation d\clarify UML v\COM1 t\2020-02-20 15:00 16:00`#_
@@ -446,7 +440,7 @@ _[.small]#Fig 5.3.3: Display message after entering +
 <<Top, [Back to Top]>>
 
 ==== Add a Lesson: `lesson`
-You can add a weekly lesson as one of your events.
+You can add weekly lessons as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
 Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time (HH:MM)]`
@@ -461,11 +455,11 @@ Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time
 Example: +
 Suppose you wish to add a weekly lesson from 3pm to 4pm on Friday, +
 
-`lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`
+enter the command: `lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`
 
 NOVA will create weekly events for CS2103T tutorial at COM1-B103 on Friday from 3pm to 4pm for the entire semester.
 
-image::userguide/EventLesson.png[width="590" align="center"]
+image::userguide/EventLesson.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.4: Display message after entering +
  `lesson d\CS2103T tutorial v\COM1-B103 t\Friday 15:00 16:00`#_
@@ -484,11 +478,11 @@ Format: `delete t\[YYYY-MM-DD] i\[index]`
 Example: +
 Suppose you wish to remove the second event from the list of events on 20 Feb 2020, +
 
-`delete t\2020-02-20 i\2`
+enter the command: `delete t\2020-02-20 i\2`
 
 NOVA will delete the second event on 20 Feb 2020.
 
-image::userguide/EventDelete.png[width="590" align="center"]
+image::userguide/EventDelete.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.5: Display message after entering `delete t\2020-02-20 i\2`#_
 
@@ -505,12 +499,12 @@ Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 Example: +
 Suppose you wish to add a note that indicates the work allocation to a meeting event, +
 
-`note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`
+enter the command: `note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`
 
 NOVA will add a note with the description "Alice - Logic component in DG, Bob - UI component in DG"
 to the first event on 20 Feb 2020.
 
-image::userguide/EventNote.png[width="590" align="center"]
+image::userguide/EventNote.png[width="500" align="center"]
 [.text-center]
 
 _[.small]#Fig 5.3.6: Display message after entering +
@@ -527,12 +521,12 @@ Format: +
 
 Example: +
 Suppose you want to check out what events are happening on 29 Feb, +
- +
-`view t\2020-02-20`
+
+enter the command: `view t\2020-02-20`
 
 NOVA will show your schedule on 20 Feb 2020 as seen below.
 
-image::userguide/schedule_view_date.png[width="790" align="center"]
+image::userguide/schedule_view_date.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.7: Display message after entering `view t\2020-02-20`#_
 
@@ -555,12 +549,12 @@ Format: +
 
 Example: +
 Suppose you are interested in what is going to happen in week 6 of the semester, +
- +
-`view week i\6`
+
+enter the command: `view week i\6`
 
 NOVA will show your schedule in week 6 of the semester as seen below.
 
-image::userguide/schedule_view_week.png[width="590" align="center"]
+image::userguide/schedule_view_week.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.3.8: Display message after entering `view week i\6`#_
 
@@ -574,8 +568,8 @@ Format: +
 
 Example: +
 Suppose you want to find pockets of free time on 20 Feb 2020, +
- +
-`freeslot t\2020-02-20`
+
+enter the command: `freeslot t\2020-02-20`
 
 NOVA will show you your freeslots on 20 Feb 2020.
 

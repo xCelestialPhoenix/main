@@ -89,16 +89,16 @@ public class PtAddNoteCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtAddNoteCommand addNoteIpProjectTaskCommand = new PtAddNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName(), "new note");
+                ipProjectTask.getProjectName(), "new note");
         PtAddNoteCommand addNoteTpProjectTaskCommand = new PtAddNoteCommand(1, 1,
-                tpProjectTask.getProject().getProjectName(), "new note");
+                tpProjectTask.getProjectName(), "new note");
 
         // same object -> returns true
         assertTrue(addNoteIpProjectTaskCommand.equals(addNoteIpProjectTaskCommand));
 
         // same values -> returns true
         PtAddNoteCommand addNoteIpProjectTaskCommandCopy = new PtAddNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName(), "new note");
+                ipProjectTask.getProjectName(), "new note");
         assertTrue(addNoteIpProjectTaskCommand.equals(addNoteIpProjectTaskCommandCopy));
 
         //different types -> returns false
