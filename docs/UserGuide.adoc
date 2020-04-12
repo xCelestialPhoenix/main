@@ -688,6 +688,7 @@ textbook” on a random spot within the free slot.
 
 <<Top, [Back to Top]>>
 
+//tag::ProgressTracker[]
 === Progress Tracker
 Learn how to work with the progress tracker feature in NOVA. You can track important project tasks by adding them into the progress tracker
 and manage them easily. You need to be in Progress Tracker mode. Enter the Progress Tracker mode by entering the
@@ -925,8 +926,7 @@ NOVA will delete the note under task 1 of week 3 of IP.
 image::userguide/deletePtNote.png[width="500" align="center"]
 [.text-center]
 _[.small]#Fig 5.5.7: Display message after entering `deleteNote p\ip w\3 t\1`#_
-
-
+//end::ProgressTracker[]
 <<Top, [Back to Top]>>
 
 [[Summary]]
@@ -981,7 +981,7 @@ into your schedule
 | addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
 | editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
 | deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
-
+//end::CommonPtCommands[]
 |=========================================================
 
 <<Top, [Back to Top]>>
