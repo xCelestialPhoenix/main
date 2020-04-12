@@ -32,14 +32,30 @@ public class PtDeleteCommand extends Command {
 
     public static final String MESSAGE_FAILURE = "No task with that index";
 
+    public static final String MESSAGE_SUCCESS = "Deleted task %d in week %d of %s";
+
     private int weekNum;
     private String project;
     private int taskNum;
 
     public PtDeleteCommand(int weekNum, String project, int taskNum) {
+        requireNonNull(project);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskNum = taskNum;
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
     }
 
     @Override
@@ -57,9 +73,22 @@ public class PtDeleteCommand extends Command {
             }
 
             String projectName = this.project.toUpperCase();
-            String result = "Deleted task " + taskNum + " in week " + weekNum + " of " + projectName;
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtDeleteCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtDeleteCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtDeleteCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtDeleteCommand) obj).getTaskNum() == this.getTaskNum();
+
+            return isSameProject && isSameWeek && isSameTaskNum;
         }
     }
 }

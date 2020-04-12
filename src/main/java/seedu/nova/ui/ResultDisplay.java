@@ -32,7 +32,6 @@ public class ResultDisplay extends UiPart<Region> {
         Text txt = new Text();
         txt.setText(feedbackToUser);
         txt.setStyle("-fx-font: 18 arial;");
-        txt.setWrappingWidth(width.doubleValue() - 30.0);
         width.addListener((
                 observable, oldValue, newValue) ->
                 txt.setWrappingWidth(newValue.doubleValue() - 30.0));

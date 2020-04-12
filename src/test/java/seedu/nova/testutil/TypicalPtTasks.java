@@ -14,16 +14,17 @@ import seedu.nova.model.progresstracker.Tp;
  *
  */
 public class TypicalPtTasks {
-    public static final PtTask ptTaskIp1 = new PtTask(new TaskDesc("task 1"), new Ip(),
+
+    public static final PtTask PTTASKIP1 = new PtTask(new TaskDesc("task 1"), new Ip(),
             new PtNote("note 1"), 1, false);
 
-    public static final PtTask ptTaskIp2 = new PtTask(new TaskDesc("task 2"), new Ip(),
-            new PtNote("note 2"), 2, true);
+    public static final PtTask PTTASKIP2 = new PtTask(new TaskDesc("task 2"), new Ip(),
+            new PtNote(""), 2, true);
 
-    public static final PtTask ptTaskTp1 = new PtTask(new TaskDesc("task 1"), new Tp(),
+    public static final PtTask PTTASKTP1 = new PtTask(new TaskDesc("task 1"), new Tp(),
             new PtNote("note 1"), 1, false);
 
-    public static final PtTask ptTaskTp2 = new PtTask(new TaskDesc("task 2"), new Tp(),
+    public static final PtTask PTTASKTP2 = new PtTask(new TaskDesc("task 2"), new Tp(),
             new PtNote("note 2"), 2, true);
 
     private TypicalPtTasks() {} // prevents instantiation
@@ -40,6 +41,6 @@ public class TypicalPtTasks {
     }
 
     public static ArrayList<PtTask> getTypicalPtTask() {
-        return new ArrayList<PtTask>(Arrays.asList(ptTaskIp1, ptTaskIp2, ptTaskTp1, ptTaskTp2));
+        return new ArrayList<PtTask>(Arrays.asList(PTTASKIP1, PTTASKIP2, PTTASKTP1, PTTASKTP2));
     }
 }
