@@ -60,10 +60,20 @@ They showcase my ability to write documentation targeting end-users._
 
 include::../UserGuide.adoc[tag=event]
 
+
 == Contributions to the Developer Guide
+
 |===
 |_Given below are sections I contributed to the Developer Guide.
 They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../UserGuide.adoc[tag=logic]
+|===
+|_Firstly, the Logic component section under Design._
+|===
+include::../DeveloperGuide.adoc[tag=logic]
+
+|===
+|_Secondly, the Manage Events section under Implementation._
+|===
+include::../DeveloperGuide.adoc[tag=events]
