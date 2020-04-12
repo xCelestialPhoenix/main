@@ -73,16 +73,16 @@ public class PtEditNoteCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtEditNoteCommand editNoteIpProjectTaskCommand = new PtEditNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName(), "new note");
+                ipProjectTask.getProjectName(), "new note");
         PtEditNoteCommand editNoteTpProjectTaskCommand = new PtEditNoteCommand(1, 1,
-                tpProjectTask.getProject().getProjectName(), "new note");
+                tpProjectTask.getProjectName(), "new note");
 
         // same object -> returns true
         assertTrue(editNoteIpProjectTaskCommand.equals(editNoteIpProjectTaskCommand));
 
         // same values -> returns true
         PtEditNoteCommand editNoteIpProjectTaskCommandCopy = new PtEditNoteCommand(1, 1,
-                ipProjectTask.getProject().getProjectName(), "new note");
+                ipProjectTask.getProjectName(), "new note");
         assertTrue(editNoteIpProjectTaskCommand.equals(editNoteIpProjectTaskCommandCopy));
 
         //different types -> returns false
