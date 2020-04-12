@@ -526,6 +526,7 @@ Finds the free slots on 29 Feb 2020.
 
 <<Top, [Back to Top]>>
 
+//tag::studyplanner[]
 === Daily Study Planner
 Learn how to work with the planner feature in NOVA. You can add daily/weeky tasks into your study plan and schedule it
 on any day you like hassle-free. You need to be in planner mode. Enter the planner mode by entering the command
@@ -640,6 +641,8 @@ NOVA will finds a free slot bigger than 10 minutes as specified by the task, and
 textbook” on a random spot within the free slot.
 
 <<Top, [Back to Top]>>
+
+//end::studyplanner[]
 
 === Progress Tracker
 Learn how to work with the progress tracker feature in NOVA. You can track important project tasks by adding them into the progress tracker
