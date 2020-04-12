@@ -79,16 +79,16 @@ public class PtDeleteCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtDeleteCommand deleteIpProjectTaskCommand = new PtDeleteCommand(1,
-                ipProjectTask.getProject().getProjectName(), 1);
+                ipProjectTask.getProjectName(), 1);
         PtDeleteCommand deleteTpProjectTaskCommand = new PtDeleteCommand(1,
-                tpProjectTask.getProject().getProjectName(), 1);
+                tpProjectTask.getProjectName(), 1);
 
         // same object -> returns true
         assertTrue(deleteIpProjectTaskCommand.equals(deleteIpProjectTaskCommand));
 
         // same values -> returns true
         PtDeleteCommand deleteIpProjectTaskCommandCopy = new PtDeleteCommand(1,
-                ipProjectTask.getProject().getProjectName(), 1);
+                ipProjectTask.getProjectName(), 1);
         assertTrue(deleteIpProjectTaskCommand.equals(deleteIpProjectTaskCommandCopy));
 
         //different types -> returns false
