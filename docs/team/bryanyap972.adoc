@@ -7,30 +7,85 @@
 
 == Overview
 
-NOVA is a desktop application to help CS2103T with event planning and managing schedules.
+NOVA is a desktop application to help CS2103T with event planning, managing schedules and keeping track of their project tasks.
 
 == Summary of contributions
 
 I am in charge of the Progress Tracker and its features and is a maintainer for the team repo.
 
 * *Major enhancement*:
+I added the ability to add project tasks into individual and team project.
+
+** What it does: Allows users to add tasks into specific weeks of projects.
+** Justification: This enables users to keep track of the tasks that they need to complete each week for the projects.
+** Highlights: The implementation required thinking of design restrictions such as having only 13 weeks since there are
+only 13 weeks in a semester before project submission as well as having only two projects in the module.
+** Credits: The parsers used for the commands were modified versions of the parsers from AddressBook 3.
+
+* *Major enhancement*:
+I added the ability to navigate between the different features.
+
+** What it does: Allows users to navigate to the different features of the application.
+** Justification: This enables the team to reuse command keywords since the parsers and commands can be separate now.
+This also enables users to receive feature specific information such as specific error messages and helpbox at the side.
+** Highlights: This enhancement affects the parsers and command keywords that is available to the team to use.
+This also helped reduce the dependency of the different features and helped to link the different customisation and parsers
+together.
 
 * *Minor enhancement*:
+I added the ability to list tasks from a specific week of the projects. This allows the user to view the tasks that they
+have added.
 
-* *Code contributed*:
+* *Minor enhancement*:
+I added the ability to delete tasks. This allows the user to delete the tasks that they
+have added so that they can fix errors they made.
+
+* *Minor enhancement*:
+I added the ability to edit tasks. This allows the user to edit the tasks that they
+have added so that they can fix minor errors they made without having to delete and re-add tasks.
+
+* *Minor enhancement*:
+I added the ability to add a note to tasks. This allows users to add additional information to a task.
+
+* *Minor enhancement*:
+I added the ability to delete note to tasks. This allows user to delete note that have been wrongly added.
+
+* *Minor enhancement*:
+I added the ability to edit note added to tasks. This allows user to make corrections to errors in notes without having
+to delete and re-add a note.
+
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D
 
 * *Other contributions*:
 
 ** Project management:
+*** Acted as the main maintainer for team repository and ensured that code quality was up to standard before merging.
 
 ** Enhancements to existing features:
-
-** Documentation:
+*** Formatted GUI (added help box and the formatting of the components) and changed colour scheme of GUI
+(https://github.com/AY1920S2-CS2103T-F10-3/main/pull/112[#112])
+*** Changed the team's website. Removed unnecessary links and headers (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/57[#57])
+*** Refactored AB3 storage to better fit the team features (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/238[#238]).
+*** Added Home page and Help message for Home page (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/190[#190], https://github.com/AY1920S2-CS2103T-F10-3/main/pull/401[#401])
+*** Implemented LogicParser class to integrate the different features' parsers (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/118[#118])
 
 ** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-F10-3/main/pull/150[#150], https://github.com/AY1920S2-CS2103T-F10-3/main/pull/235[#235]
+*** Rreported bugs and gave suggestions for other teams in the class (examples: https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-382542427[1], https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#discussion_r388685822[2], https://github.com/BryanYap972/ped/issues[3]).
 
 ** Tools:
+*** Integrated travis CI into the project (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/1[#1]).
+*** Integrated Netlify into the project.
+
 
 == Contributions to the User Guide
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+
+*** ProgressTracker section in user guide
+
+include::../UserGuide.adoc[tag=ProgressTracker]
+
+*** Progress Tracker commands under Command Summary.
 
 == Contributions to the Developer Guide
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
