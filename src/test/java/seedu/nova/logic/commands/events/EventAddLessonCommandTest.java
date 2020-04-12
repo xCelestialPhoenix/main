@@ -21,7 +21,7 @@ import seedu.nova.logic.commands.sccommands.eventcommands.EventAddConsultationCo
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddLessonCommand;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
-import seedu.nova.model.schedule.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.exceptions.TimeOverlapException;
 import seedu.nova.testutil.ModelStub;
 
 public class EventAddLessonCommandTest {

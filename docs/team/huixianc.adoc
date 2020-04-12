@@ -101,5 +101,3 @@ include::../DeveloperGuide.adoc[tag=eventuserstory]
 |===
 
 include::../DeveloperGuide.adoc[tag=eventusecase]
-
-

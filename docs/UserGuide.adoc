@@ -65,7 +65,7 @@ Here are some steps to get you started:
 .  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::ui.png[width="790" align="center"]
+image::Ui.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 4.1: GUI of NOVA#_
 +
@@ -81,8 +81,10 @@ _[.small]#Fig 4.2: GUI of NOVA after entering `nav ab`#_
 You can use the following commands once you are in address book mode:
 
 ** *`list`* : lists all contacts
+
 ** `add n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named *John Doe* to the Address Book
  and categorise as classmate
+
 * *`exit`* : exits the app
 
 Refer to <<Features, Features>> for details of each command.
@@ -157,7 +159,7 @@ enter the command: `add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
 NOVA will add a new contact named Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
 classmate category and display a confirmation message as seen below.
 
-image::userguide/addressbook_add.png[width="690" align="center"]
+image::userguide/addressbook_add.PNG[width="690" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.1: Display message after entering +
 `add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`#_
@@ -249,7 +251,7 @@ Optional fields are `n\[name]`, `p\[phone number]`,
 Example: +
 Suppose you want to edit the Alex Yeoh's phone number in your address book after using `list` as shown below,
 
-image::userguide/addressbook_list.png[width="690" align="center"]
+image::userguide/addressbook_list.PNG[width="690" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.5.1: Example display message after entering `list`#_
 
@@ -257,7 +259,7 @@ enter the command: `edit i\1 p\88888888`
 
 NOVA will edit the phone number of Alex Yeoh to 88888888 as shown below.
 
-image::userguide/addressbook_edit.png[width="790" align="center"]
+image::userguide/addressbook_edit.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.5.2: Display message after entering `edit i\1 p\88888888`#_
 
@@ -287,7 +289,7 @@ enter the command: `remark i\2 r\She's a nice teammate`
 
 NOVA will add the remark "She's a nice teammate" to Bernice Yu in your address book as shown below.
 
-image::userguide/addressbook_remark.png[width="790" align="center"]
+image::userguide/addressbook_remark.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.6.2: Display message after entering `remark i\2 r\She's a nice teammate`#_
 
@@ -317,7 +319,7 @@ enter the command: `delete i\1`
 
 NOVA will delete Alex Yeoh from your the address book.
 
-image::userguide/addressbook_delete.png[width="790" align="center"]
+image::userguide/addressbook_delete.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.7.2: Display message after entering `delete i\1`#_
 
@@ -361,6 +363,7 @@ image::userguide/schedule_nav.png[width="790" align="center"]
 _[.small]#Figure 5.3: GUI of NOVA after user typed `nav schedule`#_
 
 // tag::events[]
+
 ==== Add a Meeting: `meeting`
 You can add a meeting as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
@@ -371,6 +374,8 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 * You can only add meetings to dates that fall within the semester.
+* All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
+* `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
 ====
 
 Example: +
@@ -391,12 +396,14 @@ _[.small]#Fig 5.3.1: Display message after entering +
 You can add a study session as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
-Format: `study d\[description] v\[venue] t\ [YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
+Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [End time (HH:MM)]`
 
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 * You can only add study sessions to dates that fall within the semester.
+* All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
+* `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
 ====
 
 Example: +
@@ -423,6 +430,8 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 * You can only add consultation sessions to dates that fall within the semester.
+* All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
+* `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
 ====
 
 Example: +
@@ -450,6 +459,8 @@ Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
 * The lesson will be repeated weekly from weeks 1 to 13.
 * There will not be lessons in the recess week.
+* All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
+* `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
 ====
 
 Example: +
@@ -473,7 +484,10 @@ If the event does not exist, NOVA will inform you.
 Format: `delete t\[YYYY-MM-DD] i\[index]`
 
 [NOTE]
-`[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
+====
+* `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* All prefixes (i.e. `t\` and `i\`) must be present.
+====
 
 Example: +
 Suppose you wish to remove the second event from the list of events on 20 Feb 2020, +
@@ -494,7 +508,11 @@ You can add additional notes about an event. If the event does not exist, NOVA w
 Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 
 [NOTE]
-`[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
+====
+* `[index]` must be a positive integer. (E.g. 1, 2, 3, ...)
+* All prefixes (i.e. `d\`, `t\` and `i\`) must be present.
+* `[description]` can be left as a blank space if you wish (i.e. " ").
+====
 
 Example: +
 Suppose you wish to add a note that indicates the work allocation to a meeting event, +
@@ -511,6 +529,7 @@ _[.small]#Fig 5.3.6: Display message after entering +
 `note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`#_
 
 // end::events[]
+
 <<Top, [Back to Top]>>
 
 ==== View Schedule of a Day: `view`
@@ -575,12 +594,13 @@ NOVA will show you your freeslots on 20 Feb 2020.
 
 <<Top, [Back to Top]>>
 
+//tag::studyplanner[]
 === Daily Study Planner
 Learn how to work with the planner feature in NOVA. You can add daily/weeky tasks into your study plan and schedule it
 on any day you like hassle-free. You need to be in planner mode. Enter the planner mode by entering the command
 `nav planner`.
 
-image::userguide/planner.png[width="790" align="center"]
+image::userguide/planner.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.4: GUI of NOVA after user typed contact `nav planner`#_
 
@@ -690,6 +710,10 @@ textbook” on a random spot within the free slot.
 
 <<Top, [Back to Top]>>
 
+//end::studyplanner[]
+
+//tag::ProgressTracker[]
+
 === Progress Tracker
 Learn how to work with the progress tracker feature in NOVA. You can track important project tasks by adding them into the progress tracker
 and manage them easily. You need to be in Progress Tracker mode. Enter the Progress Tracker mode by entering the
@@ -707,18 +731,28 @@ Format: +
 
 [NOTE]
 ====
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `add` is case-sensitive
 * `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
-* tasks must be added to the weeks in order (i.e. cannot add a task to week 2 before adding to week 1)
 * `[task description]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
 Suppose you want to add a task to week 3 of IP project to remind yourself to do up javaFx,
 
-`Add p\ip w\3 d\Do up javaFx`
+`add p\ip w\3 d\Do up javaFx`
 
 NOVA will add a task “Do up javaFx” to week 3 of IP in progress tracker.
+
+image::userguide/addPtTaskResult.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.1: Display message after entering `add p\ip w\3 d\Do up javaFx`#_
 
 <<Top, [Back to Top]>>
 
@@ -730,8 +764,15 @@ Format: +
 
 [NOTE]
 ====
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `list` is case-sensitive
 * `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
@@ -740,6 +781,10 @@ Suppose you would like to view the tasks you have added to week 3 of IP project,
 `list p\ip w\3`
 
 NOVA will list the tasks in week 3 of IP project.
+
+image::userguide/listPtTask.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.2: Display message after entering `list p\ip w\3`#_
 
 <<Top, [Back to Top]>>
 
@@ -750,16 +795,28 @@ Format: `delete p\[ip/tp] w\[week number] t\[task number]`
 
 [NOTE]
 ====
-* `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `delete` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
-Suppose you wish to delete task number 3 in week 3 of IP project,
+Suppose you wish to delete task number 1 in week 3 of IP project,
 
-`delete p\ip w\3 t\3`
+`delete p\ip w\3 t\1`
 
-NOVA will delete task 3 in week 3 of IP in progress tracker.
+NOVA will delete task 1 in week 3 of IP in progress tracker.
+
+image::userguide/deletePtTaskResult.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.3: Display message after entering `delete p\ip w\3 t\1`#_
 
 <<Top, [Back to Top]>>
 
@@ -771,16 +828,28 @@ Format: +
 
 [NOTE]
 ====
-* `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `done` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
-Suppose you wish to set task number 2 in week 3 of IP project as done or undone,
+Suppose you wish to set task number 1 in week 3 of IP project as done or undone,
 
-`done p\ip w\3 t\2`
+`done p\ip w\3 t\1`
 
-NOVA will set task 2 in week 3 of IP in progress tracker as done/undone depending on it's status originally.
+NOVA will set task 1 in week 3 of IP in progress tracker as done/undone depending on it's status originally.
+
+image::userguide/setDonePtTaskResult.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.4: Display message after entering `done p\ip w\3 t\1`#_
 
 <<Top, [Back to Top]>>
 
@@ -792,17 +861,29 @@ Format: +
 
 [NOTE]
 ====
-*  `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `addNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 * `[note]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
 Suppose you wish to add a note to remind yourself to create a branch and tag for task number 2 in week 3 of IP project,
 
-`addNote p\ip w\3 t\2 d\Need create branch and tag`
+`addNote p\ip w\3 t\1 d\Need create branch and tag`
 
-NOVA will add a note “Need create branch and tag” to task 2 in week 3 of IP.
+NOVA will add a note “Need create branch and tag” to task 1 in week 3 of IP.
+
+image::userguide/addPtNote.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.5: Display message after entering `addNote p\ip w\3 t\1 d\Need create branch and tag`#_
 
 <<Top, [Back to Top]>>
 
@@ -814,17 +895,29 @@ Format: +
 
 [NOTE]
 ====
-* `week number`, `task number` and `note number` must be a positive integer (E.g. 1, 2, 3, …)
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `editNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 * `[new note]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
-Suppose you wish to edit the note added in task 2 of week 3 in IP project,
+Suppose you wish to edit the note added in task 1 of week 3 in IP project,
 
-`editNote p\[ip] w\3 t\2 d\consult tutor`
+`editNote p\ip w\3 t\1 d\consult tutor`
 
-NOVA will edit the note under task 2 of week 3 of IP.
+NOVA will edit the note under task 1 of week 3 of IP.
+
+image::userguide/editPtNote.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.6: Display message after entering `editNote p\ip w\3 t\1 d\consult tutor`#_
 
 <<Top, [Back to Top]>>
 
@@ -832,21 +925,33 @@ NOVA will edit the note under task 2 of week 3 of IP.
 You can delete the note that you have added to tasks in projects in the progress tracker.
 
 Format: +
-`deleteNote p\[ip/tp] w\[week number] t\[task number] i\[note number]`
+`deleteNote p\[ip/tp] w\[week number] t\[task number]`
 
 [NOTE]
 ====
-* `[week number]`, `[task number]` and `[note number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `deleteNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
-Suppose you wish to delete the note added in task 2 of week 3 in IP project,
+Suppose you wish to delete the note added in task 1 of week 3 in IP project,
 
-`deleteNote p\[ip] w\3 t\2 i\2`
+`deleteNote p\ip w\3 t\1`
 
-NOVA will delete the note under task 2 of week 3 of IP.
+NOVA will delete the note under task 1 of week 3 of IP.
 
+image::userguide/deletePtNote.png[width="500" align="center"]
+[.text-center]
+_[.small]#Fig 5.5.7: Display message after entering `deleteNote p\ip w\3 t\1`#_
+//end::ProgressTracker[]
 <<Top, [Back to Top]>>
 
 [[Summary]]
@@ -901,7 +1006,6 @@ into your schedule
 | addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
 | editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
 | deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
-
 |=========================================================
 
 <<Top, [Back to Top]>>
@@ -914,4 +1018,3 @@ into your schedule
 contains the data of your previous NOVA folder.
 
 <<Top, [Back to Top]>>
-
