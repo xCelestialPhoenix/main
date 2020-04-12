@@ -784,7 +784,25 @@ Use case resumes at step 1
 Use case resumes at step 2
 
 [discrete]
-=== Use case 10: Delete an event
+=== Use case 10: Adding a consultation event
+
+*MSS*
+
+1. Student enters consultation command with details of the consultation
+2. NOVA adds consultation event to the schedule
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. NOVA detects error in data inputted
+** 1a1. NOVA informs student of the error
++
+Use case ends.
+
+[discrete]
+=== Use case 11: Delete an event
 
 *MSS*
 
@@ -802,7 +820,25 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Add notes to a project task in project section of progress tracker
+=== Use case 12: Adding a note to an event
+
+*MSS*
+
+1. Student enters note command with details of the event
+2. NOVA adds note to the event
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. NOVA cannot find the event given
+** 1a1. NOVA informs student that the event does not exist
++
+Use case ends.
+
+[discrete]
+=== Use case 13: Add notes to a project task in project section of progress tracker
 
 *MSS*
 
@@ -820,7 +856,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: User edits a note.
+=== Use case 14: User edits a note.
 
 *MSS*
 
@@ -838,7 +874,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 13: User deletes a note.
+=== Use case 15: User deletes a note.
 
 *MSS*
 
@@ -856,7 +892,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 14: View the timetable
+=== Use case 16: View the timetable
 
 *MSS*
 
