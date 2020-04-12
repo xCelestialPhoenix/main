@@ -77,3 +77,4 @@ include::../DeveloperGuide.adoc[tag=logic]
 |_Secondly, the Manage Events section under Implementation._
 |===
 include::../DeveloperGuide.adoc[tag=events]
+
