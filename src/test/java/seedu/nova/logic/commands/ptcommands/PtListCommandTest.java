@@ -70,9 +70,9 @@ public class PtListCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtListCommand listIpProjectTaskCommand = new PtListCommand(1,
-                ipProjectTask.getProject().getProjectName());
+                ipProjectTask.getProjectName());
         PtListCommand listTpProjectTaskCommand = new PtListCommand(1,
-                tpProjectTask.getProject().getProjectName());
+                tpProjectTask.getProjectName());
 
         // same object -> returns true
         assertTrue(listIpProjectTaskCommand.equals(listIpProjectTaskCommand));

@@ -83,9 +83,9 @@ public class PtEditCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtEditCommand editIpProjectTaskCommand = new PtEditCommand(1,
-                ipProjectTask.getProject().getProjectName(), "new taskDesc", 1);
+                ipProjectTask.getProjectName(), "new taskDesc", 1);
         PtEditCommand editTpProjectTaskCommand = new PtEditCommand(1,
-                tpProjectTask.getProject().getProjectName(), "new taskDesc", 1);
+                tpProjectTask.getProjectName(), "new taskDesc", 1);
 
         // same object -> returns true
         assertTrue(editIpProjectTaskCommand.equals(editIpProjectTaskCommand));

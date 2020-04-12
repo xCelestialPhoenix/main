@@ -1,6 +1,8 @@
 package seedu.nova.ui;
 
 import static seedu.nova.commons.core.HelpMessages.HELP_ADDRESS_BOOK;
+import static seedu.nova.commons.core.HelpMessages.HELP_HOME;
+import static seedu.nova.commons.core.HelpMessages.HELP_PROGRESS_TRACKER;
 import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
 
 import java.time.LocalDate;
@@ -18,6 +20,7 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.Mode;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -80,7 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpHolder.getChildren().add(helpBox.getRoot());
 
-        helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+        helpBox.setHelp(HELP_HOME);
 
         //add schedule for the day in homepage
         try {
@@ -88,12 +91,13 @@ public class MainWindow extends UiPart<Stage> {
             String today = LocalDate.now().toString();
 
             //set mode to schedule first
-            logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
+            Mode mode = logic.getMode();
+            logic.setMode(mode, ModeEnum.SCHEDULE);
 
             executeCommand("view t\\" + today);
 
             //set mode back to home
-            logic.getModel().getMode().setModeEnum(ModeEnum.HOME);
+            logic.setMode(mode, ModeEnum.HOME);
         } catch (CommandException | ParseException e) {
             //do noting
         }
@@ -142,27 +146,24 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isChangeMode()) {
+                Mode mode = logic.getMode();
+                ModeEnum modeEnum = logic.getModeEnum(mode);
 
-                ModeEnum mode = logic.getModel().getMode().getModeEnum();
-
-                switch (mode) {
+                switch (modeEnum) {
                 case HOME:
-                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    helpBox.setHelp(HELP_HOME);
                     break;
                 case ADDRESSBOOK:
                     helpBox.setHelp(HELP_ADDRESS_BOOK);
-                    break;
-                case EVENT:
-                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
                 case SCHEDULE:
                     helpBox.setHelp(HELP_SCHEDULE);
                     break;
                 case PROGRESSTRACKER:
-                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    helpBox.setHelp(HELP_PROGRESS_TRACKER);
                     break;
                 default:
-                    logger.info("Invalid mode: " + mode.name());
+                    logger.info("Invalid mode: " + logic.getModeName(modeEnum));
                 }
 
             }

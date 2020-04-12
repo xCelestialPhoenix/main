@@ -60,19 +60,20 @@ Each of the four components
 
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
-.Class Diagram of the Logic Component
-image::LogicClassDiagram.png[]
+.Architecture Diagram of the Logic Component
+image::LogicArchitecture.png[]
 
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`.
 
-.Component interactions for `delete 1` command
+.Component interactions for `delete i\1` command
 image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
+//tag::UI[]
 [[Design-Ui]]
 === UI component
 
@@ -83,14 +84,17 @@ image::UiClassDiagram.png[]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+//end::UI[]
 
 [[Design-Logic]]
+
+// tag::logic[]
 === Logic component
 
 [[fig-LogicClassDiagram]]
@@ -106,12 +110,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("done t\2020-03-20 i\2")` API call.
-
-.Interactions Inside the Logic Component for the `done t\2020-03-20 i\2` Command
-image::EventMarkDoneSeqDiagram.png[]
-
+// end::logic[]
 
 [[Design-Model]]
 === Model component
@@ -161,41 +160,43 @@ The `Messages` is used by Address Book feature and deals with messages to displa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::events[]
+
 === Manage Events
 The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
 Users are able to:
 
 * add events
 * delete events
-* mark events as done
 * add notes to events
-* find events
-* repeat events
 
-==== Implementation - Marking an event as done
-The mark as done feature allows users to mark events they have completed as done.
-This feature is facilitated by `EventParser`, `EventMarkDoneCommandParser` and `EventMarkDoneCommand`.
-The operation is exposed in the `Model` interface as `Model#markDone()`.
+==== Implementation - Deleting an event
+The delete feature allows users to remove events from the schedule.
+This feature is facilitated by `ScheduleParser`, `EventDeleteCommandParser` and `EventDeleteCommand`.
+The operation is exposed in the `Model` interface as `Model#deleteEvent()`.
 
-Given below is an example usage scenario and how the mark event as done mechanism behaves at each step.
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
 1. The user does `view t\2020-03-20` to view their events on 20th March 2020.
 
-2. The user executes `done t\2020-03-20 i\2` command to mark the second event on 20th March 2020 as done.
+2. The user executes `delete t\2020-03-20 i\2` command to delete the second event on 20th March 2020.
 
-3. `EventMarkDoneParser` creates a new `EventMarkDoneCommand`.
+3. `EventDeleteCommandParser` creates a new `EventDeleteCommand`.
 
-4. `LogicManager` executes the `EventMarkDoneCommand`.
+4. `LogicManager` executes the `EventDeleteCommand`.
 
-5. `Model#markDone()` is called, and the `Schedule` object in `ModelManager` is updated.
+5. `Model#deleteEvent()` is called, and the `Schedule` object in `ModelManager` is updated.
 
-The following sequence diagram shows how the mark event as done operation works:
+The following sequence diagram shows how the delete operation works:
 
-image::EventMarkDoneSeqDiagram.png[]
+image::EventDeleteSeqDiagram.png[]
 
+The following activity diagram shows what happens when a user inputs a delete command:
+
+image::EventDeleteActDiagram.png[]
 
 ==== Design Considerations
-Aspect: Syntax of Marking an Event as Done
+Aspect: Syntax of Deleting an Event
 
 * **Alternative 1 (current choice):** choosing the event by its date and its index in the list of events on that date
 ** Pros: relatively short to type, greater ease of implementation
@@ -205,10 +206,11 @@ Aspect: Syntax of Marking an Event as Done
 ** Pros: more recognisable for users
 ** Cons: difficulty in implementing as certain events may have the exact same descriptions
 
+// end::events[]
 
 // tag::undoredo[]
 === Address Book
-The address book feature handles the contact list of the users. Users are able to:
+The address book feature handles the contact list of the users. To enter address book mode, users need to enter `nav ab` command. Users are able to:
 
 * add contacts
 * edit contacts
@@ -241,13 +243,13 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 image::UndoRedoState0.png[]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete i\5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete i\5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-image::UndoRedoState1edited.png[]
+image::UndoRedoState1.png[width=446]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n\David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-image::UndoRedoState2edited.png[]
+image::UndoRedoState2.png[width=446]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
@@ -263,18 +265,18 @@ The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
 
-NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `AbUndoCommand` and `AbUndoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 [NOTE]
 If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, `list c\classmate`, `list c\teammate` or `find`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 image::UndoRedoState4.png[]
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n\David ...` command. This is the behavior that most modern desktop applications follow.
 
 image::UndoRedoState5.png[]
 
@@ -303,21 +305,26 @@ image::CommitActivityDiagram.png[]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+//tag::listPt[]
 === View tasks under IP project
 The view tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
 Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
-1. The user keys in 'view p\ip w\2' into the command box.
-2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of the IP project.
-3. 'PtListCommandParser' creates a new 'PtListCommand'.
-4. 'LogicManager' executes the 'PtListCommand'.
-5. 'Model#listTasks()' is called and the list of tasks is retrieved.
+1. The user keys in `list p\ip w\2` into the command box.
+2. The user executes `list p\ip w\2'`to view the list of tasks in week 2 of the IP project.
+3. `PtListCommandParser` creates a new `PtListCommand`.
+4. `LogicManager` executes the `PtListCommand`.
+5. `Model#listTasks()` is called and the list of tasks is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
 image::PtSeqDiagram.png[]
+
+The following activity diagram shows what happens when a user inputs a list command:
+
+image::ListPtActivityDiagram.png[]
 
 ==== Design Considerations
 Aspect: Adding choice of week to view tasks
@@ -330,6 +337,7 @@ Aspect: Adding choice of week to view tasks
 ** Pros: shorter command to type and user can see all their tasks at once
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
+//end::listPt[]
 === View schedule for a specified day
 The view schedule feature allows the user to view their schedule for the day specified by them.
 
@@ -411,25 +419,25 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |=======================================================================
 |Priority |As a ... |I can ... |So that I ...
 
-|`* * *` |student |add classmate or teammate’s name and contact info |contact them easily
+|`* * *` |student |add classmate or teammate’s name and contact information |contact them easily
 
-|`* * *` |student |edit classmate or teammate’s name and contact info |Edit them if the information are changed
+|`* * *` |student |edit classmate or teammate’s name and contact information |Edit them if the information are changed
 
 |`* * *` |student |delete classmate or teammate’s contact |delete if not necessary anymore
 
 |`* * *` |student |categorise contacts into teammate or classmate |
 
-|`* * *` |student |add profile picture to added contact |know at a glance who is the person in my contact
+|`* * *` |student |add category specific remark |filter out a contact’s remark according to type of contact
 
-|`* * *` |student |edit profile picture to added contact |edit the picture if changes are necessary
+|`* * *` |student |edit category specific remark |
 
-|`* * *` |student |delete profile picture to added contact|
+|`* * *` |student |delete category specific remark |
 
-|`* * *` |student |add category specific description |filter out a contact’s remark according to type of contact
+|`*` |student |add profile picture to added contact |know at a glance who is the person in my contact
 
-|`* *` |student |add contact information on CS2103T tutors |contact them for consultations
+|`*` |student |edit profile picture to added contact |edit the picture if changes are necessary
 
-|`* *` |student |add contact information on CS2103T professors |can contact them
+|`*` |student |delete profile picture to added contact|
 
 |`* * *` |student |create meeting events | can keep track of my schedule
 
@@ -479,47 +487,312 @@ _{More to be added}_
 (For all use cases below, the *System* is the `nova` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case 1: Delete a contact
+=== Use case 1: Add a contact
 
 *MSS*
 
-1.  Student enters delete command with the contact’s name
-2.  NOVA deletes the contact
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student enters add command with the contact’s name, phone number, email and category
+3.  NOVA saves the contact
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. NOVA cannot find the contact in the contact list
+* 1a. Student is not in address book mode
 +
 [none]
-** 1a1. NOVA informs student that the contact to delete does not exist
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
 +
-Use case ends.
+Use case resumes at step 1
+[none]
+* 2a. Student did not include compulsory field
++
+[none]
+** 2a1. NOVA informs student to include compulsory field
++
+Use case resumes at step 2
+* 2b. Student did not adhere to format required for adding contact
++
+[none]
+** 2b1. NOVA informs student that the format is invalid, and provides an example of a correct format
++
+Use case resumes at step 2
 
 [discrete]
-=== Use case 2: Delete contact's picture
+=== Use case 2: List all contacts
 
 *MSS*
 
-1.  Student enters deletepic command with the contact’s name
-2.  NOVA deletes the contact's picture
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student enters list command
+3.  NOVA list all the contacts
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
 [none]
-* 1a. The contact does not have any picture uploaded
+* 1a. Student is not in address book mode
 +
 [none]
-** 1a1. NOVA informs student that there is no picture to delete
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
 +
-Use case ends.
+Use case resumes at step 1
+[none]
+* 2a. There is no contacts saved
++
+[none]
+** 2a1. NOVA informs student that the list is empty
++
+Use case end
 
 [discrete]
-=== Use case 3: Delete an event
+=== Use case 3: List category specific contacts
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student enters list category command
+3.  NOVA list all the contacts under that category
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. There is no contacts saved under that category
++
+[none]
+** 2a1. NOVA informs student that the list of that category is empty
++
+Use case end
+
+[discrete]
+=== Use case 4: Find saved contacts
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student enters find command
+3.  NOVA finds the name of contact that the student typed and list all the matching names
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. There is no contact that matches what the student type
++
+[none]
+** 2a1. NOVA prints an empty list
++
+Use case end
+
+[discrete]
+=== Use case 5: Edit a contact
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+3.  Student enters edit command with index, and at least 1 field to edit
+4.  NOVA saves the edited contact
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `edit` command
++
+[none]
+** 2a1. Student edits information of the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is edited
++
+Use case resumes at step 2
+[none]
+* 3a. Student did not adhere to format required for editing contact
++
+[none]
+** 3a1. NOVA informs student that the format is invalid, and provides an example of a correct format
++
+Use case resumes at step 3
+[none]
+* 3b. Student did not include at least 1 compulsory field
++
+[none]
+** 3b1. NOVA informs student to include at least 1 compulsory field
++
+Use case resumes at step 3
+
+[discrete]
+=== Use case 6: Delete a contact
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+3.  Student enters delete command
+4.  NOVA deletes the contact
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `delete` command
++
+[none]
+** 2a1. Student deletes the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is deleted
++
+Use case resumes at step 2
+[none]
+* 3a. NOVA cannot find the contact in the contact list
++
+[none]
+** 3a1. NOVA informs student that the contact to delete does not exist
++
+Use case resumes at step 3
+[none]
+* 3b. Student provides a wrong format to delete
++
+[none]
+** 3b1. NOVA informs student that the format is invalid, and provides an example of a correct format
++
+Use case resumes at step 3
+
+[discrete]
+=== Use case 7: Add, edit or delete remark to a contact
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+3.  Student enters remark command
+4.  NOVA adds, edits or deletes remark to a contact
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `remark` command
++
+[none]
+** 2a1. Student adds, edits or deletes remark of the wrong contact, and NOVA informs the student to use `undo` command if student add, edit or delete remark on the wrong contact
++
+Use case resumes at step 2
+[none]
+* 3a. NOVA cannot find the contact in the contact list
++
+[none]
+** 3a1. NOVA informs student that the contact to add, edit or delete mark does not exist
++
+Use case resumes at step 3
+[none]
+* 3b. Student provides a wrong format to add, edit or delete
++
+[none]
+** 3b1. NOVA informs student that the format is invalid, and provides an example of a correct format
++
+Use case resumes at step 3
+
+[discrete]
+=== Use case 8: Undoing in address book
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student used `add`, `edit`, `delete` or `remark` prior
+3.  Student enters undo command
+4.  NOVA undone the changes that the student made
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. Student did not use `add`, `edit`, `delete` or `remark` prior to using `undo`
++
+[none]
+** 2a1. NOVA informs the student that there are no more commands to undo
++
+Use case resumes at step 2
+
+[discrete]
+=== Use case 9: Redoing in address book
+
+*MSS*
+
+1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
+2.  Student used `undo` successfully prior to using `redo`
+3.  Student enters redo command
+4.  NOVA redo the changes that the student made
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. Student is not in address book mode
++
+[none]
+** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
++
+Use case resumes at step 1
+[none]
+* 2a. Student did not use `undo` prior to using `redo`
++
+[none]
+** 2a1. NOVA informs the student that there are no more commands to redo
++
+Use case resumes at step 2
+
+[discrete]
+=== Use case 10: Delete an event
 
 *MSS*
 
@@ -536,8 +809,98 @@ Use case ends.
 +
 Use case ends.
 
+//tag::UseCasesPt[]
 [discrete]
-=== Use case 4: Add notes to a project task in project section of progress tracker
+=== Use case 11: Add task to a project of progress tracker
+
+*MSS*
+
+1.  User enter command to add task to a project.
+2.  Progress tracker adds task to the project.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such project exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 12: User edits a task.
+
+*MSS*
+
+1.  User enter command to edit task.
+2.  Progress tracker replaces old task description with new description.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such task exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 13: User deletes a task.
+
+*MSS*
+
+1.  User enter command to delete task.
+2.  Progress tracker deletes task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Task to be deleted does not exist.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 14: User lists tasks in a week of a project.
+
+*MSS*
+
+1.  User enter command to list tasks.
+2.  Progress tracker lists task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists in the week specified.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 15: User set an added task as done.
+
+*MSS*
+
+1.  User enter command to set task as done.
+2.  Progress tracker sets task as done.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+=== Use case 16: Add notes to a task in progress tracker
 
 *MSS*
 
@@ -555,7 +918,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 5: User edits a note.
+=== Use case 17: User edits a note.
 
 *MSS*
 
@@ -568,12 +931,12 @@ Use case ends.
 
 [none]
 * 1a. No prior note was added.
-*   1a1. NOVA adds edit as new note.
+*   1a1. NOVA shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case 6: User deletes a note.
+=== Use case 18: User deletes a note.
 
 *MSS*
 
@@ -589,9 +952,10 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+//end::UseCasesPt[]
 
 [discrete]
-=== Use case 7: View the timetable
+=== Use case 19: View the timetable
 
 *MSS*
 
@@ -612,10 +976,12 @@ _{More to be added}_
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  The application should respond to every command within one second.
-.  Technical requirements: The application should work on both 32-bit and 64-bit environments.
+. Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
+. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+. The application should respond to every command within one second.
+. Technical requirements: The application should work on both 32-bit and 64-bit environments.
+. The application should work without internet connection.
+. The user should be able to navigate to other mode just by using `nav` command.
 
 _{More to be added}_
 
@@ -666,16 +1032,17 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a person in Address Book
 
+. Enter address book mode via `nav ab`
 . Deleting a person while all persons are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Prerequisites: List contacts using the `list`, `list c\classmate`, `list c\teammate` or `find` command. There are multiple contacts in the list.
+.. Test case: `delete i\1` +
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+.. Test case: `delete i\0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete i\x` (where x is larger than the list size), `delete x` (where x is number or letter)
    Expected: Similar to previous.
 
 _{ more test cases ... }_

@@ -11,11 +11,11 @@ import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
-import seedu.nova.model.schedule.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.exceptions.TimeOverlapException;
 
 
 /**
- * adds a Lesson into the Schedule.
+ * Adds a Lesson into the Schedule.
  */
 public class EventAddLessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
@@ -36,6 +36,9 @@ public class EventAddLessonCommand extends Command {
 
     private Event toAdd;
 
+    /**
+     * Creates an EventAddLessonCommand to add the specified {@code Event}
+     */
     public EventAddLessonCommand(Event lesson) {
         requireNonNull(lesson);
         this.toAdd = lesson;
