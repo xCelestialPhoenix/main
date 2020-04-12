@@ -11,8 +11,10 @@ import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -157,6 +159,10 @@ public interface Model {
     //============== Progress Tracker =============
 
     ProgressTracker getProgressTracker();
+
+    Ip getProgressTrackerIp();
+
+    Tp getProgressTrackerTp();
 
     String listPtTask(String projectName, int weekNum);
 

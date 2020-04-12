@@ -68,4 +68,9 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, isChangeMode, exit);
     }
 
+    @Override
+    public String toString() {
+        return this.feedbackToUser;
+    }
+
 }

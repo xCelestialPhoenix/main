@@ -30,8 +30,11 @@ public class PtAddNoteCommand extends Command {
             + PREFIX_DESC + "take note to do by 2359 Friday";
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
+
     public static final String MESSAGE_FAILURE = "Command failed. Please check that there is a task "
-            + " note in the specified index";
+            + " or that there isn't an existing note in the specified index";
+
+    public static final String MESSAGE_SUCCESS = "Added note to task %d in week %d of %s";
 
     private int weekNum;
     private int taskNum;
@@ -39,10 +42,29 @@ public class PtAddNoteCommand extends Command {
     private String note;
 
     public PtAddNoteCommand(int weekNum, int taskNum, String project, String note) {
+        requireNonNull(project);
+        requireNonNull(note);
+
         this.weekNum = weekNum;
         this.taskNum = taskNum;
         this.project = project.trim().toLowerCase();
         this.note = note;
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getNote() {
+        return note;
     }
 
     @Override
@@ -60,9 +82,23 @@ public class PtAddNoteCommand extends Command {
             }
 
             String projectName = this.project.toUpperCase();
-            String result = "Added note to task " + taskNum + " in week " + weekNum + " of " + projectName;
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtAddNoteCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtAddNoteCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtAddNoteCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskNum = ((PtAddNoteCommand) obj).getTaskNum() == (this.getTaskNum());
+            boolean isSameNote = ((PtAddNoteCommand) obj).getNote().equals(this.getNote());
+
+            return isSameProject && isSameWeek && isSameNote && isSameTaskNum;
         }
     }
 }
