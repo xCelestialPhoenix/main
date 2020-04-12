@@ -198,8 +198,8 @@ class ScheduleTest {
 
     @Test
     public void addNote_dateWithNoEvent_throwsException() {
-        assertThrows(DateNotFoundException.class,
-                () -> schedule.addNote("this is a note", LocalDate.parse("2020-03-09"), 0));
+        assertThrows(DateNotFoundException.class, () ->
+                schedule.addNote("this is a note", LocalDate.parse("2020-03-09"), 0));
 
     }
 
@@ -207,8 +207,8 @@ class ScheduleTest {
     public void addNote_invalidIndex_throwsException() {
         schedule.addEvent(MEETING);
 
-        assertThrows(EventNotFoundException.class,
-                () -> schedule.addNote("this is a note", LocalDate.parse("2020-03-09"), 1));
+        assertThrows(EventNotFoundException.class, () ->
+                schedule.addNote("this is a note", LocalDate.parse("2020-03-09"), 1));
     }
 
 }
