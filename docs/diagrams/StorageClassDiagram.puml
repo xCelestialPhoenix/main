@@ -27,8 +27,8 @@ JsonNovaStorage .down.> JsonSerializableNova
 
 JsonSerializableNova o-right-> JsonAdaptedPerson
 JsonSerializableNova o-right-> JsonAdaptedPtTask
-JsonSerializableNova o-down-> JsonAdaptedTask
-JsonAdaptedTask o-right-> JsonAdaptedEvent
+JsonSerializableNova o-down-> JsonAdaptedPlannerTask
+JsonAdaptedPlannerTask o-right-> JsonAdaptedEvent
 JsonSerializableNova o-down-> JsonAdaptedEvent
 JsonAdaptedPerson o-right-> JsonAdaptedTag
 @enduml
