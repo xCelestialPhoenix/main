@@ -11,10 +11,27 @@ import java.time.format.FormatStyle;
 public class Consultation extends Event {
     private static final String EVENT_TYPE = "consultation";
 
+    /**
+     * Constructs a consultation event.
+     * @param desc description of consultation
+     * @param venue venue of consultation
+     * @param startTime time at which consultation starts
+     * @param endTime time at which consultation ends
+     * @param date date of consultation
+     */
     public Consultation(String desc, String venue, LocalTime startTime, LocalTime endTime, LocalDate date) {
         super(desc, venue, startTime, endTime, date);
     }
 
+    /**
+     * Constructs a consultation event with a note.
+     * @param desc description of consultation
+     * @param venue venue of consultation
+     * @param startTime time at which consultation starts
+     * @param endTime time at which consultation ends
+     * @param date date of consultation
+     * @param note note regarding the consultation
+     */
     public Consultation(String desc, String venue, LocalTime startTime,
                         LocalTime endTime, LocalDate date, String note) {
         super(desc, venue, startTime, endTime, date);

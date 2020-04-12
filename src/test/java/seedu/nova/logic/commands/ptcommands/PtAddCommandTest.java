@@ -49,10 +49,10 @@ public class PtAddCommandTest {
         PtTask validPtTask = new PtTaskBuilder().withNote(new PtNote("")).build();
 
         CommandResult commandResult = new PtAddCommand(validPtTask.getPtWeek(),
-                validPtTask.getProject().getProjectName(), validPtTask.getTaskDesc().toString()).execute(modelStub);
+                validPtTask.getProjectName(), validPtTask.getTaskDesc().toString()).execute(modelStub);
 
         assertEquals(String.format(PtAddCommand.MESSAGE_SUCCESS, validPtTask.getPtWeek(),
-                validPtTask.getProject().getProjectName().toUpperCase()), commandResult.getFeedbackToUser());
+                validPtTask.getProjectName().toUpperCase()), commandResult.getFeedbackToUser());
         assertEquals(validPtTask, modelStub.ptTasksAdded.get(0));
     }
 
@@ -75,9 +75,9 @@ public class PtAddCommandTest {
         PtTask tpProjectTask = new PtTaskBuilder().withProject(tpProject).build();
 
         PtAddCommand addIpProjectTaskCommand = new PtAddCommand(1,
-                ipProjectTask.getProject().getProjectName(), "taskDesc");
+                ipProjectTask.getProjectName(), "taskDesc");
         PtAddCommand addTpProjectTaskCommand = new PtAddCommand(1,
-                tpProjectTask.getProject().getProjectName(), "taskDesc");
+                tpProjectTask.getProjectName(), "taskDesc");
 
         // same object -> returns true
         assertTrue(addIpProjectTaskCommand.equals(addIpProjectTaskCommand));
@@ -106,6 +106,7 @@ public class PtAddCommandTest {
         public void addPtTask(String projectName, int weekNum, PtTask task) {
             requireNonNull(projectName);
             requireNonNull(task);
+
             ptTasksAdded.add(task);
         }
 
