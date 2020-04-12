@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
 import seedu.nova.model.person.Person;
@@ -50,4 +52,12 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     Model getModel();
+
+    void setMode(Mode mode, ModeEnum modeEnum);
+
+    Mode getMode();
+
+    ModeEnum getModeEnum(Mode mode);
+
+    String getModeName(ModeEnum modeEnum);
 }

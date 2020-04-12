@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 import seedu.nova.model.Nova;
@@ -62,6 +63,16 @@ public class ModelStub implements Model {
 
     @Override
     public Nova getNova() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ModeEnum getModeEnum(Mode mode) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public String getModeName(ModeEnum modeEnum) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -33,23 +33,23 @@ public class PtAddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASKDESC,
-                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString()));
+                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString()));
 
         // multiple projects - last project accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_TP + PROJECT_IP + WEEK_ONE + PT_TASKDESC,
-                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString()));
+                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString()));
 
         // multiple weeks - last week accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE + PT_TASKDESC,
-                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString()));
+                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString()));
 
         // multiple taskDesc - last taskDesc accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASKDESC_2 + PT_TASKDESC,
-                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getTaskDesc().toString()));
+                new PtAddCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
+                        expectedPtTask.getTaskDescString()));
     }
 
     @Test

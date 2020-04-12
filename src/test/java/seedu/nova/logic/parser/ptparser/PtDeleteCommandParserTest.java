@@ -33,27 +33,27 @@ public class PtDeleteCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK,
-                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
+                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
                         1));
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK,
-                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
+                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
                         1));
 
         // multiple projects - last project accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_TP + PROJECT_IP + WEEK_ONE + PT_TASK,
-                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
+                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
                         1));
 
         // multiple weeks - last week accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE + PT_TASK,
-                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
+                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
                         1));
 
         // multiple task num - last task num accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE + PT_TASK2 + PT_TASK,
-                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName(),
+                new PtDeleteCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName(),
                         1));
     }
 
