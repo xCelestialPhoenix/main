@@ -366,6 +366,7 @@ image::userguide/schedule_nav.png[width="790" align="center"]
 [.text-center]
 _[.small]#Figure 5.3: GUI of NOVA after user typed `nav schedule`#_
 
+// tag::event[]
 ==== Add a Meeting: `meeting`
 You can add a meeting as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
@@ -530,6 +531,7 @@ image::userguide/EventNote.png[width="590" align="center"]
 _[.small]#Fig 5.3.6: Display message after entering +
 `note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`#_
 
+// end::event[]
 <<Top, [Back to Top]>>
 
 ==== View Schedule of a Day: `view`
