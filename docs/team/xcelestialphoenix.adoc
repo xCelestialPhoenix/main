@@ -35,7 +35,6 @@ date which he/she wants to view. Alternatively, the user can use the `view week`
 happening on that date.
 * Justification: A schedule that cannot be viewed is useless. Users can choose whether to view the schedule at the
 daily level or the weekly level.
-* Highlight:
 
 Pull requests: https://github.com/AY1920S2-CS2103T-F10-3/main/pull/143/files[#143]
 
@@ -46,6 +45,8 @@ I created the framework of the schedule in NOVA.
 * What it does: The framework offers a common platform for the other developers working on the schedule.
 * Justification: Having a common framework reduces the conflict between different implementation of the schedule. It
 also helps us integrate our features easily.
+* Highlight: The implementation was challenging as a affects the implementation of events, view and study planner. A
+common agreement needed to be reached to ensure the schedule will not hinder the implementation of those features.
 
 ==== Code contributed:
 
@@ -76,10 +77,10 @@ solutions (E.g. https://github.com/nus-cs2103-AY1920S2/forum/issues/20[1], https
 == Contributions to the User Guide
 Theses are my contributions towards the user guide.
 
-* Sections
-** 5.3.7. View Schedule of a day
-** 5.3.8. View Schedule of a Week
-** 6. Command Summary
+include::../UserGuide.adoc[tag=intro]
+include::../UserGuide.adoc[tag=about]
+include::../UserGuide.adoc[tag=notation]
+include::../UserGuide.adoc[tag=view]
 
 == Contributions to the Developer Guide
 Theses are my contributions towards the developer guide.
