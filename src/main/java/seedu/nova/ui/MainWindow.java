@@ -1,5 +1,6 @@
 package seedu.nova.ui;
 
+import static seedu.nova.commons.core.HelpMessages.HELP_ADDRESS_BOOK;
 import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
 
 import java.time.LocalDate;
@@ -60,11 +61,9 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        scrollPane.vvalueProperty().bind(resultDisplayPlaceholder.heightProperty());
-
-        //setAccelerators();
-
-        //helpWindow = new HelpWindow();
+        // Autoscroll to bottom
+        resultDisplayPlaceholder.heightProperty().addListener((
+                observable, oldValue, newValue) -> scrollPane.setVvalue(scrollPane.getVmax()));
     }
 
     public Stage getPrimaryStage() {
@@ -91,21 +90,12 @@ public class MainWindow extends UiPart<Stage> {
             //set mode to schedule first
             logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
 
-            CommandResult commandResult = logic.execute("view t\\" + today);
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            executeCommand("view t\\" + today);
 
             //set mode back to home
             logic.getModel().getMode().setModeEnum(ModeEnum.HOME);
         } catch (CommandException | ParseException e) {
-            String commandText = "view d\\" + LocalDate.now().toString();
-            logger.info("Invalid command: " + commandText);
-
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(e.getMessage());
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            //do noting
         }
     }
 
@@ -145,10 +135,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            displayToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isExit()) {
                 handleExit();
@@ -163,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
                     break;
                 case ADDRESSBOOK:
-                    helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                    helpBox.setHelp(HELP_ADDRESS_BOOK);
                     break;
                 case EVENT:
                     helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
@@ -183,11 +170,18 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(e.getMessage());
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            displayToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Create a box in the scrollpane to display the result
+     * @param s the result string
+     */
+    private void displayToUser(String s) {
+        ResultDisplay r = new ResultDisplay(scrollPane.widthProperty());
+        r.setFeedbackToUser(s);
+        resultDisplayPlaceholder.getChildren().add(r.getRoot());
     }
 }

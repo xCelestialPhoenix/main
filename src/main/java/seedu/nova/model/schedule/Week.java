@@ -3,6 +3,8 @@ package seedu.nova.model.schedule;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -136,11 +138,21 @@ public class Week implements Copyable<Week> {
         return days[day].addNote(desc, index);
     }
 
+    public List<Event> getEventList() {
+        List<Event> list = new LinkedList<>();
+
+        for (Day day: days) {
+            list.addAll(day.getEventList());
+        }
+
+        return list;
+    }
+
     /**
      * View the schedule of a particular day.
      *
      * @param date the date
-     * @return the string
+     * @return the string of events
      */
     public String view(LocalDate date) {
 
@@ -149,9 +161,9 @@ public class Week implements Copyable<Week> {
     }
 
     /**
-     * View string.
+     * View the schedule of the week.
      *
-     * @return the string
+     * @return the string of events
      */
     public String view() {
 
@@ -173,6 +185,7 @@ public class Week implements Copyable<Week> {
                 sb.append(DayOfWeek.of(index));
                 sb.append(": \n");
                 sb.append(result);
+                sb.append("\n");
 
             }
         }
