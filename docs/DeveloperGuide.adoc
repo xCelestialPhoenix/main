@@ -467,6 +467,12 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
+|`* * *` |student |delete project tasks |remove unwanted tasks from the tracker
+
+|`* *` |lazy student |edit project tasks |can correct mistakes made to task descriptions with little effort
+
+|`* *` |lazy student |edit notes to project tasks |can correct mistakes made to notes with little effort
+
 |`* * *` |Student | View my schedule for a day| Know the flow of events on that day
 
 |`* * *` |Student | View my schedule for a week | Know what will happen for that week
@@ -900,6 +906,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 16: Add notes to a task in progress tracker
 
 *MSS*
