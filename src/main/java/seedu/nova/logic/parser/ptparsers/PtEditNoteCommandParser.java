@@ -6,7 +6,6 @@ import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import java.util.stream.Stream;
 
 import seedu.nova.logic.commands.ptcommands.PtEditNoteCommand;
-import seedu.nova.logic.commands.ptcommands.PtListCommand;
 import seedu.nova.logic.parser.ArgumentMultimap;
 import seedu.nova.logic.parser.ArgumentTokenizer;
 import seedu.nova.logic.parser.CliSyntax;
@@ -29,7 +28,7 @@ public class PtEditNoteCommandParser implements Parser<PtEditNoteCommand> {
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_PROJECT, CliSyntax.PREFIX_WEEK, CliSyntax.PREFIX_TASK,
                 CliSyntax.PREFIX_DESC) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PtListCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PtEditNoteCommand.MESSAGE_USAGE));
         }
 
         String project = ParserUtil.parseProject(argMultimap.getValue(CliSyntax.PREFIX_PROJECT).get());
