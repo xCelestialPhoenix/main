@@ -74,6 +74,7 @@ image::ArchitectureSequenceDiagram.png[width=500]
 
 The sections below give more details of each component.
 
+//tag::UI[]
 [[Design-Ui]]
 === UI component
 
@@ -84,12 +85,13 @@ image::UiClassDiagram.png[]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+//end::UI[]
 
 [[Design-Logic]]
 
@@ -337,21 +339,27 @@ image::AbDeleteActivityDiagram.png[width=470]
 ** Pros: No need to use `list`, `list c\classmate`, `list c\teammate` or `find n\[name]` prior to deleting contact
 ** Cons: Need to handle deletion of contacts with the same name
 
+//tag::listPt[]
+
 === View tasks under IP project
 The view tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
 Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
-1. The user keys in 'view p\ip w\2' into the command box.
-2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of the IP project.
-3. 'PtListCommandParser' creates a new 'PtListCommand'.
-4. 'LogicManager' executes the 'PtListCommand'.
-5. 'Model#listTasks()' is called and the list of tasks is retrieved.
+1. The user keys in `list p\ip w\2` into the command box.
+2. The user executes `list p\ip w\2'`to view the list of tasks in week 2 of the IP project.
+3. `PtListCommandParser` creates a new `PtListCommand`.
+4. `LogicManager` executes the `PtListCommand`.
+5. `Model#listTasks()` is called and the list of tasks is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
 image::PtSeqDiagram.png[]
+
+The following activity diagram shows what happens when a user inputs a list command:
+
+image::ListPtActivityDiagram.png[]
 
 ==== Design Considerations
 Aspect: Adding choice of week to view tasks
@@ -364,6 +372,7 @@ Aspect: Adding choice of week to view tasks
 ** Pros: shorter command to type and user can see all their tasks at once
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
+//end::listPt[]
 === View schedule for a specified day
 The view schedule feature allows the user to view their schedule for the day specified by them.
 
@@ -390,6 +399,75 @@ Aspect: View schedule by day and not week
 * **Alternative 2:** View schedule by week
 ** Pros: user can see their whole week's schedule at once
 ** Cons: might be too long and messy
+
+//tag::studyplannerfeature[]
+
+=== View available free slot of a specific day
+The view free slots feature allows the user to view their available free slots on their schedule.
+
+==== Implementation
+Given below is an example usage scenario and how the view free slot mechanism behaves at each step.
+
+1. The user keys in 'freeslot t\2020-03-10' into the command box.
+2. The user executes 'freeslot t\2020-03-10' to view the free slots on their schedule on the 10th of March 2020.
+3. 'ScViewFreeSlotCommandParser' creates a new 'ScViewFreeSlotCommand'.
+4. 'LogicManager' executes the 'ScViewFreeSlotCommand'.
+5. 'ModelManger#viewFreeSlot()' is called and the free slots for the day is retrieved.
+
+The following sequence diagram shows how the view tasks operation works:
+
+image::ScViewFreeSlotDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Calculating free slots given a schedule
+
+* **Alternative 1 (current choice):** Embeds a free slot data structure to keep track of the free slots whenever
+events are added
+** Pros: no need to calculate free slots whenever user execute freeslot.
+** Cons: overhead to add event commands, making its execution slower.
+
+* **Alternative 2:** Calculates free slot based on the events whenever user executes freeslot
+** Pros: easier to implement.
+** Cons: slower freeslot execution.
+
+
+=== Schedule events based on a task in plan.
+The plan feature allows the user to create an event based on the task user created in the plan.
+
+==== Implementation
+Given below is an example usage scenario and how the plan task mechanism behaves at each step.
+
+1. The user keys in 'schedule p\task name t\2020-03-10' into the command box.
+2. The user executes 'schedule p\task name t\2020-03-10' to create an event "task name" on their schedule on the 10th of
+March 2020.
+3. 'PlannerScheduleTaskCommandParser' creates a new 'PlannerScheduleTaskCommand'.
+4. 'LogicManager' executes the 'PlannerScheduleTaskCommand'.
+5. 'ModelManger#searchTask()' is called to search for the task user specified.
+6. 'ModelManger#generateTaskEvent()' is called and one event with time determined by algorithm is created on the day
+in schedule.
+
+The following sequence diagram shows how the schedule task operation works:
+
+image::PlannerScheduleTaskSequenceDiagram.png[]
+
+The following activity diagram summarizes what happens when a user schedules a task:
+
+image::PlannerScheduleTaskActivityDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Calculating best fit time frame for a task
+
+* **Alternative 1 (current choice):** Plan gets free slot from schedule and generate event based on it.
+** Pros: Isolation of modules.
+** Cons: Redundant code.
+
+* **Alternative 2:** Schedule decides whether to schedule or discard an event generated from task.
+** Pros: more robust schedule.
+** Cons: more difficult to implement.
+
+//end::studyplannerfeature[]
 
 === Logging
 
@@ -502,6 +580,19 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
 |`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
+
+//tag::studyplannerusecase[]
+
+|`* * *` |Student | Add tasks to study plan | Can add study tasks to my study plan
+
+|`* * *` |Student | Delete tasks on study plan | Can delete study tasks if I don't need it anymore
+
+|`* * *` |Student | Generate event from a task | If I feel like I want to do a study task today, I can generate an
+event on today's schedule so that I can keep up with my study plan.
+
+|`* *`   |Student | View statistics of my task progress | Can see how much I've done for each task on my study plan.
+
+//end::studyplannerusecase[]
 
 |=======================================================================
 
@@ -761,8 +852,98 @@ Use case ends.
 +
 Use case ends.
 
+//tag::UseCasesPt[]
 [discrete]
-=== Use case 11: Add notes to a project task in project section of progress tracker
+=== Use case 11: Add task to a project of progress tracker
+
+*MSS*
+
+1.  User enter command to add task to a project.
+2.  Progress tracker adds task to the project.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such project exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 12: User edits a task.
+
+*MSS*
+
+1.  User enter command to edit task.
+2.  Progress tracker replaces old task description with new description.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such task exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 13: User deletes a task.
+
+*MSS*
+
+1.  User enter command to delete task.
+2.  Progress tracker deletes task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Task to be deleted does not exist.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 14: User lists tasks in a week of a project.
+
+*MSS*
+
+1.  User enter command to list tasks.
+2.  Progress tracker lists task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists in the week specified.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 15: User set an added task as done.
+
+*MSS*
+
+1.  User enter command to set task as done.
+2.  Progress tracker sets task as done.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+=== Use case 16: Add notes to a task in progress tracker
 
 *MSS*
 
@@ -780,7 +961,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: User edits a note.
+=== Use case 17: User edits a note.
 
 *MSS*
 
@@ -793,12 +974,12 @@ Use case ends.
 
 [none]
 * 1a. No prior note was added.
-*   1a1. NOVA adds edit as new note.
+*   1a1. NOVA shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case 13: User deletes a note.
+=== Use case 18: User deletes a note.
 
 *MSS*
 
@@ -814,9 +995,10 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+//end::UseCasesPt[]
 
 [discrete]
-=== Use case 14: View the timetable
+=== Use case 19: View the timetable
 
 *MSS*
 
@@ -832,6 +1014,80 @@ Use case ends.
 +
 Use case ends.
 
+//tag::studyplannermss[]
+
+[discrete]
+=== Use case 8: User add a task into study plan.
+
+*MSS*
+
+1.  User enter command to create a task with name specified by user.
+2.  Study Planner of NOVA adds the task into study plan.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. There is already a task with the same name.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 9: User add a task into study plan
+
+*MSS*
+
+1.  User enter command to delete a task with name specified by user.
+2.  Study Planner of NOVA deletes the task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task with the name specified exists in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 10: User view statistics of every tasks in study plan
+
+*MSS*
+
+1.  User enter command to view statistics of every tasks in study plan.
+2.  NOVA calculates and shows all the statistics of every task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No task in study plan.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 11: User schedules a task into a particular day.
+
+*MSS*
+
+1.  User enter command to schedules a task into a particular day.
+2.  NOVA generates and adds the event into schedule.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Unable to generate event.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+//end::studyplannermss[]
 _{More to be added}_
 
 [appendix]

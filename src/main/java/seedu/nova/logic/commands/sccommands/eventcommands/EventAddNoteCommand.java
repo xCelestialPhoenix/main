@@ -13,11 +13,11 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 
 import seedu.nova.model.Model;
-import seedu.nova.model.schedule.event.DateNotFoundException;
-import seedu.nova.model.schedule.event.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
 
 /**
- * adds a note into an Event.
+ * Adds a note into an Event using its date and index in the list.
  */
 public class EventAddNoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
@@ -34,6 +34,9 @@ public class EventAddNoteCommand extends Command {
             + PREFIX_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "New note has been added: \n%1$s";
+    public static final String MESSAGE_NO_EVENT = "Invalid date - you have no events on that date.";
+    public static final String MESSAGE_INVALID_INDEX = "Invalid index - that event does not exist.";
+    public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
 
     private String desc;
     private LocalDate date;
@@ -53,16 +56,20 @@ public class EventAddNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!model.isWithinSem(date)) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
         try {
             int i = index.getZeroBased();
             String response = model.addNote(desc, date, i);
             return new CommandResult(String.format(MESSAGE_SUCCESS, response));
 
         } catch (DateNotFoundException e) {
-            throw new CommandException("Invalid date - you have no events on that date.");
+            throw new CommandException(MESSAGE_NO_EVENT);
 
         } catch (EventNotFoundException e) {
-            throw new CommandException("Invalid index.");
+            throw new CommandException(MESSAGE_INVALID_INDEX);
         }
     }
 

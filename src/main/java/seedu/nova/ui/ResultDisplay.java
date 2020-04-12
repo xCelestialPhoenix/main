@@ -24,6 +24,7 @@ public class ResultDisplay extends UiPart<Region> {
         super(FXML);
         this.width = width;
         VBox.setVgrow(placeHolder, Priority.NEVER);
+
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
@@ -31,8 +32,9 @@ public class ResultDisplay extends UiPart<Region> {
         Text txt = new Text();
         txt.setText(feedbackToUser);
         txt.setStyle("-fx-font: 18 arial;");
-        txt.setWrappingWidth(980);
-        //txt.wrappingWidthProperty().bind(width);
+        width.addListener((
+                observable, oldValue, newValue) ->
+                txt.setWrappingWidth(newValue.doubleValue() - 30.0));
         placeHolder.getChildren().add(txt);
         VBox.setVgrow(txt, Priority.NEVER);
     }
