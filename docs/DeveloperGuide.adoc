@@ -73,6 +73,7 @@ image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
+//tag::UI[]
 [[Design-Ui]]
 === UI component
 
@@ -83,12 +84,13 @@ image::UiClassDiagram.png[]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+//end::UI[]
 
 [[Design-Logic]]
 
@@ -303,21 +305,26 @@ image::CommitActivityDiagram.png[]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+//tag::listPt[]
 === View tasks under IP project
 The view tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
 Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
-1. The user keys in 'view p\ip w\2' into the command box.
-2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of the IP project.
-3. 'PtListCommandParser' creates a new 'PtListCommand'.
-4. 'LogicManager' executes the 'PtListCommand'.
-5. 'Model#listTasks()' is called and the list of tasks is retrieved.
+1. The user keys in `list p\ip w\2` into the command box.
+2. The user executes `list p\ip w\2'`to view the list of tasks in week 2 of the IP project.
+3. `PtListCommandParser` creates a new `PtListCommand`.
+4. `LogicManager` executes the `PtListCommand`.
+5. `Model#listTasks()` is called and the list of tasks is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
 image::PtSeqDiagram.png[]
+
+The following activity diagram shows what happens when a user inputs a list command:
+
+image::ListPtActivityDiagram.png[]
 
 ==== Design Considerations
 Aspect: Adding choice of week to view tasks
@@ -330,6 +337,7 @@ Aspect: Adding choice of week to view tasks
 ** Pros: shorter command to type and user can see all their tasks at once
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
+//end::listPt[]
 === View schedule for a specified day
 The view schedule feature allows the user to view their schedule for the day specified by them.
 
@@ -801,8 +809,98 @@ Use case ends.
 +
 Use case ends.
 
+//tag::UseCasesPt[]
 [discrete]
-=== Use case 11: Add notes to a project task in project section of progress tracker
+=== Use case 11: Add task to a project of progress tracker
+
+*MSS*
+
+1.  User enter command to add task to a project.
+2.  Progress tracker adds task to the project.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such project exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 12: User edits a task.
+
+*MSS*
+
+1.  User enter command to edit task.
+2.  Progress tracker replaces old task description with new description.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such task exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 13: User deletes a task.
+
+*MSS*
+
+1.  User enter command to delete task.
+2.  Progress tracker deletes task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Task to be deleted does not exist.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 14: User lists tasks in a week of a project.
+
+*MSS*
+
+1.  User enter command to list tasks.
+2.  Progress tracker lists task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists in the week specified.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 15: User set an added task as done.
+
+*MSS*
+
+1.  User enter command to set task as done.
+2.  Progress tracker sets task as done.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+=== Use case 16: Add notes to a task in progress tracker
 
 *MSS*
 
@@ -820,7 +918,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: User edits a note.
+=== Use case 17: User edits a note.
 
 *MSS*
 
@@ -833,12 +931,12 @@ Use case ends.
 
 [none]
 * 1a. No prior note was added.
-*   1a1. NOVA adds edit as new note.
+*   1a1. NOVA shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case 13: User deletes a note.
+=== Use case 18: User deletes a note.
 
 *MSS*
 
@@ -854,9 +952,10 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+//end::UseCasesPt[]
 
 [discrete]
-=== Use case 14: View the timetable
+=== Use case 19: View the timetable
 
 *MSS*
 

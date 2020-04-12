@@ -981,7 +981,6 @@ into your schedule
 | addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
 | editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
 | deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
-//end::CommonPtCommands[]
 |=========================================================
 
 <<Top, [Back to Top]>>

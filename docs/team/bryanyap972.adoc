@@ -81,11 +81,20 @@ to delete and re-add a note.
 == Contributions to the User Guide
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 
-*** ProgressTracker section in user guide
-
 include::../UserGuide.adoc[tag=ProgressTracker]
 
-*** Progress Tracker commands under Command Summary.
+[%autowidth,cols="<.^,<.^,<.^",options="header"]
+|=========================================================
+| Mode | Command | Description
+.7+| Progress Tracker
+| add p\[ip/tp] w\[week number] d\[task description] | Adds a task to the specified week and project
+| list p\[ip/tp] w\[week number] | Lists the tasks that have been added to the specified week and project
+| delete p\ip w\3 t\3 | Deletes the specified task
+| done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done/undone
+| addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
+| editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
+| deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
+|=========================================================
 
 == Contributions to the Developer Guide
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
