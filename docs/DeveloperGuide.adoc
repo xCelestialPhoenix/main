@@ -499,11 +499,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
+// tag::viewScheduleUserStories
+
 |`* * *` |Student | View my schedule for a day| Know the flow of events on that day
 
 |`* * *` |Student | View my schedule for a week | Know what will happen for that week
 
 |`*` |Student | View my timetable | Can check when my classes are
+
+// tag::viewScheduleUserStories
 
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
@@ -895,6 +899,8 @@ Use case ends.
 +
 Use case ends.
 
+// tag::viewScheduleUseCases[]
+
 [discrete]
 === Use case 14: View the schedule for a day
 
@@ -935,6 +941,8 @@ Use case ends.
 +
 Use case ends.
 
+// end::viewScheduleUseCases[]
+
 _{More to be added}_
 
 [appendix]
@@ -943,9 +951,11 @@ _{More to be added}_
 . The application should work on any <<mainstream-os,mainstream OS>> provided that Java `11` or above is installed.
 . The application should work on both 32-bit and 64-bit environments.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-. The application should respond to every command within one second.
 . The application should work without internet connection.
+// tag::TerenceNFR[]
+. The application should respond to every command within one second.
 . The application should be easily modifiable to meet changing curriculum of CS2013T.
+// end::TerenceNFR[]
 
 _{More to be added}_
 
