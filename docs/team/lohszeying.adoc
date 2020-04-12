@@ -16,6 +16,10 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 ** Justification: User can easily see who are their fellow classmates or teammates
 ** Highlights: This enhancement affects the existing code from address book level 3, and needed some consideration to make category field compulsory rather than optional
 
+* *Major enhancement*: added **the ability to view remarks only with list category command**
+** What it does: Allows the user to only view fellow classmate's or teammate's remark with list category command
+** Justification: When users want to view their contact list, they would want to only view their necessary contact information
+
 * *Major enhancement*: added the **ability to undo or redo commands within Address Book mode**
 ** What it does: Allows the user to undo or redo whatever the commands that they typed within Address Book
 ** Justification: User can easily accidentally edit, delete or clear contacts within Address Book
@@ -35,13 +39,11 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 
 ** Enhancements to existing features:
 *** Automatically format contact name, no matter how the user input. For example, if the user input the name as `AliCE yeoH`, NOVA will automatically format the name as `Alice Yeoh`
-*** Edited inde tag within NOVA's Address Book from `[index]` to `i\[index]`
-
-** Documentation:
+*** Edited index tag within NOVA's Address Book from `[index]` to `i\[index]`
 
 ** Community:
-
-** Tools:
+*** Gave suggestions to other team link:https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-370052563[here]
+*** Tested other team's application and reported bugs link:https://github.com/lohszeying/ped/issues[here]
 
 == Contributions to the User Guide
 
@@ -49,9 +51,8 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-//include::../UserGuide.adoc[tag=delete]
-
-//include::../UserGuide.adoc[tag=dataencryption]
+Written the user guide link:https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/UserGuide.adoc#address-book[here] +
+Parts written by me are Address Book section, and Section 4 https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/UserGuide.adoc#QuickStart[Quick Start], step 6.
 
 == Contributions to the Developer Guide
 
