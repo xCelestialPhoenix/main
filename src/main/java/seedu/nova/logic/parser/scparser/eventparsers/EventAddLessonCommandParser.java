@@ -19,7 +19,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 
 /**
- * Parses input arguments and creates a new EventAddLessonCommand object
+ * Parses input arguments and creates a new EventAddLessonCommand object.
  */
 public class EventAddLessonCommandParser implements Parser<EventAddLessonCommand> {
 

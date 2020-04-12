@@ -16,7 +16,7 @@ import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.EventNotFoundException;
 
 /**
- * Deletes an Event from the Schedule.
+ * Deletes an Event from the Schedule using its date and index in the list.
  */
 public class EventDeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";

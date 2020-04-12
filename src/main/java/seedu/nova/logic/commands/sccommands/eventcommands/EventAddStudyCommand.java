@@ -13,7 +13,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
- * adds a StudySession into the Schedule.
+ * Adds a StudySession into the Schedule.
  */
 public class EventAddStudyCommand extends Command {
     public static final String COMMAND_WORD = "study";
@@ -35,6 +35,9 @@ public class EventAddStudyCommand extends Command {
 
     private Event toAdd;
 
+    /**
+     * Creates an EventAddStudyCommand to add the specified {@code Event}
+     */
     public EventAddStudyCommand(Event study) {
         requireNonNull(study);
         this.toAdd = study;

@@ -14,7 +14,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.TimeOverlapException;
 
 /**
- * adds a Meeting into the Schedule.
+ * Adds a Meeting into the Schedule.
  */
 public class EventAddMeetingCommand extends Command {
 
@@ -37,6 +37,9 @@ public class EventAddMeetingCommand extends Command {
 
     private Event toAdd;
 
+    /**
+     * Creates an EventAddMeetingCommand to add the specified {@code Event}
+     */
     public EventAddMeetingCommand(Event meeting) {
         requireNonNull(meeting);
         this.toAdd = meeting;

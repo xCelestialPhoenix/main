@@ -17,7 +17,7 @@ import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.EventNotFoundException;
 
 /**
- * adds a note into an Event.
+ * Adds a note into an Event using its date and index in the list.
  */
 public class EventAddNoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
