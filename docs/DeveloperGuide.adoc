@@ -67,7 +67,7 @@ image::LogicArchitecture.png[]
 ==== How the architecture components interact with each other
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`. +
-The same type of interaction applies to other mode within NOVA, such as Schedule mode.
+The same type of interaction applies to other mode within NOVA, such as Schedule mode, Planner mode or Progress Tracker mode.
 
 .Component interactions for `delete i\1` command
 image::ArchitectureSequenceDiagram.png[width=500]
