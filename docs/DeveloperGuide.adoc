@@ -811,7 +811,8 @@ Use case ends
 [none]
 ** 1a1. NOVA informs the student that there are no more commands to undo
 +
-Use case resumes at step 1
+
+resumes at step 1
 
 [discrete]
 === Use case 9: Redoing in address book
@@ -835,7 +836,25 @@ Use case ends
 Use case resumes at step 1
 
 [discrete]
-=== Use case 10: Delete an event
+=== Use case 10: Adding a consultation event
+
+*MSS*
+
+1. Student enters consultation command with details of the consultation
+2. NOVA adds consultation event to the schedule
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. NOVA detects error in data inputted
+** 1a1. NOVA informs student of the error
++
+Use case ends.
+
+[discrete]
+=== Use case 11: Delete an event
 
 *MSS*
 
@@ -852,9 +871,26 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case 12: Adding a note to an event
+
+*MSS*
+
+1. Student enters note command with details of the event
+2. NOVA adds note to the event
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 1a. NOVA cannot find the event given
+** 1a1. NOVA informs student that the event does not exist
+
 //tag::UseCasesPt[]
 [discrete]
-=== Use case 11: Add task to a project of progress tracker
+=== Use case 13: Add task to a project of progress tracker
 
 *MSS*
 
@@ -872,7 +908,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: User edits a task.
+=== Use case 14: User edits a task.
 
 *MSS*
 
@@ -889,8 +925,7 @@ Use case ends.
 +
 Use case ends.
 
-[discrete]
-=== Use case 13: User deletes a task.
+=== Use case 15: User deletes a task.
 
 *MSS*
 
@@ -902,13 +937,14 @@ Use case ends.
 *Extensions*
 
 [none]
+
 * 1a. Task to be deleted does not exist.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case 14: User lists tasks in a week of a project.
+=== Use case 16: User lists tasks in a week of a project.
 
 *MSS*
 
@@ -926,7 +962,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 15: User set an added task as done.
+=== Use case 17: User set an added task as done.
 
 *MSS*
 
@@ -943,7 +979,7 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 16: Add notes to a task in progress tracker
+=== Use case 18: Add notes to a task in progress tracker
 
 *MSS*
 
@@ -961,7 +997,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 17: User edits a note.
+=== Use case 19: User edits a note.
 
 *MSS*
 
@@ -979,7 +1015,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 18: User deletes a note.
+=== Use case 20: User deletes a note.
 
 *MSS*
 
@@ -998,7 +1034,7 @@ Use case ends.
 //end::UseCasesPt[]
 
 [discrete]
-=== Use case 19: View the timetable
+=== Use case 21: View the timetable
 
 *MSS*
 
@@ -1017,7 +1053,7 @@ Use case ends.
 //tag::studyplannermss[]
 
 [discrete]
-=== Use case 8: User add a task into study plan.
+=== Use case 22: User add a task into study plan.
 
 *MSS*
 
@@ -1035,7 +1071,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 9: User add a task into study plan
+=== Use case 23: User add a task into study plan
 
 *MSS*
 
@@ -1053,7 +1089,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 10: User view statistics of every tasks in study plan
+=== Use case 24: User view statistics of every tasks in study plan
 
 *MSS*
 
@@ -1071,7 +1107,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: User schedules a task into a particular day.
+=== Use case 25: User schedules a task into a particular day.
 
 *MSS*
 

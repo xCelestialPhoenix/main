@@ -61,6 +61,7 @@ They showcase my ability to write documentation targeting end-users._
 include::../UserGuide.adoc[tag=event]
 
 == Contributions to the Developer Guide
+
 |===
 |_Given below are sections I contributed to the Developer Guide.
 They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
@@ -69,3 +70,4 @@ They showcase my ability to write technical documentation and the technical dept
 include::../DeveloperGuide.adoc[tag=logic]
 
 include::../DeveloperGuide.adoc[tag=events]
+
