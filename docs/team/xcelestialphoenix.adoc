@@ -75,7 +75,9 @@ These are some additional contributions I made to the project.
 solutions (E.g. https://github.com/nus-cs2103-AY1920S2/forum/issues/20[1], https://github.com/nus-cs2103-AY1920S2/forum/issues/67[2]).
 
 == Contributions to the User Guide
-Theses are my contributions towards the user guide.
+|===
+| Theses are my contributions towards the user guide.
+|===
 
 include::../UserGuide.adoc[tag=intro]
 include::../UserGuide.adoc[tag=about]
@@ -83,4 +85,9 @@ include::../UserGuide.adoc[tag=notation]
 include::../UserGuide.adoc[tag=view]
 
 == Contributions to the Developer Guide
-Theses are my contributions towards the developer guide.
+|===
+| Theses are my contributions towards the developer guide.
+|===
+
+include::../DeveloperGuide.adoc[tag=model]
+include::../DeveloperGuide.adoc[tag=view]
