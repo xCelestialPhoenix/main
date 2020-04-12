@@ -34,16 +34,37 @@ public class PtEditCommand extends Command {
 
     public static final String MESSAGE_FAILURE = "No task with that index";
 
+    public static final String MESSAGE_SUCCESS = "Edited task %d in week %d of %s";
+
     private int weekNum;
     private String project;
     private String taskDesc;
     private int taskNum;
 
     public PtEditCommand(int weekNum, String project, String taskDesc, int taskNum) {
+        requireNonNull(project);
+        requireNonNull(taskDesc);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskDesc = taskDesc;
         this.taskNum = taskNum;
+    }
+
+    public int getWeekNum() {
+        return weekNum;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getTaskDesc() {
+        return taskDesc;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
     }
 
     @Override
@@ -61,9 +82,23 @@ public class PtEditCommand extends Command {
             }
 
             String projectName = this.project.toUpperCase();
-            String result = "Edited task " + taskNum + " in week " + weekNum + " of " + projectName;
+            String result = String.format(MESSAGE_SUCCESS, taskNum, weekNum, projectName);
 
             return new CommandResult(result, false, false);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PtEditCommand)) {
+            return false;
+        } else {
+            boolean isSameProject = ((PtEditCommand) obj).getProject().equals(this.getProject());
+            boolean isSameWeek = ((PtEditCommand) obj).getWeekNum() == this.getWeekNum();
+            boolean isSameTaskDesc = ((PtEditCommand) obj).getTaskDesc().equals(this.getTaskDesc());
+            boolean isSameTaskNum = ((PtEditCommand) obj).getTaskNum() == this.getTaskNum();
+
+            return isSameProject && isSameWeek && isSameTaskNum && isSameTaskDesc;
         }
     }
 }
