@@ -325,7 +325,7 @@ NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker 
 
 The following activity diagram shows how the delete mechanism works:
 
-image::AbDeleteActivityDiagram.png[]
+image::AbDeleteActivityDiagram.png[width=470]
 
 ==== Design Considerations - Delete a contact
 ===== Aspect: Deleting a contact by index or name
