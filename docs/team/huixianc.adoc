@@ -58,7 +58,7 @@ https://github.com/huixianc/ped/issues[4])
 They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=event]
+include::../UserGuide.adoc[tag=events]
 
 
 == Contributions to the Developer Guide
@@ -69,12 +69,25 @@ They showcase my ability to write technical documentation and the technical dept
 |===
 
 |===
-|_Firstly, the Logic component section under Design._
+|_1. The Logic component section under Design._
 |===
+
 include::../DeveloperGuide.adoc[tag=logic]
 
 |===
-|_Secondly, the Manage Events section under Implementation._
+|_2. The Manage Events section under Implementation._
 |===
+
 include::../DeveloperGuide.adoc[tag=events]
 
+|===
+|_3. The User Stories for events under Appendix B._
+|===
+
+include::../DeveloperGuide.adoc[tag=eventuserstory]
+
+|===
+|_4. The Use Cases for events under Appendix C._
+|===
+
+include::../DeveloperGuide.adoc[tag=eventusecase]
