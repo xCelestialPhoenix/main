@@ -19,8 +19,6 @@ import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
  */
 public class Day implements Copyable<Day> {
 
-    private static final String MESSAGE_SLOT_CONFLICT = "There is another event during that time";
-
     private List<Event> events;
     private LocalDate date;
     private DateTimeSlotList freeSlots;
@@ -158,6 +156,7 @@ public class Day implements Copyable<Day> {
      * Adds a note to an event.
      *
      * @param index index of event in the LinkedList
+     * @return String representing the event with added note
      */
     public String addNote(String desc, int index) {
         if (index >= events.size()) {

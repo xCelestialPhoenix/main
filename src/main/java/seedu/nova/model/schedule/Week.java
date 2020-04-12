@@ -126,7 +126,7 @@ public class Week implements Copyable<Week> {
      * @param desc  description of the note
      * @param date  the date of the event
      * @param index the position of event in list
-     * @return
+     * @return d
      */
     public String addNote(String desc, LocalDate date, int index) {
         int day = date.getDayOfWeek().getValue() - 1;

@@ -130,7 +130,7 @@ public class Schedule implements Copyable<Schedule> {
      * @param desc description of the note
      * @param date the date of the event
      * @param index the position of event in list
-     * @return
+     * @return String representing the event with added note
      */
     public String addNote(String desc, LocalDate date, int index) {
         int weekNumber = calWeekNumber(date);
