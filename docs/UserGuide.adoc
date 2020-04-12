@@ -65,7 +65,7 @@ Here are some steps to get you started:
 .  Copy the file to the folder you want to use as the home folder for your NOVA.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::ui.png[width="790" align="center"]
+image::Ui.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 4.1: GUI of NOVA#_
 +
@@ -157,7 +157,7 @@ enter the command: `add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`
 NOVA will add a new contact named Jane Doe, phone number 12345678 and email address janedoe@gmail.com into the
 classmate category and display a confirmation message as seen below.
 
-image::userguide/addressbook_add.png[width="690" align="center"]
+image::userguide/addressbook_add.PNG[width="690" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.1: Display message after entering +
 `add n\Jane Doe p\12345678 e\\janedoe@gmail.com c\classmate`#_
@@ -249,7 +249,7 @@ Optional fields are `n\[name]`, `p\[phone number]`,
 Example: +
 Suppose you want to edit the Alex Yeoh's phone number in your address book after using `list` as shown below,
 
-image::userguide/addressbook_list.png[width="690" align="center"]
+image::userguide/addressbook_list.PNG[width="690" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.5.1: Example display message after entering `list`#_
 
@@ -257,7 +257,7 @@ enter the command: `edit i\1 p\88888888`
 
 NOVA will edit the phone number of Alex Yeoh to 88888888 as shown below.
 
-image::userguide/addressbook_edit.png[width="790" align="center"]
+image::userguide/addressbook_edit.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.5.2: Display message after entering `edit i\1 p\88888888`#_
 
@@ -287,7 +287,7 @@ enter the command: `remark i\2 r\She's a nice teammate`
 
 NOVA will add the remark "She's a nice teammate" to Bernice Yu in your address book as shown below.
 
-image::userguide/addressbook_remark.png[width="790" align="center"]
+image::userguide/addressbook_remark.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.6.2: Display message after entering `remark i\2 r\She's a nice teammate`#_
 
@@ -317,7 +317,7 @@ enter the command: `delete i\1`
 
 NOVA will delete Alex Yeoh from your the address book.
 
-image::userguide/addressbook_delete.png[width="790" align="center"]
+image::userguide/addressbook_delete.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.2.7.2: Display message after entering `delete i\1`#_
 
@@ -578,7 +578,7 @@ Learn how to work with the planner feature in NOVA. You can add daily/weeky task
 on any day you like hassle-free. You need to be in planner mode. Enter the planner mode by entering the command
 `nav planner`.
 
-image::userguide/planner.png[width="790" align="center"]
+image::userguide/planner.PNG[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 5.4: GUI of NOVA after user typed contact `nav planner`#_
 
