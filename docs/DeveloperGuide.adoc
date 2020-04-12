@@ -111,6 +111,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 // end::logic[]
 
 [[Design-Model]]
+// tag::model[]
 === Model component
 
 .Structure of the Model Component
@@ -126,6 +127,8 @@ The `Model`,
 * stores a 'ProgressTracker' object that represents the user's progress in their project tasks.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+// end::model[]
 
 [[Design-Storage]]
 === Storage component
@@ -330,6 +333,7 @@ Aspect: Adding choice of week to view tasks
 ** Pros: shorter command to type and user can see all their tasks at once
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
+// tag::view[]
 === View schedule for a specified day
 The view schedule feature allows the user to view their schedule for the day specified by them.
 
@@ -346,6 +350,7 @@ The following sequence diagram shows how the view tasks operation works:
 
 image::SchedulerSeqDiagram.png[]
 
+// end::view[]
 ==== Design Considerations
 Aspect: View schedule by day and not week
 
