@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
@@ -59,6 +60,12 @@ public interface Model {
     void setNovaFilePath(Path addressBookFilePath);
 
     Nova getNova();
+
+    Mode getMode();
+
+    ModeEnum getModeEnum(Mode mode);
+
+    String getModeName(ModeEnum modeEnum);
 
     /**
      * Returns the AddressBook
@@ -123,8 +130,6 @@ public interface Model {
     boolean isWithinSem(LocalDate date);
 
     boolean isWithinSem(int weekNumber);
-
-    Mode getMode();
 
     void addEvent(Event e);
 

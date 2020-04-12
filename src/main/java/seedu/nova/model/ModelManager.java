@@ -114,6 +114,16 @@ public class ModelManager implements Model {
         return mode;
     }
 
+    @Override
+    public ModeEnum getModeEnum(Mode mode) {
+        return mode.getModeEnum();
+    }
+
+    @Override
+    public String getModeName(ModeEnum modeEnum) {
+        return modeEnum.name();
+    }
+
     //=========== AddressBook ================================================================================
     @Override
     public ReadOnlyAddressBook getAddressBook() {
