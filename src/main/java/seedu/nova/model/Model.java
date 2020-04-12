@@ -7,12 +7,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -57,6 +60,12 @@ public interface Model {
     void setNovaFilePath(Path addressBookFilePath);
 
     Nova getNova();
+
+    Mode getMode();
+
+    ModeEnum getModeEnum(Mode mode);
+
+    String getModeName(ModeEnum modeEnum);
 
     /**
      * Returns the AddressBook
@@ -122,8 +131,6 @@ public interface Model {
 
     boolean isWithinSem(int weekNumber);
 
-    Mode getMode();
-
     void addEvent(Event e);
 
     void addAllLessons(Lesson l);
@@ -157,6 +164,10 @@ public interface Model {
     //============== Progress Tracker =============
 
     ProgressTracker getProgressTracker();
+
+    Ip getProgressTrackerIp();
+
+    Tp getProgressTrackerTp();
 
     String listPtTask(String projectName, int weekNum);
 

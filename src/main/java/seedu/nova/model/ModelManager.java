@@ -17,11 +17,12 @@ import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.Plan;
 import seedu.nova.model.plan.StrongTask;
-import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -58,7 +59,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.schedule = nova.getScheduleNova();
         // this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
-        this.plan = new StudyPlan();
+        this.plan = nova.getStudyPlan();
         this.mode = new Mode(ModeEnum.HOME);
     }
 
@@ -111,6 +112,16 @@ public class ModelManager implements Model {
     @Override
     public Mode getMode() {
         return mode;
+    }
+
+    @Override
+    public ModeEnum getModeEnum(Mode mode) {
+        return mode.getModeEnum();
+    }
+
+    @Override
+    public String getModeName(ModeEnum modeEnum) {
+        return modeEnum.name();
     }
 
     //=========== AddressBook ================================================================================
@@ -318,6 +329,16 @@ public class ModelManager implements Model {
     @Override
     public ProgressTracker getProgressTracker() {
         return progressTracker;
+    }
+
+    @Override
+    public Ip getProgressTrackerIp() {
+        return progressTracker.getIp();
+    }
+
+    @Override
+    public Tp getProgressTrackerTp() {
+        return progressTracker.getTp();
     }
 
     @Override
