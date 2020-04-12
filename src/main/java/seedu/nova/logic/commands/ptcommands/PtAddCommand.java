@@ -9,7 +9,6 @@ import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
-import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.Project;
 import seedu.nova.model.progresstracker.PtNote;
 import seedu.nova.model.progresstracker.PtTask;
@@ -34,11 +33,16 @@ public class PtAddCommand extends Command {
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
+    public static final String MESSAGE_SUCCESS = "Added task to week %d of %s";
+
     private int weekNum;
     private String project;
     private String taskDesc;
 
     public PtAddCommand(int weekNum, String project, String taskDesc) {
+        requireNonNull(project);
+        requireNonNull(taskDesc);
+
         this.weekNum = weekNum;
         this.project = project.trim().toLowerCase();
         this.taskDesc = taskDesc;
@@ -64,14 +68,13 @@ public class PtAddCommand extends Command {
         if (isOver13) {
             throw new CommandException(MESSAGE_NOWEEK);
         } else {
-            ProgressTracker pt = model.getProgressTracker();
             Project project;
             boolean isIpProject = this.project.equals("ip");
 
             if (isIpProject) {
-                project = pt.getIp();
+                project = model.getProgressTrackerIp();
             } else {
-                project = pt.getTp();
+                project = model.getProgressTrackerTp();
             }
 
             //Create new task
@@ -81,7 +84,7 @@ public class PtAddCommand extends Command {
             model.addPtTask(this.project, weekNum, newTask);
 
             String projectName = this.project.toUpperCase();
-            String result = "Added task to week " + weekNum + " of " + projectName;
+            String result = String.format(MESSAGE_SUCCESS, weekNum, projectName);
 
             return new CommandResult(result, false, false);
         }

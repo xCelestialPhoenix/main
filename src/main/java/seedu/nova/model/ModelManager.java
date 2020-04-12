@@ -20,8 +20,10 @@ import seedu.nova.model.plan.StrongTask;
 import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
 import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
@@ -318,6 +320,16 @@ public class ModelManager implements Model {
     @Override
     public ProgressTracker getProgressTracker() {
         return progressTracker;
+    }
+
+    @Override
+    public Ip getProgressTrackerIp() {
+        return progressTracker.getIp();
+    }
+
+    @Override
+    public Tp getProgressTrackerTp() {
+        return progressTracker.getTp();
     }
 
     @Override
