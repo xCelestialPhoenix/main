@@ -335,13 +335,25 @@ Aspect: Adding choice of week to view tasks
 
 // tag::view[]
 === View schedule
-The view schedule feature allows the user to view their schedule either for a specified day or for a week.
+The view schedule feature allows users to view the events they have added into the schedule. Users are able to view the
+schedule by two time frames:
 
-==== Implementation
-View day: Given below is an example usage scenario and how the view day mechanism behaves at each step.
+* By date
+* By week
+
+The following activity diagram shows what happens when a user inputs a view command:
+
+image::ViewCommandActivityDiagram.png[]
+
+==== Implementation - View schedule by date
+The view feature allows users to see the events happening on the specified date.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewDayCommand`.
+The operation is exposed in the `Model` interface as `Model#view(LocalDate)`.
+
+Given below is an example usage scenario and how the view by date mechanism behaves at each step.
 
 1. The user keys in 'view t\2020-03-10' into the command box.
-2. The user executes 'view t\2020-03-10' to view their schedule on the 10th of March 2020.
+2. The user executes 'view t\2020-03-10' to view their schedule on the 10 Mar 2020.
 3. `LogicManager` calls LogicParser to parse the command.
 4. `LogicParser` gets the mode from Model and passes the command word and the argument to ScheduleParser.
 5. `ScheduleParser` checks the command word and calls ScViewDayCommandParser.
@@ -364,7 +376,12 @@ View week: Given below is an example usage scenario and how the view week mechan
 7. 'LogicManager' executes the 'ScViewWeekCommand'.
 8. 'ModelManger#viewSechdule(int)' is called and the schedule for the week is retrieved.
 
-The following sequence diagram shows how the view tasks operation works:
+==== Implementation - View schedule by week
+The view feature allows users to see the events happening throughout the specified week.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewWeekCommand`.
+The operation is exposed in the `Model` interface as `Model#view(int)`.
+
+The following sequence diagram shows what happens when a user inputs a view week command:
 
 image::viewWeekSequenceDiagram.png[]
 
