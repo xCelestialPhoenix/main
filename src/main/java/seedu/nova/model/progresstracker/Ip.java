@@ -5,9 +5,15 @@ package seedu.nova.model.progresstracker;
  */
 public class Ip extends Project {
     private PtWeekList weekList;
+    private String projectName;
 
     public Ip() {
         weekList = new PtWeekList();
+        projectName = "ip";
+    }
+
+    public String getProjectName() {
+        return projectName;
     }
 
     public PtWeekList getWeekList() {
@@ -15,6 +21,7 @@ public class Ip extends Project {
     }
 
     public double getProgress() {
-        return weekList.getProgressProject();
+        double progress = Math.round(weekList.getProgressProject() * 100d) / 100d;
+        return progress * 100;
     }
 }

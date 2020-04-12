@@ -11,6 +11,8 @@ NOVA is a desktop application to help CS2103T with event planning and managing s
 
 == Summary of contributions
 
+I am in charge of the Progress Tracker and its features and is a maintainer for the team repo.
+
 * *Major enhancement*:
 
 * *Minor enhancement*:
