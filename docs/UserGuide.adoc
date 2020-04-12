@@ -107,7 +107,7 @@ Format: +
 You can navigate to the desired mode to use its features.
 
 Format: +
-`nav [home/ab/schedule/planner/tracker]`
+`nav [home/ab/schedule/planner/progresstracker]`
 
 [NOTE]
 `ab` refers to address book.
