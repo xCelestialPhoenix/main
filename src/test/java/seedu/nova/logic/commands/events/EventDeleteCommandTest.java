@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventDeleteCommand;
-import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
 import seedu.nova.testutil.ModelStub;
 
 public class EventDeleteCommandTest {
