@@ -705,10 +705,16 @@ Format: +
 
 [NOTE]
 ====
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `add` is case-sensitive
 * `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
-* tasks must be added to the weeks in order (i.e. cannot add a task to week 2 before adding to week 1)
 * `[task description]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
@@ -728,8 +734,15 @@ Format: +
 
 [NOTE]
 ====
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `list` is case-sensitive
 * `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
@@ -748,8 +761,16 @@ Format: `delete p\[ip/tp] w\[week number] t\[task number]`
 
 [NOTE]
 ====
-* `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `delete` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
@@ -769,8 +790,16 @@ Format: +
 
 [NOTE]
 ====
-* `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `done` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
@@ -790,9 +819,17 @@ Format: +
 
 [NOTE]
 ====
-*  `[week number]` and `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `addNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 * `[note]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
@@ -812,9 +849,17 @@ Format: +
 
 [NOTE]
 ====
-* `week number`, `task number` and `note number` must be a positive integer (E.g. 1, 2, 3, …)
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `editNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 * `[new note]` cannot be empty
-* Only `ip` and `tp` projects are available
 ====
 
 Example: +
@@ -830,18 +875,26 @@ NOVA will edit the note under task 2 of week 3 of IP.
 You can delete the note that you have added to tasks in projects in the progress tracker.
 
 Format: +
-`deleteNote p\[ip/tp] w\[week number] t\[task number] i\[note number]`
+`deleteNote p\[ip/tp] w\[week number] t\[task number]`
 
 [NOTE]
 ====
-* `[week number]`, `[task number]` and `[note number]` must be a positive integer (E.g. 1, 2, 3, …)
-* Only `ip` and `tp` projects are available
+* Only `ip` and `tp` projects are available and are not case-sensitive
+* There are only weeks 1 to 13 in each project
+* When multiple same tags are keyed, the last tag will be taken as the input.
+====
+
+[WARNING]
+====
+* `deleteNote` is case-sensitive
+* `[week number]` must be a positive integer (E.g. 1, 2, 3, …)
+* `[task number]` must be a positive integer (E.g. 1, 2, 3, …)
 ====
 
 Example: +
 Suppose you wish to delete the note added in task 2 of week 3 in IP project,
 
-`deleteNote p\[ip] w\3 t\2 i\2`
+`deleteNote p\[ip] w\3 t\2`
 
 NOVA will delete the note under task 2 of week 3 of IP.
 
