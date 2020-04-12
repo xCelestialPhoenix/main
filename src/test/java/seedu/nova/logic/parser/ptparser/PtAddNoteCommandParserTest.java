@@ -37,28 +37,28 @@ public class PtAddNoteCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK + PT_NOTE,
-                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getNote().toString()));
+                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProjectName(),
+                        expectedPtTask.getNoteString()));
 
         // multiple projects - last project accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_TP + PROJECT_IP + WEEK_ONE + PT_TASK + PT_NOTE,
-                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getNote().toString()));
+                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProjectName(),
+                        expectedPtTask.getNoteString()));
 
         // multiple weeks - last week accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE + PT_TASK + PT_NOTE,
-                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getNote().toString()));
+                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProjectName(),
+                        expectedPtTask.getNoteString()));
 
         // multiple taskNum - last taskNum accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK2 + PT_TASK + PT_NOTE,
-                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getNote().toString()));
+                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProjectName(),
+                        expectedPtTask.getNoteString()));
 
         // multiple notes - last note accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE + PT_TASK + PT_NOTE2 + PT_NOTE,
-                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProject().getProjectName(),
-                        expectedPtTask.getNote().toString()));
+                new PtAddNoteCommand(expectedPtTask.getPtWeek(), 1, expectedPtTask.getProjectName(),
+                        expectedPtTask.getNoteString()));
     }
 
     @Test

@@ -29,15 +29,15 @@ public class PtListCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_ONE,
-                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName()));
+                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName()));
 
         // multiple projects - last project accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_TP + PROJECT_IP + WEEK_ONE,
-                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName()));
+                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName()));
 
         // multiple weeks - last week accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PROJECT_IP + WEEK_TWO + WEEK_ONE,
-                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProject().getProjectName()));
+                new PtListCommand(expectedPtTask.getPtWeek(), expectedPtTask.getProjectName()));
     }
 
     @Test
