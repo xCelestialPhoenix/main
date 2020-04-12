@@ -16,7 +16,7 @@ endif::[]
 
 :repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main
 
-By: `CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
+By: `CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -114,6 +114,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 // end::logic[]
 
 [[Design-Model]]
+// tag::model[]
 === Model component
 
 .Structure of the Model Component
@@ -129,6 +130,8 @@ The `Model`,
 * stores a 'ProgressTracker' object that represents the user's progress in their project tasks.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+// end::model[]
 
 [[Design-Storage]]
 === Storage component
@@ -373,32 +376,70 @@ Aspect: Adding choice of week to view tasks
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
 //end::listPt[]
-=== View schedule for a specified day
-The view schedule feature allows the user to view their schedule for the day specified by them.
+// tag::view[]
 
-==== Implementation
-Given below is an example usage scenario and how the view schedule mechanism behaves at each step.
+=== View schedule
+The view schedule feature allows users to view the events they have added into the schedule. Users are able to view the
+schedule by two time frames:
+
+* By date
+* By week
+
+The following activity diagram shows what happens when a user inputs a view command:
+
+image::ViewCommandActivityDiagram.png[]
+
+==== Implementation - View schedule by date
+The view feature allows users to see the events happening on the specified date.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewDayCommand`.
+The operation is exposed in the `Model` interface as `Model#view(LocalDate)`.
+
+Given below is an example usage scenario and how the view by date mechanism behaves at each step.
 
 1. The user keys in 'view t\2020-03-10' into the command box.
-2. The user executes 'view t\2020-03-10' to view their schedule on the 10th of March 2020.
-3. 'ScViewDayCommandParser' creates a new 'ScViewDayCommand'.
-4. 'LogicManager' executes the 'ScViewDayCommand'.
-5. 'ModelManger#viewSechdule()' is called and the schedule for the day is retrieved.
+2. The user executes 'view t\2020-03-10' to view their schedule on the 10 Mar 2020.
+3. `LogicManager` calls LogicParser to parse the command.
+4. `LogicParser` gets the mode from Model and passes the command word and the argument to ScheduleParser.
+5. `ScheduleParser` checks the command word and calls ScViewDayCommandParser.
+6. 'ScViewDayCommandParser' creates a new 'ScViewDayCommand'.
+7. 'LogicManager' executes the 'ScViewDayCommand'.
+8. 'ModelManger#viewSechdule(LocalDate)' is called and the schedule for the day is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
-image::SchedulerSeqDiagram.png[]
+image::viewDaySequenceDiagram.png[]
+
+View week: Given below is an example usage scenario and how the view week mechanism behaves at each step.
+
+1. The user keys in 'view week i\6' into the command box.
+2. The user executes 'view week i\6' to view their schedule on the 6th week.
+3. `LogicManager` calls LogicParser to parse the command.
+4. `LogicParser` gets the mode from Model and passes the command word and the argument to ScheduleParser.
+5. `ScheduleParser` checks the command word and the preamble and calls ScViewWeekCommandParser.
+6. 'ScViewWeekCommandParser' creates a new 'ScViewWeekCommand'.
+7. 'LogicManager' executes the 'ScViewWeekCommand'.
+8. 'ModelManger#viewSechdule(int)' is called and the schedule for the week is retrieved.
+
+==== Implementation - View schedule by week
+The view feature allows users to see the events happening throughout the specified week.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewWeekCommand`.
+The operation is exposed in the `Model` interface as `Model#view(int)`.
+
+The following sequence diagram shows what happens when a user inputs a view week command:
+
+image::viewWeekSequenceDiagram.png[]
 
 ==== Design Considerations
-Aspect: View schedule by day and not week
+Aspect: View schedule by at most week and not month.
 
-* **Alternative 1 (current choice):** View schedule by day
-** Pros: more freedom to choose what to see as a user
-** Cons: more typing to view schedule for more than one day
+* **Alternative 1 (current choice):** View schedule up to week
+** Pros: Easier to fit the events into the display
+** Cons: Less ways for user to view schedule
 
-* **Alternative 2:** View schedule by week
-** Pros: user can see their whole week's schedule at once
-** Cons: might be too long and messy
+* **Alternative 2:** View schedule up to month
+** Pros: User can see their whole month's schedule at once
+** Cons: Might be too long and cannot fit into the display box
+// end::view[]
 
 //tag::studyplannerfeature[]
 
@@ -519,9 +560,9 @@ Refer to the guide <<DevOps#, here>>.
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="100%",cols="^15%,<15%,<35%,<35%",options="header",]
 |=======================================================================
-|Priority |As a ... |I can ... |So that I ...
+<|Priority |As a ... |I can ... |So that I ...
 
 |`* * *` |student |add classmate or teammate’s name and contact information |contact them easily
 
@@ -573,11 +614,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
+// tag::viewScheduleUserStories[]
+
 |`* * *` |Student | View my schedule for a day| Know the flow of events on that day
 
 |`* * *` |Student | View my schedule for a week | Know what will happen for that week
 
-|`* * *` |Student | View my timetable | Can check when my classes are
+|`*` |Student | View my timetable | Can check when my classes are
+
+// end::viewScheduleUserStories[]
 
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
@@ -1037,27 +1082,54 @@ Use case ends.
 Use case ends.
 //end::UseCasesPt[]
 
+// tag::viewScheduleUseCases[]
+
 [discrete]
-=== Use case 21: View the timetable
+=== Use case 21: View the schedule for a day
 
 *MSS*
 
-1. User requests for the timetable
-2. NOVA shows the timetable
+1. User requests for the schedule of a day.
+2. NOVA shows the schedule for the day.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The timetable is empty.
+* 1a. User enters the wrong format.
+*   1a1. NOVA displays the correct format for the command.
+* 2a. The schedule for the day is empty.
+*   2a1. NOVA displays that day does not have any events.
 +
 Use case ends.
 
+[discrete]
+=== Use case 22: View the schedule for a week
+
+*MSS*
+
+1. User requests for the schedule of a week.
+2. NOVA shows the schedule for the week.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 1a. User enters the wrong format.
+*   1a1. NOVA displays the correct format for the command.
+* 2a. The schedule for the week is empty.
+*   2a1. NOVA displays that week does not have any events.
++
+Use case ends.
+
+// end::viewScheduleUseCases[]
 //tag::studyplannermss[]
 
 [discrete]
-=== Use case 22: User add a task into study plan.
+=== Use case 23: User add a task into study plan.
 
 *MSS*
 
@@ -1075,7 +1147,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 23: User add a task into study plan
+=== Use case 24: User add a task into study plan
 
 *MSS*
 
@@ -1093,7 +1165,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 24: User view statistics of every tasks in study plan
+=== Use case 25: User view statistics of every tasks in study plan
 
 *MSS*
 
@@ -1111,7 +1183,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 25: User schedules a task into a particular day.
+=== Use case 26: User schedules a task into a particular day.
 
 *MSS*
 
@@ -1128,18 +1200,22 @@ Use case ends.
 +
 Use case ends.
 //end::studyplannermss[]
+
 _{More to be added}_
 
 [appendix]
 == Non Functional Requirements
 
-. Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
+. The application should work on any <<mainstream-os,mainstream OS>> provided that Java `11` or above is installed.
+. The application should work on both 32-bit and 64-bit environments.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-. The application should respond to every command within one second.
-. Technical requirements: The application should work on both 32-bit and 64-bit environments.
 . The application should work without internet connection.
-. The user should be able to navigate to other <<mode,mode>> just by using `nav` command.
-. If student forgot to change the <<mode,mode>>, NOVA should display error message.
+// tag::TerenceNFR[]
+. The application should respond to every command within one second.
+. The application should be easily modifiable to meet changing curriculum of CS2013T.
+// end::TerenceNFR[]
+
+_{More to be added}_
 
 [appendix]
 == Glossary
