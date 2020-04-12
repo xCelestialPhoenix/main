@@ -12,8 +12,8 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 
 import seedu.nova.model.Model;
-import seedu.nova.model.schedule.event.DateNotFoundException;
-import seedu.nova.model.schedule.event.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
 
 /**
  * Deletes an Event from the Schedule using its date and index in the list.

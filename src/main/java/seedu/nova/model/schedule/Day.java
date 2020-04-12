@@ -7,10 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.EventNotFoundException;
 import seedu.nova.model.schedule.event.Lesson;
-import seedu.nova.model.schedule.event.TimeOverlapException;
 import seedu.nova.model.schedule.event.WeakEvent;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.TimeOverlapException;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 

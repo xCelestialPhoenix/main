@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
 import seedu.nova.model.util.Copyable;
 import seedu.nova.model.util.time.TimeUtil;
 

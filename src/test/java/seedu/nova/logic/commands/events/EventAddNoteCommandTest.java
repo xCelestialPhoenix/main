@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.commands.sccommands.eventcommands.EventAddNoteCommand;
-import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.EventNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
+import seedu.nova.model.schedule.event.exceptions.EventNotFoundException;
 import seedu.nova.testutil.ModelStub;
 
 public class EventAddNoteCommandTest {
@@ -25,7 +25,7 @@ public class EventAddNoteCommandTest {
     private static final String VALID_DESC = "Bring charger";
     private static final LocalDate VALID_DATE = LocalDate.parse("2020-03-09");
     private static final LocalDate INVALID_DATE = LocalDate.parse("2020-06-09");
-    
+
     @Test
     public void execute_validIndexValidDate_success() throws Exception {
         // adding a note to an event of index 1 from a list with one event
