@@ -357,6 +357,8 @@ Aspect: View schedule by day and not week
 ** Pros: user can see their whole week's schedule at once
 ** Cons: might be too long and messy
 
+//tag::studyplannerfeature[]
+
 === View available free slot of a specific day
 The view free slots feature allows the user to view their available free slots on their schedule.
 
@@ -422,6 +424,7 @@ image::PlannerScheduleTaskActivityDiagram.png[]
 ** Pros: more robust schedule.
 ** Cons: more difficult to implement.
 
+//end::studyplannerfeature[]
 
 === Logging
 
@@ -535,6 +538,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *`   |Forgetful student | Set reminders for upcoming events | Will remember to attend them
 
+//tag::studyplannerusecase[]
+
 |`* * *` |Student | Add tasks to study plan | Can add study tasks to my study plan
 
 |`* * *` |Student | Delete tasks on study plan | Can delete study tasks if I don't need it anymore
@@ -543,6 +548,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 event on today's schedule so that I can keep up with my study plan.
 
 |`* *`   |Student | View statistics of my task progress | Can see how much I've done for each task on my study plan.
+
+//end::studyplannerusecase[]
 
 |=======================================================================
 
@@ -947,6 +954,8 @@ Use case ends.
 +
 Use case ends.
 
+//tag::studyplannermss[]
+
 [discrete]
 === Use case 8: User add a task into study plan.
 
@@ -1018,7 +1027,7 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
-
+//end::studyplannermss[]
 _{More to be added}_
 
 [appendix]
