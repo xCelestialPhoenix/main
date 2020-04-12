@@ -358,6 +358,72 @@ Aspect: View schedule by day and not week
 ** Pros: user can see their whole week's schedule at once
 ** Cons: might be too long and messy
 
+=== View available free slot of a specific day
+The view free slots feature allows the user to view their available free slots on their schedule.
+
+==== Implementation
+Given below is an example usage scenario and how the view free slot mechanism behaves at each step.
+
+1. The user keys in 'freeslot t\2020-03-10' into the command box.
+2. The user executes 'freeslot t\2020-03-10' to view the free slots on their schedule on the 10th of March 2020.
+3. 'ScViewFreeSlotCommandParser' creates a new 'ScViewFreeSlotCommand'.
+4. 'LogicManager' executes the 'ScViewFreeSlotCommand'.
+5. 'ModelManger#viewFreeSlot()' is called and the free slots for the day is retrieved.
+
+The following sequence diagram shows how the view tasks operation works:
+
+image::ScViewFreeSlotDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Calculating free slots given a schedule
+
+* **Alternative 1 (current choice):** Embeds a free slot data structure to keep track of the free slots whenever
+events are added
+** Pros: no need to calculate free slots whenever user execute freeslot.
+** Cons: overhead to add event commands, making its execution slower.
+
+* **Alternative 2:** Calculates free slot based on the events whenever user executes freeslot
+** Pros: easier to implement.
+** Cons: slower freeslot execution.
+
+
+=== Schedule events based on a task in plan.
+The plan feature allows the user to create an event based on the task user created in the plan.
+
+==== Implementation
+Given below is an example usage scenario and how the plan task mechanism behaves at each step.
+
+1. The user keys in 'schedule p\task name t\2020-03-10' into the command box.
+2. The user executes 'schedule p\task name t\2020-03-10' to create an event "task name" on their schedule on the 10th of
+March 2020.
+3. 'PlannerScheduleTaskCommandParser' creates a new 'PlannerScheduleTaskCommand'.
+4. 'LogicManager' executes the 'PlannerScheduleTaskCommand'.
+5. 'ModelManger#searchTask()' is called to search for the task user specified.
+6. 'ModelManger#generateTaskEvent()' is called and one event with time determined by algorithm is created on the day
+in schedule.
+
+The following sequence diagram shows how the schedule task operation works:
+
+image::PlannerScheduleTaskSequenceDiagram.png[]
+
+The following activity diagram summarizes what happens when a user schedules a task:
+
+image::PlannerScheduleTaskActivityDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Calculating best fit time frame for a task
+
+* **Alternative 1 (current choice):** Plan gets free slot from schedule and generate event based on it.
+** Pros: Isolation of modules.
+** Cons: Redundant code.
+
+* **Alternative 2:** Schedule decides whether to schedule or discard an event generated from task.
+** Pros: more robust schedule.
+** Cons: more difficult to implement.
+
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
