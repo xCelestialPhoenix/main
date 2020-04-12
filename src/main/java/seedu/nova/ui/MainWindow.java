@@ -1,5 +1,10 @@
 package seedu.nova.ui;
 
+import static seedu.nova.commons.core.HelpMessages.HELP_ADDRESS_BOOK;
+import static seedu.nova.commons.core.HelpMessages.HELP_HOME;
+import static seedu.nova.commons.core.HelpMessages.HELP_PROGRESS_TRACKER;
+import static seedu.nova.commons.core.HelpMessages.HELP_SCHEDULE;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -15,6 +20,7 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.logic.parser.exceptions.ParseException;
+import seedu.nova.model.Mode;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -58,11 +64,9 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        scrollPane.vvalueProperty().bind(resultDisplayPlaceholder.heightProperty());
-
-        //setAccelerators();
-
-        //helpWindow = new HelpWindow();
+        // Autoscroll to bottom
+        resultDisplayPlaceholder.heightProperty().addListener((
+                observable, oldValue, newValue) -> scrollPane.setVvalue(scrollPane.getVmax()));
     }
 
     public Stage getPrimaryStage() {
@@ -79,31 +83,23 @@ public class MainWindow extends UiPart<Stage> {
 
         helpHolder.getChildren().add(helpBox.getRoot());
 
-        helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+        helpBox.setHelp(HELP_HOME);
 
         //add schedule for the day in homepage
         try {
-            //get localdate fof today
+            //get localdate of today
             String today = LocalDate.now().toString();
 
             //set mode to schedule first
-            logic.getModel().getMode().setModeEnum(ModeEnum.SCHEDULE);
+            Mode mode = logic.getMode();
+            logic.setMode(mode, ModeEnum.SCHEDULE);
 
-            CommandResult commandResult = logic.execute("view t\\" + today);
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            executeCommand("view t\\" + today);
 
             //set mode back to home
-            logic.getModel().getMode().setModeEnum(ModeEnum.HOME);
+            logic.setMode(mode, ModeEnum.HOME);
         } catch (CommandException | ParseException e) {
-            String commandText = "view t\\" + LocalDate.now().toString();
-            logger.info("Invalid command: " + commandText);
-
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(e.getMessage());
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            //do noting
         }
     }
 
@@ -143,27 +139,50 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            displayToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isExit()) {
                 handleExit();
             }
 
             if (commandResult.isChangeMode()) {
-                helpBox.setHelp(logic.getModel().getMode().getModeEnum().name());
+                Mode mode = logic.getMode();
+                ModeEnum modeEnum = logic.getModeEnum(mode);
+
+                switch (modeEnum) {
+                case HOME:
+                    helpBox.setHelp(HELP_HOME);
+                    break;
+                case ADDRESSBOOK:
+                    helpBox.setHelp(HELP_ADDRESS_BOOK);
+                    break;
+                case SCHEDULE:
+                    helpBox.setHelp(HELP_SCHEDULE);
+                    break;
+                case PROGRESSTRACKER:
+                    helpBox.setHelp(HELP_PROGRESS_TRACKER);
+                    break;
+                default:
+                    logger.info("Invalid mode: " + logic.getModeName(modeEnum));
+                }
+
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-
-            ResultDisplay r = new ResultDisplay();
-            r.setFeedbackToUser(e.getMessage());
-            resultDisplayPlaceholder.getChildren().add(r.getRoot());
+            displayToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Create a box in the scrollpane to display the result
+     * @param s the result string
+     */
+    private void displayToUser(String s) {
+        ResultDisplay r = new ResultDisplay(scrollPane.widthProperty());
+        r.setFeedbackToUser(s);
+        resultDisplayPlaceholder.getChildren().add(r.getRoot());
     }
 }

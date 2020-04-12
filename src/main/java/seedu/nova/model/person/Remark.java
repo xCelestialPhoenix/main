@@ -16,7 +16,7 @@ public class Remark {
 
     @Override
     public String toString() {
-        return value;
+        return value.equals("") ? "[You have not added any remark for this person]" : value;
     }
 
     @Override

@@ -2,31 +2,42 @@ package seedu.nova.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.nova.commons.core.GuiSettings;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
+import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
+import seedu.nova.model.plan.StrongTask;
+import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.WeakTask;
+import seedu.nova.model.progresstracker.Ip;
 import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.model.progresstracker.PtTask;
+import seedu.nova.model.progresstracker.Tp;
+import seedu.nova.model.schedule.event.Event;
+import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.util.time.slotlist.DateTimeSlotList;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -41,20 +52,30 @@ public interface Model {
     /**
      * Returns the user prefs' nova book file path.
      */
-    Path getAddressBookFilePath();
+    Path getNovaFilePath();
 
     /**
      * Sets the user prefs' nova book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNovaFilePath(Path addressBookFilePath);
+
+    Nova getNova();
+
+    Mode getMode();
+
+    ModeEnum getModeEnum(Mode mode);
+
+    String getModeName(ModeEnum modeEnum);
+
+    /**
+     * Returns the AddressBook
+     */
+    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Replaces nova book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the nova book.
@@ -80,24 +101,87 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    void redoAddressBook();
+
     String viewSchedule(LocalDate date);
+
+    String viewSchedule(int weekNumber);
 
     boolean isWithinSem(LocalDate date);
 
-    Mode getMode();
-
-    ProgressTracker getProgressTracker();
+    boolean isWithinSem(int weekNumber);
 
     void addEvent(Event e);
 
-    public void addLesson(Lesson l);
+    void addAllLessons(Lesson l);
+
+    DateTimeSlotList getFreeSlotOn(LocalDate date);
+
+    String viewFreeSlot(LocalDate date);
+
+    String deleteEvent(LocalDate date, int index);
+
+    boolean deleteEvent(Event event);
+
+    String addNote(String desc, LocalDate date, int index);
+
+    //==============studyplanner=============
+
+    void resetPlan();
+
+    boolean addRoutineTask(StrongTask st);
+
+    boolean addFlexibleTask(WeakTask wt);
+
+    List<Task> getTaskList();
+
+    Task searchTask(String name);
+
+    boolean deleteTask(Task task);
+
+    Event generateTaskEvent(Task task, LocalDate date) throws Exception;
+
+    //============== Progress Tracker =============
+
+    ProgressTracker getProgressTracker();
+
+    Ip getProgressTrackerIp();
+
+    Tp getProgressTrackerTp();
+
+    String listPtTask(String projectName, int weekNum);
+
+    void addPtTask(String projectName, int weekNum, PtTask task);
+
+    boolean deletePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean editPtTask(String projectName, int weekNum, int taskNum, String taskDesc);
+
+    boolean setDonePtTask(String projectName, int weekNum, int taskNum);
+
+    boolean addPtNote(String projectName, int weekNum, int taskNum, String note);
+
+    boolean deletePtNote(String projectName, int weekNum, int taskNum);
+
+    boolean editPtNote(String projectName, int weekNum, int taskNum, String note);
 }

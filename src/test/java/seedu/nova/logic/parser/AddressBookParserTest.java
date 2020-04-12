@@ -20,7 +20,6 @@ import seedu.nova.logic.commands.abcommands.AbDeleteCommand;
 //import seedu.nova.logic.commands.abcommands.AbEditCommand;
 //import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 //import seedu.nova.logic.commands.abcommands.AbFindCommand;
-import seedu.nova.logic.commands.abcommands.AbHelpCommand;
 import seedu.nova.logic.commands.abcommands.AbListCommand;
 //import seedu.nova.logic.commands.commoncommands.ExitCommand;
 import seedu.nova.logic.parser.abparsers.AddressBookParser;
@@ -51,7 +50,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         AbDeleteCommand command = (AbDeleteCommand) parser.parseCommand(
-                AbDeleteCommand.COMMAND_WORD, " "
+                AbDeleteCommand.COMMAND_WORD, " i\\"
                         + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new AbDeleteCommand(INDEX_FIRST_PERSON), command);
     }
@@ -80,11 +79,11 @@ public class AddressBookParserTest {
         assertEquals(new AbFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     } */
 
-    @Test
+    /*@Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(AbHelpCommand.COMMAND_WORD, "") instanceof AbHelpCommand);
         assertTrue(parser.parseCommand(AbHelpCommand.COMMAND_WORD, " 3") instanceof AbHelpCommand);
-    }
+    }*/
 
     @Test
     public void parseCommand_list() throws Exception {

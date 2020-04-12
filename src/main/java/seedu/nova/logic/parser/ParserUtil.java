@@ -3,8 +3,10 @@ package seedu.nova.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +18,10 @@ import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Email;
 import seedu.nova.model.person.Name;
 import seedu.nova.model.person.Phone;
+import seedu.nova.model.plan.TaskFreq;
 import seedu.nova.model.progresstracker.Project;
+import seedu.nova.model.progresstracker.PtNote;
+import seedu.nova.model.progresstracker.TaskDesc;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -28,6 +33,12 @@ public class ParserUtil {
      */
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
+    public static final String MESSAGE_INVALID_TIME_FORMAT = "Time format is invalid.";
+    public static final String MESSAGE_INVALID_DAY_FORMAT = "Day of week format is invalid.";
+
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -129,22 +140,42 @@ public class ParserUtil {
         return categorySet;
     }
 
-    public static LocalTime parseTime(String time) {
-        return LocalTime.parse(time.trim());
+    /**
+     * parse the time into a LocalTime
+     * @param time String value of time
+     * @return LocalDate object
+     * @throws ParseException if time is invalid
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+
+        String trimmedTime = time.trim();
+
+        try {
+            return LocalTime.parse(trimmedTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_TIME_FORMAT);
+        }
     }
 
     /**
      * Parses {@code String day} into a {@code DayOfWeek}.
      */
-    public static DayOfWeek parseDay(String day) {
-        day = day.toUpperCase();
-        DayOfWeek d = DayOfWeek.valueOf(day);
+    public static DayOfWeek parseDay(String day) throws ParseException {
+        requireNonNull(day);
 
-        return d;
+        day = day.toUpperCase().trim();
+        try {
+            DayOfWeek d = DayOfWeek.valueOf(day);
+            return d;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_INVALID_DAY_FORMAT);
+        }
     }
 
     /**
      * Parsers week number into an int
+     *
      * @param week string containing number to specify the week
      * @return int of the week input
      * @throws ParseException if is non-zero throw exception
@@ -159,7 +190,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parsers task number into an int
+     * @param taskNum string containing number to specify the task
+     * @return int of the task input
+     * @throws ParseException if is non-zero throw exception
+     */
+    public static int parseTask(String taskNum) throws ParseException {
+        requireNonNull(taskNum);
+        String trimmedNum = taskNum.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedNum)) {
+            throw new ParseException(MESSAGE_INVALID_TASK);
+        }
+        return Integer.parseInt(trimmedNum);
+    }
+
+    /**
      * Checks if project name is correct
+     *
      * @param project project name
      * @return project name
      * @throws ParseException if project name is wrong
@@ -176,14 +223,81 @@ public class ParserUtil {
     }
 
     /**
+     * Checks if taskDesc is blank
+     * @param taskDesc task description
+     * @return task description
+     * @throws ParseException if task description is blank
+     */
+    public static String parseTaskDesc(String taskDesc) throws ParseException {
+        requireNonNull(taskDesc);
+        String trimmedTaskDesc = taskDesc.trim();
+
+        if (!TaskDesc.isValidTaskDesc(trimmedTaskDesc)) {
+            throw new ParseException(TaskDesc.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedTaskDesc;
+    }
+
+    /**
+     * Checks if note is blank
+     * @param note note
+     * @return note
+     * @throws ParseException if note is blank
+     */
+    public static String parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+
+        if (!PtNote.isValidNote(trimmedNote)) {
+            throw new ParseException(PtNote.MESSAGE_CONSTRAINTS);
+        }
+
+        return trimmedNote;
+    }
+
+
+    /**
      * Parse date local date.
      *
      * @param date the date
      * @return the local date
      */
-    public static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        return LocalDate.parse(trimmedDate);
+
+        try {
+            return LocalDate.parse(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
+
+    }
+
+    /**
+     * Parse minutes into Duration
+     *
+     * @param min minutes
+     * @return Duration
+     * @throws ParseException
+     */
+    public static Duration parseMinuteDuration(String min) throws ParseException {
+        requireNonNull(min);
+        String trimmedMin = min.trim();
+        return Duration.ofMinutes(Long.parseLong(trimmedMin));
+    }
+
+    /**
+     * Parse task frequency to TaskFreq
+     *
+     * @param freq frequency
+     * @return TaskFreq
+     * @throws ParseException
+     */
+    public static TaskFreq parseTaskFreq(String freq) throws ParseException {
+        requireNonNull(freq);
+        String trimmedFreq = freq.trim().toUpperCase();
+        return TaskFreq.valueOf(trimmedFreq);
     }
 }

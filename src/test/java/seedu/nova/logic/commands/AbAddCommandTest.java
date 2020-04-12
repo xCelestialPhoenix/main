@@ -1,32 +1,20 @@
 package seedu.nova.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nova.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.AddressBook;
-import seedu.nova.model.Mode;
-import seedu.nova.model.Model;
 import seedu.nova.model.ReadOnlyAddressBook;
-import seedu.nova.model.ReadOnlyUserPrefs;
-import seedu.nova.model.event.Event;
-import seedu.nova.model.event.Lesson;
 import seedu.nova.model.person.Person;
-import seedu.nova.model.progresstracker.ProgressTracker;
+import seedu.nova.testutil.ModelStub;
 import seedu.nova.testutil.PersonBuilder;
 
 public class AbAddCommandTest {
@@ -34,17 +22,6 @@ public class AbAddCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AbAddCommand(null));
-    }
-
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AbAddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AbAddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
@@ -79,108 +56,6 @@ public class AbAddCommandTest {
 
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
-    }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public String viewSchedule(LocalDate date) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean isWithinSem(LocalDate date) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Mode getMode() {
-            return null;
-        }
-
-        @Override
-        public void addEvent(Event e) {
-        }
-
-        @Override
-        public void addLesson(Lesson l) {
-        }
-
-        public ProgressTracker getProgressTracker() {
-            return null;
-        }
     }
 
     /**

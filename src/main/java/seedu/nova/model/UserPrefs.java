@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.nova.commons.core.GuiSettings;
@@ -14,7 +15,9 @@ import seedu.nova.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path novaFilePath = Paths.get("data" , "Nova.json");
+    private LocalDate scheduleStartDate = LocalDate.of(2020, 1, 13);
+    private LocalDate scheduleEndDate = LocalDate.of(2020, 5, 3);
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +38,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setNovaFilePath(newUserPrefs.getNovaFilePath());
+        setScheduleStartDate(newUserPrefs.getScheduleStartDate());
+        setScheduleEndDate(newUserPrefs.getScheduleEndDate());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +52,31 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getNovaFilePath() {
+        return novaFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setNovaFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+        this.novaFilePath = addressBookFilePath;
+    }
+
+    public LocalDate getScheduleStartDate() {
+        return scheduleStartDate;
+    }
+
+    public void setScheduleStartDate(LocalDate scheduleStartDate) {
+        requireNonNull(scheduleStartDate);
+        this.scheduleStartDate = scheduleStartDate;
+    }
+
+    public LocalDate getScheduleEndDate() {
+        return scheduleEndDate;
+    }
+
+    public void setScheduleEndDate(LocalDate scheduleEndDate) {
+        requireNonNull(scheduleEndDate);
+        this.scheduleEndDate = scheduleEndDate;
     }
 
     @Override
@@ -68,19 +91,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && novaFilePath.equals(o.novaFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, novaFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + novaFilePath);
         return sb.toString();
     }
 

@@ -10,24 +10,35 @@ import static seedu.nova.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.nova.commons.core.GuiSettings;
 import seedu.nova.model.person.NameContainsKeywordsPredicate;
 import seedu.nova.testutil.AddressBookBuilder;
 
+
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private Nova nova = new Nova();
+    private ModelManager modelManager;
+    private final VersionedAddressBook ab = new VersionedAddressBook(new AddressBook());
+    //private ModelManager modelManager = new ModelManager();
+
+    @BeforeEach
+    public void setUp() {
+        nova.setAddressBookNova(ab);
+        modelManager = new ModelManager(nova, new UserPrefs());
+    }
 
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new VersionedAddressBook(new AddressBook()),
+                new VersionedAddressBook(modelManager.getAddressBook()));
     }
 
     @Test
@@ -38,14 +49,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("nova/book/file/path"));
+        userPrefs.setNovaFilePath(Paths.get("nova/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/nova/book/file/path"));
+        userPrefs.setNovaFilePath(Paths.get("new/nova/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -63,14 +74,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setNovaFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("nova/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setNovaFilePath(path);
+        assertEquals(path, modelManager.getNovaFilePath());
     }
 
     @Test
@@ -96,15 +107,18 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        Nova newNova = new Nova();
+        AddressBook addressBookWithAliceAndBen = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        VersionedAddressBook newAddressBookWithAliceAndBen = new VersionedAddressBook(addressBookWithAliceAndBen);
+        newNova.setAddressBookNova(newAddressBookWithAliceAndBen);
+
+        VersionedAddressBook differentAddressBook = new VersionedAddressBook(new AddressBook());
         UserPrefs userPrefs = new UserPrefs();
 
+
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1, 13),
-                LocalDate.of(2020, 5, 3)));
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1,
-                13), LocalDate.of(2020, 5, 3)));
+        modelManager = new ModelManager(nova, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(nova, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -117,22 +131,20 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs,
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)))));
+        assertFalse(modelManager.equals(new ModelManager(newNova, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, new Schedule(LocalDate.of(2020, 1,
-                13), LocalDate.of(2020, 5, 3)))));
+        assertFalse(modelManager.equals(new ModelManager(newNova, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs,
-                new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3)))));
+        differentUserPrefs.setNovaFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(newNova, userPrefs)));
     }
+
 }
