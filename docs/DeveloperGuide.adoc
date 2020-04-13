@@ -76,7 +76,7 @@ The sections below give more details of each component.
 
 //tag::UI[]
 [[Design-Ui]]
-=== UI component
+=== UI component (Yap Wen Jun Bryan)
 
 .Structure of the UI Component
 image::UiClassDiagram.png[]
@@ -344,7 +344,7 @@ image::AbDeleteActivityDiagram.png[width=470]
 
 //tag::listPt[]
 
-=== List tasks under IP project
+=== List tasks under IP project (Yap Wen Jun Bryan)
 The list tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
@@ -946,7 +946,7 @@ Use case ends.
 
 //tag::UseCasesPt[]
 [discrete]
-=== Use case 13: Add task to a project of progress tracker
+=== Use case 13: Add task to a project of progress tracker (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -964,7 +964,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 14: Edit a task.
+=== Use case 14: Edit a task  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -981,7 +981,7 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 15: Delete a task.
+=== Use case 15: Delete a task  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1000,7 +1000,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 16: List tasks in a week of a project.
+=== Use case 16: List tasks in a week of a project  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1018,7 +1018,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 17: Set an added task as done.
+=== Use case 17: Set an added task as done  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1036,7 +1036,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 18: Add notes to a task in progress tracker
+=== Use case 18: Add notes to a task in progress tracker  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1054,7 +1054,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 19: Edit a note.
+=== Use case 19: Edit a note  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1072,7 +1072,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 20: Delete a note.
+=== Use case 20: Delete a note  (Yap Wen Jun Bryan)
 
 *MSS*
 
@@ -1257,7 +1257,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The most recent window size and location is retained.
 
 //tag::shutdown[]
-=== Shutdown
+=== Shutdown  (Yap Wen Jun Bryan)
 . Exiting the application
 
 .. Enter `exit` in the command line.
@@ -1278,7 +1278,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: Similar to previous.
 
 //tag::Pt[]
-=== Adding a project task in Progress Tracker
+=== Adding a project task in Progress Tracker  (Yap Wen Jun Bryan)
 
 . Enter progress tracker mode via `nav progresstracker`
 . Adding a project task
@@ -1293,7 +1293,7 @@ Expected: No new project task is added. Error details shown in the status messag
 Expected: Similar to previous.
 
 
-=== Saving data
+=== Saving data  (Yap Wen Jun Bryan)
 
 . Dealing with corrupted data file
 
