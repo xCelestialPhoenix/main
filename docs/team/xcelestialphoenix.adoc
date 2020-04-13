@@ -10,15 +10,10 @@ Since: `Apr 2020`
 == Overview
 
 My team of 4 software engineering students and I were tasked to enhance a simple command line interface (CLI) desktop
-address book application for our project to cater to users who are accustomed to typing. We decided target fellow
-software engineering students as our users and expanded on the address book into an organizer, hoping to aid future
-software engineering students taking this module in managing their activities.
+address book application for our project to cater to users who are accustomed to typing. We expanded on the address
+book into an organizer, hoping to aid future software engineering students taking this module in managing their activities.
 
-We identified 4 main aspects that can be improved: contact management, activity management, study management and
-project task management. Thus, we developed a schedule, study planner, progress tracker and refined the given address
-book to cater to our problem. As a result, Next-gen Organization Virtual Assistant (NOVA) is born.
-
-This portfolio documents the contribution I made to Project NOVA. It contains a section on the summary of contributions
+This portfolio documents the contributions I made to Project NOVA. It contains a section on the summary of contributions
 towards the project as well as the user guide and developer guide.
 
 == Summary of contributions
