@@ -46,7 +46,7 @@ public class EventDeleteCommandTest {
 
         EventDeleteCommand eventDeleteCommand = new EventDeleteCommand(VALID_DATE, INDEX_FIRST_EVENT);
 
-        assertThrows(CommandException.class, EventDeleteCommand.MESSAGE_INVALID_INDEX, () ->
+        assertThrows(CommandException.class, EventDeleteCommand.MESSAGE_INVALID_INDEX_DATE, () ->
                 eventDeleteCommand.execute(modelStub));
 
     }
