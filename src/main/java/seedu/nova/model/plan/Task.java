@@ -27,6 +27,10 @@ public abstract class Task implements Serializable {
         this.totalEventDuration = Duration.ZERO;
     }
 
+    public TaskDetails getDetails() {
+        return details;
+    }
+
     public String getName() {
         return details.getName();
     }
