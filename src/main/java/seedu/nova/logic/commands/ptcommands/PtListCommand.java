@@ -18,7 +18,7 @@ import seedu.nova.model.Model;
 public class PtListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List tasks in the specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists tasks in the specified "
             + "project in the specified week. "
             + "Parameters: "
             + PREFIX_PROJECT + "PROJECT "
