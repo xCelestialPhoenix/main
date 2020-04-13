@@ -37,7 +37,6 @@ _[.small]#Fig 1: UI Components of NOVA#_
 // tag::about[]
 
 [[About]]
-// tag::about[]
 == About (Terence)
 
 This UG is a reference guide to help you use NOVA. This document contains a <<QuickStart, quick start>> section to get
@@ -53,7 +52,6 @@ face any problems, take a look at the <<FAQ, FAQ section>>.
 // tag::notation[]
 
 [[Notation]]
-// tag::notation[]
 == Notations (Terence)
 In this guide, you'll be seeing the following markup being used.
 
@@ -64,9 +62,10 @@ This icon indicates details that could help you better understand how to use NOV
 This icon indicates actions that could negatively affect your experience while using NOVA.
 
 `Commands` and `input fields` are highlighted.
+
 // end::notation[]
+
 [[QuickStart]]
-// end::notation[]
 == Quick Start
 Here are some steps to get you started:
 
