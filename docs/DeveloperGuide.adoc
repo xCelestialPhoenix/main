@@ -882,6 +882,7 @@ Use case ends
 +
 Use case resumes at step 1
 
+// tag::eventusecase[]
 [discrete]
 === Use case 10: Adding a consultation event
 
@@ -934,6 +935,8 @@ Use case ends.
 
 * 1a. NOVA cannot find the event given
 ** 1a1. NOVA informs student that the event does not exist
+// end::eventusecase[]
+
 
 //tag::UseCasesPt[]
 [discrete]
@@ -990,7 +993,6 @@ Use case ends.
 +
 Use case ends.
 
-// tag::eventusecase[]
 [discrete]
 === Use case 16: User lists tasks in a week of a project.
 
@@ -1008,7 +1010,6 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
-// end::eventusecase[]
 
 [discrete]
 === Use case 17: User set an added task as done.
