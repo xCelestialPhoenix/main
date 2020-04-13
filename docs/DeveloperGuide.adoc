@@ -606,7 +606,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *` |student |repeat events | can add multiple similar events at one go
 // end::eventuserstory[]
 
-||`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
+|`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
 |`* * *` |student |mark tasks as done |track how many tasks I have finished
 
