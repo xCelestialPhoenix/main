@@ -29,7 +29,7 @@ public class PtEditCommand extends Command {
             + PREFIX_DESC + "TASK DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
-            + PREFIX_WEEK + "2"
+            + PREFIX_WEEK + "2 "
             + PREFIX_TASK + "1"
             + PREFIX_DESC + "Implement javafx";
 

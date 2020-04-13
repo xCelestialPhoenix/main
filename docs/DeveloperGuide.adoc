@@ -20,7 +20,7 @@ By: `CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Setting up
 
-Refer to the guide <<SettingUp#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/SettingUp.adoc[here].
 
 == Design
 
@@ -528,15 +528,15 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 
 == Documentation
 
-Refer to the guide <<Documentation#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/Documentation.adoc[here].
 
 == Testing
 
-Refer to the guide <<Testing#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/Testing.adoc[here].
 
 == Dev Ops
 
-Refer to the guide <<DevOps#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/DevOps.adoc[here].
 
 [appendix]
 == Product Scope
@@ -978,6 +978,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 15: Delete a task  (Yap Wen Jun Bryan)
 
 *MSS*
@@ -1219,7 +1220,7 @@ _{More to be added}_
 // end::SzeYingNFR[]
 // tag::TerenceNFR[]
 . The application should respond to every command within one second.
-. The application should be easily modifiable to meet changing curriculum of CS2013T.
+. The application should be easily modifiable to meet changing curriculum of CS2103T.
 // end::TerenceNFR[]
 
 _{More to be added}_
