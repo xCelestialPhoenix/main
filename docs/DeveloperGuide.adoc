@@ -963,7 +963,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 14: User edits a task.
+=== Use case 14: Edit a task.
 
 *MSS*
 
@@ -980,7 +980,7 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case 15: User deletes a task.
+=== Use case 15: Delete a task.
 
 *MSS*
 
@@ -999,7 +999,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 16: User lists tasks in a week of a project.
+=== Use case 16: List tasks in a week of a project.
 
 *MSS*
 
@@ -1017,7 +1017,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 17: User set an added task as done.
+=== Use case 17: Set an added task as done.
 
 *MSS*
 
@@ -1053,7 +1053,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 19: User edits a note.
+=== Use case 19: Edit a note.
 
 *MSS*
 
@@ -1071,7 +1071,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 20: User deletes a note.
+=== Use case 20: Delete a note.
 
 *MSS*
 
