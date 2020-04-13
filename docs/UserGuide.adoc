@@ -608,7 +608,7 @@ NOVA will show you your freeslots on 20 Feb 2020.
 
 // end::view[]
 //tag::studyplanner[]
-=== Daily Study Planner
+=== Daily Study Planner (Tan Wah Ken)
 Learn how to work with the planner feature in NOVA. You can add daily/weeky tasks into your study plan and schedule it
 on any day you like hassle-free.
 
