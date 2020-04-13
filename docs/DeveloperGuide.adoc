@@ -64,7 +64,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 image::LogicArchitecture.png[]
 
 [discrete]
-==== How the architecture components interact with each other
+==== How the architecture components interact with each other (Loh Sze Ying)
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`. +
 The same type of interaction applies to other mode within NOVA, such as Schedule mode, Planner mode or Progress Tracker mode.
@@ -147,7 +147,7 @@ The `Storage` component,
 * can save the Address Book data in json format and read it back.
 
 [[Design-Commons]]
-=== Common classes
+=== Common classes (Loh Sze Ying)
 
 Classes used by multiple components are in the `seedu.nova.commons` package.
 All of the classes under `Commons` work independently.
@@ -213,7 +213,7 @@ Aspect: Syntax of Deleting an Event
 // end::events[]
 
 // tag::undoredo[]
-=== Address Book
+=== Address Book (Loh Sze Ying)
 The address book feature handles the contact list of the users. To enter address book mode, users need to enter `nav ab` command. Users are able to:
 
 * add contacts
@@ -269,8 +269,6 @@ The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
 
-NOTE: The lifeline for `AbUndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 [NOTE]
@@ -325,8 +323,6 @@ Given below is an example usage scenario and how the delete mechanism behaves at
 The following sequence diagram shows how the delete operation works:
 
 image::AbDeleteSequenceDiagram.png[]
-
-NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The following activity diagram shows how the delete mechanism works:
 
@@ -563,7 +559,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="100%",cols="^15%,<15%,<35%,<35%",options="header",]
 |=======================================================================
 <|Priority |As a ... |I can ... |So that I ...
-
+// tag::addressbookuserstory[]
 |`* * *` |student |add classmate or teammate’s name and contact information |contact them easily
 
 |`* * *` |student |edit classmate or teammate’s name and contact information |Edit them if the information are changed
@@ -583,6 +579,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |student |edit profile picture to added contact |edit the picture if changes are necessary
 
 |`*` |student |delete profile picture to added contact|don't need the contact picture within NOVA anymore
+// end::addressbookuserstory[]
 
 // tag::eventuserstory[]
 |`* * *` |student |create meeting events | can keep track of my schedule
@@ -657,7 +654,7 @@ _{More to be added}_
 (For all use cases below, the *System* is the `nova` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case 1: Add a contact
+=== Use case 1: Add a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -683,7 +680,7 @@ Use case resumes at step 1
 Use case resumes at step 1
 
 [discrete]
-=== Use case 2: List all contacts
+=== Use case 2: List all contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -703,7 +700,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 3: List category specific contacts
+=== Use case 3: List category specific contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -723,7 +720,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 4: Find saved contacts
+=== Use case 4: Find saved contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -743,7 +740,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 5: Edit a contact
+=== Use case 5: Edit a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -778,7 +775,7 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 6: Delete a contact
+=== Use case 6: Delete a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -813,7 +810,7 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 7: Add, edit or delete remark to a contact
+=== Use case 7: Add, edit or delete remark to a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -848,13 +845,13 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 8: Undoing in address book
+=== Use case 8: Undoing in address book (Loh Sze Ying)
 
 *MSS*
 
-2.  Student used `add`, `edit`, `delete` or `remark` prior
-3.  Student enters undo command
-4.  NOVA undone the changes that the student made
+1.  Student used `add`, `edit`, `delete` or `remark` prior
+2.  Student enters undo command
+3.  NOVA undone the changes that the student made
 +
 Use case ends
 
@@ -868,7 +865,7 @@ Use case ends
 resumes at step 1
 
 [discrete]
-=== Use case 9: Redoing in address book
+=== Use case 9: Redoing in address book (Loh Sze Ying)
 
 *MSS*
 
@@ -1217,7 +1214,9 @@ _{More to be added}_
 . The application should work on any <<mainstream-os,mainstream OS>> provided that Java `11` or above is installed.
 . The application should work on both 32-bit and 64-bit environments.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+// tag::SzeYingNFR[]
 . The application should work without internet connection.
+// end::SzeYingNFR[]
 // tag::TerenceNFR[]
 . The application should respond to every command within one second.
 . The application should be easily modifiable to meet changing curriculum of CS2013T.
@@ -1230,9 +1229,6 @@ _{More to be added}_
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, OS-X
-
-[[mode]] Mode::
-Mode of operation within NOVA, such as Address Book with `nav ab`, Schedule with `nav schedule`, Planner with `nav planner`, and Progress Tracker with `nav progresstracker`.
 
 [appendix]
 == Instructions for Manual Testing
@@ -1264,7 +1260,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 //end::shutdown[]
 
-=== Deleting a person in Address Book
+//tag::deletepersoninab[]
+=== Deleting a person in Address Book (Loh Sze Ying)
 
 . Enter address book mode via `nav ab`
 . Deleting a person while all persons are listed
@@ -1276,6 +1273,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete i\x` (where x is larger than the list size), `delete x` (where x is number or letter)
    Expected: Similar to previous.
+//end::deletepersoninab[]
 
 //tag::Pt[]
 === Adding a project task in Progress Tracker  (Yap Wen Jun Bryan)
