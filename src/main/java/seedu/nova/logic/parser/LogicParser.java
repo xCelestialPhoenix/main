@@ -14,7 +14,6 @@ import seedu.nova.logic.parser.exceptions.ParseException;
 import seedu.nova.logic.parser.plannerparser.PlannerParser;
 import seedu.nova.logic.parser.ptparsers.ProgresstrackerParser;
 import seedu.nova.logic.parser.scparser.ScheduleParser;
-import seedu.nova.logic.parser.scparser.eventparsers.EventParser;
 import seedu.nova.model.Mode;
 import seedu.nova.model.Model;
 
@@ -29,7 +28,6 @@ public class LogicParser {
 
     private final NavCommandParser navCommandParser;
     private final AddressBookParser addressBookParser;
-    private final EventParser eventParser;
     private final seedu.nova.logic.parser.scparser.ScheduleParser scheduleParser;
     private final ProgresstrackerParser progresstrackerParser;
     private final PlannerParser plannerParser;
@@ -39,7 +37,6 @@ public class LogicParser {
         //Create parser objects for each page/ feature
         navCommandParser = new NavCommandParser();
         addressBookParser = new AddressBookParser();
-        eventParser = new EventParser();
         scheduleParser = new ScheduleParser();
         progresstrackerParser = new ProgresstrackerParser();
         plannerParser = new PlannerParser();

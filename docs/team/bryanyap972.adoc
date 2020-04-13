@@ -1,4 +1,4 @@
-= Bryan Yap - Project Portfolio
+= Yap Wen Jun Bryan - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -68,6 +68,9 @@ to delete and re-add a note.
 *** Refactored AB3 storage to better fit the team features (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/238[#238]).
 *** Added Home page and Help message for Home page (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/190[#190], https://github.com/AY1920S2-CS2103T-F10-3/main/pull/401[#401])
 *** Implemented LogicParser class to integrate the different features' parsers (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/118[#118])
+
+** Documentation:
+*** Updated the UI class diagram and description in the developer guide.
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-F10-3/main/pull/150[#150], https://github.com/AY1920S2-CS2103T-F10-3/main/pull/235[#235]

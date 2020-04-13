@@ -13,8 +13,8 @@ public class HelpMessages {
             + "Nav to schedule: "
             + "nav schedule \n\n"
             + "Nav to ProgressTracker: "
-            + "nav progresstracker \n"
-            + "Nav Planner: \n"
+            + "nav progresstracker \n\n"
+            + "Nav to Planner: "
             + "nav planner \n\n";
 
     //============== The help message for the address book page ==================
@@ -38,9 +38,10 @@ public class HelpMessages {
             + "Delete contact: (After using list/find) \n"
             + "\u2022 delete i\\[index]\n"
             + "Add remark: (After using list/find) \n"
-            + "\u2022 remark i\\[index] r\\[remark]"
+            + "\u2022 remark i\\[index] r\\[remark]\n"
             + "Remove remark: (After using list/find) \n"
-            + "\u2022 remark i\\[index] r\\ \n";
+            + "\u2022 remark i\\[index] r\\ \n"
+            + "\u2022 remark i\\[index]";
 
 
     //============== The help message for the schedule page ==================

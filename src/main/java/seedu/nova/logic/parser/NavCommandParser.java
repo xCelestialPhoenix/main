@@ -1,7 +1,6 @@
 package seedu.nova.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.nova.logic.commands.commoncommands.NavCommand;
 import seedu.nova.logic.parser.exceptions.ParseException;
@@ -10,6 +9,9 @@ import seedu.nova.logic.parser.exceptions.ParseException;
  * Parser to parse navigation related commands
  */
 public class NavCommandParser implements Parser<NavCommand> {
+    public static final String MESSAGE_UNKNOWN_MODE = "Please specify a mode to nav to or check that "
+            + "the mode exists in NOVA";
+
     @Override
     public NavCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -30,7 +32,7 @@ public class NavCommandParser implements Parser<NavCommand> {
             return new NavCommand(ModeEnum.PLANNER);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(MESSAGE_UNKNOWN_MODE);
         }
     }
 }
