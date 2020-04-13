@@ -35,7 +35,7 @@ public class PtAddNoteCommand extends Command {
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
 
     public static final String MESSAGE_FAILURE = "Command failed. Please check that there is a task "
-            + " or that there isn't an existing note in the specified index";
+            + "or that there isn't an existing note in the specified index";
 
     public static final String MESSAGE_SUCCESS = "Added note to task %d in week %d of %s";
 

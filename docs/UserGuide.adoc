@@ -135,7 +135,7 @@ _[.small]#Fig 5.1.2: GUI of NOVA after entering `nav schedule`#_
 
 <<Top, [Back to Top]>>
 
-=== Address Book
+=== Address Book (Loh Sze Ying)
 Learn how to work with the Address Book in NOVA. The address book feature allows you to keep in contact with
 your teammates and classmates, and contacts are automatically sorted by alphabetical order. +
 
@@ -375,7 +375,7 @@ _[.small]#Figure 5.3: GUI of NOVA after user typed `nav schedule`#_
 
 // tag::events[]
 
-==== Add a Meeting: `meeting`
+==== Add a Meeting: `meeting`(Chua Huixian)
 You can add a meeting as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
@@ -403,7 +403,7 @@ _[.small]#Fig 5.3.1: Display message after entering +
 
 <<Top, [Back to Top]>>
 
-==== Add a Study Session: `study`
+==== Add a Study Session: `study` (Chua Huixian)
 You can add a study session as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
@@ -431,7 +431,7 @@ _[.small]#Fig 5.3.2: Display message after entering +
 
 <<Top, [Back to Top]>>
 
-==== Add a Consultation Session: `consultation`
+==== Add a Consultation Session: `consultation` (Chua Huixian)
 You can add a consultation session as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
@@ -459,7 +459,7 @@ _[.small]#Fig 5.3.3: Display message after entering +
 
 <<Top, [Back to Top]>>
 
-==== Add a Lesson: `lesson`
+==== Add a Lesson: `lesson` (Chua Huixian)
 You can add weekly lessons as one of your events.
 If there is already an event in the time slot, NOVA will inform you.
 
@@ -488,7 +488,7 @@ _[.small]#Fig 5.3.4: Display message after entering +
 
 <<Top, [Back to Top]>>
 
-==== Delete Event: `delete`
+==== Delete Event: `delete` (Chua Huixian)
 You can delete an event that you no longer want.
 If the event does not exist, NOVA will inform you.
 
@@ -513,7 +513,7 @@ _[.small]#Fig 5.3.5: Display message after entering `delete t\2020-02-20 i\2`#_
 
 <<Top, [Back to Top]>>
 
-==== Add Notes to Event: `note`
+==== Add Notes to Event: `note` (Chua Huixian)
 You can add additional notes about an event. If the event does not exist, NOVA will inform you.
 
 Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
@@ -728,7 +728,7 @@ textbook” on a random spot within the free slot.
 //end::studyplanner[]
 //tag::ProgressTracker[]
 
-=== Progress Tracker
+=== Progress Tracker  (Yap Wen Jun Bryan)
 Learn how to work with the progress tracker feature in NOVA. You can track important project tasks by adding them into the progress tracker
 and manage them easily.
 
