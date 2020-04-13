@@ -738,7 +738,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
@@ -771,7 +771,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
@@ -802,7 +802,7 @@ Format: `delete p\[ip/tp] w\[week number] t\[task number]`
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
@@ -826,7 +826,7 @@ _[.small]#Fig 5.5.3: Display message after entering `delete p\ip w\3 t\1`#_
 <<Top, [Back to Top]>>
 
 ==== Complete Tasks: `done`
-You can mark tasks in the progress tracker as done.
+You can mark tasks in the progress tracker as done/ not done.
 
 Format: +
 `done p\[ip/tp] w\[week number] t\[task number]`
@@ -835,7 +835,8 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
+* Calling `done` on a done task will set it to not done and vice versa
 ====
 
 [WARNING]
@@ -868,7 +869,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
@@ -902,7 +903,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
@@ -936,7 +937,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input.
+* When multiple same tags are keyed, the last tag will be taken as the input
 ====
 
 [WARNING]
