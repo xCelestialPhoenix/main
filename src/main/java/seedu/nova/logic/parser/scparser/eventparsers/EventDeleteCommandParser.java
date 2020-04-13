@@ -16,7 +16,7 @@ import seedu.nova.logic.parser.Prefix;
 import seedu.nova.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EventDeleteCommand object
+ * Parses input arguments and creates a new EventDeleteCommand object.
  */
 public class EventDeleteCommandParser implements Parser<EventDeleteCommand> {
     /**
