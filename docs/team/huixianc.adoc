@@ -19,6 +19,7 @@ I added the ability to add events, namely consultations, meetings, study session
 ** Justification: This enables the user to keep track of the various events they have to attend.
 ** Highlights: It was necessary to ensure that the user did not add an event with the same date and time slot
 as an already existing event. Hence, implementation of the adding of events had to be done carefully.
+The events also had to be sorted in chronological order.
 ** Credits: The parsing of the commands made use of the Address Book 3 code with some modifications.
 
 * *Minor enhancement*:
@@ -48,12 +49,15 @@ https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=groupTitle
 *** Helped to maintain the team repository and facilitated merging of Pull Requests from Week 11 to 13.
 
 ** Enhancements to existing features:
-*** Updated the GUI layout to make the panels aligned
+*** Updated the GUI layout to make the panels aligned (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/344[#344])
 
 ** Documentation:
 *** Helped to enable auto-publishing of documentation on GitHub Pages via Travis.
+*** Updated Contact Us page. (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/8/files[#8])
+*** Updated Logic Component of Developer Guide, as mentioned below.
 
 ** Community:
+*** Pull Request reviewed with non-trivial comments (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/298[#298])
 *** Reported bugs and gave suggestions for other teams
 (https://github.com/AY1920S2-CS2103T-T10-3/main/issues/131[1],
 https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-370050890[2],
