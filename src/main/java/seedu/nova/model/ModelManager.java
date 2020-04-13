@@ -322,6 +322,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean deleteTask(Task task) {
+        task.getEventAfter(LocalDate.now()).forEach(schedule::deleteEvent);
         return plan.deleteTask(task);
     }
 
