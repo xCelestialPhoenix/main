@@ -1,9 +1,7 @@
 package seedu.nova.logic.parser.abparsers;
 
-//import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nova.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-//import java.util.regex.Matcher;
 
 import java.util.regex.Pattern;
 
@@ -51,7 +49,12 @@ public class AddressBookParser {
             return new AbDeleteCommandParser().parse(arguments);
 
         case AbClearCommand.COMMAND_WORD:
-            return new AbClearCommand();
+            if (arguments.trim().equals("")) {
+                return new AbClearCommand();
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AbClearCommand.MESSAGE_USAGE));
+            }
 
         case AbFindCommand.COMMAND_WORD:
             return new AbFindCommandParser().parse(arguments);
@@ -66,10 +69,20 @@ public class AddressBookParser {
             }
 
         case AbUndoCommand.COMMAND_WORD:
-            return new AbUndoCommand();
+            if (arguments.trim().equals("")) {
+                return new AbUndoCommand();
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AbUndoCommand.MESSAGE_USAGE));
+            }
 
         case AbRedoCommand.COMMAND_WORD:
-            return new AbRedoCommand();
+            if (arguments.trim().equals("")) {
+                return new AbRedoCommand();
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AbRedoCommand.MESSAGE_USAGE));
+            }
 
         case AbRemarkCommand.COMMAND_WORD:
             return new AbRemarkCommandParser().parse(arguments);

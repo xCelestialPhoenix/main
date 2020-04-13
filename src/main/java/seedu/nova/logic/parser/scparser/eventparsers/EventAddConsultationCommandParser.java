@@ -1,6 +1,7 @@
 package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_WRONG_TIME;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -53,8 +54,7 @@ public class EventAddConsultationCommandParser implements Parser<EventAddConsult
         LocalTime endTime = ParserUtil.parseTime(dateTimeArr[2]);
 
         if (startTime.compareTo(endTime) >= 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EventAddConsultationCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_WRONG_TIME);
         }
 
         Event consultation = new Consultation(desc, venue, startTime, endTime, date);

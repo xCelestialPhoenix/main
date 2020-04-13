@@ -6,8 +6,12 @@
 == PROJECT: NOVA
 
 == Overview
+This portfolio is a summary of my contributions to Project NOVA.
 
-NOVA is a desktop application to help CS2103T with event planning and managing schedules.
+NOVA is a desktop application that acts as a one stop study aid platform, intended to help CS2103T students with event planning, managing schedules and tracking of their projects.
+
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 17 kLoC.
 
 == Summary of contributions
 This section shows a summary of my coding, documentation and other contributions to the project.
@@ -46,14 +50,14 @@ https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=groupTitle
 * *Other contributions*:
 
 ** Project management:
-*** Helped to maintain the team repository and facilitated merging of Pull Requests from Week 11 to 13.
+*** Acted as the secondary maintainer - helped to maintain the team repository and facilitated merging of Pull Requests from Week 11 to 13.
 
 ** Enhancements to existing features:
 *** Updated the GUI layout to make the panels aligned (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/344[#344])
 
 ** Documentation:
 *** Helped to enable auto-publishing of documentation on GitHub Pages via Travis.
-*** Updated Contact Us page. (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/8/files[#8])
+*** Updated Contact Us page. (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/8[#8])
 *** Updated Logic Component of Developer Guide, as mentioned below.
 
 ** Community:
