@@ -57,7 +57,7 @@ https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=f10-3&sort=groupTitle
 
 ** Documentation:
 *** Helped to enable auto-publishing of documentation on GitHub Pages via Travis.
-*** Updated Contact Us page. (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/8/files[#8])
+*** Updated Contact Us page. (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/8[#8])
 *** Updated Logic Component of Developer Guide, as mentioned below.
 
 ** Community:
