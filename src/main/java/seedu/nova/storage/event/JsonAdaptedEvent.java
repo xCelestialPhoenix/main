@@ -192,8 +192,9 @@ public class JsonAdaptedEvent {
         LocalTime end = ParserUtil.parseTime(endTime);
 
         Task t = task.toTask();
-
-        return new WeakEvent(desc, new DateTimeDuration(localDate, start, end), t);
+        Event wk = new WeakEvent(desc, new DateTimeDuration(localDate, start, end), t);
+        t.addEvent(wk);
+        return wk;
     }
 
     /**
