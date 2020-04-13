@@ -107,7 +107,7 @@ public class JsonAdaptedEvent {
      * Converts this Jackson-friendly adapted event object into the model's {@code Meeting} object.
      *
      * @return an Event
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public Event toMeeting() throws IllegalValueException {
         checkFields();
@@ -125,7 +125,7 @@ public class JsonAdaptedEvent {
      * Converts this Jackson-friendly adapted event object into the model's {@code Consultation} object.
      *
      * @return an Event
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public Event toConsultation() throws IllegalValueException {
         checkFields();
@@ -143,7 +143,7 @@ public class JsonAdaptedEvent {
      * Converts this Jackson-friendly adapted event object into the model's {@code StudySession} object.
      *
      * @return an Event
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public Event toStudy() throws IllegalValueException {
         checkFields();
@@ -161,7 +161,7 @@ public class JsonAdaptedEvent {
      * Converts this Jackson-friendly adapted event object into the model's {@code Lesson} object.
      *
      * @return an Event
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public Event toLesson() throws IllegalValueException {
         checkFields();
@@ -181,7 +181,7 @@ public class JsonAdaptedEvent {
      * Converts this Jackson-friendly adapted event object into the model's {@code WeakEvent} object.
      *
      * @return an Event
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public Event toWeak() throws IllegalValueException {
         checkFields();
@@ -199,7 +199,7 @@ public class JsonAdaptedEvent {
     /**
      * Checks for any missing fields.
      *
-     * @throws IllegalValueException
+     * @throws IllegalValueException if any of the fields are missing
      */
     public void checkFields() throws IllegalValueException {
         if (desc == null) {

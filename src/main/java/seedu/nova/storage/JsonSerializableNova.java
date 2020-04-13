@@ -218,15 +218,7 @@ class JsonSerializableNova {
 
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
-
-            //if (event instanceof Lesson) {
-            //    sc.addLesson((Lesson) event);
-            //} else {
-
             sc.addEvent(event);
-
-            //}
-
         }
 
         return sc;
