@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":LogicParser" as LogicParser LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AbDeleteCommandParser" as AbDeleteCommandParser LOGIC_COLOR
-participant "d:AbDeleteCommand" as AbDeleteCommand LOGIC_COLOR
+participant ":AbDeleteCommand" as AbDeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
