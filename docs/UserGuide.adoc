@@ -15,7 +15,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 
-:repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main/releases
+:repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main
 
 By: `Team CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
