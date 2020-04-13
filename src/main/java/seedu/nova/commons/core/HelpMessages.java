@@ -13,8 +13,8 @@ public class HelpMessages {
             + "Nav to schedule: "
             + "nav schedule \n\n"
             + "Nav to ProgressTracker: "
-            + "nav progresstracker \n"
-            + "Nav Planner: \n"
+            + "nav progresstracker \n\n"
+            + "Nav to Planner: "
             + "nav planner \n\n";
 
     //============== The help message for the address book page ==================
