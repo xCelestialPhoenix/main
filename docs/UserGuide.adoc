@@ -903,7 +903,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input
+* When multiple same tags are keyed, the last tag will be taken as the input.
 ====
 
 [WARNING]
@@ -937,7 +937,7 @@ Format: +
 ====
 * Only `ip` and `tp` projects are available and are not case-sensitive
 * There are only weeks 1 to 13 in each project
-* When multiple same tags are keyed, the last tag will be taken as the input
+* When multiple same tags are keyed, the last tag will be taken as the input.
 ====
 
 [WARNING]
