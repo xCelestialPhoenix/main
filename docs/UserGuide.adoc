@@ -976,7 +976,7 @@ _[.small]#Fig 5.5.7: Display message after entering `deleteNote p\ip w\3 t\1`#_
 <<Top, [Back to Top]>>
 
 [[Summary]]
-== Command Summary (Terence)
+== Command Summary (Terence and Bryan)
 
 [%autowidth,cols="<.^,<.^,<.^",options="header"]
 |=========================================================
