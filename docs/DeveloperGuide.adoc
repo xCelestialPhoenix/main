@@ -115,7 +115,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 
 [[Design-Model]]
 // tag::model[]
-=== Model component
+=== Model component (Terence)
 
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
@@ -374,7 +374,7 @@ Aspect: Adding choice of week to view tasks
 //end::listPt[]
 // tag::view[]
 
-=== View schedule
+=== View schedule (Terence)
 The view schedule feature allows users to view the events they have added into the schedule. Users are able to view the
 schedule by two time frames:
 
@@ -429,17 +429,17 @@ image::viewWeekSequenceDiagram.png[]
 Aspect: View schedule by at most week and not month.
 
 * **Alternative 1 (current choice):** View schedule up to week
-** Pros: Easier to fit the events into the display
-** Cons: Less ways for user to view schedule
+** Pros: Easier to fit the events into the display.
+** Cons: Less ways for user to view schedule.
 
 * **Alternative 2:** View schedule up to month
-** Pros: User can see their whole month's schedule at once
-** Cons: Might be too long and cannot fit into the display box
+** Pros: User can see their whole month's schedule at once.
+** Cons: Might be too long and cannot fit into the display box. Time to gather all the events may be too long.
 // end::view[]
 
 //tag::studyplannerfeature[]
 
-=== View available free slot of a specific day
+=== View available free slot of a specific day (Tan Wah Ken)
 The view free slots feature allows the user to view their available free slots on their schedule.
 
 ==== Implementation
@@ -469,7 +469,7 @@ events are added
 ** Cons: slower freeslot execution.
 
 
-=== Schedule events based on a task in plan.
+=== Schedule events based on a task in plan (Tan Wah Ken)
 The plan feature allows the user to create an event based on the task user created in the plan.
 
 ==== Implementation
@@ -1306,3 +1306,27 @@ Example: Adding a @ to a week in a ptTask.
 
 .. Run the application. The application should start with a sample Nova data file with pre-included data.
 //end::Pt[]
+
+//tag::testView[]
+=== View schedule (Terence)
+. Enter schedule mode via `nav schedule`
+. View the schedule
+.. Prerequisite: An event has been added to 13 Jan 2020.
+.. Test case: `view t\2020-01-13` +
+Expected: The event that was pre-added will be displayed.
+.. Test case: `view t\2020-01-12` +
+Expected: Error message is shown to tell user that the date is out of the range of schedule.
+//end::testView[]
+
+//tag::eventTest[]
+=== Adding an event (Chua Huixian)
+. Enter schedule mode via `nav schedule`
+. Adding an event
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 13:00 14:00` +
+Expected: A meeting event will be added to the schedule. The details of the meeting will be displayed.
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00 12:00` +
+Expected: Error message is shown. The end time must be later than start time.
+.. Other incorrect commands to try: `meeting`, `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00`. +
+Expected: Error messages will be shown as well.
+//end::eventTest[]
+
