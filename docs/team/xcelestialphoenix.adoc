@@ -75,22 +75,40 @@ These are some additional contributions I made to the project.
 solutions (E.g. https://github.com/nus-cs2103-AY1920S2/forum/issues/20[1], https://github.com/nus-cs2103-AY1920S2/forum/issues/67[2]).
 
 == Contributions to the User Guide
-|===
-| Theses are my contributions towards the user guide.
-|===
+Theses are my contributions towards the user guide.
 
+|===
+| Theses are my contributions towards the front sections.
+|===
 include::../UserGuide.adoc[tag=intro]
 include::../UserGuide.adoc[tag=about]
 include::../UserGuide.adoc[tag=notation]
+
+|===
+| Theses are my contributions towards the features section.
+|===
 include::../UserGuide.adoc[tag=view]
 
 == Contributions to the Developer Guide
-|===
-| Theses are my contributions towards the developer guide.
-|===
+Theses are my contributions towards the developer guide.
 
+
+|===
+| Theses are my contributions towards the model section.
+|===
 include::../DeveloperGuide.adoc[tag=model]
 
+|===
+| Theses are my contributions towards the user stories section.
+|===
 include::../DeveloperGuide.adoc[tag=viewScheduleUserStories]
 
+|===
+| Theses are my contributions towards the use cases section.
+|===
 include::../DeveloperGuide.adoc[tag=viewScheduleUseCases]
+
+|===
+| Theses are my contributions towards the manual testing section.
+|===
+include::../DeveloperGuide.adoc[tag=testView]
