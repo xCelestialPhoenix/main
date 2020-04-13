@@ -60,9 +60,9 @@ These are some additional contributions I made to the project.
 
 ===== Documentation:
 * Added the view commands under features (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/31/files[#31])
-* Improved the introduction and about sections of the user guide (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/226/files?file-filters%5B%5D=.adoc[#287])
-* Added a notations section to the user guide (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/226/files?file-filters%5B%5D=.adoc[#287])
-* Added command summary (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/274/files?short_path=d80058c#diff-d80058c033b9f127ec727c18cc84ce4d[#287])
+* Improved the introduction and about sections of the user guide (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/287/files[#287])
+* Added a notations section to the user guide (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/287/files[#287])
+* Added command summary (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/287/files[#287])
 * Added a back to top link to improve navigability of the document (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/287/files[#287])
 
 ===== Community:
