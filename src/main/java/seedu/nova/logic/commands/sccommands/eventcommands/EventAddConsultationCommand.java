@@ -10,10 +10,10 @@ import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
 import seedu.nova.model.Model;
 import seedu.nova.model.schedule.event.Event;
-import seedu.nova.model.schedule.event.TimeOverlapException;
+import seedu.nova.model.schedule.event.exceptions.TimeOverlapException;
 
 /**
- * adds a Consultation into the Schedule.
+ * Adds a Consultation into the Schedule.
  */
 public class EventAddConsultationCommand extends Command {
     public static final String COMMAND_WORD = "consultation";
@@ -35,6 +35,9 @@ public class EventAddConsultationCommand extends Command {
 
     private Event toAdd;
 
+    /**
+     * Creates an EventAddConsultationCommand to add the specified {@code Event}
+     */
     public EventAddConsultationCommand(Event consultation) {
         requireNonNull(consultation);
         this.toAdd = consultation;
