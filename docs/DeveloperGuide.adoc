@@ -1317,3 +1317,14 @@ Expected: The event that was pre-added will be displayed.
 .. Test case: `view t\2020-01-12` +
 Expected: Error message is shown to tell user that the date is out of the range of schedule.
 //end::testView[]
+
+=== Adding an event (Chua Huixian)
+. Enter schedule mode via `nav schedule`
+. Adding an event
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 13:00 14:00` +
+Expected: A meeting event will be added to the schedule. The details of the meeting will be displayed.
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00 12:00` +
+Expected: Error message is shown. The end time must be later than start time.
+.. Other incorrect commands to try: `meeting`, `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00`. +
+Expected: Error messages will be shown as well.
+
