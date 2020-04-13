@@ -943,6 +943,7 @@ Use case ends.
 ** 1a1. NOVA informs student that the event does not exist
 // end::eventusecase[]
 
+
 //tag::UseCasesPt[]
 [discrete]
 === Use case 13: Add task to a project of progress tracker
