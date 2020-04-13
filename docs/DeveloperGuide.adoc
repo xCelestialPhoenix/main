@@ -96,7 +96,7 @@ The `UI` component,
 [[Design-Logic]]
 
 // tag::logic[]
-=== Logic component
+=== Logic component (Chua Huixian)
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
@@ -144,7 +144,7 @@ image::StorageClassDiagram.png[]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save NOVA's data in json format and read it back.
 
 [[Design-Commons]]
 === Common classes
@@ -158,7 +158,7 @@ Most notably,
 The `LogsCenter` is used by NOVA to display logs when running NOVA in terminal.
 
 * *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/Messages.java[`Messages.java`] +
-The `Messages` is used by Address Book feature and deals with messages to display regarding Address Book.
+The `Messages` is used by NOVA and deals with messages to display relating to NOVA's features.
 
 == Implementation
 
@@ -166,7 +166,7 @@ This section describes some noteworthy details on how certain features are imple
 
 // tag::events[]
 
-=== Manage Events
+=== Manage Events (Chua Huixian)
 The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
 Users are able to:
 
@@ -890,7 +890,7 @@ Use case resumes at step 1
 
 // tag::eventusecase[]
 [discrete]
-=== Use case 10: Adding a consultation event
+=== Use case 10: Adding a consultation event (Chua Huixian)
 
 *MSS*
 
@@ -908,7 +908,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Delete an event
+=== Use case 11: Delete an event (Chua Huixian)
 
 *MSS*
 
@@ -926,7 +926,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: Adding a note to an event
+=== Use case 12: Adding a note to an event (Chua Huixian)
 
 *MSS*
 
