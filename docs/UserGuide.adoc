@@ -85,8 +85,8 @@ You can use the following commands once you are in address book mode:
 
 ** *`list`* : lists all contacts
 
-** *`add`*`n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named *John Doe* to the Address Book
-and categorise as classmate
+** `add n\John Doe p\98765432 e\\john@gmail.com c\classmate` : adds a contact named *John Doe* to the Address Book
+ and categorise as classmate
 
 * *`exit`* : exits the app
 
