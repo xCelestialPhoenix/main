@@ -28,7 +28,7 @@ public class PtDeleteNoteCommand extends Command {
             + PREFIX_TASK + "TASK \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
-            + PREFIX_WEEK + "2"
+            + PREFIX_WEEK + "2 "
             + PREFIX_TASK + "1";
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";

@@ -37,32 +37,35 @@ public class PtWeekList {
         }
     }
 
+    public double totalTasks(PtTaskList ptTaskList) {
+        return ptTaskList.getNumTask();
+    }
+
+    public double totalDone(PtTaskList ptTaskList) {
+        return ptTaskList.getNumDone();
+    }
+
     /**
      * Calculates the progress for the project
      * @return a double representing the percentage of tasks done in the project
      */
     public double getProgressProject() {
-        boolean hasTask;
-        double numWeeks = 0;
-        double totalPercentage = 0;
+        double totalTaskDone = 0;
+        double totalTasks = 0;
 
         //Get progress of each week
         for (int i = 0; i < weekList.size(); i++) {
             PtWeek current = weekList.get(i);
             PtTaskList taskList = current.getTaskList();
 
-            hasTask = taskList.getNumTask() != 0;
-
-            if (hasTask) {
-                numWeeks++;
-                totalPercentage = totalPercentage + current.getProgressWeek();
-            }
+            totalTasks = totalTasks + totalTasks(taskList);
+            totalTaskDone = totalTaskDone + totalDone(taskList);
         }
 
-        if (numWeeks == 0) {
+        if (totalTasks == 0) {
             return 0;
         } else {
-            return totalPercentage / numWeeks;
+            return totalTaskDone / totalTasks;
         }
     }
 }

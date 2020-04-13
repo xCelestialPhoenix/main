@@ -32,10 +32,6 @@ public class PtWeek {
         return taskList;
     }
 
-    public double getProgressWeek() {
-        return this.taskList.getProgressTasks();
-    }
-
     /**
      * Returns true if a given string is a valid email.
      */
