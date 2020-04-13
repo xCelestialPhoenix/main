@@ -5,6 +5,9 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.logging.Logger;
+
+import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -31,8 +34,10 @@ public class EventAddLessonCommand extends Command {
             + PREFIX_VENUE + "COM1 B1-03 "
             + PREFIX_TIME + "Friday 10:00 11:00 ";
 
-    public static final String MESSAGE_SUCCESS = "New lesson has been added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New lesson has been added: \n%1$s\n";
     public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Event toAdd;
 
@@ -46,6 +51,8 @@ public class EventAddLessonCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("executing add lesson command for: \n" + toAdd);
+
         requireNonNull(model);
 
         try {
