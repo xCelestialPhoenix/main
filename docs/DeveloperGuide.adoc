@@ -603,15 +603,19 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *` |student |repeat events | can add multiple similar events at one go
 // end::eventuserstory[]
 
-|`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
+||`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
 |`* * *` |student |mark tasks as done |track how many tasks I have finished
 
+|`* * *` |student |view tasks added |see the tasks I have to finish
+
 |`* * *` |student |add notes to project tasks |keep track of details regarding the tasks
+
+|`* * *` |student |delete project tasks |remove unwanted project tasks from the tracker
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
-|`* * *` |student |delete project tasks |remove unwanted tasks from the tracker
+|`* * *` |student |delete notes |remove unwanted notes from tasks
 
 |`* *` |lazy student |edit project tasks |can correct mistakes made to task descriptions with little effort
 

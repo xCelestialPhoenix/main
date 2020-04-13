@@ -54,10 +54,9 @@ I added the ability to delete note to tasks. This allows user to delete note tha
 I added the ability to edit note added to tasks. This allows user to make corrections to errors in notes without having
 to delete and re-add a note.
 
-* *Code contributed*: (https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[Linke to RepoSense]) +
+* *Code contributed*: (https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[Link to RepoSense]) (Link only works on windows pdf viewers. Will not work on safari or preview)
 
-Copy and paste this link if the link above doesn't work: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D
-
+* *Other contributions*:
 
 ** Project management:
 *** Acted as the main maintainer for team repository and ensured that code quality was up to standard before merging.
@@ -75,7 +74,7 @@ Copy and paste this link if the link above doesn't work: https://nus-cs2103-ay19
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-F10-3/main/pull/150[#150], https://github.com/AY1920S2-CS2103T-F10-3/main/pull/235[#235]
-*** Rreported bugs and gave suggestions for other teams in the class (examples: https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-382542427[1], https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#discussion_r388685822[2], https://github.com/BryanYap972/ped/issues[3]).
+*** Reported bugs and gave suggestions for other teams in the class (examples: https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#pullrequestreview-382542427[1], https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/14#discussion_r388685822[2], https://github.com/BryanYap972/ped/issues[3]) (Link 1 and 2 only works on windows pdf viewers. Will not work on safari or preview).
 
 ** Tools:
 *** Integrated travis CI into the project (https://github.com/AY1920S2-CS2103T-F10-3/main/pull/1[#1]).
@@ -114,11 +113,15 @@ include::../DeveloperGuide.adoc[tag=listPt]
 
 |`* * *` |student |mark tasks as done |track how many tasks I have finished
 
+|`* * *` |student |view tasks added |see the tasks I have to finish
+
 |`* * *` |student |add notes to project tasks |keep track of details regarding the tasks
+
+|`* * *` |student |delete project tasks |remove unwanted project tasks from the tracker
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
-|`* * *` |student |delete project tasks |remove unwanted tasks from the tracker
+|`* * *` |student |delete notes |remove unwanted notes from tasks
 
 |`* *` |lazy student |edit project tasks |can correct mistakes made to task descriptions with little effort
 
