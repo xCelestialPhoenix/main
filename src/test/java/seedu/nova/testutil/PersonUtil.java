@@ -7,7 +7,6 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
 
-import seedu.nova.logic.commands.abcommands.AbAddCommand;
 import seedu.nova.logic.commands.abcommands.AbEditCommand.EditPersonDescriptor;
 import seedu.nova.model.category.Category;
 import seedu.nova.model.person.Person;
@@ -21,7 +20,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return AbAddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+        return " " + getPersonDetails(person);
     }
 
     /**
@@ -32,9 +31,7 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        person.getCategory().stream().forEach(
-            s -> sb.append(PREFIX_CATEGORY + s.categoryName + " ")
-        );
+        sb.append(PREFIX_CATEGORY + "" + person.getCategory().iterator().next());
         return sb.toString();
     }
 
