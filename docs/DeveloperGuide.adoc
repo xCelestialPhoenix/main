@@ -16,7 +16,7 @@ endif::[]
 
 :repoURL: https://github.com/AY1920S2-CS2103T-F10-3/main
 
-By: `CS2103T-F10-3`      Since: `Feb 2020`      Licence: `MIT`
+By: `CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -66,13 +66,15 @@ image::LogicArchitecture.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`. +
+The same type of interaction applies to other mode within NOVA, such as Schedule mode, Planner mode or Progress Tracker mode.
 
 .Component interactions for `delete i\1` command
-image::ArchitectureSequenceDiagram.png[]
+image::ArchitectureSequenceDiagram.png[width=500]
 
 The sections below give more details of each component.
 
+//tag::UI[]
 [[Design-Ui]]
 === UI component
 
@@ -83,12 +85,13 @@ image::UiClassDiagram.png[]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+//end::UI[]
 
 [[Design-Logic]]
 
@@ -111,6 +114,7 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 // end::logic[]
 
 [[Design-Model]]
+// tag::model[]
 === Model component
 
 .Structure of the Model Component
@@ -126,6 +130,8 @@ The `Model`,
 * stores a 'ProgressTracker' object that represents the user's progress in their project tasks.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+// end::model[]
 
 [[Design-Storage]]
 === Storage component
@@ -263,7 +269,7 @@ The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
 
-NOTE: The lifeline for `AbUndoCommand` and `AbUndoCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `AbUndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -282,7 +288,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 image::CommitActivityDiagram.png[]
 
-==== Design Considerations
+==== Design Considerations - Undo or redo command
 
 ===== Aspect: How undo & redo executes
 
@@ -303,21 +309,60 @@ image::CommitActivityDiagram.png[]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+==== Implementation - Delete a contact
+
+The edit feature allows users to edit a contact from Address Book. This feature is facilitated by `AddressBookParser`, `AbDeleteCommandParser` and `AbDeleteCommand`.
+The operation is exposed in the `Model` interface as `Model#deletePerson()`.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+. The user does `list`, `list c\classmate`, `list c\teammate`, or `find n\[name]` to view their contacts.
+. The user executes `delete i\1` command to delete the first contact.
+. `AbDeleteCommandParser` creates a new `AbDeleteCommand`.
+. `LogicManager` executes the `AbDeleteCommand`.
+. `Model#deletePerson()` is called, and the `AddressBook` object in `ModelManager` is updated.
+
+The following sequence diagram shows how the delete operation works:
+
+image::AbDeleteSequenceDiagram.png[]
+
+NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram shows how the delete mechanism works:
+
+image::AbDeleteActivityDiagram.png[width=470]
+
+==== Design Considerations - Delete a contact
+===== Aspect: Deleting a contact by index or name
+
+* **Alternative 1 (current choice):** Use index tag to delete contact
+** Pros: Shorter command to type by using index
+** Cons: Users need to use `list`, `list c\classmate`, `list c\teammate` or `find n\[name]` command before deleting contact
+* **Alternative 2:** Use name to delete contact
+** Pros: No need to use `list`, `list c\classmate`, `list c\teammate` or `find n\[name]` prior to deleting contact
+** Cons: Need to handle deletion of contacts with the same name
+
+//tag::listPt[]
+
 === View tasks under IP project
 The view tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
 Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
 
-1. The user keys in 'view p\ip w\2' into the command box.
-2. The user executes 'view p\ip w\2' to view the list of tasks in week 2 of the IP project.
-3. 'PtListCommandParser' creates a new 'PtListCommand'.
-4. 'LogicManager' executes the 'PtListCommand'.
-5. 'Model#listTasks()' is called and the list of tasks is retrieved.
+1. The user keys in `list p\ip w\2` into the command box.
+2. The user executes `list p\ip w\2'`to view the list of tasks in week 2 of the IP project.
+3. `PtListCommandParser` creates a new `PtListCommand`.
+4. `LogicManager` executes the `PtListCommand`.
+5. `Model#listTasks()` is called and the list of tasks is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
 image::PtSeqDiagram.png[]
+
+The following activity diagram shows what happens when a user inputs a list command:
+
+image::ListPtActivityDiagram.png[]
 
 ==== Design Considerations
 Aspect: Adding choice of week to view tasks
@@ -330,32 +375,71 @@ Aspect: Adding choice of week to view tasks
 ** Pros: shorter command to type and user can see all their tasks at once
 ** Cons: if user wants to see tasks only for a specific week will be harder to scroll and find
 
-=== View schedule for a specified day
-The view schedule feature allows the user to view their schedule for the day specified by them.
+//end::listPt[]
+// tag::view[]
 
-==== Implementation
-Given below is an example usage scenario and how the view schedule mechanism behaves at each step.
+=== View schedule
+The view schedule feature allows users to view the events they have added into the schedule. Users are able to view the
+schedule by two time frames:
+
+* By date
+* By week
+
+The following activity diagram shows what happens when a user inputs a view command:
+
+image::ViewCommandActivityDiagram.png[]
+
+==== Implementation - View schedule by date
+The view feature allows users to see the events happening on the specified date.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewDayCommand`.
+The operation is exposed in the `Model` interface as `Model#view(LocalDate)`.
+
+Given below is an example usage scenario and how the view by date mechanism behaves at each step.
 
 1. The user keys in 'view t\2020-03-10' into the command box.
-2. The user executes 'view t\2020-03-10' to view their schedule on the 10th of March 2020.
-3. 'ScViewDayCommandParser' creates a new 'ScViewDayCommand'.
-4. 'LogicManager' executes the 'ScViewDayCommand'.
-5. 'ModelManger#viewSechdule()' is called and the schedule for the day is retrieved.
+2. The user executes 'view t\2020-03-10' to view their schedule on the 10 Mar 2020.
+3. `LogicManager` calls LogicParser to parse the command.
+4. `LogicParser` gets the mode from Model and passes the command word and the argument to ScheduleParser.
+5. `ScheduleParser` checks the command word and calls ScViewDayCommandParser.
+6. 'ScViewDayCommandParser' creates a new 'ScViewDayCommand'.
+7. 'LogicManager' executes the 'ScViewDayCommand'.
+8. 'ModelManger#viewSechdule(LocalDate)' is called and the schedule for the day is retrieved.
 
 The following sequence diagram shows how the view tasks operation works:
 
-image::SchedulerSeqDiagram.png[]
+image::viewDaySequenceDiagram.png[]
+
+View week: Given below is an example usage scenario and how the view week mechanism behaves at each step.
+
+1. The user keys in 'view week i\6' into the command box.
+2. The user executes 'view week i\6' to view their schedule on the 6th week.
+3. `LogicManager` calls LogicParser to parse the command.
+4. `LogicParser` gets the mode from Model and passes the command word and the argument to ScheduleParser.
+5. `ScheduleParser` checks the command word and the preamble and calls ScViewWeekCommandParser.
+6. 'ScViewWeekCommandParser' creates a new 'ScViewWeekCommand'.
+7. 'LogicManager' executes the 'ScViewWeekCommand'.
+8. 'ModelManger#viewSechdule(int)' is called and the schedule for the week is retrieved.
+
+==== Implementation - View schedule by week
+The view feature allows users to see the events happening throughout the specified week.
+This feature is facilitated by `ScheduleParser`, `ScViewCommandParser` and `ScViewWeekCommand`.
+The operation is exposed in the `Model` interface as `Model#view(int)`.
+
+The following sequence diagram shows what happens when a user inputs a view week command:
+
+image::viewWeekSequenceDiagram.png[]
 
 ==== Design Considerations
-Aspect: View schedule by day and not week
+Aspect: View schedule by at most week and not month.
 
-* **Alternative 1 (current choice):** View schedule by day
-** Pros: more freedom to choose what to see as a user
-** Cons: more typing to view schedule for more than one day
+* **Alternative 1 (current choice):** View schedule up to week
+** Pros: Easier to fit the events into the display
+** Cons: Less ways for user to view schedule
 
-* **Alternative 2:** View schedule by week
-** Pros: user can see their whole week's schedule at once
-** Cons: might be too long and messy
+* **Alternative 2:** View schedule up to month
+** Pros: User can see their whole month's schedule at once
+** Cons: Might be too long and cannot fit into the display box
+// end::view[]
 
 //tag::studyplannerfeature[]
 
@@ -476,9 +560,9 @@ Refer to the guide <<DevOps#, here>>.
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="100%",cols="^15%,<15%,<35%,<35%",options="header",]
 |=======================================================================
-|Priority |As a ... |I can ... |So that I ...
+<|Priority |As a ... |I can ... |So that I ...
 
 |`* * *` |student |add classmate or teammate’s name and contact information |contact them easily
 
@@ -486,20 +570,21 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |delete classmate or teammate’s contact |delete if not necessary anymore
 
-|`* * *` |student |categorise contacts into teammate or classmate |
+|`* * *` |student |categorise contacts into teammate or classmate |sort contacts according to category
 
 |`* * *` |student |add category specific remark |filter out a contact’s remark according to type of contact
 
-|`* * *` |student |edit category specific remark |
+|`* * *` |student |edit category specific remark |edit remark if necessary
 
-|`* * *` |student |delete category specific remark |
+|`* * *` |student |delete category specific remark |delete remark if it is not needed
 
 |`*` |student |add profile picture to added contact |know at a glance who is the person in my contact
 
 |`*` |student |edit profile picture to added contact |edit the picture if changes are necessary
 
-|`*` |student |delete profile picture to added contact|
+|`*` |student |delete profile picture to added contact|don't need the contact picture within NOVA anymore
 
+// tag::eventuserstory[]
 |`* * *` |student |create meeting events | can keep track of my schedule
 
 |`* * *` |student |create study session events | can keep track of my schedule
@@ -512,13 +597,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |delete events | can get rid of events that I do not need anymore
 
-|`* * *` |student |mark events as done | know which events I have completed
+|`* * *` |student |add notes to events | can jot down additional details about the events
 
-|`* * *` |student |find events | can check if I have any specific events according to keyword(s)
+|`* *` |student |mark events as done | know which events I have completed
 
-|`* *` |student |add notes to events | can jot down additional details about the events
+|`* *` |student |find events | can check if I have any specific events according to keyword(s)
 
 |`* *` |student |repeat events | can add multiple similar events at one go
+// end::eventuserstory[]
 
 |`* * *` |forgetful student |keep track of my project tasks |make sure all my project tasks are completed on time
 
@@ -528,11 +614,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |student |add project tasks |keep track of those project tasks
 
+// tag::viewScheduleUserStories[]
+
 |`* * *` |Student | View my schedule for a day| Know the flow of events on that day
 
 |`* * *` |Student | View my schedule for a week | Know what will happen for that week
 
-|`* * *` |Student | View my timetable | Can check when my classes are
+|`*` |Student | View my timetable | Can check when my classes are
+
+// end::viewScheduleUserStories[]
 
 |`* *`   |Student | Easily find my free slots without looking at my schedule | Do not need to strain my eyes
 
@@ -565,60 +655,44 @@ _{More to be added}_
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student enters add command with the contact’s name, phone number, email and category
-3.  NOVA saves the contact
+1.  Student enters add command with the contact’s name, phone number, email and category
+2.  NOVA saves the contact
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. Student did not include compulsory field
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
+** 1a1. NOVA informs student to include compulsory field
 +
 Use case resumes at step 1
-[none]
-* 2a. Student did not include compulsory field
+* 1b. Student did not adhere to format required for adding contact
 +
 [none]
-** 2a1. NOVA informs student to include compulsory field
+** 1b1. NOVA informs student that the format is invalid, and provides an example of a correct format
 +
-Use case resumes at step 2
-* 2b. Student did not adhere to format required for adding contact
-+
-[none]
-** 2b1. NOVA informs student that the format is invalid, and provides an example of a correct format
-+
-Use case resumes at step 2
+Use case resumes at step 1
 
 [discrete]
 === Use case 2: List all contacts
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student enters list command
-3.  NOVA list all the contacts
+1.  Student enters list command
+2.  NOVA list all the contacts
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. There is no contacts saved
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
-+
-Use case resumes at step 1
-[none]
-* 2a. There is no contacts saved
-+
-[none]
-** 2a1. NOVA informs student that the list is empty
+** 1a1. NOVA informs student that the list is empty
 +
 Use case end
 
@@ -627,26 +701,18 @@ Use case end
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student enters list category command
-3.  NOVA list all the contacts under that category
+1.  Student enters list category command
+2.  NOVA list all the contacts under that category
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. There is no contacts saved under that category
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
-+
-Use case resumes at step 1
-[none]
-* 2a. There is no contacts saved under that category
-+
-[none]
-** 2a1. NOVA informs student that the list of that category is empty
+** 1a1. NOVA informs student that the list of that category is empty
 +
 Use case end
 
@@ -655,26 +721,18 @@ Use case end
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student enters find command
-3.  NOVA finds the name of contact that the student typed and list all the matching names
+1.  Student enters find command
+2.  NOVA finds the name of contact that the student typed and list all the matching names
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. There is no contact that matches what the student type
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
-+
-Use case resumes at step 1
-[none]
-* 2a. There is no contact that matches what the student type
-+
-[none]
-** 2a1. NOVA prints an empty list
+** 1a1. NOVA prints an empty list
 +
 Use case end
 
@@ -683,190 +741,167 @@ Use case end
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
-3.  Student enters edit command with index, and at least 1 field to edit
-4.  NOVA saves the edited contact
+1.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+2.  Student enters edit command with index, and at least 1 field to edit
+3.  NOVA saves the edited contact
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `edit` command
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
+** 1a1. Student edits information of the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is edited
 +
 Use case resumes at step 1
 [none]
-* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `edit` command
+* 2a. Student did not adhere to format required for editing contact
 +
 [none]
-** 2a1. Student edits information of the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is edited
+** 2a1. NOVA informs student that the format is invalid, and provides an example of a correct format
 +
 Use case resumes at step 2
 [none]
-* 3a. Student did not adhere to format required for editing contact
+* 2b. Student did not include at least 1 compulsory field
 +
 [none]
-** 3a1. NOVA informs student that the format is invalid, and provides an example of a correct format
+** 2b1. NOVA informs student to include at least 1 compulsory field
 +
-Use case resumes at step 3
-[none]
-* 3b. Student did not include at least 1 compulsory field
-+
-[none]
-** 3b1. NOVA informs student to include at least 1 compulsory field
-+
-Use case resumes at step 3
+Use case resumes at step 2
 
 [discrete]
 === Use case 6: Delete a contact
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
-3.  Student enters delete command
-4.  NOVA deletes the contact
+1.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+2.  Student enters delete command
+3.  NOVA deletes the contact
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `delete` command
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
+** 1a1. Student deletes the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is deleted
 +
 Use case resumes at step 1
 [none]
-* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `delete` command
+* 2a. NOVA cannot find the contact in the contact list
 +
 [none]
-** 2a1. Student deletes the wrong contact, and NOVA informs the student to use `undo` command if wrong contact is deleted
+** 2a1. NOVA informs student that the contact to delete does not exist
 +
 Use case resumes at step 2
 [none]
-* 3a. NOVA cannot find the contact in the contact list
+* 2b. Student provides a wrong format to delete
 +
 [none]
-** 3a1. NOVA informs student that the contact to delete does not exist
+** 2b1. NOVA informs student that the format is invalid, and provides an example of a correct format
 +
-Use case resumes at step 3
-[none]
-* 3b. Student provides a wrong format to delete
-+
-[none]
-** 3b1. NOVA informs student that the format is invalid, and provides an example of a correct format
-+
-Use case resumes at step 3
+Use case resumes at step 2
 
 [discrete]
 === Use case 7: Add, edit or delete remark to a contact
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
-3.  Student enters remark command
-4.  NOVA adds, edits or deletes remark to a contact
+1.  Student used `list`, `list c\classmate`, `list c\teammate` or `find` command
+2.  Student enters remark command
+3.  NOVA adds, edits or deletes remark to a contact
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `remark` command
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
+** 1a1. Student adds, edits or deletes remark of the wrong contact, and NOVA informs the student to use `undo` command if student add, edit or delete remark on the wrong contact
 +
 Use case resumes at step 1
 [none]
-* 2a. Student did not use `list`, `list c\classmate`, `list c\teammate` or `find` command before using `remark` command
+* 2a. NOVA cannot find the contact in the contact list
 +
 [none]
-** 2a1. Student adds, edits or deletes remark of the wrong contact, and NOVA informs the student to use `undo` command if student add, edit or delete remark on the wrong contact
+** 2a1. NOVA informs student that the contact to add, edit or delete mark does not exist
 +
 Use case resumes at step 2
 [none]
-* 3a. NOVA cannot find the contact in the contact list
+* 2b. Student provides a wrong format to add, edit or delete
 +
 [none]
-** 3a1. NOVA informs student that the contact to add, edit or delete mark does not exist
+** 2b1. NOVA informs student that the format is invalid, and provides an example of a correct format
 +
-Use case resumes at step 3
-[none]
-* 3b. Student provides a wrong format to add, edit or delete
-+
-[none]
-** 3b1. NOVA informs student that the format is invalid, and provides an example of a correct format
-+
-Use case resumes at step 3
+Use case resumes at step 2
 
 [discrete]
 === Use case 8: Undoing in address book
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
 2.  Student used `add`, `edit`, `delete` or `remark` prior
 3.  Student enters undo command
 4.  NOVA undone the changes that the student made
 +
 Use case ends
 
-*Extensions*
+[none]
+* 1a. Student did not use `add`, `edit`, `delete` or `remark` prior to using `undo`
++
+[none]
+** 1a1. NOVA informs the student that there are no more commands to undo
++
 
-[none]
-* 1a. Student is not in address book mode
-+
-[none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
-+
-Use case resumes at step 1
-[none]
-* 2a. Student did not use `add`, `edit`, `delete` or `remark` prior to using `undo`
-+
-[none]
-** 2a1. NOVA informs the student that there are no more commands to undo
-+
-Use case resumes at step 2
+resumes at step 1
 
 [discrete]
 === Use case 9: Redoing in address book
 
 *MSS*
 
-1.  Student enters `nav ab` to enter address book mode, or is already in address book mode
-2.  Student used `undo` successfully prior to using `redo`
-3.  Student enters redo command
-4.  NOVA redo the changes that the student made
+1.  Student used `undo` successfully prior to using `redo`
+2.  Student enters redo command
+3.  NOVA redo the changes that the student made
 +
 Use case ends
 
 *Extensions*
 
 [none]
-* 1a. Student is not in address book mode
+* 1a. Student did not use `undo` prior to using `redo`
 +
 [none]
-** 1a1. Depending on the mode the student is on, NOVA informs student that the command is unknown
+** 1a1. NOVA informs the student that there are no more commands to redo
 +
 Use case resumes at step 1
-[none]
-* 2a. Student did not use `undo` prior to using `redo`
-+
-[none]
-** 2a1. NOVA informs the student that there are no more commands to redo
-+
-Use case resumes at step 2
 
 [discrete]
-=== Use case 10: Delete an event
+=== Use case 10: Adding a consultation event
+
+*MSS*
+
+1. Student enters consultation command with details of the consultation
+2. NOVA adds consultation event to the schedule
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. NOVA detects error in data inputted
+** 1a1. NOVA informs student of the error
++
+Use case ends.
+
+[discrete]
+=== Use case 11: Delete an event
 
 *MSS*
 
@@ -884,7 +919,116 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Add notes to a project task in project section of progress tracker
+=== Use case 12: Adding a note to an event
+
+*MSS*
+
+1. Student enters note command with details of the event
+2. NOVA adds note to the event
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 1a. NOVA cannot find the event given
+** 1a1. NOVA informs student that the event does not exist
+
+//tag::UseCasesPt[]
+[discrete]
+=== Use case 13: Add task to a project of progress tracker
+
+*MSS*
+
+1.  User enter command to add task to a project.
+2.  Progress tracker adds task to the project.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such project exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case 14: User edits a task.
+
+*MSS*
+
+1.  User enter command to edit task.
+2.  Progress tracker replaces old task description with new description.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such task exist.
+*   1a1. NOVA shows an error message.
++
+Use case ends.
+
+=== Use case 15: User deletes a task.
+
+*MSS*
+
+1.  User enter command to delete task.
+2.  Progress tracker deletes task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 1a. Task to be deleted does not exist.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+// tag::eventusecase[]
+[discrete]
+=== Use case 16: User lists tasks in a week of a project.
+
+*MSS*
+
+1.  User enter command to list tasks.
+2.  Progress tracker lists task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists in the week specified.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+// end::eventusecase[]
+
+[discrete]
+=== Use case 17: User set an added task as done.
+
+*MSS*
+
+1.  User enter command to set task as done.
+2.  Progress tracker sets task as done.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. No such tasks exists.
+*   1a1. NOVA shows error message.
++
+Use case ends.
+
+=== Use case 18: Add notes to a task in progress tracker
 
 *MSS*
 
@@ -902,7 +1046,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: User edits a note.
+=== Use case 19: User edits a note.
 
 *MSS*
 
@@ -915,12 +1059,12 @@ Use case ends.
 
 [none]
 * 1a. No prior note was added.
-*   1a1. NOVA adds edit as new note.
+*   1a1. NOVA shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case 13: User deletes a note.
+=== Use case 20: User deletes a note.
 
 *MSS*
 
@@ -936,28 +1080,56 @@ Use case ends.
 *   1a1. NOVA shows error message.
 +
 Use case ends.
+//end::UseCasesPt[]
+
+// tag::viewScheduleUseCases[]
 
 [discrete]
-=== Use case 14: View the timetable
+=== Use case 21: View the schedule for a day
 
 *MSS*
 
-1. User requests for the timetable
-2. NOVA shows the timetable
+1. User requests for the schedule of a day.
+2. NOVA shows the schedule for the day.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The timetable is empty.
+* 1a. User enters the wrong format.
+*   1a1. NOVA displays the correct format for the command.
+* 2a. The schedule for the day is empty.
+*   2a1. NOVA displays that day does not have any events.
 +
 Use case ends.
 
+[discrete]
+=== Use case 22: View the schedule for a week
+
+*MSS*
+
+1. User requests for the schedule of a week.
+2. NOVA shows the schedule for the week.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+
+* 1a. User enters the wrong format.
+*   1a1. NOVA displays the correct format for the command.
+* 2a. The schedule for the week is empty.
+*   2a1. NOVA displays that week does not have any events.
++
+Use case ends.
+
+// end::viewScheduleUseCases[]
 //tag::studyplannermss[]
 
 [discrete]
-=== Use case 8: User add a task into study plan.
+=== Use case 23: User add a task into study plan.
 
 *MSS*
 
@@ -975,7 +1147,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 9: User add a task into study plan
+=== Use case 24: User add a task into study plan
 
 *MSS*
 
@@ -993,7 +1165,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 10: User view statistics of every tasks in study plan
+=== Use case 25: User view statistics of every tasks in study plan
 
 *MSS*
 
@@ -1011,7 +1183,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: User schedules a task into a particular day.
+=== Use case 26: User schedules a task into a particular day.
 
 *MSS*
 
@@ -1028,17 +1200,20 @@ Use case ends.
 +
 Use case ends.
 //end::studyplannermss[]
+
 _{More to be added}_
 
 [appendix]
 == Non Functional Requirements
 
-. Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
+. The application should work on any <<mainstream-os,mainstream OS>> provided that Java `11` or above is installed.
+. The application should work on both 32-bit and 64-bit environments.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-. The application should respond to every command within one second.
-. Technical requirements: The application should work on both 32-bit and 64-bit environments.
 . The application should work without internet connection.
-. The user should be able to navigate to other mode just by using `nav` command.
+// tag::TerenceNFR[]
+. The application should respond to every command within one second.
+. The application should be easily modifiable to meet changing curriculum of CS2013T.
+// end::TerenceNFR[]
 
 _{More to be added}_
 
@@ -1048,22 +1223,8 @@ _{More to be added}_
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, OS-X
 
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
+[[mode]] Mode::
+Mode of operation within NOVA, such as Address Book with `nav ab`, Schedule with `nav schedule`, Planner with `nav planner`, and Progress Tracker with `nav progresstracker`.
 
 [appendix]
 == Instructions for Manual Testing
@@ -1087,8 +1248,6 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
-
 === Deleting a person in Address Book
 
 . Enter address book mode via `nav ab`
@@ -1101,14 +1260,4 @@ _{ more test cases ... }_
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete i\x` (where x is larger than the list size), `delete x` (where x is number or letter)
    Expected: Similar to previous.
-
-_{ more test cases ... }_
-
-=== Saving data
-
-. Dealing with missing/corrupted data files
-
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
-
-_{ more test cases ... }_
 
