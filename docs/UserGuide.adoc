@@ -383,7 +383,7 @@ Format: `meeting d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
-* `00:00` is the start of a day, `23:59` is the end of a day.
+* Events cannot span across more than a day (`00:00` is the start of a day, `23:59` is the end of a day).
 * You can only add meetings to dates that fall within the semester.
 * All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
 * `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
@@ -412,7 +412,7 @@ Format: `study d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:MM)] [En
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
-* `00:00` is the start of a day, `23:59` is the end of a day.
+* Events cannot span across more than a day (`00:00` is the start of a day, `23:59` is the end of a day).
 * You can only add study sessions to dates that fall within the semester.
 * All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
 * `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
@@ -441,7 +441,7 @@ Format: `consultation d\[description] v\[venue] t\[YYYY-MM-DD] [Start time (HH:M
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
-* `00:00` is the start of a day, `23:59` is the end of a day.
+* Events cannot span across more than a day (`00:00` is the start of a day, `23:59` is the end of a day).
 * You can only add consultation sessions to dates that fall within the semester.
 * All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
 * `[description]` and/or `[venue]` can be left as blank spaces if you wish (i.e. " ").
@@ -470,7 +470,7 @@ Format: `lesson d\[description] v\[venue] t\[day] [Start time (HH:MM)] [End time
 [NOTE]
 ====
 * The `[End time (HH:MM)]` must be later than the `[Start time (HH:MM)]`.
-* `00:00` is the start of a day, `23:59` is the end of a day.
+* Events cannot span across more than a day (`00:00` is the start of a day, `23:59` is the end of a day).
 * The lesson will be repeated weekly from weeks 1 to 13.
 * There will not be lessons in the recess week.
 * All prefixes (i.e. `d\`, `v\` and `t\`) must be present.
