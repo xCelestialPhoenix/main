@@ -1255,6 +1255,14 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
+//tag::shutdown[]
+=== Shutdown
+. Exiting the application
+
+.. Enter `exit` in the command line.
+
+//end::shutdown[]
+
 === Deleting a person in Address Book
 
 . Enter address book mode via `nav ab`
