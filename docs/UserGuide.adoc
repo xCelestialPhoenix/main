@@ -32,7 +32,10 @@ through typing.
 image::userguide/guiComponents.png[width="790" align="center"]
 [.text-center]
 _[.small]#Fig 1: Components of NOVA#_
+
 // end::intro[]
+// tag::about[]
+
 [[About]]
 // tag::about[]
 == About
@@ -45,7 +48,10 @@ There is an entire <<Features, section>> dedicated to how to use any particular 
 for your
 better understanding. We have also provided a <<Summary, summary of commands>> for your quick reference. Should you
 face any problems, take a look at the <<FAQ, FAQ section>>.
+
 // end::about[]
+// tag::notation[]
+
 [[Notation]]
 // tag::notation[]
 == Notations
@@ -58,7 +64,7 @@ This icon indicates details that could help you better understand how to use NOV
 This icon indicates actions that could negatively affect your experience while using NOVA.
 
 `Commands` and `input fields` are highlighted.
-
+// end::notation[]
 [[QuickStart]]
 // end::notation[]
 == Quick Start
@@ -521,16 +527,16 @@ Format: `note d\[description] t\[YYYY-MM-DD] i\[index]`
 Example: +
 Suppose you wish to add a note that indicates the work allocation to a meeting event, +
 
-enter the command: `note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`
+enter the command: `note d\Alice - Contact Us page, Bob - Readme Page t\2020-02-20 i\1`
 
-NOVA will add a note with the description "Alice - Logic component in DG, Bob - UI component in DG"
+NOVA will add a note with the description "note d\Alice - Contact Us page, Bob - Readme Page t\2020-02-20 i\1"
 to the first event on 20 Feb 2020.
 
 image::userguide/EventNote.png[width="500" align="center"]
 [.text-center]
 
 _[.small]#Fig 5.3.6: Display message after entering +
-`note d\Alice - Logic component in DG, Bob - UI component in DG t\2020-02-20 i\1`#_
+`note d\Alice - Contact Us page, Bob - Readme Page t\2020-02-20 i\1`#_
 
 // end::events[]
 
@@ -583,6 +589,7 @@ image::userguide/schedule_view_week.png[width="500" align="center"]
 _[.small]#Fig 5.3.8: Display message after entering `view week i\6`#_
 
 <<Top, [Back to Top]>>
+// end::view[]
 
 // end::view[]
 

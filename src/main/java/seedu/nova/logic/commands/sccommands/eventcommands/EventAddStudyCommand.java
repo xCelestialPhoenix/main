@@ -5,6 +5,9 @@ import static seedu.nova.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.nova.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.logging.Logger;
+
+import seedu.nova.commons.core.LogsCenter;
 import seedu.nova.logic.commands.Command;
 import seedu.nova.logic.commands.CommandResult;
 import seedu.nova.logic.commands.exceptions.CommandException;
@@ -29,9 +32,11 @@ public class EventAddStudyCommand extends Command {
             + PREFIX_VENUE + "COM1 Basement "
             + PREFIX_TIME + "2020-03-19 14:00 15:00 ";
 
-    public static final String MESSAGE_SUCCESS = "New study session has been added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New study session has been added: \n%1$s\n";
     public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
     public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Event toAdd;
 
@@ -45,6 +50,8 @@ public class EventAddStudyCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("executing add meeting command for: \n" + toAdd);
+
         requireNonNull(model);
 
         if (!model.isWithinSem(toAdd.getDate())) {
