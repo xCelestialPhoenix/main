@@ -7,17 +7,20 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Base64;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.nova.commons.exceptions.IllegalValueException;
 import seedu.nova.model.plan.Task;
+import seedu.nova.model.plan.TaskDetails;
 
 /**
  * Writable task
  */
 public class JsonAdaptedPlannerTask {
+    private static HashMap<TaskDetails, Task> deserializedTask = new HashMap<>();
     private final String serial;
 
     @JsonCreator
@@ -57,6 +60,11 @@ public class JsonAdaptedPlannerTask {
         } catch (Exception e) {
             throw new IllegalValueException("Wrong serial");
         }
-        return task;
+        if (deserializedTask.containsKey(task.getDetails())) {
+            return deserializedTask.get(task.getDetails());
+        } else {
+            deserializedTask.put(task.getDetails(), task);
+            return task;
+        }
     }
 }
