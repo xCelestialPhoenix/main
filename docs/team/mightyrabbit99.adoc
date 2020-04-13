@@ -24,7 +24,7 @@ More suitable algorithm needs to be developed in the future in order to make it 
 ** Justification: This feature is needed due to the fact that we don't have a schedule GUI. User are unable to grasp when they are free especially when there is many events in their schedule.
 
 * *Minor enhancement*:
-** Make dialog window wrap text automatically whenever window is resized.
+** Make dialog window wrap text automatically whenever window is resized. reference: https://github.com/AY1920S2-CS2103T-F10-3/main/pull/345[22]
 
 * *Code contributed*:
 ** [https://github.com/AY1920S2-CS2103T-F10-3/main/issues?q=is%3Aclosed+author%3Amightyrabbit99[Functional code]][https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=mightyrabbit99&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=mightyrabbit99&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[RepoSense]]
