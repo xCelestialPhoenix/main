@@ -78,37 +78,44 @@ solutions (E.g. https://github.com/nus-cs2103-AY1920S2/forum/issues/20[1], https
 Theses are my contributions towards the user guide.
 
 |===
-| Theses are my contributions towards the front sections.
+| _Theses are my contributions towards the front sections._
 |===
 include::../UserGuide.adoc[tag=intro]
 include::../UserGuide.adoc[tag=about]
 include::../UserGuide.adoc[tag=notation]
 
+{nbsp} +
+
 |===
-| Theses are my contributions towards the features section.
+| _Theses are my contributions towards the features section._
 |===
 include::../UserGuide.adoc[tag=view]
 
 == Contributions to the Developer Guide
 Theses are my contributions towards the developer guide.
 
-
 |===
-| Theses are my contributions towards the model section.
+| _Theses are my contributions towards the model section._
 |===
 include::../DeveloperGuide.adoc[tag=model]
 
+{nbsp} +
+
 |===
-| Theses are my contributions towards the user stories section.
+| _Theses are my contributions towards the user stories section._
 |===
 include::../DeveloperGuide.adoc[tag=viewScheduleUserStories]
 
+{nbsp} +
+
 |===
-| Theses are my contributions towards the use cases section.
+| _Theses are my contributions towards the use cases section._
 |===
 include::../DeveloperGuide.adoc[tag=viewScheduleUseCases]
 
+{nbsp} +
+
 |===
-| Theses are my contributions towards the manual testing section.
+| _Theses are my contributions towards the manual testing section._
 |===
 include::../DeveloperGuide.adoc[tag=testView]
