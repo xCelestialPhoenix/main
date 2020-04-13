@@ -1307,7 +1307,7 @@ Example: Adding a @ to a week in a ptTask.
 .. Run the application. The application should start with a sample Nova data file with pre-included data.
 //end::Pt[]
 
-//start::testView[]
+//tag::testView[]
 === View schedule (Terence)
 . Enter schedule mode via `nav schedule`
 . View the schedule
