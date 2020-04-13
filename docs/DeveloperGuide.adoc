@@ -344,11 +344,11 @@ image::AbDeleteActivityDiagram.png[width=470]
 
 //tag::listPt[]
 
-=== View tasks under IP project
-The view tasks feature for the IP project allows the user to view a list of tasks that were added.
+=== List tasks under IP project
+The list tasks feature for the IP project allows the user to view a list of tasks that were added.
 
 ==== Implementation
-Given below is an example usage scenario and how the view tasks mechanism behaves at each step.
+Given below is an example usage scenario and how the list tasks mechanism behaves at each step.
 
 1. The user keys in `list p\ip w\2` into the command box.
 2. The user executes `list p\ip w\2'`to view the list of tasks in week 2 of the IP project.
@@ -356,7 +356,7 @@ Given below is an example usage scenario and how the view tasks mechanism behave
 4. `LogicManager` executes the `PtListCommand`.
 5. `Model#listTasks()` is called and the list of tasks is retrieved.
 
-The following sequence diagram shows how the view tasks operation works:
+The following sequence diagram shows how the list tasks operation works:
 
 image::PtSeqDiagram.png[]
 
