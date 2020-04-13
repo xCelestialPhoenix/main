@@ -1,6 +1,7 @@
 package seedu.nova.logic.parser.events;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_WRONG_TIME;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_TIME_1;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_TIME_2;
 import static seedu.nova.logic.commands.CommandTestUtil.INVALID_TIME_3;
@@ -80,7 +81,7 @@ public class EventAddLessonCommandParserTest {
                 EventAddLessonCommand.MESSAGE_USAGE);
 
         // invalid time - end time is earlier than start
-        assertParseFailure(parser, LESSON_DESC + LESSON_VENUE + INVALID_TIME_2, expectedMessage);
+        assertParseFailure(parser, LESSON_DESC + LESSON_VENUE + INVALID_TIME_2, MESSAGE_WRONG_TIME);
 
         // invalid time - end time is missing
         assertParseFailure(parser, LESSON_DESC + LESSON_VENUE + INVALID_TIME_3, expectedMessage);
