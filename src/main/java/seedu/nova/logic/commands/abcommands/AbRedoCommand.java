@@ -15,6 +15,8 @@ public class AbRedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Address book has been redo-ed!";
     public static final String MESSAGE_FAILURE = "No more commands to redo!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redo the address book\n"
+            + "Example: redo";
 
 
     @Override

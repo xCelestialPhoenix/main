@@ -15,6 +15,8 @@ public class AbUndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_SUCCESS = "Address book has been undo-ed!";
     public static final String MESSAGE_FAILURE = "No more commands to undo!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undo the address book\n"
+            + "Example: undo";
 
 
     @Override

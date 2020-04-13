@@ -25,13 +25,17 @@ LogicParser -> Model : getMode()
 activate Model
 
 Model --> LogicParser : mode
-deactivate Model
 
-LogicParser -> Mode : getModeEnum()
+LogicParser -> Model : getModeEnum()
+
+Model -> Mode : getModeEnum()
 activate Mode
 
-Mode --> LogicParser : mode
+Mode --> Model : modeEnum
 deactivate Mode
+
+Model --> LogicParser : modeEnum
+deactivate Model
 
 LogicParser -> AddressBookParser : parseCommand("undo", "")
 activate AddressBookParser
