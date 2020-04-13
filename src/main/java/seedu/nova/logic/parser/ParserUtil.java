@@ -34,9 +34,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WEEK = "Week is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TASK = "Task number is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date format is invalid.";
-    public static final String MESSAGE_INVALID_TIME_FORMAT = "Time format is invalid.";
-    public static final String MESSAGE_INVALID_DAY_FORMAT = "Day of week format is invalid.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date is invalid.";
+    public static final String MESSAGE_INVALID_TIME_FORMAT = "Time is invalid.";
+    public static final String MESSAGE_INVALID_DAY_FORMAT = "Day of week is invalid.";
 
 
 
