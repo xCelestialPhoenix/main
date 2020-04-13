@@ -32,7 +32,7 @@ public class EventDeleteCommand extends Command {
             + PREFIX_TIME + "2020-03-20 "
             + PREFIX_INDEX + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "Event has been deleted: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "Event has been deleted: \n%1$s\n";
     public static final String MESSAGE_NO_EVENT = "Invalid date - you have no events on that date.";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index - that event does not exist.";
     public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";

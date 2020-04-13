@@ -34,7 +34,7 @@ public class EventAddLessonCommand extends Command {
             + PREFIX_VENUE + "COM1 B1-03 "
             + PREFIX_TIME + "Friday 10:00 11:00 ";
 
-    public static final String MESSAGE_SUCCESS = "New lesson has been added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New lesson has been added: \n%1$s\n";
     public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());

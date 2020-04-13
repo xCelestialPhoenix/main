@@ -34,7 +34,7 @@ public class EventAddMeetingCommand extends Command {
             + PREFIX_VENUE + "COM1 Basement "
             + PREFIX_TIME + "2020-03-10 14:00 16:00 ";
 
-    public static final String MESSAGE_SUCCESS = "New meeting has been added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New meeting has been added: \n%1$s\n";
     public static final String MESSAGE_TIME_OVERLAP = "You already have an event within that time frame.";
     public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
 
