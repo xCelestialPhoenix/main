@@ -269,8 +269,6 @@ The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
 
-NOTE: The lifeline for `AbUndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 [NOTE]
@@ -325,8 +323,6 @@ Given below is an example usage scenario and how the delete mechanism behaves at
 The following sequence diagram shows how the delete operation works:
 
 image::AbDeleteSequenceDiagram.png[]
-
-NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The following activity diagram shows how the delete mechanism works:
 
