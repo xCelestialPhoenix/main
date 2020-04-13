@@ -31,6 +31,20 @@ public class PtTaskList {
         return list.get(taskNum - 1);
     }
 
+    public double getNumDone() {
+        double counter = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            PtTask task = list.get(i);
+            boolean isDone = task.isDone();
+
+            if (isDone) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
     /**
      * Lists the tasks in the task list
      * @return String listing out the tasks
@@ -60,28 +74,5 @@ public class PtTaskList {
 
     public void deleteTask(int taskNum) {
         list.remove(taskNum - 1);
-    }
-
-    /**
-     * Calculates the progress for a week
-     * @return a double representing the percentage of tasks done in a week
-     */
-    public double getProgressTasks() {
-        double numDone = 0;
-        double totalTask = getNumTask();
-
-        for (int i = 0; i < totalTask; i++) {
-            PtTask task = list.get(i);
-
-            if (task.isDone()) {
-                numDone++;
-            }
-        }
-
-        if (totalTask == 0) {
-            return 0;
-        } else {
-            return numDone / totalTask;
-        }
     }
 }
