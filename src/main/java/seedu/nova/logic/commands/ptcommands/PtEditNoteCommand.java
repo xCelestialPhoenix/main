@@ -30,7 +30,7 @@ public class PtEditNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
             + PREFIX_WEEK + "2 "
-            + PREFIX_TASK + "1"
+            + PREFIX_TASK + "1 "
             + PREFIX_DESC + "take note to do by 2359 Friday";
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";
