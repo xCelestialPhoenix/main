@@ -17,7 +17,6 @@ import seedu.nova.logic.parser.ModeEnum;
 import seedu.nova.model.person.Person;
 import seedu.nova.model.plan.Plan;
 import seedu.nova.model.plan.StrongTask;
-import seedu.nova.model.plan.StudyPlan;
 import seedu.nova.model.plan.Task;
 import seedu.nova.model.plan.WeakTask;
 import seedu.nova.model.progresstracker.Ip;
@@ -60,7 +59,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.schedule = nova.getScheduleNova();
         // this.schedule = new Schedule(LocalDate.of(2020, 1, 13), LocalDate.of(2020, 5, 3));
-        this.plan = new StudyPlan();
+        this.plan = nova.getStudyPlan();
         this.mode = new Mode(ModeEnum.HOME);
     }
 

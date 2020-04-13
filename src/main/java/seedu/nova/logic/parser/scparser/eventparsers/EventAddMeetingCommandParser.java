@@ -18,7 +18,7 @@ import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Meeting;
 
 /**
- * Parses input arguments and creates a new EventAddMeetingCommand object
+ * Parses input arguments and creates a new EventAddMeetingCommand object.
  */
 public class EventAddMeetingCommandParser implements Parser<EventAddMeetingCommand> {
 

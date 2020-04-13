@@ -9,9 +9,9 @@ import java.util.List;
 
 import seedu.nova.model.schedule.Day;
 import seedu.nova.model.schedule.Week;
-import seedu.nova.model.schedule.event.DateNotFoundException;
 import seedu.nova.model.schedule.event.Event;
 import seedu.nova.model.schedule.event.Lesson;
+import seedu.nova.model.schedule.event.exceptions.DateNotFoundException;
 import seedu.nova.model.util.Copyable;
 
 /**
@@ -130,7 +130,7 @@ public class Schedule implements Copyable<Schedule> {
      * @param desc description of the note
      * @param date the date of the event
      * @param index the position of event in list
-     * @return
+     * @return String representing the event with added note
      */
     public String addNote(String desc, LocalDate date, int index) {
         int weekNumber = calWeekNumber(date);
