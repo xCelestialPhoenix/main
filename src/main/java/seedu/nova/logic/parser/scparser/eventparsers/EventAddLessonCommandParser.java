@@ -1,6 +1,7 @@
 package seedu.nova.logic.parser.scparser.eventparsers;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_WRONG_TIME;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -55,8 +56,7 @@ public class EventAddLessonCommandParser implements Parser<EventAddLessonCommand
         LocalDate placeholder = LocalDate.parse("2020-01-17");
 
         if (startTime.compareTo(endTime) >= 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EventAddLessonCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_WRONG_TIME);
         }
 
         Event lesson = new Lesson(desc, venue, startTime, endTime, placeholder, day);
