@@ -24,14 +24,18 @@ activate LogicParser
 LogicParser -> Model :getMode()
 activate Model
 
-Model --> LogicParser : mode
-deactivate Model
+Model --> LogicParser
 
-LogicParser -> Mode :getModeEnum()
+LogicParser -> Model :getModeEnum(mode)
+
+Model -> Mode: getModeEnum()
 activate Mode
 
-Mode --> LogicParser : mode
+Mode --> Model
 deactivate Mode
+
+Model --> LogicParser
+deactivate Model
 
 LogicParser -> PlannerParser : parseCommand("schedule p\\task t\2020-02-20")
 activate PlannerParser
