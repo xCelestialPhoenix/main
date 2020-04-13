@@ -1318,6 +1318,7 @@ Expected: The event that was pre-added will be displayed.
 Expected: Error message is shown to tell user that the date is out of the range of schedule.
 //end::testView[]
 
+//tag::eventTest[]
 === Adding an event (Chua Huixian)
 . Enter schedule mode via `nav schedule`
 . Adding an event
@@ -1327,4 +1328,5 @@ Expected: A meeting event will be added to the schedule. The details of the meet
 Expected: Error message is shown. The end time must be later than start time.
 .. Other incorrect commands to try: `meeting`, `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00`. +
 Expected: Error messages will be shown as well.
+//end::eventTest[]
 

@@ -121,3 +121,9 @@ include::../DeveloperGuide.adoc[tag=eventuserstory]
 |===
 
 include::../DeveloperGuide.adoc[tag=eventusecase]
+
+|===
+|_4. The Manual Testing for events under Appendix F._
+|===
+
+include::../DeveloperGuide.adoc[tag=eventTest]
