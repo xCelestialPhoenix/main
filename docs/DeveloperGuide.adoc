@@ -978,6 +978,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case 15: Delete a task  (Yap Wen Jun Bryan)
 
 *MSS*

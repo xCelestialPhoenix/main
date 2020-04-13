@@ -54,9 +54,10 @@ I added the ability to delete note to tasks. This allows user to delete note tha
 I added the ability to edit note added to tasks. This allows user to make corrections to errors in notes without having
 to delete and re-add a note.
 
-* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D
+* *Code contributed*: (https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D[Linke to RepoSense]) +
 
-* *Other contributions*:
+Copy and paste this link if the link above doesn't work: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=BryanYap972&tabRepo=AY1920S2-CS2103T-F10-3%2Fmain%5Bmaster%5D
+
 
 ** Project management:
 *** Acted as the main maintainer for team repository and ensured that code quality was up to standard before merging.

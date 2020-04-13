@@ -31,7 +31,7 @@ public class PtAddCommand extends Command {
             + PREFIX_DESC + "TASK DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT + "Ip "
-            + PREFIX_WEEK + "2"
+            + PREFIX_WEEK + "2 "
             + PREFIX_DESC + "Implement javafx";
 
     public static final String MESSAGE_NOWEEK = "No week beyond week 13";

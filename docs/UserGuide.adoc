@@ -988,7 +988,7 @@ into your schedule
 .7+| Progress Tracker
 | add p\[ip/tp] w\[week number] d\[task description] | Adds a task to the specified week and project
 | list p\[ip/tp] w\[week number] | Lists the tasks that have been added to the specified week and project
-| delete p\ip w\3 t\3 | Deletes the specified task
+| delete delete p\[ip/tp] w\[week number] t\[task number] | Deletes the specified task
 | done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done/undone
 | addNote p\[ip/tp] w\[week number] t\[task number] d\note | Adds a note to the specified task
 | editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
