@@ -15,4 +15,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_EMPTY_ARGUMENT = "Look at the help panel on the left to get started!";
 
+    public static final String MESSAGE_WRONG_TIME = "End time should be later than start time.";
+
 }

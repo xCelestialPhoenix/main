@@ -50,7 +50,7 @@ public class EventAddNoteCommandTest {
 
         EventAddNoteCommand eventAddNoteCommand = new EventAddNoteCommand(VALID_DESC, VALID_DATE, INDEX_FIRST_EVENT);
 
-        assertThrows(CommandException.class, EventAddNoteCommand.MESSAGE_INVALID_INDEX, () ->
+        assertThrows(CommandException.class, EventAddNoteCommand.MESSAGE_INVALID_INDEX_DATE, () ->
                 eventAddNoteCommand.execute(modelStub));
 
     }

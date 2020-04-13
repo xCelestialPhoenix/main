@@ -35,9 +35,9 @@ public class EventAddNoteCommand extends Command {
             + PREFIX_TIME + "2020-03-10 "
             + PREFIX_INDEX + "2";
 
-    public static final String MESSAGE_SUCCESS = "New note has been added: \n%1$s";
-    public static final String MESSAGE_NO_EVENT = "Invalid date - you have no events on that date.";
-    public static final String MESSAGE_INVALID_INDEX = "Invalid index - that event does not exist.";
+    public static final String MESSAGE_SUCCESS = "New note has been added: \n%1$s\n";
+    public static final String MESSAGE_NO_EVENT = "Invalid date - you have no events that week.";
+    public static final String MESSAGE_INVALID_INDEX_DATE = "Invalid date or index - that event does not exist.";
     public static final String MESSAGE_INVALID_DATE = "That date does not fall within the semester.";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -75,7 +75,7 @@ public class EventAddNoteCommand extends Command {
             throw new CommandException(MESSAGE_NO_EVENT);
 
         } catch (EventNotFoundException e) {
-            throw new CommandException(MESSAGE_INVALID_INDEX);
+            throw new CommandException(MESSAGE_INVALID_INDEX_DATE);
         }
     }
 

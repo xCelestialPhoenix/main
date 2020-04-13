@@ -1,6 +1,7 @@
 package seedu.nova.logic.parser.events;
 
 import static seedu.nova.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nova.commons.core.Messages.MESSAGE_WRONG_TIME;
 import static seedu.nova.logic.commands.CommandTestUtil.CONSULTATION_DESC;
 import static seedu.nova.logic.commands.CommandTestUtil.CONSULTATION_DESC_2;
 import static seedu.nova.logic.commands.CommandTestUtil.CONS_TIME_DATE;
@@ -78,7 +79,7 @@ public class EventAddConsultationCommandParserTest {
                 EventAddConsultationCommand.MESSAGE_USAGE);
 
         // invalid time - end time is earlier than start
-        assertParseFailure(parser, CONSULTATION_DESC + CONS_VENUE + INVALID_TIME_DATE_2, expectedMessage);
+        assertParseFailure(parser, CONSULTATION_DESC + CONS_VENUE + INVALID_TIME_DATE_2, MESSAGE_WRONG_TIME);
 
         // invalid time - end time is missing
         assertParseFailure(parser, CONSULTATION_DESC + CONS_VENUE + INVALID_TIME_DATE_3, expectedMessage);

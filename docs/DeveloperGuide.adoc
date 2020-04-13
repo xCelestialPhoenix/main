@@ -20,7 +20,7 @@ By: `CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
 == Setting up
 
-Refer to the guide <<SettingUp#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/SettingUp.adoc[here].
 
 == Design
 
@@ -33,10 +33,10 @@ image::ArchitectureDiagram.png[]
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 [TIP]
-The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
-Refer to the <<UsingPlantUml#, Using PlantUML guide>> to learn how to create and edit diagrams.
+The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/tree/master/docs/diagrams[diagrams] folder.
+Refer to the https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/UsingPlantUml.adoc[Using PlantUML guide] to learn how to create and edit diagrams.
 
-`Main` has two classes called link:{repoURL}/src/main/java/seedu/address/Main.java[`Main`] and link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
+`Main` has two classes called link:{repoURL}/blob/master/src/main/java/seedu/nova/Main.java[`Main`] and link:{repoURL}/blob/master/src/main/java/seedu/nova/MainApp.java[`MainApp`]. It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup method where necessary.
@@ -64,7 +64,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 image::LogicArchitecture.png[]
 
 [discrete]
-==== How the architecture components interact with each other
+==== How the architecture components interact with each other (Loh Sze Ying)
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete i\1` after navigating to Address Book mode with `nav ab`. +
 The same type of interaction applies to other mode within NOVA, such as Schedule mode, Planner mode or Progress Tracker mode.
@@ -81,11 +81,11 @@ The sections below give more details of each component.
 .Structure of the UI Component
 image::UiClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/nova/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay` and `HelpBox`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files (HelpBox does not have a `.fxml` file) that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/blob/master/src/main/java/seedu/nova/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/blob/master/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
@@ -96,17 +96,17 @@ The `UI` component,
 [[Design-Logic]]
 
 // tag::logic[]
-=== Logic component
+=== Logic component (Chua Huixian)
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
 image::LogicClassDiagram.png[]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
+link:{repoURL}/blob/master/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `LogicParser` class to determine which mode the user is in when they input a command.
-.  After which, the relevant parser is called (e.g. `EventParser` or `AddressBookParser`).
+.  After which, the relevant parser is called (e.g. `AddressBookParser`).
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -115,12 +115,12 @@ link:{repoURL}/src/main/java/seedu/nova/logic/Logic.java[`Logic.java`]
 
 [[Design-Model]]
 // tag::model[]
-=== Model component
+=== Model component (Terence)
 
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/nova/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/nova/model/Model.java[`Model.java`]
 
 The `Model`,
 
@@ -139,26 +139,26 @@ The `Model`,
 .Structure of the Storage Component
 image::StorageClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/nova/storage/Storage.java[`Storage.java`]
+*API* : link:{repoURL}/blob/master/src/main/java/seedu/nova/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save NOVA's data in json format and read it back.
 
 [[Design-Commons]]
-=== Common classes
+=== Common classes (Loh Sze Ying)
 
 Classes used by multiple components are in the `seedu.nova.commons` package.
 All of the classes under `Commons` work independently.
 
 Most notably,
 
-* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/LogsCenter.java[`LogsCenter.java`] +
+* *API* : link:{repoURL}/blob/master/src/main/java/seedu/nova/commons/core/LogsCenter.java[`LogsCenter.java`] +
 The `LogsCenter` is used by NOVA to display logs when running NOVA in terminal.
 
-* *API* : link:{repoURL}/src/main/java/seedu/nova/commons/core/index/Messages.java[`Messages.java`] +
-The `Messages` is used by Address Book feature and deals with messages to display regarding Address Book.
+* *API* : link:{repoURL}/blob/master/src/main/java/seedu/nova/commons/core/Messages.java[`Messages.java`] +
+The `Messages` is used by NOVA and deals with messages to display relating to NOVA's features.
 
 == Implementation
 
@@ -166,7 +166,7 @@ This section describes some noteworthy details on how certain features are imple
 
 // tag::events[]
 
-=== Manage Events
+=== Manage Events (Chua Huixian)
 The manage events feature handles the events of the user, including meetings, consultations, study sessions and lessons.
 Users are able to:
 
@@ -213,7 +213,7 @@ Aspect: Syntax of Deleting an Event
 // end::events[]
 
 // tag::undoredo[]
-=== Address Book
+=== Address Book (Loh Sze Ying)
 The address book feature handles the contact list of the users. To enter address book mode, users need to enter `nav ab` command. Users are able to:
 
 * add contacts
@@ -268,8 +268,6 @@ If the `currentStatePointer` is at index 0, pointing to the initial address book
 The following sequence diagram shows how the undo operation works:
 
 image::UndoSequenceDiagram.png[]
-
-NOTE: The lifeline for `AbUndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -326,8 +324,6 @@ The following sequence diagram shows how the delete operation works:
 
 image::AbDeleteSequenceDiagram.png[]
 
-NOTE: The lifeline for `AbDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 The following activity diagram shows how the delete mechanism works:
 
 image::AbDeleteActivityDiagram.png[width=470]
@@ -378,7 +374,7 @@ Aspect: Adding choice of week to view tasks
 //end::listPt[]
 // tag::view[]
 
-=== View schedule
+=== View schedule (Terence)
 The view schedule feature allows users to view the events they have added into the schedule. Users are able to view the
 schedule by two time frames:
 
@@ -433,17 +429,17 @@ image::viewWeekSequenceDiagram.png[]
 Aspect: View schedule by at most week and not month.
 
 * **Alternative 1 (current choice):** View schedule up to week
-** Pros: Easier to fit the events into the display
-** Cons: Less ways for user to view schedule
+** Pros: Easier to fit the events into the display.
+** Cons: Less ways for user to view schedule.
 
 * **Alternative 2:** View schedule up to month
-** Pros: User can see their whole month's schedule at once
-** Cons: Might be too long and cannot fit into the display box
+** Pros: User can see their whole month's schedule at once.
+** Cons: Might be too long and cannot fit into the display box. Time to gather all the events may be too long.
 // end::view[]
 
 //tag::studyplannerfeature[]
 
-=== View available free slot of a specific day
+=== View available free slot of a specific day (Tan Wah Ken)
 The view free slots feature allows the user to view their available free slots on their schedule.
 
 ==== Implementation
@@ -473,7 +469,7 @@ events are added
 ** Cons: slower freeslot execution.
 
 
-=== Schedule events based on a task in plan.
+=== Schedule events based on a task in plan (Tan Wah Ken)
 The plan feature allows the user to create an event based on the task user created in the plan.
 
 ==== Implementation
@@ -532,15 +528,15 @@ Certain properties of the application can be controlled (e.g user prefs file loc
 
 == Documentation
 
-Refer to the guide <<Documentation#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/Documentation.adoc[here].
 
 == Testing
 
-Refer to the guide <<Testing#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/Testing.adoc[here].
 
 == Dev Ops
 
-Refer to the guide <<DevOps#, here>>.
+Refer to the guide https://github.com/AY1920S2-CS2103T-F10-3/main/blob/master/docs/DevOps.adoc[here].
 
 [appendix]
 == Product Scope
@@ -563,7 +559,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [width="100%",cols="^15%,<15%,<35%,<35%",options="header",]
 |=======================================================================
 <|Priority |As a ... |I can ... |So that I ...
-
+// tag::addressbookuserstory[]
 |`* * *` |student |add classmate or teammate’s name and contact information |contact them easily
 
 |`* * *` |student |edit classmate or teammate’s name and contact information |Edit them if the information are changed
@@ -583,6 +579,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |student |edit profile picture to added contact |edit the picture if changes are necessary
 
 |`*` |student |delete profile picture to added contact|don't need the contact picture within NOVA anymore
+// end::addressbookuserstory[]
 
 // tag::eventuserstory[]
 |`* * *` |student |create meeting events | can keep track of my schedule
@@ -661,7 +658,7 @@ _{More to be added}_
 (For all use cases below, the *System* is the `nova` and the *Actor* is the `student`, unless specified otherwise)
 
 [discrete]
-=== Use case 1: Add a contact
+=== Use case 1: Add a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -687,7 +684,7 @@ Use case resumes at step 1
 Use case resumes at step 1
 
 [discrete]
-=== Use case 2: List all contacts
+=== Use case 2: List all contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -707,7 +704,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 3: List category specific contacts
+=== Use case 3: List category specific contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -727,7 +724,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 4: Find saved contacts
+=== Use case 4: Find saved contacts (Loh Sze Ying)
 
 *MSS*
 
@@ -747,7 +744,7 @@ Use case ends
 Use case end
 
 [discrete]
-=== Use case 5: Edit a contact
+=== Use case 5: Edit a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -782,7 +779,7 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 6: Delete a contact
+=== Use case 6: Delete a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -817,7 +814,7 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 7: Add, edit or delete remark to a contact
+=== Use case 7: Add, edit or delete remark to a contact (Loh Sze Ying)
 
 *MSS*
 
@@ -852,13 +849,13 @@ Use case resumes at step 2
 Use case resumes at step 2
 
 [discrete]
-=== Use case 8: Undoing in address book
+=== Use case 8: Undoing in address book (Loh Sze Ying)
 
 *MSS*
 
-2.  Student used `add`, `edit`, `delete` or `remark` prior
-3.  Student enters undo command
-4.  NOVA undone the changes that the student made
+1.  Student used `add`, `edit`, `delete` or `remark` prior
+2.  Student enters undo command
+3.  NOVA undone the changes that the student made
 +
 Use case ends
 
@@ -872,7 +869,7 @@ Use case ends
 resumes at step 1
 
 [discrete]
-=== Use case 9: Redoing in address book
+=== Use case 9: Redoing in address book (Loh Sze Ying)
 
 *MSS*
 
@@ -894,7 +891,7 @@ Use case resumes at step 1
 
 // tag::eventusecase[]
 [discrete]
-=== Use case 10: Adding a consultation event
+=== Use case 10: Adding a consultation event (Chua Huixian)
 
 *MSS*
 
@@ -912,7 +909,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 11: Delete an event
+=== Use case 11: Delete an event (Chua Huixian)
 
 *MSS*
 
@@ -930,7 +927,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case 12: Adding a note to an event
+=== Use case 12: Adding a note to an event (Chua Huixian)
 
 *MSS*
 
@@ -1222,10 +1219,12 @@ _{More to be added}_
 . The application should work on any <<mainstream-os,mainstream OS>> provided that Java `11` or above is installed.
 . The application should work on both 32-bit and 64-bit environments.
 . A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+// tag::SzeYingNFR[]
 . The application should work without internet connection.
+// end::SzeYingNFR[]
 // tag::TerenceNFR[]
 . The application should respond to every command within one second.
-. The application should be easily modifiable to meet changing curriculum of CS2013T.
+. The application should be easily modifiable to meet changing curriculum of CS2103T.
 // end::TerenceNFR[]
 
 _{More to be added}_
@@ -1235,9 +1234,6 @@ _{More to be added}_
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, OS-X
-
-[[mode]] Mode::
-Mode of operation within NOVA, such as Address Book with `nav ab`, Schedule with `nav schedule`, Planner with `nav planner`, and Progress Tracker with `nav progresstracker`.
 
 [appendix]
 == Instructions for Manual Testing
@@ -1269,7 +1265,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 //end::shutdown[]
 
-=== Deleting a person in Address Book
+//tag::deletepersoninab[]
+=== Deleting a person in Address Book (Loh Sze Ying)
 
 . Enter address book mode via `nav ab`
 . Deleting a person while all persons are listed
@@ -1281,6 +1278,7 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete i\x` (where x is larger than the list size), `delete x` (where x is number or letter)
    Expected: Similar to previous.
+//end::deletepersoninab[]
 
 //tag::Pt[]
 === Adding a project task in Progress Tracker  (Yap Wen Jun Bryan)
@@ -1313,3 +1311,27 @@ Example: Adding a @ to a week in a ptTask.
 
 .. Run the application. The application should start with a sample Nova data file with pre-included data.
 //end::Pt[]
+
+//tag::testView[]
+=== View schedule (Terence)
+. Enter schedule mode via `nav schedule`
+. View the schedule
+.. Prerequisite: An event has been added to 13 Jan 2020.
+.. Test case: `view t\2020-01-13` +
+Expected: The event that was pre-added will be displayed.
+.. Test case: `view t\2020-01-12` +
+Expected: Error message is shown to tell user that the date is out of the range of schedule.
+//end::testView[]
+
+//tag::eventTest[]
+=== Adding an event (Chua Huixian)
+. Enter schedule mode via `nav schedule`
+. Adding an event
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 13:00 14:00` +
+Expected: A meeting event will be added to the schedule. The details of the meeting will be displayed.
+.. Test case: `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00 12:00` +
+Expected: Error message is shown. The end time must be later than start time.
+.. Other incorrect commands to try: `meeting`, `meeting d\DG Meeting v\COM1 t\2020-03-13 14:00`. +
+Expected: Error messages will be shown as well.
+//end::eventTest[]
+
