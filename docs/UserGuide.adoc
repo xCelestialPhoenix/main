@@ -21,7 +21,7 @@ By: `CS2103T-F10-3`      Since: `Apr 2020`      Licence: `MIT`
 
 [[Intro]]
 // tag::intro[]
-== Introduction (Terence)
+== Introduction
 
 Welcome to the user guide (UG) for Next-gen Organizing Virtual Assistant (NOVA).
 
@@ -37,22 +37,20 @@ _[.small]#Fig 1: UI Components of NOVA#_
 // tag::about[]
 
 [[About]]
-== About (Terence)
+== About
 
 This UG is a reference guide to help you use NOVA. This document contains a <<QuickStart, quick start>> section to get
-you up and
-running soon.
+you up and running soon.
 
-There is an entire <<Features, section>> dedicated to how to use any particular feature in NOVA. Examples are provided
-for your
-better understanding. We have also provided a <<Summary, summary of commands>> for your quick reference. Should you
+There is an entire <<Features, section>> dedicated to how to use any particular feature in NOVA with examples provided
+for your better understanding. We have also provided a <<Summary, summary of commands>> for your quick reference. Should you
 face any problems, take a look at the <<FAQ, FAQ section>>.
 
 // end::about[]
 // tag::notation[]
 
 [[Notation]]
-== Notations (Terence)
+== Notations
 In this guide, you'll be seeing the following markup being used.
 
 [NOTE]
@@ -547,7 +545,7 @@ _[.small]#Fig 5.3.6: Display message after entering +
 <<Top, [Back to Top]>>
 
 // tag::view[]
-==== View Schedule of a Day: `view` (Terence)
+==== View Schedule of a Day: `view` (Terence Ng)
 You can view the schedule of a specified day. If there is nothing to do on that day, NOVA will tell you.
 
 Format: +
@@ -566,7 +564,7 @@ _[.small]#Fig 5.3.7: Display message after entering `view t\2020-02-20`#_
 
 <<Top, [Back to Top]>>
 
-==== View Schedule of a Week: `view` (Terence)
+==== View Schedule of a Week: `view` (Terence Ng)
 You can view the schedule of a specified week. If there is nothing to do on that week, NOVA will tell you.
 
 Format: +
@@ -594,7 +592,7 @@ _[.small]#Fig 5.3.8: Display message after entering `view week i\6`#_
 
 <<Top, [Back to Top]>>
 
-==== Find Free Slots: `freeslot` (Terence)
+==== Find Free Slots: `freeslot` (Terence Ng)
 You can find free slots on a day easily within your schedule without looking through your schedule.
 
 Format: +
@@ -976,14 +974,14 @@ _[.small]#Fig 5.5.7: Display message after entering `deleteNote p\ip w\3 t\1`#_
 <<Top, [Back to Top]>>
 
 [[Summary]]
-== Command Summary (Terence and Bryan)
+== Command Summary
 
 [%autowidth,cols="<.^,<.^,<.^",options="header"]
 |=========================================================
 | Mode | Command | Description
 .2+| Common
 | exit | Exits NOVA
-| nav [home/ ab/ schedule/ planner/ tracker] | Changes the mode of NOVA
+| nav [home/ ab/ schedule/ planner/ progresstracker] | Changes the mode of NOVA
 
 .10+| Address Book
 | add n\[name] p\[phone number] e\[email address] c\[classmate/teammate] | Adds a contact into your address book
@@ -1014,19 +1012,20 @@ into your schedule
 
 .5+| Daily Study Planner
 | delete p\[task name] | Deletes a task and all its events
-| flexible | Creates a flexible task
+| flexible p\[task name] t\[total minutes] mind\[maximum event duration in minutes] maxd\[maximum event duration in minutes] | Creates a flexible task
 | routine p\[task name] f\[daily/weekly] d\[event duration in minutes]| Creates a routine task
-| schedule | Schedules a tasks in the schedule
+| schedule p\[task name] t\[YYYY-MM-DD] | Schedules a tasks in the schedule
 | stats | Views the statistics of your planner
 
 .7+| Progress Tracker
 | add p\[ip/tp] w\[week number] d\[task description] | Adds a task to the specified week and project
-| list p\[ip/tp] w\[week number] | Lists the tasks that have been added to the specified week and project
-| delete p\[ip/tp] w\[week number] t\[task number] | Deletes the specified task
-| done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done/undone
 | addNote p\[ip/tp] w\[week number] t\[task number] d\[note] | Adds a note to the specified task
-| editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
+| delete p\[ip/tp] w\[week number] t\[task number] | Deletes the specified task
 | deleteNote p\[ip/tp] w\[week number] t\[task number] | Deletes the note in the specified task
+| done p\[ip/tp] w\[week number] t\[task number] | Sets the status of the specified task to done/undone
+| editNote p\[ip/tp] w\[week number] t\[task number] d\[new note] | Overwrites the existing note with the new note
+| list p\[ip/tp] w\[week number] | Lists the tasks that have been added to the specified week and project
+
 |=========================================================
 
 <<Top, [Back to Top]>>
